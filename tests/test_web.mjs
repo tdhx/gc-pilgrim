@@ -1,0 +1,37 @@
+import assert from "node:assert/strict";
+import { readFile } from "node:fs/promises";
+import test from "node:test";
+import { matchesEvent, validateFeed } from "../web/calendar-core.js";
+
+const feed = JSON.parse(await readFile(new URL("../feeds/v1/calendar.json", import.meta.url)));
+
+test("published feed validates", () => {
+  assert.equal(validateFeed(feed), feed);
+});
+
+test("default filters match Masses and Reconciliation", () => {
+  const selected = {
+    eventType: new Set(["mass", "confession"]),
+    multiculturalSubtype: new Set(),
+    church: new Set(),
+    presider: new Set(),
+  };
+  const results = feed.events.filter((event) => matchesEvent(event, selected, ""));
+  assert.ok(results.length > 0);
+  assert.ok(results.every((event) => ["mass", "confession"].includes(event.event_type)));
+});
+
+test("search includes joined liturgical fields", () => {
+  const event = feed.events.find((candidate) => candidate.liturgical?.observance);
+  assert.ok(event);
+  const selected = {
+    eventType: new Set(),
+    multiculturalSubtype: new Set(),
+    church: new Set(),
+    presider: new Set(),
+  };
+  assert.equal(
+    matchesEvent(event, selected, event.liturgical.observance.toLocaleLowerCase()),
+    true,
+  );
+});

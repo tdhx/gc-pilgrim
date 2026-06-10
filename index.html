@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SPCP Parish Calendar</title>
+  <link rel="stylesheet" href="styles.css?v=9">
+</head>
+<body>
+  <header class="page-header">
+    <p class="eyebrow">Surfers Paradise Catholic Parish</p>
+    <h1>Calendar digest</h1>
+    <p class="intro">An upcoming three-month view of Masses, sacraments and parish events.</p>
+  </header>
+
+  <main class="page-shell">
+    <aside class="filters" aria-label="Calendar filters">
+      <div class="filters-heading">
+        <h2>Filters</h2>
+        <button id="reset-filters" class="text-button" type="button">Reset</button>
+      </div>
+
+      <label class="search-field">
+        <span>Search events</span>
+        <input id="search" type="search" placeholder="Event, church or presider">
+      </label>
+
+      <fieldset class="filter-section">
+        <legend>
+          <button class="filter-toggle" type="button" aria-expanded="true" aria-controls="event-type-filters">
+            <span>Event type</span>
+            <span class="filter-toggle-icon" aria-hidden="true"></span>
+          </button>
+        </legend>
+        <div id="event-type-filters" class="checkbox-list"></div>
+      </fieldset>
+
+      <fieldset class="filter-section">
+        <legend>
+          <button class="filter-toggle" type="button" aria-expanded="true" aria-controls="church-filters">
+            <span>Church</span>
+            <span class="filter-toggle-icon" aria-hidden="true"></span>
+          </button>
+        </legend>
+        <div id="church-filters" class="checkbox-list"></div>
+      </fieldset>
+
+      <fieldset class="filter-section">
+        <legend>
+          <button class="filter-toggle" type="button" aria-expanded="true" aria-controls="presider-filters">
+            <span>Presider</span>
+            <span class="filter-toggle-icon" aria-hidden="true"></span>
+          </button>
+        </legend>
+        <div id="presider-filters" class="checkbox-list"></div>
+      </fieldset>
+    </aside>
+
+    <section class="calendar-panel" aria-live="polite">
+      <div class="results-header">
+        <div>
+          <p class="eyebrow">Chronological view</p>
+          <h2 id="results-count">Loading events...</h2>
+        </div>
+        <button id="clear-filters" class="secondary-button" type="button">Show all</button>
+      </div>
+
+      <details id="diagnostics" class="diagnostics" hidden>
+        <summary id="diagnostics-summary">Feed diagnostics</summary>
+        <div id="diagnostics-body" class="diagnostics-body"></div>
+      </details>
+      <div id="error-message" class="message error-message" hidden></div>
+      <div id="empty-message" class="message" hidden>
+        <h3>No matching events</h3>
+        <p>Try clearing one or more filters.</p>
+      </div>
+      <div id="events" class="timeline"></div>
+    </section>
+  </main>
+
+  <template id="event-template">
+    <article class="event-card">
+      <div class="event-date">
+        <span class="event-day"></span>
+        <strong class="event-number"></strong>
+        <span class="event-month"></span>
+      </div>
+      <div class="event-details">
+        <div class="event-meta">
+          <span class="event-time"></span>
+          <span class="event-type"></span>
+        </div>
+        <h3 class="event-title"></h3>
+        <div class="event-tags"></div>
+      </div>
+    </article>
+  </template>
+
+  <script type="module" src="app.js?v=11"></script>
+</body>
+</html>
