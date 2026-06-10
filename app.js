@@ -1,4 +1,4 @@
-import { matchesEvent, validateFeed } from "./web/calendar-core.js";
+import { matchesEvent, validateFeed } from "./web/calendar-core.js?v=2";
 
 const FEED_URL = "feeds/v1/calendar.json";
 const DEFAULT_EVENT_TYPES = ["mass", "confession"];
