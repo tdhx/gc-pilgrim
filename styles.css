@@ -52,14 +52,12 @@ button {
   top: 0;
   z-index: 20;
   display: grid;
-  grid-template-columns: minmax(280px, 470px) minmax(260px, 1fr);
-  gap: clamp(24px, 5vw, 72px);
+  grid-template-columns: minmax(240px, 320px) minmax(260px, 1fr);
+  gap: clamp(20px, 4vw, 52px);
   align-items: center;
   width: 100%;
-  max-width: 1180px;
-  margin: 0 auto;
-  padding: 18px 28px;
-  border-bottom: 4px solid var(--theme-highlight);
+  padding: 10px clamp(24px, 5vw, 72px);
+  border-bottom: 3px solid var(--theme-highlight);
   background: rgba(255, 255, 255, 0.96);
   box-shadow: 0 8px 24px rgba(0, 73, 107, 0.1);
   backdrop-filter: blur(14px);
@@ -71,12 +69,12 @@ button {
 
 .parish-logo {
   display: block;
-  width: min(100%, 430px);
+  width: min(100%, 300px);
   height: auto;
 }
 
 .header-copy {
-  padding-left: clamp(18px, 3vw, 38px);
+  padding-left: clamp(18px, 3vw, 32px);
   border-left: 1px solid var(--line);
 }
 
@@ -97,9 +95,9 @@ p {
 }
 
 h1 {
-  margin-bottom: 7px;
+  margin-bottom: 4px;
   color: var(--theme-primary-deep);
-  font-size: clamp(2rem, 4vw, 3.15rem);
+  font-size: clamp(1.75rem, 3vw, 2.55rem);
   font-weight: 800;
   line-height: 1;
   letter-spacing: -0.045em;
@@ -671,17 +669,17 @@ legend {
 @media (max-width: 800px) {
   .page-header {
     grid-template-columns: 1fr;
-    gap: 12px;
+    gap: 8px;
     align-items: start;
-    padding-top: 20px;
+    padding: 12px 18px;
   }
 
   .parish-logo {
-    width: min(100%, 390px);
+    width: min(100%, 300px);
   }
 
   .header-copy {
-    padding: 12px 0 0;
+    padding: 8px 0 0;
     border-top: 1px solid var(--line);
     border-left: 0;
   }

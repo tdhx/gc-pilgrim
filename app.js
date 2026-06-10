@@ -4,7 +4,7 @@ import {
   orderedEventTypes,
   presiderGroups,
   validateFeed,
-} from "./web/calendar-core.js?v=3";
+} from "./web/calendar-core.js?v=4";
 
 const FEED_URL = "feeds/v1/calendar.json";
 const DEFAULT_EVENT_TYPES = ["mass", "confession"];
