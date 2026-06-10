@@ -326,6 +326,17 @@ function eventDate(event) {
   return event.start.slice(0, 10);
 }
 
+function currentBrisbaneDate() {
+  const parts = new Intl.DateTimeFormat("en-AU", {
+    timeZone: "Australia/Brisbane",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).formatToParts(new Date());
+  const values = Object.fromEntries(parts.map((part) => [part.type, part.value]));
+  return `${values.year}-${values.month}-${values.day}`;
+}
+
 function churchClass(church) {
   return {
     "Sacred Heart": "church-sacred-heart",
@@ -345,6 +356,7 @@ function renderCard(event) {
   const card = elements.template.content.firstElementChild.cloneNode(true);
   const dateParts = formatDateParts(event);
   card.classList.add(churchClass(event.church));
+  card.dataset.eventDate = eventDate(event);
 
   card.querySelector(".event-day").textContent = dateParts.weekday;
   card.querySelector(".event-number").textContent = dateParts.day;
@@ -377,6 +389,21 @@ function renderEvents() {
   elements.events.replaceChildren(...filtered.map(renderCard));
   elements.resultsCount.textContent = `${filtered.length} event${filtered.length === 1 ? "" : "s"}`;
   elements.emptyMessage.hidden = filtered.length !== 0;
+}
+
+function scrollToCurrentDay() {
+  const today = currentBrisbaneDate();
+  const target = elements.events.querySelector(`[data-event-date="${today}"]`);
+  if (!target) return;
+
+  requestAnimationFrame(() => {
+    target.scrollIntoView({
+      behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
+        ? "auto"
+        : "smooth",
+      block: "start",
+    });
+  });
 }
 
 function renderDiagnostics() {
@@ -464,6 +491,7 @@ async function loadEvents() {
     buildFilters();
     renderDiagnostics();
     renderEvents();
+    scrollToCurrentDay();
   } catch (error) {
     elements.resultsCount.textContent = "Calendar unavailable";
     elements.errorMessage.hidden = false;

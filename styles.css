@@ -418,6 +418,7 @@ legend {
 
 .event-card {
   position: relative;
+  scroll-margin-top: 16px;
   isolation: isolate;
   overflow: hidden;
   display: grid;
