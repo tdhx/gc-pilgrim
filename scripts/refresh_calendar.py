@@ -353,13 +353,13 @@ KNOWN_PRESIDERS = [
     (r"\bfadi\b", "Fr Fadi"),
     (r"\bzac\b", "Fr Zac"),
     (r"\bandrew\s+grace\b", "Fr Andrew Grace"),
-    (r"\bjerzy\s+prucnal\b", "Fr Jerzy Prucnal"),
+    (r"\bjerzy(?:\s+prucnal)?\b", "Fr Jerzy"),
     (r"\bsyrilus\s+madin\b", "Fr Syrilus Madin"),
     (r"\bluis\s+antonio\s+diaz(?:\s+lamus)?\b", "Fr Luis Antonio Diaz Lamus"),
 ]
 
 MULTICULTURAL_PRESIDER_FALLBACKS = {
-    "polish": "Fr Jerzy Prucnal",
+    "polish": "Fr Jerzy",
     "hispanic": "Fr Luis Antonio Diaz Lamus",
     "italian": "Fr Luis Antonio Diaz Lamus",
     "maronite": "Fr Fadi Salame",

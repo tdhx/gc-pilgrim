@@ -35,14 +35,21 @@ button {
 }
 
 .page-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
   display: grid;
   grid-template-columns: minmax(0, auto) minmax(260px, 1fr);
   column-gap: 28px;
   align-items: end;
+  width: 100%;
   max-width: 1180px;
   margin: 0 auto;
   padding: 22px 28px 12px;
   border-bottom: 1px solid var(--line);
+  background: rgba(255, 253, 248, 0.94);
+  box-shadow: 0 6px 18px rgba(39, 49, 54, 0.06);
+  backdrop-filter: blur(14px);
 }
 
 .page-header .eyebrow {

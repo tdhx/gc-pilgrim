@@ -61,7 +61,7 @@ END:VCALENDAR
         self.assertEqual(refresh_calendar.classify_event(text), "multicultural")
         self.assertEqual(refresh_calendar.multicultural_subtype(text), "polish")
         self.assertEqual(refresh_calendar.normalize_church(text), "Sacred Heart")
-        self.assertEqual(refresh_calendar.extract_presiders(text), ["Fr Jerzy Prucnal"])
+        self.assertEqual(refresh_calendar.extract_presiders(text), ["Fr Jerzy"])
 
     def test_vigil_joins_the_following_liturgical_day(self):
         event = sample_event(
@@ -84,6 +84,12 @@ END:VCALENDAR
         result = calendar_feed.finalize_event(event, {})
         self.assertEqual(result["service_name"], "Italian Mass")
         self.assertEqual(result["presiders"], ["Fr Luis"])
+
+    def test_polish_presider_display_uses_first_name(self):
+        event = sample_event(event_type="multicultural", event_subtype="polish")
+        event["presiders"] = ["Fr Jerzy Prucnal"]
+        result = calendar_feed.finalize_event(event, {})
+        self.assertEqual(result["presiders"], ["Fr Jerzy"])
 
     def test_feed_encoding_is_deterministic(self):
         event = sample_event()

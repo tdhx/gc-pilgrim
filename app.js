@@ -482,7 +482,7 @@ function initializeMobileFilters() {
 
 async function loadEvents() {
   try {
-    const response = await fetch(FEED_URL);
+    const response = await fetch(FEED_URL, { cache: "no-store" });
     if (!response.ok) throw new Error(`Calendar feed returned ${response.status}.`);
     const feed = await response.json();
     validateFeed(feed);

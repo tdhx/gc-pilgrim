@@ -23,6 +23,7 @@ def subtype_label(value):
 def normalized_presiders(names):
     display_names = {
         "Fr John Maher": "Fr John",
+        "Fr Jerzy Prucnal": "Fr Jerzy",
         "Fr Luis Antonio Diaz Lamus": "Fr Luis",
     }
     return list(dict.fromkeys(display_names.get(name, name) for name in names))
