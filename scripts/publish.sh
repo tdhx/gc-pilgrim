@@ -85,7 +85,8 @@ import sys
 feed = json.load(sys.stdin)
 assert feed["schema_version"] == 1
 assert isinstance(feed["events"], list)
-print(f"Live feed verified: {len(feed['events'])} events")
+event_count = len(feed["events"])
+print(f"Live feed verified: {event_count} events")
 '
 
 echo "Published $commit"
