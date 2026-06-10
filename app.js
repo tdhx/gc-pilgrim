@@ -62,8 +62,8 @@ function titleCase(value) {
 function eventTypeLabel(value) {
   return {
     baptism: "Baptisms",
-    confession: "Recon.",
-    multicultural: "Multicult. Mass",
+    confession: "Reconciliation",
+    multicultural: "Multicultural Mass",
   }[value] || titleCase(value);
 }
 
@@ -350,12 +350,15 @@ function renderCard(event) {
   card.querySelector(".event-number").textContent = dateParts.day;
   card.querySelector(".event-month").textContent = dateParts.month;
   card.querySelector(".event-church").textContent = displayChurch(event.church);
+  card.querySelector(".event-service").textContent = event.service_name;
   card.querySelector(".event-time").textContent = formatEventTime(event);
   card.querySelector(".event-presider").textContent = event.presiders.length
     ? event.presiders.map(displayPresider).join(", ")
     : "Presider TBA";
-  card.querySelector(".event-subtitle").textContent =
-    event.liturgical?.observance || event.service_name;
+  const subtitle = card.querySelector(".event-subtitle");
+  const observance = event.liturgical?.observance;
+  subtitle.textContent = observance && observance !== event.service_name ? observance : "";
+  subtitle.hidden = !subtitle.textContent;
 
   const tags = card.querySelector(".event-tags");
   if (event.liturgical?.rank && event.liturgical.rank !== "Sunday") {
