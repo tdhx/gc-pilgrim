@@ -35,6 +35,15 @@ Publish the repository root with GitHub Pages. Before a release build, replace
 the placeholder in `ios/Config/Release.xcconfig` with the Pages URL for this
 repository. The app project is `ios/SPCPCalendar.xcodeproj` and targets iOS 17+.
 
+## Publish changes
+
+After reviewing the working tree, run the complete test, commit, push, and
+GitHub Pages deployment workflow:
+
+```sh
+./scripts/publish.sh "Describe the change"
+```
+
 ## Tests
 
 ```sh
