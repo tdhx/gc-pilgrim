@@ -1,5 +1,6 @@
 export const SUPPORTED_SCHEMA_VERSION = 1;
 export const EVENT_TYPE_ORDER = ["mass", "confession", "baptism", "multicultural"];
+export const LITURGICAL_COLOURS = new Set(["green", "red", "white", "violet", "rose"]);
 
 const FEATURED_PRESIDERS = ["Fr Paul", "Fr Bradley"];
 const PARISH_PRESIDERS = ["Fr Bernie", "Fr Damian", "Fr John", "Fr Warren"];
@@ -22,6 +23,11 @@ export function presiderGroups(values) {
     take(PARISH_PRESIDERS).sort((left, right) => left.localeCompare(right)),
     [...available].sort((left, right) => left.localeCompare(right)),
   ].filter((group) => group.length);
+}
+
+export function liturgicalColour(event) {
+  const colour = event?.liturgical?.liturgical_colour?.toLocaleLowerCase();
+  return LITURGICAL_COLOURS.has(colour) ? colour : "parish";
 }
 
 export function validateFeed(feed) {

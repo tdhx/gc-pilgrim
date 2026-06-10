@@ -1,4 +1,5 @@
 import {
+  liturgicalColour,
   matchesEvent,
   orderedEventTypes,
   presiderGroups,
@@ -357,6 +358,7 @@ function renderCard(event) {
   const dateParts = formatDateParts(event);
   card.classList.add(churchClass(event.church));
   card.dataset.eventDate = eventDate(event);
+  card.dataset.liturgicalColour = liturgicalColour(event);
 
   card.querySelector(".event-day").textContent = dateParts.weekday;
   card.querySelector(".event-number").textContent = dateParts.day;

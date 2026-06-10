@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import test from "node:test";
 import {
+  liturgicalColour,
   matchesEvent,
   orderedEventTypes,
   presiderGroups,
@@ -54,6 +55,18 @@ test("search includes joined liturgical fields", () => {
   assert.equal(
     matchesEvent(event, selected, event.liturgical.observance.toLocaleLowerCase()),
     true,
+  );
+});
+
+test("card accents use known liturgical colours with a parish fallback", () => {
+  assert.equal(
+    liturgicalColour({ liturgical: { liturgical_colour: "RED" } }),
+    "red",
+  );
+  assert.equal(liturgicalColour({ liturgical: null }), "parish");
+  assert.equal(
+    liturgicalColour({ liturgical: { liturgical_colour: "gold" } }),
+    "parish",
   );
 });
 
