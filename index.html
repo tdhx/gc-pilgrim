@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>SPCP Parish Calendar</title>
-  <link rel="stylesheet" href="styles.css?v=9">
+  <link rel="stylesheet" href="styles.css?v=10">
 </head>
 <body>
   <header class="page-header">
@@ -14,46 +14,60 @@
   </header>
 
   <main class="page-shell">
-    <aside class="filters" aria-label="Calendar filters">
+    <aside id="filters" class="filters" aria-label="Calendar filters">
       <div class="filters-heading">
         <h2>Filters</h2>
-        <button id="reset-filters" class="text-button" type="button">Reset</button>
+        <div class="filters-heading-actions">
+          <button id="reset-filters" class="text-button" type="button">Reset</button>
+          <button
+            id="filters-toggle"
+            class="filters-panel-toggle"
+            type="button"
+            aria-expanded="true"
+            aria-controls="filters-content"
+            aria-label="Collapse calendar filters"
+          >
+            <span class="filter-toggle-icon" aria-hidden="true"></span>
+          </button>
+        </div>
       </div>
 
-      <label class="search-field">
-        <span>Search events</span>
-        <input id="search" type="search" placeholder="Event, church or presider">
-      </label>
+      <div id="filters-content">
+        <label class="search-field">
+          <span>Search events</span>
+          <input id="search" type="search" placeholder="Event, church or presider">
+        </label>
 
-      <fieldset class="filter-section">
-        <legend>
-          <button class="filter-toggle" type="button" aria-expanded="true" aria-controls="event-type-filters">
-            <span>Event type</span>
-            <span class="filter-toggle-icon" aria-hidden="true"></span>
-          </button>
-        </legend>
-        <div id="event-type-filters" class="checkbox-list"></div>
-      </fieldset>
+        <fieldset class="filter-section">
+          <legend>
+            <button class="filter-toggle" type="button" aria-expanded="true" aria-controls="event-type-filters">
+              <span>Event type</span>
+              <span class="filter-toggle-icon" aria-hidden="true"></span>
+            </button>
+          </legend>
+          <div id="event-type-filters" class="checkbox-list"></div>
+        </fieldset>
 
-      <fieldset class="filter-section">
-        <legend>
-          <button class="filter-toggle" type="button" aria-expanded="true" aria-controls="church-filters">
-            <span>Church</span>
-            <span class="filter-toggle-icon" aria-hidden="true"></span>
-          </button>
-        </legend>
-        <div id="church-filters" class="checkbox-list"></div>
-      </fieldset>
+        <fieldset class="filter-section">
+          <legend>
+            <button class="filter-toggle" type="button" aria-expanded="true" aria-controls="church-filters">
+              <span>Church</span>
+              <span class="filter-toggle-icon" aria-hidden="true"></span>
+            </button>
+          </legend>
+          <div id="church-filters" class="checkbox-list"></div>
+        </fieldset>
 
-      <fieldset class="filter-section">
-        <legend>
-          <button class="filter-toggle" type="button" aria-expanded="true" aria-controls="presider-filters">
-            <span>Presider</span>
-            <span class="filter-toggle-icon" aria-hidden="true"></span>
-          </button>
-        </legend>
-        <div id="presider-filters" class="checkbox-list"></div>
-      </fieldset>
+        <fieldset class="filter-section">
+          <legend>
+            <button class="filter-toggle" type="button" aria-expanded="true" aria-controls="presider-filters">
+              <span>Presider</span>
+              <span class="filter-toggle-icon" aria-hidden="true"></span>
+            </button>
+          </legend>
+          <div id="presider-filters" class="checkbox-list"></div>
+        </fieldset>
+      </div>
     </aside>
 
     <section class="calendar-panel" aria-live="polite">
@@ -96,6 +110,6 @@
     </article>
   </template>
 
-  <script type="module" src="app.js?v=11"></script>
+  <script type="module" src="app.js?v=12"></script>
 </body>
 </html>

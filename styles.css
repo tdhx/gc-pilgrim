@@ -113,6 +113,28 @@ h1 {
   align-items: center;
 }
 
+.filters-heading-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.filters-panel-toggle {
+  display: none;
+  width: 34px;
+  height: 34px;
+  place-items: center;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: var(--surface);
+  color: var(--accent);
+}
+
+.filters-panel-toggle[aria-expanded="false"] .filter-toggle-icon {
+  transform: rotate(-45deg);
+}
+
 .filters-heading,
 .results-header {
   justify-content: space-between;
@@ -562,6 +584,19 @@ legend {
   .filters {
     position: static;
     max-height: none;
+  }
+
+  .filters-panel-toggle {
+    display: grid;
+  }
+
+  .filters-collapsed {
+    padding-top: 16px;
+    padding-bottom: 16px;
+  }
+
+  .filters-collapsed .filters-heading {
+    margin: 0;
   }
 }
 

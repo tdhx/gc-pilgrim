@@ -14,12 +14,13 @@ export function validateFeed(feed) {
   return feed;
 }
 
-export function matchesEvent(event, selected, search) {
+export function matchesEvent(event, selected, search, defaultEventTypes = []) {
   const { eventType, church, presider, multiculturalSubtype } = selected;
-  if (eventType.size && !eventType.has(event.event_type)) return false;
+  const effectiveEventTypes = eventType.size ? eventType : new Set(defaultEventTypes);
+  if (effectiveEventTypes.size && !effectiveEventTypes.has(event.event_type)) return false;
   if (
     event.event_type === "multicultural"
-    && eventType.has("multicultural")
+    && effectiveEventTypes.has("multicultural")
     && multiculturalSubtype.size
     && !multiculturalSubtype.has(event.event_subtype)
   ) return false;

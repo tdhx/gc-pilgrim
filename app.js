@@ -8,18 +8,22 @@ const state = {
   events: [],
   feed: null,
   selected: {
-    eventType: new Set(DEFAULT_EVENT_TYPES),
+    eventType: new Set(),
     multiculturalSubtype: new Set(),
     church: new Set(),
     presider: new Set(),
   },
   search: "",
+  useDefaultEventTypes: true,
 };
 
 const elements = {
   events: document.querySelector("#events"),
   resultsCount: document.querySelector("#results-count"),
   eventTypeFilters: document.querySelector("#event-type-filters"),
+  filters: document.querySelector("#filters"),
+  filtersContent: document.querySelector("#filters-content"),
+  filtersToggle: document.querySelector("#filters-toggle"),
   churchFilters: document.querySelector("#church-filters"),
   presiderFilters: document.querySelector("#presider-filters"),
   search: document.querySelector("#search"),
@@ -103,6 +107,7 @@ function buildCheckboxes(container, group, values, labelFormatter = (value) => v
     input.addEventListener("change", () => {
       const selected = state.selected[group];
       input.checked ? selected.add(value) : selected.delete(value);
+      if (group === "eventType") state.useDefaultEventTypes = false;
       renderEvents();
     });
 
@@ -220,6 +225,7 @@ function buildEventTypeFilters() {
         children.append(childLabel);
 
         childInput.addEventListener("change", () => {
+          state.useDefaultEventTypes = false;
           childInput.checked
             ? state.selected.multiculturalSubtype.add(subtype)
             : state.selected.multiculturalSubtype.delete(subtype);
@@ -236,6 +242,7 @@ function buildEventTypeFilters() {
       wrapper.append(children);
 
       input.addEventListener("change", () => {
+        state.useDefaultEventTypes = false;
         if (input.checked) {
           state.selected.eventType.add(MULTICULTURAL_TYPE);
           subtypes.forEach((subtype) => state.selected.multiculturalSubtype.add(subtype));
@@ -248,6 +255,7 @@ function buildEventTypeFilters() {
       });
     } else {
       input.addEventListener("change", () => {
+        state.useDefaultEventTypes = false;
         input.checked
           ? state.selected.eventType.add(value)
           : state.selected.eventType.delete(value);
@@ -276,7 +284,12 @@ function buildFilters() {
 }
 
 function matchesFilters(event) {
-  return matchesEvent(event, state.selected, state.search);
+  return matchesEvent(
+    event,
+    state.selected,
+    state.search,
+    state.useDefaultEventTypes ? DEFAULT_EVENT_TYPES : [],
+  );
 }
 
 function formatDateParts(event) {
@@ -391,7 +404,7 @@ function renderDiagnostics() {
 
 function setFiltersToDefaults() {
   Object.values(state.selected).forEach((selection) => selection.clear());
-  DEFAULT_EVENT_TYPES.forEach((value) => state.selected.eventType.add(value));
+  state.useDefaultEventTypes = true;
   state.search = "";
   elements.search.value = "";
   document.querySelectorAll('.filters input[type="checkbox"]').forEach((input) => {
@@ -403,6 +416,7 @@ function setFiltersToDefaults() {
 
 function showAllEvents() {
   Object.values(state.selected).forEach((selection) => selection.clear());
+  state.useDefaultEventTypes = false;
   state.search = "";
   elements.search.value = "";
   document.querySelectorAll('.filters input[type="checkbox"]').forEach((input) => {
@@ -410,6 +424,22 @@ function showAllEvents() {
     input.indeterminate = false;
   });
   renderEvents();
+}
+
+function setFiltersExpanded(expanded) {
+  elements.filtersToggle.setAttribute("aria-expanded", String(expanded));
+  elements.filtersToggle.setAttribute(
+    "aria-label",
+    `${expanded ? "Collapse" : "Expand"} calendar filters`,
+  );
+  elements.filtersContent.hidden = !expanded;
+  elements.filters.classList.toggle("filters-collapsed", !expanded);
+}
+
+function initializeMobileFilters() {
+  const mobile = window.matchMedia("(max-width: 800px)");
+  setFiltersExpanded(!mobile.matches);
+  mobile.addEventListener("change", (event) => setFiltersExpanded(!event.matches));
 }
 
 async function loadEvents() {
@@ -445,5 +475,9 @@ document.querySelectorAll(".filter-toggle").forEach((toggle) => {
 });
 elements.resetFilters.addEventListener("click", setFiltersToDefaults);
 elements.clearFilters.addEventListener("click", showAllEvents);
+elements.filtersToggle.addEventListener("click", () => {
+  setFiltersExpanded(elements.filtersToggle.getAttribute("aria-expanded") !== "true");
+});
 
+initializeMobileFilters();
 loadEvents();

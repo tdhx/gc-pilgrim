@@ -11,14 +11,30 @@ test("published feed validates", () => {
 
 test("default filters match Masses and Reconciliation", () => {
   const selected = {
-    eventType: new Set(["mass", "confession"]),
+    eventType: new Set(),
     multiculturalSubtype: new Set(),
     church: new Set(),
     presider: new Set(),
   };
-  const results = feed.events.filter((event) => matchesEvent(event, selected, ""));
+  const results = feed.events.filter((event) => (
+    matchesEvent(event, selected, "", ["mass", "confession"])
+  ));
   assert.ok(results.length > 0);
   assert.ok(results.every((event) => ["mass", "confession"].includes(event.event_type)));
+});
+
+test("explicit event selections override the default feed view", () => {
+  const selected = {
+    eventType: new Set(["baptism"]),
+    multiculturalSubtype: new Set(),
+    church: new Set(),
+    presider: new Set(),
+  };
+  const results = feed.events.filter((event) => (
+    matchesEvent(event, selected, "", ["mass", "confession"])
+  ));
+  assert.ok(results.length > 0);
+  assert.ok(results.every((event) => event.event_type === "baptism"));
 });
 
 test("search includes joined liturgical fields", () => {
