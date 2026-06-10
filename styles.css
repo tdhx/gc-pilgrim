@@ -107,7 +107,6 @@ h1 {
 
 .filters-heading,
 .results-header,
-.event-meta,
 .event-tags {
   display: flex;
   align-items: center;
@@ -238,6 +237,16 @@ legend {
 .checkbox-list {
   display: grid;
   gap: 8px;
+}
+
+.filter-presider-group {
+  gap: 8px;
+}
+
+.filter-group-separator {
+  height: 1px;
+  margin: 4px 0;
+  background: var(--line);
 }
 
 .filter-family {
@@ -491,36 +500,34 @@ legend {
   line-height: 1;
 }
 
-.event-meta {
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-bottom: 7px;
-}
-
 .event-time {
+  margin: 0 0 3px;
   color: var(--blue);
-  font-size: 0.86rem;
+  font-size: 0.92rem;
   font-weight: 800;
 }
 
-.event-type {
-  padding: 3px 8px;
-  border-radius: 999px;
-  background: #edf2f4;
-  color: #536773;
-  font-size: 0.67rem;
-  font-weight: 800;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+.event-presider {
+  margin: 0 0 10px;
+  color: var(--ink);
+  font-size: 0.9rem;
+  font-weight: 700;
 }
 
-.event-title {
-  margin-bottom: 10px;
+.event-church {
+  margin-bottom: 5px;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: 1.22rem;
+  font-size: 1.28rem;
   font-weight: 600;
   line-height: 1.3;
   overflow-wrap: anywhere;
+}
+
+.event-subtitle {
+  margin: 0 0 10px;
+  color: var(--muted);
+  font-size: 0.88rem;
+  line-height: 1.4;
 }
 
 .event-details {
@@ -613,7 +620,7 @@ legend {
     padding: 16px;
   }
 
-  .event-title {
+  .event-church {
     font-size: 1.08rem;
   }
 }

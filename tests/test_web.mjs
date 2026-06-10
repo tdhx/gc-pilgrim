@@ -1,7 +1,12 @@
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import test from "node:test";
-import { matchesEvent, validateFeed } from "../web/calendar-core.js";
+import {
+  matchesEvent,
+  orderedEventTypes,
+  presiderGroups,
+  validateFeed,
+} from "../web/calendar-core.js";
 
 const feed = JSON.parse(await readFile(new URL("../feeds/v1/calendar.json", import.meta.url)));
 
@@ -49,5 +54,28 @@ test("search includes joined liturgical fields", () => {
   assert.equal(
     matchesEvent(event, selected, event.liturgical.observance.toLocaleLowerCase()),
     true,
+  );
+});
+
+test("filter options use the requested display order", () => {
+  assert.deepEqual(
+    orderedEventTypes(["multicultural", "baptism", "mass", "confession"]),
+    ["mass", "confession", "baptism", "multicultural"],
+  );
+  assert.deepEqual(
+    presiderGroups([
+      "Fr Luis",
+      "Fr Warren",
+      "Fr Bradley",
+      "Fr Damian",
+      "Fr Fadi",
+      "Fr John",
+      "Fr Paul",
+    ]),
+    [
+      ["Fr Paul", "Fr Bradley"],
+      ["Fr Damian", "Fr John", "Fr Warren"],
+      ["Fr Fadi", "Fr Luis"],
+    ],
   );
 });

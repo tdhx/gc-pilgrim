@@ -1,4 +1,28 @@
 export const SUPPORTED_SCHEMA_VERSION = 1;
+export const EVENT_TYPE_ORDER = ["mass", "confession", "baptism", "multicultural"];
+
+const FEATURED_PRESIDERS = ["Fr Paul", "Fr Bradley"];
+const PARISH_PRESIDERS = ["Fr Bernie", "Fr Damian", "Fr John", "Fr Warren"];
+
+export function orderedEventTypes(values) {
+  return [...values].sort((left, right) => {
+    const leftIndex = EVENT_TYPE_ORDER.indexOf(left);
+    const rightIndex = EVENT_TYPE_ORDER.indexOf(right);
+    return (leftIndex < 0 ? EVENT_TYPE_ORDER.length : leftIndex)
+      - (rightIndex < 0 ? EVENT_TYPE_ORDER.length : rightIndex)
+      || left.localeCompare(right);
+  });
+}
+
+export function presiderGroups(values) {
+  const available = new Set(values);
+  const take = (names) => names.filter((name) => available.delete(name));
+  return [
+    take(FEATURED_PRESIDERS),
+    take(PARISH_PRESIDERS).sort((left, right) => left.localeCompare(right)),
+    [...available].sort((left, right) => left.localeCompare(right)),
+  ].filter((group) => group.length);
+}
 
 export function validateFeed(feed) {
   if (!feed || feed.schema_version !== SUPPORTED_SCHEMA_VERSION) {

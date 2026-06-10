@@ -1,4 +1,9 @@
-import { matchesEvent, validateFeed } from "./web/calendar-core.js?v=2";
+import {
+  matchesEvent,
+  orderedEventTypes,
+  presiderGroups,
+  validateFeed,
+} from "./web/calendar-core.js?v=3";
 
 const FEED_URL = "feeds/v1/calendar.json";
 const DEFAULT_EVENT_TYPES = ["mass", "confession"];
@@ -56,8 +61,9 @@ function titleCase(value) {
 
 function eventTypeLabel(value) {
   return {
-    confession: "Reconciliation",
-    multicultural: "Multicultural Mass",
+    baptism: "Baptisms",
+    confession: "Recon.",
+    multicultural: "Multicult. Mass",
   }[value] || titleCase(value);
 }
 
@@ -73,6 +79,11 @@ function subtypeLabel(value) {
 
 function displayChurch(church) {
   return church || "Unassigned";
+}
+
+function displayPresider(name) {
+  const givenName = name.replace(/^Fr\s+/, "");
+  return `Fr. ${givenName === "Damian" ? "Damien" : givenName}`;
 }
 
 function uniqueValues(getValues) {
@@ -147,7 +158,7 @@ function syncMulticulturalControls() {
 
 function buildEventTypeFilters() {
   elements.eventTypeFilters.replaceChildren();
-  const eventTypes = uniqueValues((event) => [event.event_type]);
+  const eventTypes = orderedEventTypes(uniqueValues((event) => [event.event_type]));
 
   eventTypes.forEach((value) => {
     const wrapper = document.createElement("div");
@@ -276,11 +287,19 @@ function buildFilters() {
     "church",
     uniqueValues((event) => [displayChurch(event.church)]),
   );
-  buildCheckboxes(
-    elements.presiderFilters,
-    "presider",
-    uniqueValues((event) => event.presiders),
-  );
+  elements.presiderFilters.replaceChildren();
+  presiderGroups(uniqueValues((event) => event.presiders)).forEach((group, index) => {
+    if (index) {
+      const separator = document.createElement("div");
+      separator.className = "filter-group-separator";
+      separator.setAttribute("aria-hidden", "true");
+      elements.presiderFilters.append(separator);
+    }
+    const groupContainer = document.createElement("div");
+    groupContainer.className = "checkbox-list filter-presider-group";
+    buildCheckboxes(groupContainer, "presider", group, displayPresider);
+    elements.presiderFilters.append(groupContainer);
+  });
 }
 
 function matchesFilters(event) {
@@ -307,10 +326,6 @@ function eventDate(event) {
   return event.start.slice(0, 10);
 }
 
-function isVigilMass(event) {
-  return event.service_name === "Vigil Mass";
-}
-
 function churchClass(church) {
   return {
     "Sacred Heart": "church-sacred-heart",
@@ -334,29 +349,22 @@ function renderCard(event) {
   card.querySelector(".event-day").textContent = dateParts.weekday;
   card.querySelector(".event-number").textContent = dateParts.day;
   card.querySelector(".event-month").textContent = dateParts.month;
+  card.querySelector(".event-church").textContent = displayChurch(event.church);
   card.querySelector(".event-time").textContent = formatEventTime(event);
-  card.querySelector(".event-type").textContent = event.service_name;
-  card.querySelector(".event-title").textContent =
+  card.querySelector(".event-presider").textContent = event.presiders.length
+    ? event.presiders.map(displayPresider).join(", ")
+    : "Presider TBA";
+  card.querySelector(".event-subtitle").textContent =
     event.liturgical?.observance || event.service_name;
 
   const tags = card.querySelector(".event-tags");
-  tags.append(makeTag(`Church: ${displayChurch(event.church)}`));
-  if (event.presiders.length) {
-    tags.append(makeTag(`Presider: ${event.presiders.join(", ")}`));
-  } else {
-    tags.append(makeTag("Presider: TBA"));
-  }
-  if (isVigilMass(event)) {
-    tags.append(makeTag("Vigil"));
-  } else if (event.liturgical?.rank) {
+  if (event.liturgical?.rank && event.liturgical.rank !== "Sunday") {
     tags.append(makeTag(event.liturgical.rank));
-  }
-  if (event.liturgical?.season) {
-    tags.append(makeTag(event.liturgical.season));
   }
   (event.associated_devotions || []).forEach((devotion) => {
     tags.append(makeTag(devotion));
   });
+  tags.hidden = !tags.children.length;
 
   return card;
 }
