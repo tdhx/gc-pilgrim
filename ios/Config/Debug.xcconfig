@@ -1,1 +1,1 @@
-CALENDAR_FEED_URL = http:/$()/127.0.0.1:8000/feeds/v1/calendar.json
+CALENDAR_FEED_URL = https:/$()/tdhx.github.io/spcp-calendar/feeds/v1/calendar.json

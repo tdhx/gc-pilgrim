@@ -26,7 +26,8 @@ feed only after generation succeeds.
 python3 -m http.server 8000
 ```
 
-Open `http://127.0.0.1:8000`. The debug iOS configuration uses the same URL.
+Open `http://127.0.0.1:8000`. To make the iOS app use a local feed, temporarily
+override `CALENDAR_FEED_URL` in `ios/Config/Debug.xcconfig`.
 
 ## Configure GitHub Pages and iOS
 
