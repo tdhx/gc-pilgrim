@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>SPCP Parish Calendar</title>
-  <link rel="stylesheet" href="styles.css?v=15">
+  <link rel="stylesheet" href="styles.css?v=16">
 </head>
 <body data-theme="spcp">
   <header class="page-header">
@@ -84,10 +84,50 @@
     <section class="calendar-panel" aria-live="polite">
       <div class="results-header">
         <div>
-          <p class="eyebrow">Chronological view</p>
+          <p id="results-context" class="eyebrow">Daily view</p>
           <h2 id="results-count">Loading events...</h2>
         </div>
         <button id="clear-filters" class="secondary-button" type="button">Show all</button>
+      </div>
+
+      <div class="calendar-toolbar">
+        <div class="view-switcher" role="tablist" aria-label="Calendar view">
+          <button
+            id="view-daily"
+            class="view-button"
+            type="button"
+            role="tab"
+            aria-selected="true"
+            aria-controls="events"
+            tabindex="0"
+            data-view="daily"
+          >Daily</button>
+          <button
+            id="view-weekly"
+            class="view-button"
+            type="button"
+            role="tab"
+            aria-selected="false"
+            aria-controls="events"
+            tabindex="-1"
+            data-view="weekly"
+          >Weekly</button>
+          <button
+            id="view-monthly"
+            class="view-button"
+            type="button"
+            role="tab"
+            aria-selected="false"
+            aria-controls="events"
+            tabindex="-1"
+            data-view="monthly"
+          >Monthly</button>
+        </div>
+        <div id="period-navigation" class="period-navigation" hidden>
+          <button id="previous-period" class="period-button" type="button">Previous</button>
+          <button id="today-period" class="period-button" type="button">Today</button>
+          <button id="next-period" class="period-button" type="button">Next</button>
+        </div>
       </div>
 
       <details id="diagnostics" class="diagnostics" hidden>
@@ -99,7 +139,12 @@
         <h3>No matching events</h3>
         <p>Try clearing one or more filters.</p>
       </div>
-      <div id="events" class="timeline"></div>
+      <div
+        id="events"
+        class="calendar-view"
+        role="tabpanel"
+        aria-labelledby="view-daily"
+      ></div>
     </section>
   </main>
 
@@ -123,6 +168,6 @@
     </article>
   </template>
 
-  <script type="module" src="app.js?v=19"></script>
+  <script type="module" src="app.js?v=20"></script>
 </body>
 </html>

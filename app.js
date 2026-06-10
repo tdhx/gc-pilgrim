@@ -1,10 +1,19 @@
 import {
+  addDays,
+  addMonths,
+  dateFromKey,
+  eventDateKey,
+  eventsInRange,
   liturgicalColour,
   matchesEvent,
+  monthGrid,
+  monthStart,
   orderedEventTypes,
   presiderGroups,
+  rangeWithinCoverage,
+  startOfSundayWeek,
   validateFeed,
-} from "./web/calendar-core.js?v=4";
+} from "./web/calendar-core.js?v=5";
 
 const FEED_URL = "feeds/v1/calendar.json";
 const DEFAULT_EVENT_TYPES = ["mass", "confession"];
@@ -21,10 +30,15 @@ const state = {
   },
   search: "",
   useDefaultEventTypes: true,
+  view: "daily",
+  weekStart: null,
+  month: null,
+  selectedMonthDate: null,
 };
 
 const elements = {
   events: document.querySelector("#events"),
+  resultsContext: document.querySelector("#results-context"),
   resultsCount: document.querySelector("#results-count"),
   eventTypeFilters: document.querySelector("#event-type-filters"),
   filters: document.querySelector("#filters"),
@@ -41,6 +55,11 @@ const elements = {
   diagnosticsSummary: document.querySelector("#diagnostics-summary"),
   diagnosticsBody: document.querySelector("#diagnostics-body"),
   template: document.querySelector("#event-template"),
+  viewButtons: [...document.querySelectorAll(".view-button")],
+  periodNavigation: document.querySelector("#period-navigation"),
+  previousPeriod: document.querySelector("#previous-period"),
+  todayPeriod: document.querySelector("#today-period"),
+  nextPeriod: document.querySelector("#next-period"),
 };
 
 const dateFormatter = new Intl.DateTimeFormat("en-AU", {
@@ -54,6 +73,33 @@ const timeFormatter = new Intl.DateTimeFormat("en-AU", {
   timeZone: "Australia/Brisbane",
   hour: "numeric",
   minute: "2-digit",
+});
+
+const dayHeadingFormatter = new Intl.DateTimeFormat("en-AU", {
+  timeZone: "UTC",
+  weekday: "long",
+  day: "numeric",
+  month: "long",
+  year: "numeric",
+});
+
+const shortDayFormatter = new Intl.DateTimeFormat("en-AU", {
+  timeZone: "UTC",
+  weekday: "short",
+  day: "numeric",
+  month: "short",
+});
+
+const weekRangeFormatter = new Intl.DateTimeFormat("en-AU", {
+  timeZone: "UTC",
+  day: "numeric",
+  month: "short",
+});
+
+const monthHeadingFormatter = new Intl.DateTimeFormat("en-AU", {
+  timeZone: "UTC",
+  month: "long",
+  year: "numeric",
 });
 
 function titleCase(value) {
@@ -323,10 +369,6 @@ function formatEventTime(event) {
   return `${timeFormatter.format(new Date(event.start))}–${timeFormatter.format(new Date(event.end))}`;
 }
 
-function eventDate(event) {
-  return event.start.slice(0, 10);
-}
-
 function currentBrisbaneDate() {
   const parts = new Intl.DateTimeFormat("en-AU", {
     timeZone: "Australia/Brisbane",
@@ -357,7 +399,7 @@ function renderCard(event) {
   const card = elements.template.content.firstElementChild.cloneNode(true);
   const dateParts = formatDateParts(event);
   card.classList.add(churchClass(event.church));
-  card.dataset.eventDate = eventDate(event);
+  card.dataset.eventDate = eventDateKey(event);
   card.dataset.liturgicalColour = liturgicalColour(event);
 
   card.querySelector(".event-day").textContent = dateParts.weekday;
@@ -386,11 +428,235 @@ function renderCard(event) {
   return card;
 }
 
+function eventsByDate(events) {
+  return events.reduce((groups, event) => {
+    const key = eventDateKey(event);
+    if (!groups.has(key)) groups.set(key, []);
+    groups.get(key).push(event);
+    return groups;
+  }, new Map());
+}
+
+function makeDayHeading(dateKeyValue, compact = false) {
+  const heading = document.createElement("h3");
+  heading.className = compact ? "day-heading day-heading-compact" : "day-heading";
+  heading.textContent = (compact ? shortDayFormatter : dayHeadingFormatter)
+    .format(dateFromKey(dateKeyValue));
+  return heading;
+}
+
+function makeEmptyDayMessage() {
+  const message = document.createElement("p");
+  message.className = "empty-day";
+  message.textContent = "No matching events";
+  return message;
+}
+
+function renderDaily(events) {
+  const grouped = eventsByDate(events);
+  const sections = [...grouped].map(([date, dateEvents]) => {
+    const section = document.createElement("section");
+    section.className = "day-section";
+    section.dataset.eventDate = date;
+    section.append(makeDayHeading(date), ...dateEvents.map(renderCard));
+    return section;
+  });
+  elements.events.className = "calendar-view daily-view";
+  elements.events.replaceChildren(...sections);
+  elements.resultsContext.textContent = "Daily view";
+  elements.resultsCount.textContent =
+    `${events.length} event${events.length === 1 ? "" : "s"} across ${sections.length} day${sections.length === 1 ? "" : "s"}`;
+  elements.emptyMessage.hidden = events.length !== 0;
+}
+
+function weekEnd(start) {
+  return addDays(start, 6);
+}
+
+function renderWeekly(events) {
+  const start = state.weekStart;
+  const end = weekEnd(start);
+  const visible = eventsInRange(events, start, end);
+  const grouped = eventsByDate(visible);
+  const sections = Array.from({ length: 7 }, (_, index) => {
+    const date = addDays(start, index);
+    const dateEvents = grouped.get(date) || [];
+    const section = document.createElement("section");
+    section.className = "week-day";
+    section.dataset.eventDate = date;
+    if (date === currentBrisbaneDate()) section.classList.add("is-today");
+    section.append(makeDayHeading(date, true));
+    if (dateEvents.length) {
+      section.append(...dateEvents.map(renderCard));
+    } else {
+      section.append(makeEmptyDayMessage());
+    }
+    return section;
+  });
+
+  elements.events.className = "calendar-view weekly-view";
+  elements.events.replaceChildren(...sections);
+  elements.resultsContext.textContent = "Weekly view";
+  elements.resultsCount.textContent =
+    `${weekRangeFormatter.format(dateFromKey(start))} – ${weekRangeFormatter.format(dateFromKey(end))} · `
+    + `${visible.length} event${visible.length === 1 ? "" : "s"}`;
+  elements.emptyMessage.hidden = true;
+}
+
+function compactEventTime(event) {
+  return event.all_day ? "All day" : timeFormatter.format(new Date(event.start));
+}
+
+function compactService(event) {
+  if (event.event_type === "mass") return "Mass";
+  return event.service_name;
+}
+
+function renderMonthCell(date, grouped) {
+  const button = document.createElement("button");
+  button.type = "button";
+  button.className = "month-day";
+  button.dataset.date = date;
+  button.setAttribute("aria-pressed", String(date === state.selectedMonthDate));
+  button.setAttribute("aria-label", dayHeadingFormatter.format(dateFromKey(date)));
+  if (date === currentBrisbaneDate()) button.classList.add("is-today");
+  if (date === state.selectedMonthDate) button.classList.add("is-selected");
+
+  const number = document.createElement("span");
+  number.className = "month-day-number";
+  number.textContent = String(Number(date.slice(-2)));
+  button.append(number);
+
+  const dateEvents = grouped.get(date) || [];
+  dateEvents.slice(0, 3).forEach((event) => {
+    const summary = document.createElement("span");
+    summary.className = "month-event";
+    summary.dataset.liturgicalColour = liturgicalColour(event);
+    summary.textContent = `${compactEventTime(event)} ${compactService(event)}`;
+    button.append(summary);
+  });
+  if (dateEvents.length > 3) {
+    const more = document.createElement("span");
+    more.className = "month-more";
+    more.textContent = `+${dateEvents.length - 3} more`;
+    button.append(more);
+  }
+
+  button.addEventListener("click", () => {
+    state.selectedMonthDate = date;
+    renderEvents();
+    document.querySelector(".month-detail")?.scrollIntoView({
+      behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
+      block: "nearest",
+    });
+  });
+  return button;
+}
+
+function renderMonthly(events) {
+  const month = state.month;
+  const dates = monthGrid(month);
+  const monthPrefix = month.slice(0, 7);
+  const monthEnd = dates.filter((date) => date.startsWith(monthPrefix)).at(-1);
+  const visible = eventsInRange(events, month, monthEnd);
+  const grouped = eventsByDate(visible);
+
+  const grid = document.createElement("div");
+  grid.className = "month-grid";
+  grid.setAttribute("role", "grid");
+  ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].forEach((weekday) => {
+    const heading = document.createElement("div");
+    heading.className = "month-weekday";
+    heading.setAttribute("role", "columnheader");
+    heading.textContent = weekday;
+    grid.append(heading);
+  });
+  dates.forEach((date) => {
+    if (!date.startsWith(monthPrefix)) {
+      const blank = document.createElement("div");
+      blank.className = "month-day month-day-blank";
+      blank.setAttribute("aria-hidden", "true");
+      grid.append(blank);
+    } else {
+      grid.append(renderMonthCell(date, grouped));
+    }
+  });
+
+  const detail = document.createElement("section");
+  detail.className = "month-detail";
+  const selectedEvents = grouped.get(state.selectedMonthDate) || [];
+  detail.append(makeDayHeading(state.selectedMonthDate));
+  if (selectedEvents.length) {
+    detail.append(...selectedEvents.map(renderCard));
+  } else {
+    detail.append(makeEmptyDayMessage());
+  }
+
+  elements.events.className = "calendar-view monthly-view";
+  elements.events.replaceChildren(grid, detail);
+  elements.resultsContext.textContent = "Monthly view";
+  elements.resultsCount.textContent =
+    `${monthHeadingFormatter.format(dateFromKey(month))} · ${visible.length} event${visible.length === 1 ? "" : "s"}`;
+  elements.emptyMessage.hidden = true;
+}
+
+function monthLastDay(month) {
+  return addDays(addMonths(month, 1), -1);
+}
+
+function monthIntersectsCoverage(month, coverage) {
+  return month <= coverage.end && monthLastDay(month) >= coverage.start;
+}
+
+function updatePeriodNavigation() {
+  const isDaily = state.view === "daily";
+  elements.periodNavigation.hidden = isDaily;
+  if (isDaily || !state.feed) return;
+
+  const today = currentBrisbaneDate();
+  if (state.view === "weekly") {
+    const previous = addDays(state.weekStart, -7);
+    const next = addDays(state.weekStart, 7);
+    elements.previousPeriod.disabled =
+      !rangeWithinCoverage(previous, weekEnd(previous), state.feed.coverage);
+    elements.nextPeriod.disabled =
+      !rangeWithinCoverage(next, weekEnd(next), state.feed.coverage);
+    elements.todayPeriod.disabled = state.weekStart === startOfSundayWeek(today);
+    elements.previousPeriod.setAttribute("aria-label", "Show previous week");
+    elements.nextPeriod.setAttribute("aria-label", "Show next week");
+  } else {
+    const previous = addMonths(state.month, -1);
+    const next = addMonths(state.month, 1);
+    elements.previousPeriod.disabled = !monthIntersectsCoverage(previous, state.feed.coverage);
+    elements.nextPeriod.disabled = !monthIntersectsCoverage(next, state.feed.coverage);
+    elements.todayPeriod.disabled = state.month === monthStart(today);
+    elements.previousPeriod.setAttribute("aria-label", "Show previous month");
+    elements.nextPeriod.setAttribute("aria-label", "Show next month");
+  }
+}
+
 function renderEvents() {
   const filtered = state.events.filter(matchesFilters);
-  elements.events.replaceChildren(...filtered.map(renderCard));
-  elements.resultsCount.textContent = `${filtered.length} event${filtered.length === 1 ? "" : "s"}`;
-  elements.emptyMessage.hidden = filtered.length !== 0;
+  if (state.view === "weekly") {
+    renderWeekly(filtered);
+  } else if (state.view === "monthly") {
+    renderMonthly(filtered);
+  } else {
+    renderDaily(filtered);
+  }
+  updatePeriodNavigation();
+}
+
+function selectView(button) {
+  state.view = button.dataset.view;
+  elements.viewButtons.forEach((candidate) => {
+    const selected = candidate === button;
+    candidate.setAttribute("aria-selected", String(selected));
+    candidate.tabIndex = selected ? 0 : -1;
+  });
+  elements.events.setAttribute("aria-labelledby", button.id);
+  renderEvents();
+  if (state.view === "daily") scrollToCurrentDay();
 }
 
 function scrollToCurrentDay() {
@@ -493,6 +759,13 @@ async function loadEvents() {
     validateFeed(feed);
     state.feed = feed;
     state.events = feed.events;
+    const today = currentBrisbaneDate();
+    const initialDate = today < feed.coverage.start
+      ? feed.coverage.start
+      : today > feed.coverage.end ? feed.coverage.end : today;
+    state.weekStart = startOfSundayWeek(initialDate);
+    state.month = monthStart(initialDate);
+    state.selectedMonthDate = initialDate;
     buildFilters();
     renderDiagnostics();
     renderEvents();
@@ -521,6 +794,53 @@ elements.resetFilters.addEventListener("click", setFiltersToDefaults);
 elements.clearFilters.addEventListener("click", showAllEvents);
 elements.filtersToggle.addEventListener("click", () => {
   setFiltersExpanded(elements.filtersToggle.getAttribute("aria-expanded") !== "true");
+});
+elements.viewButtons.forEach((button) => {
+  button.addEventListener("click", () => selectView(button));
+  button.addEventListener("keydown", (event) => {
+    const currentIndex = elements.viewButtons.indexOf(button);
+    const nextIndex = {
+      ArrowLeft: (currentIndex - 1 + elements.viewButtons.length) % elements.viewButtons.length,
+      ArrowRight: (currentIndex + 1) % elements.viewButtons.length,
+      Home: 0,
+      End: elements.viewButtons.length - 1,
+    }[event.key];
+    if (nextIndex === undefined) return;
+    event.preventDefault();
+    const nextButton = elements.viewButtons[nextIndex];
+    selectView(nextButton);
+    nextButton.focus();
+  });
+});
+elements.previousPeriod.addEventListener("click", () => {
+  if (state.view === "weekly") {
+    state.weekStart = addDays(state.weekStart, -7);
+  } else {
+    state.month = addMonths(state.month, -1);
+    state.selectedMonthDate = state.month < state.feed.coverage.start
+      ? state.feed.coverage.start
+      : state.month;
+  }
+  renderEvents();
+});
+elements.nextPeriod.addEventListener("click", () => {
+  if (state.view === "weekly") {
+    state.weekStart = addDays(state.weekStart, 7);
+  } else {
+    state.month = addMonths(state.month, 1);
+    state.selectedMonthDate = state.month;
+  }
+  renderEvents();
+});
+elements.todayPeriod.addEventListener("click", () => {
+  const today = currentBrisbaneDate();
+  const target = today < state.feed.coverage.start
+    ? state.feed.coverage.start
+    : today > state.feed.coverage.end ? state.feed.coverage.end : today;
+  state.weekStart = startOfSundayWeek(target);
+  state.month = monthStart(target);
+  state.selectedMonthDate = target;
+  renderEvents();
 });
 
 initializeMobileFilters();
