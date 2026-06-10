@@ -397,6 +397,9 @@ function scrollToCurrentDay() {
   if (!target) return;
 
   requestAnimationFrame(() => {
+    const header = document.querySelector(".page-header");
+    const headerOffset = (header?.getBoundingClientRect().height || 0) + 16;
+    target.style.scrollMarginTop = `${headerOffset}px`;
     target.scrollIntoView({
       behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
         ? "auto"
