@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>SPCP Parish Calendar</title>
-  <link rel="stylesheet" href="styles.css?v=21">
+  <link rel="stylesheet" href="styles.css?v=24">
 </head>
 <body data-theme="spcp">
   <header class="page-header">
@@ -18,18 +18,33 @@
       >
     </div>
     <div class="header-copy">
-      <p class="eyebrow">Parish life, at a glance</p>
-      <h1>Calendar</h1>
+      <div class="mobile-navigation-heading">
+        <h1 id="page-title">Calendar</h1>
+        <button
+          id="navigation-toggle"
+          class="navigation-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="site-navigation"
+          aria-label="Open navigation"
+        >
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </button>
+      </div>
+      <nav id="site-navigation" class="site-navigation" aria-label="Primary navigation">
+        <a class="navigation-link" href="#calendar" data-page="calendar" aria-current="page">Calendar</a>
+        <a class="navigation-link" href="#about" data-page="about">About the Parish</a>
+      </nav>
     </div>
   </header>
 
-  <main class="page-shell">
+  <main id="calendar-page" class="page-shell" data-page-panel="calendar">
     <div id="settings-backdrop" class="settings-backdrop" hidden></div>
     <aside
       id="filters"
       class="filters filters-collapsed"
-      role="dialog"
-      aria-modal="true"
       aria-labelledby="settings-title"
     >
       <div class="filters-heading">
@@ -132,9 +147,13 @@
       </div>
 
       <div class="calendar-toolbar">
-        <div id="period-navigation" class="period-navigation" hidden>
-          <button id="previous-period" class="period-button" type="button">Previous</button>
-          <button id="next-period" class="period-button" type="button">Next</button>
+        <div class="period-navigation desktop-period-navigation" hidden>
+          <button class="period-button" type="button" data-period-control="previous">Previous</button>
+          <button class="period-button" type="button" data-period-control="next">Next</button>
+        </div>
+        <div class="period-navigation mobile-period-navigation" hidden>
+          <button class="period-button" type="button" data-period-control="previous">Previous</button>
+          <button class="period-button" type="button" data-period-control="next">Next</button>
         </div>
       </div>
 
@@ -155,6 +174,46 @@
     </section>
   </main>
 
+  <main id="about-page" class="about-page" data-page-panel="about" hidden>
+    <header class="about-introduction">
+      <p class="eyebrow">Our parish</p>
+      <h2 id="parish-name">About the Parish</h2>
+      <p>Serving the Catholic community across Clear Island Waters, Broadbeach and Surfers Paradise.</p>
+    </header>
+
+    <div id="about-error" class="message error-message" hidden></div>
+    <div id="about-content" class="about-grid" hidden>
+      <section class="about-card about-contact">
+        <p class="about-card-label">Parish office</p>
+        <h3>Contact</h3>
+        <address>
+          <p id="parish-office-address"></p>
+          <p><a id="parish-phone"></a></p>
+          <p><a id="parish-email"></a></p>
+          <p><a id="parish-website" target="_blank" rel="noreferrer">Visit parish website</a></p>
+        </address>
+      </section>
+
+      <section class="about-card">
+        <p class="about-card-label">Opening times</p>
+        <h3>Office Hours</h3>
+        <dl id="parish-hours" class="hours-list"></dl>
+      </section>
+
+      <section class="about-card">
+        <p class="about-card-label">Pastoral team</p>
+        <h3>Clergy</h3>
+        <div id="parish-clergy" class="clergy-list"></div>
+      </section>
+
+      <section class="about-card about-churches">
+        <p class="about-card-label">Our community</p>
+        <h3>Churches</h3>
+        <div id="parish-churches" class="church-list"></div>
+      </section>
+    </div>
+  </main>
+
   <template id="event-template">
     <article class="event-card">
       <div class="event-details">
@@ -172,6 +231,6 @@
     </article>
   </template>
 
-  <script type="module" src="app.js?v=25"></script>
+  <script type="module" src="app.js?v=32"></script>
 </body>
 </html>

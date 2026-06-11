@@ -15,6 +15,7 @@ import {
 } from "./web/calendar-core.js?v=5";
 
 const FEED_URL = "feeds/v1/calendar.json";
+const PARISH_FEED_URL = "feeds/v1/parish.json";
 const DEFAULT_EVENT_TYPES = ["mass", "confession"];
 const MULTICULTURAL_TYPE = "multicultural";
 const MULTICULTURAL_PRESIDER_SUBTYPES = new Map([
@@ -34,6 +35,8 @@ const state = {
   },
   useDefaultEventTypes: true,
   view: "weekly",
+  pendingView: null,
+  settingsScrollY: null,
   weekStart: null,
   month: null,
   selectedMonthDate: null,
@@ -59,10 +62,26 @@ const elements = {
   errorMessage: document.querySelector("#error-message"),
   template: document.querySelector("#event-template"),
   viewButtons: [...document.querySelectorAll(".view-button")],
-  periodNavigation: document.querySelector("#period-navigation"),
-  previousPeriod: document.querySelector("#previous-period"),
-  nextPeriod: document.querySelector("#next-period"),
+  periodNavigations: [...document.querySelectorAll(".period-navigation")],
+  previousPeriods: [...document.querySelectorAll('[data-period-control="previous"]')],
+  nextPeriods: [...document.querySelectorAll('[data-period-control="next"]')],
+  navigationToggle: document.querySelector("#navigation-toggle"),
+  siteNavigation: document.querySelector("#site-navigation"),
+  navigationLinks: [...document.querySelectorAll(".navigation-link")],
+  pagePanels: [...document.querySelectorAll("[data-page-panel]")],
+  pageTitle: document.querySelector("#page-title"),
+  parishName: document.querySelector("#parish-name"),
+  parishOfficeAddress: document.querySelector("#parish-office-address"),
+  parishPhone: document.querySelector("#parish-phone"),
+  parishEmail: document.querySelector("#parish-email"),
+  parishWebsite: document.querySelector("#parish-website"),
+  parishHours: document.querySelector("#parish-hours"),
+  parishClergy: document.querySelector("#parish-clergy"),
+  parishChurches: document.querySelector("#parish-churches"),
+  aboutContent: document.querySelector("#about-content"),
+  aboutError: document.querySelector("#about-error"),
 };
+const mobileLayout = window.matchMedia("(max-width: 800px)");
 
 const timeFormatter = new Intl.DateTimeFormat("en-AU", {
   timeZone: "Australia/Brisbane",
@@ -106,11 +125,113 @@ function titleCase(value) {
   return value.replace(/\b\w/g, (letter) => letter.toUpperCase());
 }
 
+function closeNavigation() {
+  elements.navigationToggle.setAttribute("aria-expanded", "false");
+  elements.navigationToggle.setAttribute("aria-label", "Open navigation");
+  elements.siteNavigation.classList.remove("navigation-open");
+}
+
+function showPage(page) {
+  const selectedPage = page === "about" ? "about" : "calendar";
+  elements.pagePanels.forEach((panel) => {
+    panel.hidden = panel.dataset.pagePanel !== selectedPage;
+  });
+  elements.navigationLinks.forEach((link) => {
+    if (link.dataset.page === selectedPage) link.setAttribute("aria-current", "page");
+    else link.removeAttribute("aria-current");
+  });
+  elements.pageTitle.textContent = selectedPage === "about" ? "About the Parish" : "Calendar";
+  document.title = selectedPage === "about"
+    ? "About the Parish · SPCP"
+    : "SPCP Parish Calendar";
+  closeNavigation();
+  window.scrollTo({ top: 0, behavior: "auto" });
+  updateStickyOffset();
+}
+
+function currentPageFromHash() {
+  return window.location.hash === "#about" ? "about" : "calendar";
+}
+
+function displayHours(value) {
+  const format = (time) => {
+    const [hour, minute] = time.split(":").map(Number);
+    return `${hour % 12 || 12}:${String(minute).padStart(2, "0")}${hour >= 12 ? "pm" : "am"}`;
+  };
+  const [start, end] = value.split("-");
+  return `${format(start)} - ${format(end)}`;
+}
+
+function renderParish(parish) {
+  if (parish.schema_version !== 1) {
+    throw new Error(`Unsupported parish schema ${parish.schema_version ?? "(missing)"}.`);
+  }
+  elements.parishName.textContent = parish.name;
+  elements.parishOfficeAddress.textContent = parish.office.address;
+  elements.parishPhone.href = `tel:${parish.contact.phone.replace(/[^\d+]/g, "")}`;
+  elements.parishPhone.textContent = parish.contact.phone;
+  elements.parishEmail.href = `mailto:${parish.contact.email}`;
+  elements.parishEmail.textContent = parish.contact.email;
+  elements.parishWebsite.href = parish.contact.website;
+
+  const weekdays = ["monday", "tuesday", "wednesday", "thursday", "friday"];
+  elements.parishHours.replaceChildren(...weekdays.map((day) => {
+    const hours = parish.office.hours[day];
+    const row = document.createElement("div");
+    const term = document.createElement("dt");
+    const description = document.createElement("dd");
+    term.textContent = titleCase(day);
+    description.textContent = displayHours(hours);
+    row.append(term, description);
+    return row;
+  }));
+
+  elements.parishClergy.replaceChildren(...parish.clergy.map((member) => {
+    const item = document.createElement("article");
+    const name = document.createElement("h4");
+    const role = document.createElement("p");
+    name.textContent = member.name;
+    role.textContent = member.role;
+    item.append(name, role);
+    return item;
+  }));
+
+  elements.parishChurches.replaceChildren(...parish.churches.map((church) => {
+    const item = document.createElement("article");
+    const heading = document.createElement("div");
+    const name = document.createElement("h4");
+    const address = document.createElement("p");
+    name.textContent = church.name;
+    address.textContent = church.address;
+    heading.append(name);
+    if (church.is_primary_site) {
+      const badge = document.createElement("span");
+      badge.className = "primary-site-badge";
+      badge.textContent = "Parish office";
+      heading.append(badge);
+    }
+    item.append(heading, address);
+    return item;
+  }));
+  elements.aboutContent.hidden = false;
+}
+
+async function loadParish() {
+  try {
+    const response = await fetch(PARISH_FEED_URL, { cache: "no-store" });
+    if (!response.ok) throw new Error(`Parish feed returned ${response.status}.`);
+    renderParish(await response.json());
+  } catch (error) {
+    elements.aboutError.hidden = false;
+    elements.aboutError.textContent = `${error.message} The parish information is temporarily unavailable.`;
+  }
+}
+
 function eventTypeLabel(value) {
   return {
     baptism: "Baptisms",
     confession: "Reconciliation",
-    multicultural: "Multicultural Mass",
+    multicultural: "Multicultural Masses",
   }[value] || titleCase(value);
 }
 
@@ -435,11 +556,32 @@ function makeTag(text) {
   return tag;
 }
 
+function eventAccentColour(event) {
+  return event.event_type === "confession" ? "violet" : liturgicalColour(event);
+}
+
+function eventHasEnded(event, now = Date.now()) {
+  return new Date(event.end).getTime() <= now;
+}
+
+function setPastState(element, ended) {
+  element.classList.toggle("is-past", ended);
+  element.dataset.past = String(ended);
+}
+
+function updatePastStates(now = Date.now()) {
+  document.querySelectorAll("[data-event-end]").forEach((element) => {
+    setPastState(element, Number(element.dataset.eventEnd) <= now);
+  });
+}
+
 function renderCard(event) {
   const card = elements.template.content.firstElementChild.cloneNode(true);
   card.classList.add(churchClass(event.church));
   card.dataset.eventDate = eventDateKey(event);
-  card.dataset.liturgicalColour = liturgicalColour(event);
+  card.dataset.eventEnd = String(new Date(event.end).getTime());
+  card.dataset.liturgicalColour = eventAccentColour(event);
+  setPastState(card, eventHasEnded(event));
 
   card.querySelector(".event-church").textContent = displayChurch(event.church);
   card.querySelector(".event-service").textContent = event.service_name;
@@ -614,7 +756,9 @@ function renderMonthCell(date, grouped) {
   dateEvents.slice(0, 3).forEach((event) => {
     const summary = document.createElement("span");
     summary.className = "month-event";
-    summary.dataset.liturgicalColour = liturgicalColour(event);
+    summary.dataset.eventEnd = String(new Date(event.end).getTime());
+    summary.dataset.liturgicalColour = eventAccentColour(event);
+    setPastState(summary, eventHasEnded(event));
     summary.textContent = `${compactEventTime(event)} ${compactService(event)}`;
     button.append(summary);
   });
@@ -693,33 +837,41 @@ function monthIntersectsCoverage(month, coverage) {
 
 function updatePeriodNavigation() {
   const isDaily = state.view === "daily";
-  elements.periodNavigation.hidden = isDaily;
+  elements.periodNavigations.forEach((navigation) => {
+    navigation.hidden = isDaily;
+  });
   if (isDaily || !state.feed) return;
 
   if (state.view === "weekly") {
     const previous = addDays(state.weekStart, -7);
     const next = addDays(state.weekStart, 7);
-    elements.previousPeriod.disabled = !weekIntersectsCoverage(previous, state.feed.coverage);
-    elements.nextPeriod.disabled = !weekIntersectsCoverage(next, state.feed.coverage);
-    elements.previousPeriod.setAttribute("aria-label", "Show previous week");
-    elements.nextPeriod.setAttribute("aria-label", "Show next week");
-    elements.previousPeriod.textContent = "\u2039 Previous";
-    elements.nextPeriod.textContent = "Next \u203a";
+    elements.previousPeriods.forEach((button) => {
+      button.disabled = !weekIntersectsCoverage(previous, state.feed.coverage);
+      button.setAttribute("aria-label", "Show previous week");
+      button.textContent = "\u2039 Previous";
+    });
+    elements.nextPeriods.forEach((button) => {
+      button.disabled = !weekIntersectsCoverage(next, state.feed.coverage);
+      button.setAttribute("aria-label", "Show next week");
+      button.textContent = "Next \u203a";
+    });
     const footerPrevious = elements.events.querySelector('[data-period-action="previous"]');
     const footerNext = elements.events.querySelector('[data-period-action="next"]');
-    if (footerPrevious) footerPrevious.disabled = elements.previousPeriod.disabled;
-    if (footerNext) footerNext.disabled = elements.nextPeriod.disabled;
+    if (footerPrevious) footerPrevious.disabled = elements.previousPeriods[0].disabled;
+    if (footerNext) footerNext.disabled = elements.nextPeriods[0].disabled;
   } else {
     const previous = addMonths(state.month, -1);
     const next = addMonths(state.month, 1);
-    elements.previousPeriod.disabled = !monthIntersectsCoverage(previous, state.feed.coverage);
-    elements.nextPeriod.disabled = !monthIntersectsCoverage(next, state.feed.coverage);
-    elements.previousPeriod.setAttribute("aria-label", "Show previous month");
-    elements.nextPeriod.setAttribute("aria-label", "Show next month");
-    elements.previousPeriod.textContent =
-      `\u2039 ${monthNameFormatter.format(dateFromKey(previous))}`;
-    elements.nextPeriod.textContent =
-      `${monthNameFormatter.format(dateFromKey(next))} \u203a`;
+    elements.previousPeriods.forEach((button) => {
+      button.disabled = !monthIntersectsCoverage(previous, state.feed.coverage);
+      button.setAttribute("aria-label", "Show previous month");
+      button.textContent = `\u2039 ${monthNameFormatter.format(dateFromKey(previous))}`;
+    });
+    elements.nextPeriods.forEach((button) => {
+      button.disabled = !monthIntersectsCoverage(next, state.feed.coverage);
+      button.setAttribute("aria-label", "Show next month");
+      button.textContent = `${monthNameFormatter.format(dateFromKey(next))} \u203a`;
+    });
   }
 }
 
@@ -734,20 +886,52 @@ function renderEvents() {
   }
   updatePeriodNavigation();
   updateFilterCounts();
+  updatePastStates();
 }
 
-function selectView(button) {
-  state.view = button.dataset.view;
-  if (state.view === "daily") state.dailyDaysVisible = 7;
+function isMobileLayout() {
+  return mobileLayout.matches;
+}
+
+function syncViewButtons(view) {
   elements.viewButtons.forEach((candidate) => {
-    const selected = candidate === button;
+    const selected = candidate.dataset.view === view;
     candidate.setAttribute("aria-selected", String(selected));
     candidate.tabIndex = selected ? 0 : -1;
   });
-  elements.events.setAttribute("aria-labelledby", button.id);
-  renderEvents();
-  setSettingsExpanded(false);
-  goToToday();
+}
+
+function applyView(view, previousScrollY = window.scrollY) {
+  elements.events.style.minHeight = "";
+  state.view = view;
+  state.pendingView = null;
+  if (state.view === "daily") state.dailyDaysVisible = 7;
+  syncViewButtons(view);
+  elements.events.setAttribute("aria-labelledby", `view-${view}`);
+  resetViewToToday();
+  if (view === "monthly") {
+    requestAnimationFrame(() => {
+      const requiredDocumentHeight = previousScrollY + window.innerHeight;
+      const heightDeficit = requiredDocumentHeight - document.documentElement.scrollHeight;
+      if (heightDeficit > 0) {
+        const eventsHeight = elements.events.getBoundingClientRect().height;
+        elements.events.style.minHeight = `${eventsHeight + heightDeficit}px`;
+      }
+      window.scrollTo({ top: previousScrollY, behavior: "auto" });
+    });
+  } else {
+    scrollToCurrentDayIfLow();
+  }
+}
+
+function selectView(button) {
+  const view = button.dataset.view;
+  if (isMobileLayout() && elements.filtersToggle.getAttribute("aria-expanded") === "true") {
+    state.pendingView = view;
+    syncViewButtons(view);
+    return;
+  }
+  applyView(view);
 }
 
 function navigatePeriod(action, scrollToTop = false) {
@@ -789,9 +973,31 @@ function scrollToCurrentDay() {
   });
 }
 
+function scrollToCurrentDayIfLow() {
+  requestAnimationFrame(() => {
+    const today = currentBrisbaneDate();
+    const target = elements.events.querySelector(`[data-event-date="${today}"]`)
+      || elements.events.firstElementChild;
+    if (!target) return;
+    const bounds = target.getBoundingClientRect();
+    const upperThird = window.innerHeight / 3;
+    const lowerThird = window.innerHeight * (2 / 3);
+    if (bounds.top >= upperThird && bounds.top <= lowerThird) return;
+    target.style.scrollMarginTop = `${stickyScrollOffset()}px`;
+    target.scrollIntoView({
+      behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
+        ? "auto"
+        : "smooth",
+      block: "start",
+    });
+  });
+}
+
 function scrollToActivePeriod() {
   requestAnimationFrame(() => {
-    const target = state.view === "monthly"
+    const target = state.view === "weekly"
+      ? document.querySelector(".calendar-toolbar")
+      : state.view === "monthly"
       ? elements.events.querySelector(".month-grid")
       : elements.events.firstElementChild;
     if (!target) return;
@@ -812,7 +1018,7 @@ function showAllEvents() {
   renderEvents();
 }
 
-function goToToday() {
+function resetViewToToday() {
   const today = currentBrisbaneDate();
   const target = today < state.feed.coverage.start
     ? state.feed.coverage.start
@@ -827,6 +1033,10 @@ function goToToday() {
     state.selectedMonthDate = target;
   }
   renderEvents();
+}
+
+function goToToday() {
+  resetViewToToday();
   requestAnimationFrame(scrollToCurrentDay);
 }
 
@@ -838,14 +1048,65 @@ function updateStickyOffset() {
 }
 
 function setSettingsExpanded(expanded) {
+  if (!isMobileLayout()) {
+    elements.filtersToggle.setAttribute("aria-expanded", "true");
+    elements.filtersContent.hidden = false;
+    elements.filters.classList.remove("filters-collapsed");
+    elements.settingsBackdrop.hidden = true;
+    document.body.classList.remove("settings-open");
+    document.body.style.top = "";
+    return;
+  }
+
+  const openingScrollY = expanded ? window.scrollY : null;
   elements.filtersToggle.setAttribute("aria-expanded", String(expanded));
   elements.filtersToggle.setAttribute("aria-label", expanded ? "Close settings" : "Open settings");
   elements.filtersContent.hidden = !expanded;
   elements.filters.classList.toggle("filters-collapsed", !expanded);
   elements.settingsBackdrop.hidden = !expanded;
-  document.body.classList.toggle("settings-open", expanded);
-  if (expanded) elements.settingsClose.focus();
-  else if (document.activeElement === elements.settingsClose) elements.filtersToggle.focus();
+  if (expanded) {
+    state.pendingView = state.view;
+    state.settingsScrollY = openingScrollY;
+    syncViewButtons(state.pendingView);
+    document.body.style.top = `-${openingScrollY}px`;
+    document.body.classList.add("settings-open");
+    elements.settingsClose.focus();
+  } else {
+    const pendingView = state.pendingView;
+    const settingsScrollY = state.settingsScrollY ?? window.scrollY;
+    document.body.classList.remove("settings-open");
+    document.body.style.top = "";
+    window.scrollTo({ top: settingsScrollY, behavior: "auto" });
+    const changed = pendingView && pendingView !== state.view;
+    if (changed) applyView(pendingView, settingsScrollY);
+    else {
+      state.pendingView = null;
+      syncViewButtons(state.view);
+    }
+    state.settingsScrollY = null;
+    if (document.activeElement === elements.settingsClose) elements.filtersToggle.focus();
+  }
+}
+
+function updateResponsiveSettings() {
+  const mobile = isMobileLayout();
+  elements.filtersToggle.hidden = !mobile;
+  elements.settingsClose.hidden = !mobile;
+  if (mobile) {
+    elements.filters.setAttribute("role", "dialog");
+    elements.filters.setAttribute("aria-modal", "true");
+    setSettingsExpanded(false);
+  } else {
+    elements.filters.removeAttribute("role");
+    elements.filters.removeAttribute("aria-modal");
+    setSettingsExpanded(true);
+    if (state.feed && state.pendingView && state.pendingView !== state.view) {
+      applyView(state.pendingView);
+    } else {
+      state.pendingView = null;
+      syncViewButtons(state.view);
+    }
+  }
 }
 
 async function loadEvents() {
@@ -893,10 +1154,25 @@ elements.filtersToggle.addEventListener("click", () => {
 elements.settingsClose.addEventListener("click", () => setSettingsExpanded(false));
 elements.settingsBackdrop.addEventListener("click", () => setSettingsExpanded(false));
 document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape" && elements.navigationToggle.getAttribute("aria-expanded") === "true") {
+    closeNavigation();
+    elements.navigationToggle.focus();
+    return;
+  }
   if (event.key === "Escape" && elements.filtersToggle.getAttribute("aria-expanded") === "true") {
     setSettingsExpanded(false);
   }
 });
+elements.navigationToggle.addEventListener("click", () => {
+  const expanded = elements.navigationToggle.getAttribute("aria-expanded") === "true";
+  elements.navigationToggle.setAttribute("aria-expanded", String(!expanded));
+  elements.navigationToggle.setAttribute("aria-label", expanded ? "Open navigation" : "Close navigation");
+  elements.siteNavigation.classList.toggle("navigation-open", !expanded);
+});
+elements.navigationLinks.forEach((link) => {
+  link.addEventListener("click", () => showPage(link.dataset.page));
+});
+window.addEventListener("hashchange", () => showPage(currentPageFromHash()));
 elements.resultsToday.addEventListener("click", () => {
   goToToday();
 });
@@ -917,10 +1193,21 @@ elements.viewButtons.forEach((button) => {
     nextButton.focus();
   });
 });
-elements.previousPeriod.addEventListener("click", () => navigatePeriod("previous"));
-elements.nextPeriod.addEventListener("click", () => navigatePeriod("next"));
+elements.previousPeriods.forEach((button) => {
+  button.addEventListener("click", () => navigatePeriod("previous", isMobileLayout()));
+});
+elements.nextPeriods.forEach((button) => {
+  button.addEventListener("click", () => navigatePeriod("next", isMobileLayout()));
+});
 
-setSettingsExpanded(false);
+updateResponsiveSettings();
+showPage(currentPageFromHash());
 updateStickyOffset();
 window.addEventListener("resize", updateStickyOffset);
+mobileLayout.addEventListener("change", updateResponsiveSettings);
+window.setInterval(updatePastStates, 30_000);
+document.addEventListener("visibilitychange", () => {
+  if (!document.hidden) updatePastStates();
+});
 loadEvents();
+loadParish();

@@ -72,5 +72,17 @@ event_count = len(feed["events"])
 print(f"Live feed verified: {event_count} events")
 '
 
+curl -fsS https://tdhx.github.io/spcp-calendar/feeds/v1/parish.json |
+  python3 -c '
+import json
+import sys
+
+feed = json.load(sys.stdin)
+assert feed["schema_version"] == 1
+assert feed["id"] == "surfers-paradise"
+assert len(feed["churches"]) == 3
+print("Live parish feed verified:", feed["name"])
+'
+
 echo "Published $commit"
 echo "https://tdhx.github.io/spcp-calendar/"

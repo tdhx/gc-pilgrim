@@ -1,7 +1,10 @@
 # SPCP Calendar
 
-The Python calendar engine powers the GitHub Pages calendar. The published
-client contract is `feeds/v1/calendar.json`.
+The Python data pipeline powers the GitHub Pages site. The published client
+contracts are:
+
+- `feeds/v1/calendar.json`
+- `feeds/v1/parish.json`
 
 The legacy `ios/` project is deprecated and currently outside the supported
 build, test, and publishing scope.
@@ -20,8 +23,8 @@ For deterministic local work using the checked-in intermediate JSONL files:
 ./build-calendar --offline
 ```
 
-The command validates the v1 envelope and atomically replaces the published
-feed only after generation succeeds.
+The command refreshes the calendar sources and scrapes the parish homepage,
+then validates and atomically replaces both published v1 feeds.
 
 ## Preview the web viewer
 

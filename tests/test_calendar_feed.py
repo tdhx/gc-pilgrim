@@ -11,7 +11,9 @@ ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "scripts"))
 
 import calendar_feed
+import parish_feed
 import refresh_calendar
+import refresh_parish
 
 
 BRISBANE = ZoneInfo("Australia/Brisbane")
@@ -176,6 +178,50 @@ END:VCALENDAR
         }
         with self.assertRaisesRegex(ValueError, "duplicate"):
             calendar_feed.validate_feed(feed)
+
+
+class ParishGenerationTests(unittest.TestCase):
+    def test_homepage_is_parsed_into_versioned_parish_feed(self):
+        html = """
+        <html><body>
+          <h1>Welcome to <span>Surfers Paradise Catholic Parish</span></h1>
+          <p>Parish Priest: Fr. Paul</p>
+          <p>Associate Pastor: Fr. Bradley Davies</p>
+          <p>Parish Office Address: 50 Fairway Drive, Clear Island Waters, QLD, Australia</p>
+          <p>Office Hours: Monday - Thursday 9:00am - 2:00pm, Friday 9:00am - 12:00pm</p>
+          <p>Parish Email: surfers@bne.catholic.net.au</p>
+          <p>Parish Phone Number: (07) 5671 7388</p>
+          <h3>Stella Maris Church</h3><p>Address:</p>
+          <p>254 Hedges Avenue, Broadbeach, QLD 4218</p>
+          <h3>Sacred Heart Church</h3><p>Address:</p>
+          <p>50 Fairway Drive, Clear Island Waters, QLD 4226</p>
+          <h3>St Vincent's Church</h3><p>Address:</p>
+          <p>40 Hamilton Avenue, Surfers Paradise, QLD 4217</p>
+        </body></html>
+        """
+        feed = refresh_parish.parse_homepage(html)
+
+        self.assertEqual(feed["schema_version"], 1)
+        self.assertEqual(feed["id"], "surfers-paradise")
+        self.assertEqual(feed["contact"]["phone"], "(07) 5671 7388")
+        self.assertEqual(feed["office"]["hours"]["friday"], "09:00-12:00")
+        self.assertEqual(
+            [member["name"] for member in feed["clergy"]],
+            ["Fr Paul", "Fr Bradley Davies"],
+        )
+        self.assertEqual(
+            [church["id"] for church in feed["churches"]],
+            ["sacred-heart", "stella-maris", "st-vincents"],
+        )
+        self.assertEqual(
+            feed["churches"][0]["address"],
+            "50 Fairway Drive, Clear Island Waters QLD 4226",
+        )
+        self.assertTrue(feed["churches"][0]["is_primary_site"])
+
+    def test_checked_in_parish_feed_validates(self):
+        feed = json.loads(refresh_parish.OUTPUT_PATH.read_text(encoding="utf-8"))
+        self.assertEqual(parish_feed.validate_feed(feed), feed)
 
 
 def sample_event(

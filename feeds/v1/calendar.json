@@ -7680,17 +7680,17 @@
       "title": "Sacred Heart Mass - 9am - Fr"
     }
   ],
-  "generated_at": "2026-06-11T11:31:34+10:00",
+  "generated_at": "2026-06-11T17:45:17+10:00",
   "schema_version": 1,
   "sources": [
     {
       "name": "SPCP Google Calendar",
-      "status": "fresh",
+      "status": "cached",
       "url": "https://calendar.google.com/calendar/ical/5ecffb0b502eb6919b066ca976b06c370a81aaae0109caf8e05119f9c4fc5ee6%40group.calendar.google.com/public/basic.ics"
     },
     {
       "name": "Universalis Brisbane",
-      "status": "fresh",
+      "status": "cached",
       "url": "https://universalis.com/australia.brisbane/1000/calendar.htm"
     }
   ],
