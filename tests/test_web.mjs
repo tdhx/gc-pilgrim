@@ -22,6 +22,7 @@ const diagnosticsSource = await readFile(
   new URL("../diagnostics.html", import.meta.url),
   "utf8",
 );
+const stylesSource = await readFile(new URL("../styles.css", import.meta.url), "utf8");
 
 test("published feed validates", () => {
   assert.equal(validateFeed(feed), feed);
@@ -119,6 +120,7 @@ test("calendar settings are opened from the results bar", () => {
   assert.equal((indexSource.match(/Clear filters/g) || []).length, 2);
   assert.doesNotMatch(indexSource, /id="search"/);
   assert.match(appSource, /document\.body\.classList\.toggle\("settings-open", expanded\)/);
+  assert.match(stylesSource, /@media \(max-width: 800px\)[\s\S]*?\.filters \{[\s\S]*?transform: none/);
 });
 
 test("view selector lives in settings and changing view returns to today", () => {
@@ -127,6 +129,7 @@ test("view selector lives in settings and changing view returns to today", () =>
     /id="filters-content"[\s\S]*?class="view-switcher"[\s\S]*?id="view-daily"/,
   );
   assert.match(appSource, /function selectView[\s\S]*?setSettingsExpanded\(false\);[\s\S]*?goToToday\(\)/);
+  assert.match(appSource, /state\.view === "monthly"[\s\S]*?`\[data-date="\$\{today\}"\]`/);
 });
 
 test("calendar navigation uses descriptive chevrons and scroll targets", () => {

@@ -117,13 +117,23 @@ h1 {
 
 .filters {
   position: fixed;
-  top: calc(var(--page-header-height, 65px) + var(--sticky-bar-gap, 6px) + 52px);
+  top: calc(
+    var(--page-header-height, 65px)
+    + var(--sticky-bar-gap, 6px)
+    + var(--results-header-height, 44px)
+  );
   left: 50%;
   z-index: 31;
   width: min(440px, calc(100% - 36px));
-  max-height: calc(100dvh - var(--page-header-height, 65px) - 76px);
+  max-height: calc(
+    100dvh
+    - var(--page-header-height, 65px)
+    - var(--sticky-bar-gap, 6px)
+    - var(--results-header-height, 44px)
+  );
   overflow: auto;
   overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
   padding: 20px;
   border: 1px solid var(--line);
   border-radius: 20px;
@@ -1011,6 +1021,7 @@ button.month-day:hover {
     border-top: 1px solid var(--line);
     border-radius: 0 0 14px 14px;
     box-shadow: 0 12px 24px rgba(0, 73, 107, 0.08);
+    transform: none;
   }
 
   .mobile-show-all {

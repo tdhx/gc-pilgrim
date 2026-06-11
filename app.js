@@ -827,13 +827,7 @@ function goToToday() {
     state.selectedMonthDate = target;
   }
   renderEvents();
-  requestAnimationFrame(() => {
-    if (state.view === "daily") {
-      scrollToCurrentDay();
-    } else {
-      scrollToCurrentDay();
-    }
-  });
+  requestAnimationFrame(scrollToCurrentDay);
 }
 
 function updateStickyOffset() {
