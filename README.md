@@ -1,7 +1,10 @@
 # SPCP Calendar
 
-One Python calendar engine powers both the GitHub Pages debug viewer and the
-iOS app. The published client contract is `feeds/v1/calendar.json`.
+The Python calendar engine powers the GitHub Pages calendar. The published
+client contract is `feeds/v1/calendar.json`.
+
+The legacy `ios/` project is deprecated and currently outside the supported
+build, test, and publishing scope.
 
 ## Build the calendar
 
@@ -26,14 +29,11 @@ feed only after generation succeeds.
 python3 -m http.server 8000
 ```
 
-Open `http://127.0.0.1:8000`. To make the iOS app use a local feed, temporarily
-override `CALENDAR_FEED_URL` in `ios/Config/Debug.xcconfig`.
+Open `http://127.0.0.1:8000`.
 
-## Configure GitHub Pages and iOS
+## Configure GitHub Pages
 
-Publish the repository root with GitHub Pages. Before a release build, replace
-the placeholder in `ios/Config/Release.xcconfig` with the Pages URL for this
-repository. The app project is `ios/SPCPCalendar.xcodeproj` and targets iOS 17+.
+Publish the repository root with GitHub Pages.
 
 ## Publish changes
 
@@ -49,5 +49,4 @@ GitHub Pages deployment workflow:
 ```sh
 python3 -m unittest discover -s tests
 npm run test:web
-cd ios/SPCPCalendarCore && swift test
 ```

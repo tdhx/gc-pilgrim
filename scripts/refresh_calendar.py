@@ -30,8 +30,10 @@ def add_months(value, months):
 
 
 def default_window():
-    start = datetime.combine(datetime.now(BRISBANE).date(), time.min, BRISBANE)
-    return start, add_months(start, 3)
+    today = datetime.now(BRISBANE).date()
+    start = datetime.combine(today.replace(day=1), time.min, BRISBANE)
+    end = datetime.combine(add_months(today, 3), time.min, BRISBANE)
+    return start, end
 
 
 def unfold_ics(text):
@@ -450,6 +452,24 @@ def normalized_record(event, occurrence_start, occurrence_end, all_day, source_i
     }
 
 
+def is_replaced_first_tuesday_mass(record):
+    if record["all_day"] or record["event_type"] != "mass":
+        return False
+    start = datetime.fromisoformat(record["start"]).astimezone(BRISBANE)
+    source = f'{record["title"]} {record.get("description") or ""}'
+    return (
+        2 <= start.month <= 11
+        and start.weekday() == 1
+        and start.day <= 7
+        and start.hour == 9
+        and re.search(
+            r"\bexcept\s+on\s+first\s+tuesdays?\b",
+            source,
+            re.IGNORECASE,
+        )
+    )
+
+
 def build_records(calendar_text, window_start=None, window_end=None):
     if window_start is None or window_end is None:
         window_start, window_end = default_window()
@@ -515,6 +535,7 @@ def build_records(calendar_text, window_start=None, window_end=None):
             record
             for record in deduplicated.values()
             if record["event_type"] != "administration"
+            and not is_replaced_first_tuesday_mass(record)
         ),
         key=lambda record: (record["start"], record["end"], record["title"]),
     )

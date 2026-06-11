@@ -141,7 +141,8 @@ def build_feed(events, liturgical_records, generated_at, warnings=None, sources=
     liturgical_by_date = {record["date"]: record for record in liturgical_records}
     finalized = [finalize_event(event, liturgical_by_date) for event in events]
     finalized.sort(key=lambda item: (item["start"], item["end"], item["title"]))
-    coverage_start = finalized[0]["start"][:10] if finalized else generated_at[:10]
+    generated_date = datetime.fromisoformat(generated_at).astimezone(BRISBANE)
+    coverage_start = generated_date.date().replace(day=1).isoformat()
     coverage_end = finalized[-1]["start"][:10] if finalized else generated_at[:10]
     feed = {
         "schema_version": SCHEMA_VERSION,

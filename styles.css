@@ -52,11 +52,11 @@ button {
   top: 0;
   z-index: 20;
   display: grid;
-  grid-template-columns: minmax(240px, 320px) minmax(260px, 1fr);
-  gap: clamp(20px, 4vw, 52px);
+  grid-template-columns: minmax(150px, 190px) minmax(180px, 1fr);
+  gap: clamp(14px, 3vw, 32px);
   align-items: center;
   width: 100%;
-  padding: 10px clamp(24px, 5vw, 72px);
+  padding: 4px clamp(20px, 4vw, 56px);
   border-bottom: 3px solid var(--theme-highlight);
   background: rgba(255, 255, 255, 0.96);
   box-shadow: 0 8px 24px rgba(0, 73, 107, 0.1);
@@ -69,12 +69,12 @@ button {
 
 .parish-logo {
   display: block;
-  width: min(100%, 300px);
+  width: min(100%, 170px);
   height: auto;
 }
 
 .header-copy {
-  padding-left: clamp(18px, 3vw, 32px);
+  padding-left: clamp(14px, 2vw, 24px);
   border-left: 1px solid var(--line);
 }
 
@@ -95,19 +95,12 @@ p {
 }
 
 h1 {
-  margin-bottom: 4px;
+  margin-bottom: 0;
   color: var(--theme-primary-deep);
-  font-size: clamp(1.75rem, 3vw, 2.55rem);
+  font-size: clamp(1.45rem, 2.4vw, 2rem);
   font-weight: 800;
   line-height: 1;
   letter-spacing: -0.045em;
-}
-
-.intro {
-  margin-bottom: 0;
-  color: var(--muted);
-  font-size: 0.92rem;
-  line-height: 1.45;
 }
 
 .page-shell {
@@ -538,6 +531,21 @@ legend {
   gap: 20px;
 }
 
+.week-footer-navigation {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding-top: 4px;
+}
+
+.week-footer-navigation .period-button {
+  min-width: 132px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--theme-primary-deep);
+  box-shadow: 0 6px 18px rgba(0, 73, 107, 0.06);
+}
+
 .week-day {
   padding: 16px;
   border: 1px solid var(--line);
@@ -683,10 +691,8 @@ button.month-day:hover {
   scroll-margin-top: 16px;
   isolation: isolate;
   overflow: hidden;
-  display: grid;
-  grid-template-columns: 72px minmax(0, 1fr);
-  gap: 20px;
-  padding: 22px 22px 22px 28px;
+  display: block;
+  padding: 14px 18px;
   border: 1px solid var(--line);
   border-radius: 16px;
   background: var(--surface);
@@ -770,44 +776,15 @@ button.month-day:hover {
   --church-position: center 74%;
 }
 
-.event-date {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  align-self: start;
-  padding: 8px;
-  border-radius: 12px;
-  border: 1px solid color-mix(in srgb, var(--liturgical-accent) 28%, white);
-  background: color-mix(in srgb, var(--liturgical-accent) 11%, white);
-  color: var(--liturgical-accent);
-  text-align: center;
-  text-transform: uppercase;
-}
-
-.event-day,
-.event-month {
-  font-size: 0.68rem;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-}
-
-.event-number {
-  margin: 2px 0;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: 1.9rem;
-  font-weight: 500;
-  line-height: 1;
-}
-
 .event-time {
-  margin: 0 0 3px;
+  margin: 0;
   color: var(--theme-primary-deep);
   font-size: 0.92rem;
   font-weight: 800;
 }
 
 .event-presider {
-  margin: 0 0 10px;
+  margin: 0;
   color: var(--ink);
   font-size: 0.9rem;
   font-weight: 700;
@@ -818,13 +795,21 @@ button.month-day:hover {
   flex-wrap: wrap;
   align-items: baseline;
   gap: 6px 10px;
-  margin-bottom: 5px;
+  margin-bottom: 3px;
+}
+
+.event-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3px 14px;
+  align-items: baseline;
+  margin-bottom: 4px;
 }
 
 .event-church {
   margin-bottom: 0;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: 1.28rem;
+  font-size: 1.16rem;
   font-weight: 600;
   line-height: 1.3;
   overflow-wrap: anywhere;
@@ -842,10 +827,10 @@ button.month-day:hover {
 }
 
 .event-subtitle {
-  margin: 0 0 10px;
+  margin: 0 0 5px;
   color: var(--muted);
   font-size: 0.88rem;
-  line-height: 1.4;
+  line-height: 1.3;
 }
 
 .event-details {
@@ -855,7 +840,7 @@ button.month-day:hover {
 .event-tags {
   flex-wrap: wrap;
   gap: 6px;
-  margin-bottom: 8px;
+  margin-bottom: 2px;
 }
 
 .tag {
@@ -892,24 +877,20 @@ button.month-day:hover {
 
 @media (max-width: 800px) {
   .page-header {
-    grid-template-columns: 1fr;
-    gap: 8px;
-    align-items: start;
-    padding: 12px 18px;
+    grid-template-columns: minmax(135px, 165px) minmax(120px, 1fr);
+    gap: 12px;
+    align-items: center;
+    padding: 4px 18px;
   }
 
   .parish-logo {
-    width: min(100%, 300px);
+    width: min(100%, 155px);
   }
 
   .header-copy {
-    padding: 8px 0 0;
-    border-top: 1px solid var(--line);
-    border-left: 0;
-  }
-
-  .header-copy .intro {
-    display: none;
+    padding: 0 0 0 12px;
+    border-top: 0;
+    border-left: 1px solid var(--line);
   }
 
   .page-shell {
@@ -958,9 +939,7 @@ button.month-day:hover {
   }
 
   .event-card {
-    grid-template-columns: 58px minmax(0, 1fr);
-    gap: 14px;
-    padding: 16px 16px 16px 20px;
+    padding: 12px 14px;
   }
 
   .event-church {

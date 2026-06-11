@@ -10,7 +10,6 @@ import {
   monthStart,
   orderedEventTypes,
   presiderGroups,
-  rangeWithinCoverage,
   startOfSundayWeek,
   validateFeed,
 } from "./web/calendar-core.js?v=5";
@@ -30,7 +29,7 @@ const state = {
   },
   search: "",
   useDefaultEventTypes: true,
-  view: "daily",
+  view: "weekly",
   weekStart: null,
   month: null,
   selectedMonthDate: null,
@@ -61,13 +60,6 @@ const elements = {
   todayPeriod: document.querySelector("#today-period"),
   nextPeriod: document.querySelector("#next-period"),
 };
-
-const dateFormatter = new Intl.DateTimeFormat("en-AU", {
-  timeZone: "Australia/Brisbane",
-  weekday: "short",
-  day: "numeric",
-  month: "short",
-});
 
 const timeFormatter = new Intl.DateTimeFormat("en-AU", {
   timeZone: "Australia/Brisbane",
@@ -358,12 +350,6 @@ function matchesFilters(event) {
   );
 }
 
-function formatDateParts(event) {
-  const value = event.all_day ? new Date(`${event.start}T00:00:00+10:00`) : new Date(event.start);
-  const parts = dateFormatter.formatToParts(value);
-  return Object.fromEntries(parts.map((part) => [part.type, part.value]));
-}
-
 function formatEventTime(event) {
   if (event.all_day) return "All day";
   return `${timeFormatter.format(new Date(event.start))}–${timeFormatter.format(new Date(event.end))}`;
@@ -397,14 +383,10 @@ function makeTag(text) {
 
 function renderCard(event) {
   const card = elements.template.content.firstElementChild.cloneNode(true);
-  const dateParts = formatDateParts(event);
   card.classList.add(churchClass(event.church));
   card.dataset.eventDate = eventDateKey(event);
   card.dataset.liturgicalColour = liturgicalColour(event);
 
-  card.querySelector(".event-day").textContent = dateParts.weekday;
-  card.querySelector(".event-number").textContent = dateParts.day;
-  card.querySelector(".event-month").textContent = dateParts.month;
   card.querySelector(".event-church").textContent = displayChurch(event.church);
   card.querySelector(".event-service").textContent = event.service_name;
   card.querySelector(".event-time").textContent = formatEventTime(event);
@@ -473,6 +455,10 @@ function weekEnd(start) {
   return addDays(start, 6);
 }
 
+function weekIntersectsCoverage(start, coverage) {
+  return start <= coverage.end && weekEnd(start) >= coverage.start;
+}
+
 function renderWeekly(events) {
   const start = state.weekStart;
   const end = weekEnd(start);
@@ -494,8 +480,24 @@ function renderWeekly(events) {
     return section;
   });
 
+  const footerNavigation = document.createElement("nav");
+  footerNavigation.className = "week-footer-navigation";
+  footerNavigation.setAttribute("aria-label", "Week navigation");
+  [
+    ["previous", "Previous week"],
+    ["next", "Next week"],
+  ].forEach(([action, label]) => {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "period-button";
+    button.dataset.periodAction = action;
+    button.textContent = label;
+    button.addEventListener("click", () => navigatePeriod(action));
+    footerNavigation.append(button);
+  });
+
   elements.events.className = "calendar-view weekly-view";
-  elements.events.replaceChildren(...sections);
+  elements.events.replaceChildren(...sections, footerNavigation);
   elements.resultsContext.textContent = "Weekly view";
   elements.resultsCount.textContent =
     `${weekRangeFormatter.format(dateFromKey(start))} – ${weekRangeFormatter.format(dateFromKey(end))} · `
@@ -617,13 +619,15 @@ function updatePeriodNavigation() {
   if (state.view === "weekly") {
     const previous = addDays(state.weekStart, -7);
     const next = addDays(state.weekStart, 7);
-    elements.previousPeriod.disabled =
-      !rangeWithinCoverage(previous, weekEnd(previous), state.feed.coverage);
-    elements.nextPeriod.disabled =
-      !rangeWithinCoverage(next, weekEnd(next), state.feed.coverage);
+    elements.previousPeriod.disabled = !weekIntersectsCoverage(previous, state.feed.coverage);
+    elements.nextPeriod.disabled = !weekIntersectsCoverage(next, state.feed.coverage);
     elements.todayPeriod.disabled = state.weekStart === startOfSundayWeek(today);
     elements.previousPeriod.setAttribute("aria-label", "Show previous week");
     elements.nextPeriod.setAttribute("aria-label", "Show next week");
+    const footerPrevious = elements.events.querySelector('[data-period-action="previous"]');
+    const footerNext = elements.events.querySelector('[data-period-action="next"]');
+    if (footerPrevious) footerPrevious.disabled = elements.previousPeriod.disabled;
+    if (footerNext) footerNext.disabled = elements.nextPeriod.disabled;
   } else {
     const previous = addMonths(state.month, -1);
     const next = addMonths(state.month, 1);
@@ -657,6 +661,18 @@ function selectView(button) {
   elements.events.setAttribute("aria-labelledby", button.id);
   renderEvents();
   if (state.view === "daily") scrollToCurrentDay();
+}
+
+function navigatePeriod(action) {
+  if (state.view === "weekly") {
+    state.weekStart = addDays(state.weekStart, action === "previous" ? -7 : 7);
+  } else {
+    state.month = addMonths(state.month, action === "previous" ? -1 : 1);
+    state.selectedMonthDate = state.month < state.feed.coverage.start
+      ? state.feed.coverage.start
+      : state.month;
+  }
+  renderEvents();
 }
 
 function scrollToCurrentDay() {
@@ -812,26 +828,8 @@ elements.viewButtons.forEach((button) => {
     nextButton.focus();
   });
 });
-elements.previousPeriod.addEventListener("click", () => {
-  if (state.view === "weekly") {
-    state.weekStart = addDays(state.weekStart, -7);
-  } else {
-    state.month = addMonths(state.month, -1);
-    state.selectedMonthDate = state.month < state.feed.coverage.start
-      ? state.feed.coverage.start
-      : state.month;
-  }
-  renderEvents();
-});
-elements.nextPeriod.addEventListener("click", () => {
-  if (state.view === "weekly") {
-    state.weekStart = addDays(state.weekStart, 7);
-  } else {
-    state.month = addMonths(state.month, 1);
-    state.selectedMonthDate = state.month;
-  }
-  renderEvents();
-});
+elements.previousPeriod.addEventListener("click", () => navigatePeriod("previous"));
+elements.nextPeriod.addEventListener("click", () => navigatePeriod("next"));
 elements.todayPeriod.addEventListener("click", () => {
   const today = currentBrisbaneDate();
   const target = today < state.feed.coverage.start

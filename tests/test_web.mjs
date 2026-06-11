@@ -79,8 +79,23 @@ test("card accents use known liturgical colours with a parish fallback", () => {
 });
 
 test("published module URLs use matching cache-busting revisions", () => {
-  assert.match(indexSource, /src="app\.js\?v=20"/);
+  assert.match(indexSource, /src="app\.js\?v=21"/);
   assert.match(appSource, /calendar-core\.js\?v=5/);
+});
+
+test("event cards rely on grouped date headings", () => {
+  assert.doesNotMatch(indexSource, /class="event-date"/);
+  assert.match(appSource, /className = "week-footer-navigation"/);
+  assert.match(appSource, /function weekIntersectsCoverage/);
+});
+
+test("weekly view is selected by default", () => {
+  assert.match(appSource, /view: "weekly"/);
+  assert.match(
+    indexSource,
+    /id="view-weekly"[\s\S]*?aria-selected="true"[\s\S]*?tabindex="0"/,
+  );
+  assert.match(indexSource, /aria-labelledby="view-weekly"/);
 });
 
 test("filter options use the requested display order", () => {

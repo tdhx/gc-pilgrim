@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>SPCP Parish Calendar</title>
-  <link rel="stylesheet" href="styles.css?v=16">
+  <link rel="stylesheet" href="styles.css?v=17">
 </head>
 <body data-theme="spcp">
   <header class="page-header">
@@ -20,7 +20,6 @@
     <div class="header-copy">
       <p class="eyebrow">Parish life, at a glance</p>
       <h1>Calendar</h1>
-      <p class="intro">Masses, sacraments and parish events for the coming three months.</p>
     </div>
   </header>
 
@@ -84,7 +83,7 @@
     <section class="calendar-panel" aria-live="polite">
       <div class="results-header">
         <div>
-          <p id="results-context" class="eyebrow">Daily view</p>
+          <p id="results-context" class="eyebrow">Weekly view</p>
           <h2 id="results-count">Loading events...</h2>
         </div>
         <button id="clear-filters" class="secondary-button" type="button">Show all</button>
@@ -97,9 +96,9 @@
             class="view-button"
             type="button"
             role="tab"
-            aria-selected="true"
+            aria-selected="false"
             aria-controls="events"
-            tabindex="0"
+            tabindex="-1"
             data-view="daily"
           >Daily</button>
           <button
@@ -107,9 +106,9 @@
             class="view-button"
             type="button"
             role="tab"
-            aria-selected="false"
+            aria-selected="true"
             aria-controls="events"
-            tabindex="-1"
+            tabindex="0"
             data-view="weekly"
           >Weekly</button>
           <button
@@ -143,31 +142,28 @@
         id="events"
         class="calendar-view"
         role="tabpanel"
-        aria-labelledby="view-daily"
+        aria-labelledby="view-weekly"
       ></div>
     </section>
   </main>
 
   <template id="event-template">
     <article class="event-card">
-      <div class="event-date">
-        <span class="event-day"></span>
-        <strong class="event-number"></strong>
-        <span class="event-month"></span>
-      </div>
       <div class="event-details">
         <div class="event-heading">
           <h3 class="event-church"></h3>
           <span class="event-service"></span>
         </div>
-        <p class="event-time"></p>
-        <p class="event-presider"></p>
+        <div class="event-meta">
+          <p class="event-time"></p>
+          <p class="event-presider"></p>
+        </div>
         <p class="event-subtitle"></p>
         <div class="event-tags"></div>
       </div>
     </article>
   </template>
 
-  <script type="module" src="app.js?v=20"></script>
+  <script type="module" src="app.js?v=21"></script>
 </body>
 </html>

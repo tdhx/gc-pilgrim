@@ -24,23 +24,6 @@ python3 -m unittest discover -s tests
 echo "Running web tests..."
 npm run test:web
 
-echo "Running Swift package tests..."
-(
-  cd ios/SPCPCalendarCore
-  swift test
-)
-
-echo "Building the iPhone app..."
-xcodebuild \
-  -project ios/SPCPCalendar.xcodeproj \
-  -scheme SPCPCalendar \
-  -configuration Debug \
-  -sdk iphonesimulator \
-  -derivedDataPath /tmp/SPCPCalendarDerivedData \
-  CODE_SIGNING_ALLOWED=NO \
-  ENABLE_USER_SCRIPT_SANDBOXING=NO \
-  build
-
 echo "Committing and pushing..."
 git add -A
 git commit -m "$1"

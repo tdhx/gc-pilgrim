@@ -1,9 +1,651 @@
 {
   "coverage": {
-    "end": "2026-09-09",
-    "start": "2026-06-10"
+    "end": "2026-09-10",
+    "start": "2026-06-01"
   },
   "events": [
+    {
+      "all_day": false,
+      "associated_devotions": [],
+      "church": "Sacred Heart",
+      "description": null,
+      "end": "2026-06-01T10:00:00+10:00",
+      "event_subtype": null,
+      "event_type": "mass",
+      "id": "53b0c346470b9328d9064dc6",
+      "liturgical": {
+        "alternatives": [],
+        "date": "2026-06-01",
+        "liturgical_colour": "red",
+        "observance": "Saint Justin, Martyr",
+        "psalm_week": 1,
+        "rank": "Memorial",
+        "season": "Ordinary Time",
+        "season_week": null,
+        "source_url": "https://universalis.com/australia.brisbane/20260601/today.htm"
+      },
+      "liturgical_date": "2026-06-01",
+      "location": "50 Fairway Dr, Clear Island Waters QLD 4226, Australia",
+      "presiders": [
+        "Fr Bradley"
+      ],
+      "service_name": "Weekday Mass",
+      "source_id": "68m0gpeu6truspkatc51augb9e@google.com#2026-06-01T09:00:00+10:00",
+      "start": "2026-06-01T09:00:00+10:00",
+      "timezone": "Australia/Brisbane",
+      "title": "Mass- Sacred Heart church - Clear Island waters - Fr Bradley"
+    },
+    {
+      "all_day": false,
+      "associated_devotions": [],
+      "church": "Sacred Heart",
+      "description": "Join with Google Meet: https://meet.google.com/ifd-qfbh-yqw\n\nLearn more about Meet at: https://support.google.com/a/users/answer/9282720",
+      "end": "2026-06-02T11:00:00+10:00",
+      "event_subtype": null,
+      "event_type": "mass",
+      "id": "2c3419d33ee624a32cd6a46e",
+      "liturgical": {
+        "alternatives": [
+          "Saints Marcellinus and Peter, Martyrs"
+        ],
+        "date": "2026-06-02",
+        "liturgical_colour": "green",
+        "observance": "Tuesday of week 9 in Ordinary Time",
+        "psalm_week": null,
+        "rank": null,
+        "season": "Ordinary Time",
+        "season_week": 9,
+        "source_url": "https://universalis.com/australia.brisbane/20260602/today.htm"
+      },
+      "liturgical_date": "2026-06-02",
+      "location": null,
+      "presiders": [
+        "Fr Bradley",
+        "Fr Paul",
+        "Fr John"
+      ],
+      "service_name": "Healing Mass",
+      "source_id": "2788ftqf2vb9gp564m1src5spk_R20250805T000000@google.com#2026-06-02T10:00:00+10:00",
+      "start": "2026-06-02T10:00:00+10:00",
+      "timezone": "Australia/Brisbane",
+      "title": "First Tuesday of the Month - Healing Mass - Fr Paul + Fr Bradley + Fr John +"
+    },
+    {
+      "all_day": false,
+      "associated_devotions": [],
+      "church": "Sacred Heart",
+      "description": null,
+      "end": "2026-06-03T10:00:00+10:00",
+      "event_subtype": null,
+      "event_type": "mass",
+      "id": "954aed916b4094cdde19e011",
+      "liturgical": {
+        "alternatives": [],
+        "date": "2026-06-03",
+        "liturgical_colour": "red",
+        "observance": "Saints Charles Lwanga and his Companions, Martyrs",
+        "psalm_week": null,
+        "rank": "Memorial",
+        "season": "Ordinary Time",
+        "season_week": null,
+        "source_url": "https://universalis.com/australia.brisbane/20260603/today.htm"
+      },
+      "liturgical_date": "2026-06-03",
+      "location": null,
+      "presiders": [
+        "Fr Paul"
+      ],
+      "service_name": "Weekday Mass",
+      "source_id": "31l9uk3j812ouaobogbah06npu_R20250617T230000@google.com#2026-06-03T09:00:00+10:00",
+      "start": "2026-06-03T09:00:00+10:00",
+      "timezone": "Australia/Brisbane",
+      "title": "Sacred Heart Mass - 9am - Fr Paul"
+    },
+    {
+      "all_day": false,
+      "associated_devotions": [],
+      "church": "Sacred Heart",
+      "description": null,
+      "end": "2026-06-04T10:00:00+10:00",
+      "event_subtype": null,
+      "event_type": "mass",
+      "id": "b92e86ad4b5c80a85a3e43da",
+      "liturgical": {
+        "alternatives": [],
+        "date": "2026-06-04",
+        "liturgical_colour": "green",
+        "observance": "Thursday of week 9 in Ordinary Time",
+        "psalm_week": null,
+        "rank": null,
+        "season": "Ordinary Time",
+        "season_week": 9,
+        "source_url": "https://universalis.com/australia.brisbane/20260604/today.htm"
+      },
+      "liturgical_date": "2026-06-04",
+      "location": null,
+      "presiders": [
+        "Fr Bradley"
+      ],
+      "service_name": "Weekday Mass",
+      "source_id": "6ns67enc3cms28n1jtvpj3g7cb@google.com#2026-06-04T09:00:00+10:00",
+      "start": "2026-06-04T09:00:00+10:00",
+      "timezone": "Australia/Brisbane",
+      "title": "Sacred Heart Mass - 9am - Fr Bradley"
+    },
+    {
+      "all_day": false,
+      "associated_devotions": [],
+      "church": "Sacred Heart",
+      "description": null,
+      "end": "2026-06-05T10:00:00+10:00",
+      "event_subtype": null,
+      "event_type": "mass",
+      "id": "75cc5e63ba73f991fb140ab0",
+      "liturgical": {
+        "alternatives": [],
+        "date": "2026-06-05",
+        "liturgical_colour": "red",
+        "observance": "Saint Boniface, Bishop, Martyr",
+        "psalm_week": null,
+        "rank": "Memorial",
+        "season": "Ordinary Time",
+        "season_week": null,
+        "source_url": "https://universalis.com/australia.brisbane/20260605/today.htm"
+      },
+      "liturgical_date": "2026-06-05",
+      "location": null,
+      "presiders": [
+        "Fr Paul"
+      ],
+      "service_name": "Weekday Mass",
+      "source_id": "5erdpna9jcde8es2ms769k743f@google.com#2026-06-05T09:00:00+10:00",
+      "start": "2026-06-05T09:00:00+10:00",
+      "timezone": "Australia/Brisbane",
+      "title": "Sacred Heart Mass - 9am - Fr Paul (usually- biweekly)"
+    },
+    {
+      "all_day": false,
+      "associated_devotions": [
+        "Adoration",
+        "Benediction"
+      ],
+      "church": "Sacred Heart",
+      "description": null,
+      "end": "2026-06-06T10:00:00+10:00",
+      "event_subtype": null,
+      "event_type": "mass",
+      "id": "b2396c7e35cb4a1fda7e12c6",
+      "liturgical": {
+        "alternatives": [
+          "Saint Norbert, Bishop",
+          "Saint Marcellin Champagnat, Priest",
+          "Saturday memorial of the Blessed Virgin Mary"
+        ],
+        "date": "2026-06-06",
+        "liturgical_colour": "green",
+        "observance": "Saturday of week 9 in Ordinary Time",
+        "psalm_week": null,
+        "rank": null,
+        "season": "Ordinary Time",
+        "season_week": 9,
+        "source_url": "https://universalis.com/australia.brisbane/20260606/today.htm"
+      },
+      "liturgical_date": "2026-06-06",
+      "location": null,
+      "presiders": [
+        "Fr Bradley"
+      ],
+      "service_name": "First Saturday Mass",
+      "source_id": "1j47rdt394hoddoplhvlon77vn@google.com#2026-06-06T09:00:00+10:00",
+      "start": "2026-06-06T09:00:00+10:00",
+      "timezone": "Australia/Brisbane",
+      "title": "First Saturday Mass- Sacred Heart Fr Bradley"
+    },
+    {
+      "all_day": false,
+      "associated_devotions": [],
+      "church": "Sacred Heart",
+      "description": null,
+      "end": "2026-06-06T16:30:00+10:00",
+      "event_subtype": null,
+      "event_type": "confession",
+      "id": "bfc9cea3a05dbbad1be18514",
+      "liturgical": null,
+      "liturgical_date": null,
+      "location": null,
+      "presiders": [
+        "Fr Paul"
+      ],
+      "service_name": "Reconciliation",
+      "source_id": "22t88n14nr40gn2q9p02jvfdav_R20250412T060000@google.com#2026-06-06T16:00:00+10:00",
+      "start": "2026-06-06T16:00:00+10:00",
+      "timezone": "Australia/Brisbane",
+      "title": "SH - Reco- (Fr Paul)  (three weekly)"
+    },
+    {
+      "all_day": false,
+      "associated_devotions": [],
+      "church": "Stella Maris",
+      "description": null,
+      "end": "2026-06-06T18:00:00+10:00",
+      "event_subtype": null,
+      "event_type": "mass",
+      "id": "75e402a42348d86f4404782b",
+      "liturgical": {
+        "alternatives": [],
+        "date": "2026-06-07",
+        "liturgical_colour": "white",
+        "observance": "The Most Holy Body and Blood of Christ",
+        "psalm_week": null,
+        "rank": "Solemnity",
+        "season": "Ordinary Time",
+        "season_week": null,
+        "source_url": "https://universalis.com/australia.brisbane/20260607/today.htm"
+      },
+      "liturgical_date": "2026-06-07",
+      "location": null,
+      "presiders": [
+        "Fr Bradley"
+      ],
+      "service_name": "Vigil Mass",
+      "source_id": "7thikbvkcahhon3v0aj02kmct2@google.com#2026-06-06T17:00:00+10:00",
+      "start": "2026-06-06T17:00:00+10:00",
+      "timezone": "Australia/Brisbane",
+      "title": "Mass - SM- Fr Bradley -  Stella Maris Broadbeach"
+    },
+    {
+      "all_day": false,
+      "associated_devotions": [],
+      "church": "Sacred Heart",
+      "description": null,
+      "end": "2026-06-06T18:00:00+10:00",
+      "event_subtype": null,
+      "event_type": "mass",
+      "id": "a5a437839c169e69da789ffb",
+      "liturgical": {
+        "alternatives": [],
+        "date": "2026-06-07",
+        "liturgical_colour": "white",
+        "observance": "The Most Holy Body and Blood of Christ",
+        "psalm_week": null,
+        "rank": "Solemnity",
+        "season": "Ordinary Time",
+        "season_week": null,
+        "source_url": "https://universalis.com/australia.brisbane/20260607/today.htm"
+      },
+      "liturgical_date": "2026-06-07",
+      "location": null,
+      "presiders": [
+        "Fr Paul"
+      ],
+      "service_name": "Vigil Mass",
+      "source_id": "b4ea7a7no9lfcrpp10k0dugp26@google.com#2026-06-06T17:00:00+10:00",
+      "start": "2026-06-06T17:00:00+10:00",
+      "timezone": "Australia/Brisbane",
+      "title": "SH Mass - Fr Paul"
+    },
+    {
+      "all_day": false,
+      "associated_devotions": [],
+      "church": "Sacred Heart",
+      "description": "Join with Google Meet: https://meet.google.com/wnt-ubqb-gda\n\nLearn more about Meet at: https://support.google.com/a/users/answer/9282720",
+      "end": "2026-06-06T19:30:00+10:00",
+      "event_subtype": "maronite",
+      "event_type": "multicultural",
+      "id": "86c0c5e2df741b5a6efed563",
+      "liturgical": null,
+      "liturgical_date": null,
+      "location": "Sacred Heart Church, 50 Fairway Dr, Clear Island Waters QLD 4226, Australia",
+      "presiders": [
+        "Fr Fadi"
+      ],
+      "service_name": "Maronite Mass",
+      "source_id": "1csccoigdkqknhg90ft0unvbe5@google.com#2026-06-06T18:30:00+10:00",
+      "start": "2026-06-06T18:30:00+10:00",
+      "timezone": "Australia/Brisbane",
+      "title": "6.30 pm Maronite Mass - Fr Fadi Weekly-"
+    },
+    {
+      "all_day": false,
+      "associated_devotions": [],
+      "church": "Stella Maris",
+      "description": null,
+      "end": "2026-06-07T08:00:00+10:00",
+      "event_subtype": null,
+      "event_type": "mass",
+      "id": "f3be9aad9bb726a924b7e06b",
+      "liturgical": {
+        "alternatives": [],
+        "date": "2026-06-07",
+        "liturgical_colour": "white",
+        "observance": "The Most Holy Body and Blood of Christ",
+        "psalm_week": null,
+        "rank": "Solemnity",
+        "season": "Ordinary Time",
+        "season_week": null,
+        "source_url": "https://universalis.com/australia.brisbane/20260607/today.htm"
+      },
+      "liturgical_date": "2026-06-07",
+      "location": null,
+      "presiders": [
+        "Fr Damian"
+      ],
+      "service_name": "Sunday Mass",
+      "source_id": "6v230ivfcebts1ikvfpub54qug_R20250301T210000@google.com#2026-06-07T07:00:00+10:00",
+      "start": "2026-06-07T07:00:00+10:00",
+      "timezone": "Australia/Brisbane",
+      "title": "SM Mass - Fr Damian - Stella Maris Broadbeach"
+    },
+    {
+      "all_day": false,
+      "associated_devotions": [],
+      "church": "Sacred Heart",
+      "description": null,
+      "end": "2026-06-07T10:00:00+10:00",
+      "event_subtype": null,
+      "event_type": "mass",
+      "id": "9952574c390e69f4377f299e",
+      "liturgical": {
+        "alternatives": [],
+        "date": "2026-06-07",
+        "liturgical_colour": "white",
+        "observance": "The Most Holy Body and Blood of Christ",
+        "psalm_week": null,
+        "rank": "Solemnity",
+        "season": "Ordinary Time",
+        "season_week": null,
+        "source_url": "https://universalis.com/australia.brisbane/20260607/today.htm"
+      },
+      "liturgical_date": "2026-06-07",
+      "location": null,
+      "presiders": [
+        "Fr Warren"
+      ],
+      "service_name": "Sunday Mass",
+      "source_id": "1tjnc5q6bukevfn7jal8lrhpgi@google.com#2026-06-07T09:00:00+10:00",
+      "start": "2026-06-07T09:00:00+10:00",
+      "timezone": "Australia/Brisbane",
+      "title": "Sacred Heart Mass -   Fr Warren"
+    },
+    {
+      "all_day": false,
+      "associated_devotions": [],
+      "church": "St. Vincent's",
+      "description": null,
+      "end": "2026-06-07T10:00:00+10:00",
+      "event_subtype": null,
+      "event_type": "mass",
+      "id": "8569d6d5497f1685026f064b",
+      "liturgical": {
+        "alternatives": [],
+        "date": "2026-06-07",
+        "liturgical_colour": "white",
+        "observance": "The Most Holy Body and Blood of Christ",
+        "psalm_week": null,
+        "rank": "Solemnity",
+        "season": "Ordinary Time",
+        "season_week": null,
+        "source_url": "https://universalis.com/australia.brisbane/20260607/today.htm"
+      },
+      "liturgical_date": "2026-06-07",
+      "location": null,
+      "presiders": [
+        "Fr John"
+      ],
+      "service_name": "Sunday Mass",
+      "source_id": "9cesq7r8i0i9a0cho3hp148ojf@google.com#2026-06-07T09:00:00+10:00",
+      "start": "2026-06-07T09:00:00+10:00",
+      "timezone": "Australia/Brisbane",
+      "title": "Saint Vincents Surfers - Fr John Maher"
+    },
+    {
+      "all_day": false,
+      "associated_devotions": [],
+      "church": "Sacred Heart",
+      "description": null,
+      "end": "2026-06-07T12:00:00+10:00",
+      "event_subtype": null,
+      "event_type": "mass",
+      "id": "9d0a4c1b490e92cff629edfc",
+      "liturgical": {
+        "alternatives": [],
+        "date": "2026-06-07",
+        "liturgical_colour": "white",
+        "observance": "The Most Holy Body and Blood of Christ",
+        "psalm_week": null,
+        "rank": "Solemnity",
+        "season": "Ordinary Time",
+        "season_week": null,
+        "source_url": "https://universalis.com/australia.brisbane/20260607/today.htm"
+      },
+      "liturgical_date": "2026-06-07",
+      "location": null,
+      "presiders": [],
+      "service_name": "Sunday Mass",
+      "source_id": "p69on9f2k6lp1jj7eifba7iokg@google.com#2026-06-07T11:00:00+10:00",
+      "start": "2026-06-07T11:00:00+10:00",
+      "timezone": "Australia/Brisbane",
+      "title": "First Holy Communion children’s Mass Sacred heart Clear Island Waters -"
+    },
+    {
+      "all_day": false,
+      "associated_devotions": [],
+      "church": "St. Vincent's",
+      "description": null,
+      "end": "2026-06-07T12:00:00+10:00",
+      "event_subtype": null,
+      "event_type": "mass",
+      "id": "57c62900218fd122b8c77760",
+      "liturgical": {
+        "alternatives": [],
+        "date": "2026-06-07",
+        "liturgical_colour": "white",
+        "observance": "The Most Holy Body and Blood of Christ",
+        "psalm_week": null,
+        "rank": "Solemnity",
+        "season": "Ordinary Time",
+        "season_week": null,
+        "source_url": "https://universalis.com/australia.brisbane/20260607/today.htm"
+      },
+      "liturgical_date": "2026-06-07",
+      "location": null,
+      "presiders": [
+        "Fr John"
+      ],
+      "service_name": "Sunday Mass",
+      "source_id": "f9gbbmd3qvr7io2kjbjlj13bea@google.com#2026-06-07T11:00:00+10:00",
+      "start": "2026-06-07T11:00:00+10:00",
+      "timezone": "Australia/Brisbane",
+      "title": "Saint Vincents Surfers - Fr John Maher"
+    },
+    {
+      "all_day": false,
+      "associated_devotions": [],
+      "church": "Sacred Heart",
+      "description": null,
+      "end": "2026-06-07T14:30:00+10:00",
+      "event_subtype": "polish",
+      "event_type": "multicultural",
+      "id": "6bab21bbad9454f6c79c1655",
+      "liturgical": {
+        "alternatives": [],
+        "date": "2026-06-07",
+        "liturgical_colour": "white",
+        "observance": "The Most Holy Body and Blood of Christ",
+        "psalm_week": null,
+        "rank": "Solemnity",
+        "season": "Ordinary Time",
+        "season_week": null,
+        "source_url": "https://universalis.com/australia.brisbane/20260607/today.htm"
+      },
+      "liturgical_date": "2026-06-07",
+      "location": null,
+      "presiders": [
+        "Fr Jerzy"
+      ],
+      "service_name": "Polish Mass",
+      "source_id": "69p82tm99l7pgbbcli57c82422@google.com#2026-06-07T12:30:00+10:00",
+      "start": "2026-06-07T13:30:00+10:00",
+      "timezone": "Australia/Brisbane",
+      "title": "Sacred Heart -   Polish Mass (weekly)"
+    },
+    {
+      "all_day": false,
+      "associated_devotions": [],
+      "church": "Sacred Heart",
+      "description": null,
+      "end": "2026-06-07T17:00:00+10:00",
+      "event_subtype": "italian",
+      "event_type": "multicultural",
+      "id": "27d43193434a784321b03981",
+      "liturgical": {
+        "alternatives": [],
+        "date": "2026-06-07",
+        "liturgical_colour": "white",
+        "observance": "The Most Holy Body and Blood of Christ",
+        "psalm_week": null,
+        "rank": "Solemnity",
+        "season": "Ordinary Time",
+        "season_week": null,
+        "source_url": "https://universalis.com/australia.brisbane/20260607/today.htm"
+      },
+      "liturgical_date": "2026-06-07",
+      "location": null,
+      "presiders": [
+        "Fr Luis"
+      ],
+      "service_name": "Italian Mass",
+      "source_id": "6iicdpg4hvgs591e9k0ato98d2@google.com#2026-06-07T16:00:00+10:00",
+      "start": "2026-06-07T16:00:00+10:00",
+      "timezone": "Australia/Brisbane",
+      "title": "Sacred Heart - Italian Mass (weekly)_"
+    },
+    {
+      "all_day": false,
+      "associated_devotions": [],
+      "church": "St. Vincent's",
+      "description": null,
+      "end": "2026-06-07T18:30:00+10:00",
+      "event_subtype": "hispanic",
+      "event_type": "multicultural",
+      "id": "25ba7a5918b8e22472af73f7",
+      "liturgical": {
+        "alternatives": [],
+        "date": "2026-06-07",
+        "liturgical_colour": "white",
+        "observance": "The Most Holy Body and Blood of Christ",
+        "psalm_week": null,
+        "rank": "Solemnity",
+        "season": "Ordinary Time",
+        "season_week": null,
+        "source_url": "https://universalis.com/australia.brisbane/20260607/today.htm"
+      },
+      "liturgical_date": "2026-06-07",
+      "location": null,
+      "presiders": [
+        "Fr Luis"
+      ],
+      "service_name": "Hispanic Mass",
+      "source_id": "2httv7vfv7jbhorbq9eqt8nf4l@google.com#2026-06-07T17:30:00+10:00",
+      "start": "2026-06-07T17:30:00+10:00",
+      "timezone": "Australia/Brisbane",
+      "title": "St Vincents -Surfers - Hispanic Mass (weekly)"
+    },
+    {
+      "all_day": false,
+      "associated_devotions": [],
+      "church": "Sacred Heart",
+      "description": null,
+      "end": "2026-06-07T19:00:00+10:00",
+      "event_subtype": null,
+      "event_type": "mass",
+      "id": "182ad88172532730e2ede29d",
+      "liturgical": {
+        "alternatives": [],
+        "date": "2026-06-07",
+        "liturgical_colour": "white",
+        "observance": "The Most Holy Body and Blood of Christ",
+        "psalm_week": null,
+        "rank": "Solemnity",
+        "season": "Ordinary Time",
+        "season_week": null,
+        "source_url": "https://universalis.com/australia.brisbane/20260607/today.htm"
+      },
+      "liturgical_date": "2026-06-07",
+      "location": null,
+      "presiders": [
+        "Fr Paul"
+      ],
+      "service_name": "Sunday Mass",
+      "source_id": "58ebo2v83pgf8opbebk1f4durc@google.com#2026-06-07T18:00:00+10:00",
+      "start": "2026-06-07T18:00:00+10:00",
+      "timezone": "Australia/Brisbane",
+      "title": "Sacred Heart Mass  - Fr Paul (variable) (three weekly)"
+    },
+    {
+      "all_day": false,
+      "associated_devotions": [],
+      "church": "Sacred Heart",
+      "description": null,
+      "end": "2026-06-08T10:00:00+10:00",
+      "event_subtype": null,
+      "event_type": "mass",
+      "id": "4b81ab9486801f4d6edb40bc",
+      "liturgical": {
+        "alternatives": [],
+        "date": "2026-06-08",
+        "liturgical_colour": "green",
+        "observance": "Monday of week 10 in Ordinary Time",
+        "psalm_week": 2,
+        "rank": null,
+        "season": "Ordinary Time",
+        "season_week": 10,
+        "source_url": "https://universalis.com/australia.brisbane/20260608/today.htm"
+      },
+      "liturgical_date": "2026-06-08",
+      "location": "50 Fairway Dr, Clear Island Waters QLD 4226, Australia",
+      "presiders": [
+        "Fr Bradley"
+      ],
+      "service_name": "Weekday Mass",
+      "source_id": "68m0gpeu6truspkatc51augb9e@google.com#2026-06-08T09:00:00+10:00",
+      "start": "2026-06-08T09:00:00+10:00",
+      "timezone": "Australia/Brisbane",
+      "title": "Mass- Sacred Heart church - Clear Island waters - Fr Bradley"
+    },
+    {
+      "all_day": false,
+      "associated_devotions": [],
+      "church": "Sacred Heart",
+      "description": null,
+      "end": "2026-06-09T10:00:00+10:00",
+      "event_subtype": null,
+      "event_type": "mass",
+      "id": "dc9994bd4710aa443ab73483",
+      "liturgical": {
+        "alternatives": [
+          "Saint Ephraem, Deacon, Doctor"
+        ],
+        "date": "2026-06-09",
+        "liturgical_colour": "green",
+        "observance": "Tuesday of week 10 in Ordinary Time",
+        "psalm_week": null,
+        "rank": null,
+        "season": "Ordinary Time",
+        "season_week": 10,
+        "source_url": "https://universalis.com/australia.brisbane/20260609/today.htm"
+      },
+      "liturgical_date": "2026-06-09",
+      "location": null,
+      "presiders": [
+        "Fr Paul"
+      ],
+      "service_name": "Weekday Mass",
+      "source_id": "_6p0jadpg6t2k4ba36h14ab9k6op3cba26krjcb9n8oq38da474q3ah9i74_R20250120T230000@google.com#2026-06-09T09:00:00+10:00",
+      "start": "2026-06-09T09:00:00+10:00",
+      "timezone": "Australia/Brisbane",
+      "title": "Sacred Heart Mass -  Fr Paul _____  (except on first Tuesdays - February to November inclusive- when it will be 10am)"
+    },
     {
       "all_day": false,
       "associated_devotions": [],
@@ -2115,37 +2757,6 @@
       "start": "2026-07-06T09:00:00+10:00",
       "timezone": "Australia/Brisbane",
       "title": "Mass- Sacred Heart church - Clear Island waters - Fr Bradley"
-    },
-    {
-      "all_day": false,
-      "associated_devotions": [],
-      "church": "Sacred Heart",
-      "description": null,
-      "end": "2026-07-07T10:00:00+10:00",
-      "event_subtype": null,
-      "event_type": "mass",
-      "id": "6c008843ab8a3d9dd5da0558",
-      "liturgical": {
-        "alternatives": [
-          "Saint Peter To Rot"
-        ],
-        "date": "2026-07-07",
-        "liturgical_colour": "green",
-        "observance": "Tuesday of week 14 in Ordinary Time",
-        "psalm_week": null,
-        "rank": null,
-        "season": "Ordinary Time",
-        "season_week": 14,
-        "source_url": "https://universalis.com/australia.brisbane/20260707/today.htm"
-      },
-      "liturgical_date": "2026-07-07",
-      "location": null,
-      "presiders": [],
-      "service_name": "Weekday Mass",
-      "source_id": "_6p0jadpg6t2k4ba36h14ab9k6op3cba26krjcb9n8oq38da474q3ah9i74_R20250120T230000@google.com#2026-07-07T09:00:00+10:00",
-      "start": "2026-07-07T09:00:00+10:00",
-      "timezone": "Australia/Brisbane",
-      "title": "Sacred Heart Mass -  Fr _____  (except on first Tuesdays - February to November inclusive- when it will be 10am)"
     },
     {
       "all_day": false,
@@ -4305,35 +4916,6 @@
       "associated_devotions": [],
       "church": "Sacred Heart",
       "description": null,
-      "end": "2026-08-04T10:00:00+10:00",
-      "event_subtype": null,
-      "event_type": "mass",
-      "id": "d4a08fdf8959ce16b7a3367a",
-      "liturgical": {
-        "alternatives": [],
-        "date": "2026-08-04",
-        "liturgical_colour": "white",
-        "observance": "Saint John Mary Vianney, Priest",
-        "psalm_week": null,
-        "rank": "Memorial",
-        "season": "Ordinary Time",
-        "season_week": null,
-        "source_url": "https://universalis.com/australia.brisbane/20260804/today.htm"
-      },
-      "liturgical_date": "2026-08-04",
-      "location": null,
-      "presiders": [],
-      "service_name": "Weekday Mass",
-      "source_id": "_6p0jadpg6t2k4ba36h14ab9k6op3cba26krjcb9n8oq38da474q3ah9i74_R20250120T230000@google.com#2026-08-04T09:00:00+10:00",
-      "start": "2026-08-04T09:00:00+10:00",
-      "timezone": "Australia/Brisbane",
-      "title": "Sacred Heart Mass -  Fr _____  (except on first Tuesdays - February to November inclusive- when it will be 10am)"
-    },
-    {
-      "all_day": false,
-      "associated_devotions": [],
-      "church": "Sacred Heart",
-      "description": null,
       "end": "2026-08-04T11:00:00+10:00",
       "event_subtype": null,
       "event_type": "mass",
@@ -6447,35 +7029,6 @@
       "associated_devotions": [],
       "church": "Sacred Heart",
       "description": null,
-      "end": "2026-09-01T10:00:00+10:00",
-      "event_subtype": null,
-      "event_type": "mass",
-      "id": "2134474252e0534a39b13b8a",
-      "liturgical": {
-        "alternatives": [],
-        "date": "2026-09-01",
-        "liturgical_colour": "green",
-        "observance": "Tuesday of week 22 in Ordinary Time",
-        "psalm_week": null,
-        "rank": null,
-        "season": "Ordinary Time",
-        "season_week": 22,
-        "source_url": "https://universalis.com/australia.brisbane/20260901/today.htm"
-      },
-      "liturgical_date": "2026-09-01",
-      "location": null,
-      "presiders": [],
-      "service_name": "Weekday Mass",
-      "source_id": "_6p0jadpg6t2k4ba36h14ab9k6op3cba26krjcb9n8oq38da474q3ah9i74_R20250120T230000@google.com#2026-09-01T09:00:00+10:00",
-      "start": "2026-09-01T09:00:00+10:00",
-      "timezone": "Australia/Brisbane",
-      "title": "Sacred Heart Mass -  Fr _____  (except on first Tuesdays - February to November inclusive- when it will be 10am)"
-    },
-    {
-      "all_day": false,
-      "associated_devotions": [],
-      "church": "Sacred Heart",
-      "description": null,
       "end": "2026-09-01T11:00:00+10:00",
       "event_subtype": null,
       "event_type": "mass",
@@ -7096,19 +7649,48 @@
       "start": "2026-09-09T09:00:00+10:00",
       "timezone": "Australia/Brisbane",
       "title": "Sacred Heart Mass - 9am - Fr Paul"
+    },
+    {
+      "all_day": false,
+      "associated_devotions": [],
+      "church": "Sacred Heart",
+      "description": null,
+      "end": "2026-09-10T10:00:00+10:00",
+      "event_subtype": null,
+      "event_type": "mass",
+      "id": "eeb82bac8de2a37d759ff3cb",
+      "liturgical": {
+        "alternatives": [],
+        "date": "2026-09-10",
+        "liturgical_colour": "green",
+        "observance": "Thursday of week 23 in Ordinary Time",
+        "psalm_week": null,
+        "rank": null,
+        "season": "Ordinary Time",
+        "season_week": 23,
+        "source_url": "https://universalis.com/australia.brisbane/20260910/today.htm"
+      },
+      "liturgical_date": "2026-09-10",
+      "location": null,
+      "presiders": [],
+      "service_name": "Weekday Mass",
+      "source_id": "6ns67enc3cms28n1jtvpj3g7cb@google.com#2026-09-10T09:00:00+10:00",
+      "start": "2026-09-10T09:00:00+10:00",
+      "timezone": "Australia/Brisbane",
+      "title": "Sacred Heart Mass - 9am - Fr"
     }
   ],
-  "generated_at": "2026-06-11T06:56:12+10:00",
+  "generated_at": "2026-06-11T11:31:34+10:00",
   "schema_version": 1,
   "sources": [
     {
       "name": "SPCP Google Calendar",
-      "status": "cached",
+      "status": "fresh",
       "url": "https://calendar.google.com/calendar/ical/5ecffb0b502eb6919b066ca976b06c370a81aaae0109caf8e05119f9c4fc5ee6%40group.calendar.google.com/public/basic.ics"
     },
     {
       "name": "Universalis Brisbane",
-      "status": "cached",
+      "status": "fresh",
       "url": "https://universalis.com/australia.brisbane/1000/calendar.htm"
     }
   ],
