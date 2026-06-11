@@ -462,7 +462,7 @@ legend {
 
 .results-header {
   position: sticky;
-  top: var(--page-header-height, 65px);
+  top: calc(var(--page-header-height, 65px) + var(--sticky-bar-gap, 6px));
   z-index: 14;
   overflow: hidden;
   margin-bottom: 14px;
@@ -970,9 +970,22 @@ button.month-day:hover {
   }
 
   .filters {
-    position: static;
-    max-height: none;
-    margin-top: -16px;
+    position: fixed;
+    top: calc(
+      var(--page-header-height, 65px)
+      + var(--sticky-bar-gap, 6px)
+      + var(--results-header-height, 44px)
+    );
+    right: 18px;
+    left: 18px;
+    z-index: 13;
+    max-height: calc(
+      100vh
+      - var(--page-header-height, 65px)
+      - var(--sticky-bar-gap, 6px)
+      - var(--results-header-height, 44px)
+    );
+    margin-top: 0;
     border-top: 0;
     border-radius: 0 0 14px 14px;
     box-shadow: 0 12px 24px rgba(0, 73, 107, 0.08);

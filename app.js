@@ -753,7 +753,7 @@ function stickyScrollOffset() {
   const header = document.querySelector(".page-header");
   return (header?.getBoundingClientRect().height || 0)
     + (elements.resultsHeader?.getBoundingClientRect().height || 0)
-    + 16;
+    + 22;
 }
 
 function scrollToCurrentDay() {
@@ -814,7 +814,9 @@ function goToToday() {
 
 function updateStickyOffset() {
   const headerHeight = document.querySelector(".page-header")?.getBoundingClientRect().height || 0;
+  const resultsHeaderHeight = elements.resultsHeader?.getBoundingClientRect().height || 0;
   document.documentElement.style.setProperty("--page-header-height", `${headerHeight}px`);
+  document.documentElement.style.setProperty("--results-header-height", `${resultsHeaderHeight}px`);
 }
 
 function setFiltersExpanded(expanded) {

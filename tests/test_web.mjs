@@ -83,7 +83,7 @@ test("card accents use known liturgical colours with a parish fallback", () => {
 });
 
 test("published module URLs use matching cache-busting revisions", () => {
-  assert.match(indexSource, /src="app\.js\?v=23"/);
+  assert.match(indexSource, /src="app\.js\?v=24"/);
   assert.match(appSource, /calendar-core\.js\?v=5/);
 });
 
