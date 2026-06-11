@@ -38,6 +38,10 @@ body {
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
+body.settings-open {
+  overflow: hidden;
+}
+
 button,
 input {
   font: inherit;
@@ -105,25 +109,40 @@ h1 {
 
 .page-shell {
   display: grid;
-  grid-template-columns: minmax(230px, 280px) minmax(0, 1fr);
-  gap: 24px;
+  grid-template-columns: minmax(0, 1fr);
   max-width: 1180px;
   margin: 0 auto;
   padding: 22px 28px 64px;
 }
 
 .filters {
-  position: sticky;
-  top: 16px;
-  align-self: start;
-  max-height: calc(100vh - 32px);
+  position: fixed;
+  top: calc(var(--page-header-height, 65px) + var(--sticky-bar-gap, 6px) + 52px);
+  left: 50%;
+  z-index: 31;
+  width: min(440px, calc(100% - 36px));
+  max-height: calc(100dvh - var(--page-header-height, 65px) - 76px);
   overflow: auto;
+  overscroll-behavior: contain;
   padding: 20px;
   border: 1px solid var(--line);
   border-radius: 20px;
   background: rgba(255, 255, 255, 0.9);
   box-shadow: var(--shadow);
   backdrop-filter: blur(12px);
+  transform: translateX(-50%);
+}
+
+.settings-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  background: rgba(8, 45, 64, 0.28);
+  backdrop-filter: blur(2px);
+}
+
+.filters-collapsed {
+  display: none;
 }
 
 .filters-heading,
@@ -146,26 +165,37 @@ h1 {
 }
 
 .results-filter-button {
-  display: none;
+  display: inline-grid;
+  width: 34px;
+  height: 34px;
   flex: 0 0 auto;
-  align-items: center;
-  gap: 7px;
-  padding: 6px 9px;
+  place-items: center;
+  padding: 0;
   border: 1px solid rgba(255, 255, 255, 0.48);
   border-radius: 8px;
   background: transparent;
   color: #ffffff;
-  font-size: 0.76rem;
+  font-size: 1.15rem;
   font-weight: 750;
 }
 
-.results-filter-button .filter-toggle-icon {
-  width: 7px;
-  height: 7px;
+.settings-icon {
+  display: block;
+  line-height: 1;
 }
 
-.results-filter-button[aria-expanded="false"] .filter-toggle-icon {
-  transform: rotate(-45deg);
+.settings-close {
+  display: grid;
+  width: 30px;
+  height: 30px;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: var(--blue-soft);
+  color: var(--theme-primary-deep);
+  font-size: 1.3rem;
+  line-height: 1;
 }
 
 .filters h2,
@@ -185,27 +215,18 @@ h1 {
   display: none;
 }
 
-.search-field {
-  display: block;
-  margin: 24px 0;
-  color: var(--muted);
-  font-size: 0.82rem;
-  font-weight: 700;
+.settings-view {
+  margin-top: 18px;
+  padding-bottom: 20px;
 }
 
-.search-field input {
-  width: 100%;
-  margin-top: 8px;
-  padding: 11px 12px;
-  border: 1px solid var(--line);
-  border-radius: 10px;
-  background: var(--surface);
+.settings-label {
+  margin-bottom: 8px;
   color: var(--ink);
-}
-
-.search-field input:focus {
-  border-color: var(--theme-primary);
-  outline: 3px solid var(--focus-ring);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 fieldset {
@@ -364,7 +385,7 @@ legend {
 .calendar-toolbar {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
   gap: 14px;
   margin-bottom: 14px;
 }
@@ -970,7 +991,6 @@ button.month-day:hover {
   }
 
   .filters {
-    position: fixed;
     top: calc(
       var(--page-header-height, 65px)
       + var(--sticky-bar-gap, 6px)
@@ -978,7 +998,8 @@ button.month-day:hover {
     );
     right: 18px;
     left: 18px;
-    z-index: 13;
+    z-index: 31;
+    width: auto;
     max-height: calc(
       100vh
       - var(--page-header-height, 65px)
@@ -986,36 +1007,14 @@ button.month-day:hover {
       - var(--results-header-height, 44px)
     );
     margin-top: 0;
-    border-top: 0;
+    padding: 16px;
+    border-top: 1px solid var(--line);
     border-radius: 0 0 14px 14px;
     box-shadow: 0 12px 24px rgba(0, 73, 107, 0.08);
   }
 
-  .filters-heading {
-    display: none;
-  }
-
   .mobile-show-all {
-    display: block;
-    width: 100%;
-    margin-bottom: 10px;
-    padding: 8px 10px;
-    border: 0;
-    border-radius: 8px;
-    background: var(--blue-soft);
-    color: var(--theme-primary-deep);
-    font-weight: 750;
-    text-align: left;
-  }
-
-  .filters-collapsed {
     display: none;
-  }
-
-  .calendar-toolbar {
-    align-items: stretch;
-    flex-direction: column;
-    margin-bottom: 12px;
   }
 
   .view-switcher,
@@ -1028,9 +1027,6 @@ button.month-day:hover {
     flex: 1;
   }
 
-  .results-filter-button {
-    display: inline-flex;
-  }
 }
 
 @media (max-width: 520px) {
@@ -1062,9 +1058,9 @@ button.month-day:hover {
   }
 
   .results-filter-button {
-    gap: 5px;
-    padding: 5px 6px;
-    font-size: 0.68rem;
+    width: 30px;
+    height: 30px;
+    font-size: 1rem;
   }
 
   .view-button,

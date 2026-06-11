@@ -83,7 +83,7 @@ test("card accents use known liturgical colours with a parish fallback", () => {
 });
 
 test("published module URLs use matching cache-busting revisions", () => {
-  assert.match(indexSource, /src="app\.js\?v=24"/);
+  assert.match(indexSource, /src="app\.js\?v=25"/);
   assert.match(appSource, /calendar-core\.js\?v=5/);
 });
 
@@ -109,14 +109,37 @@ test("feed diagnostics live on a separate page", () => {
   assert.match(diagnosticsSource, /src="diagnostics\.js\?v=1"/);
 });
 
-test("mobile filter controls are integrated into the results bar", () => {
-  assert.match(indexSource, /id="filters-toggle"[\s\S]*?aria-controls="filters-content"/);
+test("calendar settings are opened from the results bar", () => {
+  assert.match(indexSource, /id="filters-toggle"[\s\S]*?aria-controls="filters"/);
+  assert.match(indexSource, /class="settings-icon"/);
+  assert.match(indexSource, /id="settings-backdrop"/);
+  assert.match(indexSource, /id="settings-close"/);
   assert.match(indexSource, /id="results-today"[\s\S]*?>Today</);
   assert.equal((indexSource.match(/data-show-all/g) || []).length, 2);
   assert.equal((indexSource.match(/Clear filters/g) || []).length, 2);
-  assert.doesNotMatch(indexSource, /id="reset-filters"/);
-  assert.doesNotMatch(indexSource, /id="clear-filters"/);
-  assert.match(appSource, /resultsHeader\.after\(elements\.filters\)/);
+  assert.doesNotMatch(indexSource, /id="search"/);
+  assert.match(appSource, /document\.body\.classList\.toggle\("settings-open", expanded\)/);
+});
+
+test("view selector lives in settings and changing view returns to today", () => {
+  assert.match(
+    indexSource,
+    /id="filters-content"[\s\S]*?class="view-switcher"[\s\S]*?id="view-daily"/,
+  );
+  assert.match(appSource, /function selectView[\s\S]*?setSettingsExpanded\(false\);[\s\S]*?goToToday\(\)/);
+});
+
+test("calendar navigation uses descriptive chevrons and scroll targets", () => {
+  assert.match(appSource, /\["previous", "\\u2039 Previous week"\]/);
+  assert.match(appSource, /\["next", "Next week \\u203a"\]/);
+  assert.match(appSource, /navigatePeriod\(action, true\)/);
+  assert.match(appSource, /monthNameFormatter/);
+  assert.match(appSource, /scrollToActivePeriod/);
+});
+
+test("multicultural mass options start collapsed", () => {
+  assert.match(appSource, /toggle\.setAttribute\("aria-expanded", "false"\)/);
+  assert.match(appSource, /children\.hidden = true/);
 });
 
 test("daily view is progressively loaded and period navigation omits Today", () => {

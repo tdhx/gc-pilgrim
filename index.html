@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>SPCP Parish Calendar</title>
-  <link rel="stylesheet" href="styles.css?v=20">
+  <link rel="stylesheet" href="styles.css?v=21">
 </head>
 <body data-theme="spcp">
   <header class="page-header">
@@ -24,20 +24,60 @@
   </header>
 
   <main class="page-shell">
-    <aside id="filters" class="filters" aria-label="Calendar filters">
+    <div id="settings-backdrop" class="settings-backdrop" hidden></div>
+    <aside
+      id="filters"
+      class="filters filters-collapsed"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="settings-title"
+    >
       <div class="filters-heading">
-        <h2>Filters</h2>
+        <h2 id="settings-title">Settings</h2>
         <div class="filters-heading-actions">
           <button class="text-button" type="button" data-show-all>Clear filters</button>
+          <button id="settings-close" class="settings-close" type="button" aria-label="Close settings">&times;</button>
         </div>
       </div>
 
       <div id="filters-content">
         <button class="mobile-show-all" type="button" data-show-all>Clear filters</button>
-        <label class="search-field">
-          <span>Search events</span>
-          <input id="search" type="search" placeholder="Event, church or presider">
-        </label>
+
+        <div class="settings-view">
+          <p class="settings-label">Calendar view</p>
+          <div class="view-switcher" role="tablist" aria-label="Calendar view">
+            <button
+              id="view-daily"
+              class="view-button"
+              type="button"
+              role="tab"
+              aria-selected="false"
+              aria-controls="events"
+              tabindex="-1"
+              data-view="daily"
+            >Daily</button>
+            <button
+              id="view-weekly"
+              class="view-button"
+              type="button"
+              role="tab"
+              aria-selected="true"
+              aria-controls="events"
+              tabindex="0"
+              data-view="weekly"
+            >Weekly</button>
+            <button
+              id="view-monthly"
+              class="view-button"
+              type="button"
+              role="tab"
+              aria-selected="false"
+              aria-controls="events"
+              tabindex="-1"
+              data-view="monthly"
+            >Monthly</button>
+          </div>
+        </div>
 
         <fieldset class="filter-section">
           <legend>
@@ -78,10 +118,10 @@
           class="results-filter-button"
           type="button"
           aria-expanded="false"
-          aria-controls="filters-content"
+          aria-controls="filters"
+          aria-label="Open settings"
         >
-          <span>Filters</span>
-          <span class="filter-toggle-icon" aria-hidden="true"></span>
+          <span class="settings-icon" aria-hidden="true">&#9881;</span>
         </button>
         <h2 class="results-summary">
           <span id="results-context">Weekly</span>
@@ -92,38 +132,6 @@
       </div>
 
       <div class="calendar-toolbar">
-        <div class="view-switcher" role="tablist" aria-label="Calendar view">
-          <button
-            id="view-daily"
-            class="view-button"
-            type="button"
-            role="tab"
-            aria-selected="false"
-            aria-controls="events"
-            tabindex="-1"
-            data-view="daily"
-          >Daily</button>
-          <button
-            id="view-weekly"
-            class="view-button"
-            type="button"
-            role="tab"
-            aria-selected="true"
-            aria-controls="events"
-            tabindex="0"
-            data-view="weekly"
-          >Weekly</button>
-          <button
-            id="view-monthly"
-            class="view-button"
-            type="button"
-            role="tab"
-            aria-selected="false"
-            aria-controls="events"
-            tabindex="-1"
-            data-view="monthly"
-          >Monthly</button>
-        </div>
         <div id="period-navigation" class="period-navigation" hidden>
           <button id="previous-period" class="period-button" type="button">Previous</button>
           <button id="next-period" class="period-button" type="button">Next</button>
@@ -164,6 +172,6 @@
     </article>
   </template>
 
-  <script type="module" src="app.js?v=24"></script>
+  <script type="module" src="app.js?v=25"></script>
 </body>
 </html>

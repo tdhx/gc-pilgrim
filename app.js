@@ -32,7 +32,6 @@ const state = {
     church: new Set(),
     presider: new Set(),
   },
-  search: "",
   useDefaultEventTypes: true,
   view: "weekly",
   weekStart: null,
@@ -49,9 +48,10 @@ const elements = {
   filters: document.querySelector("#filters"),
   filtersContent: document.querySelector("#filters-content"),
   filtersToggle: document.querySelector("#filters-toggle"),
+  settingsBackdrop: document.querySelector("#settings-backdrop"),
+  settingsClose: document.querySelector("#settings-close"),
   churchFilters: document.querySelector("#church-filters"),
   presiderFilters: document.querySelector("#presider-filters"),
-  search: document.querySelector("#search"),
   showAllButtons: [...document.querySelectorAll("[data-show-all]")],
   resultsHeader: document.querySelector(".results-header"),
   resultsToday: document.querySelector("#results-today"),
@@ -95,6 +95,11 @@ const monthHeadingFormatter = new Intl.DateTimeFormat("en-AU", {
   timeZone: "UTC",
   month: "long",
   year: "numeric",
+});
+
+const monthNameFormatter = new Intl.DateTimeFormat("en-AU", {
+  timeZone: "UTC",
+  month: "long",
 });
 
 function titleCase(value) {
@@ -168,7 +173,7 @@ function countFor(group, value) {
     ? []
     : state.useDefaultEventTypes ? DEFAULT_EVENT_TYPES : [];
   return state.events.filter((event) => (
-    matchesEvent(event, selected, state.search, defaults)
+    matchesEvent(event, selected, "", defaults)
   )).length;
 }
 
@@ -285,9 +290,9 @@ function buildEventTypeFilters() {
       const toggle = document.createElement("button");
       toggle.className = "filter-family-toggle";
       toggle.type = "button";
-      toggle.setAttribute("aria-expanded", "true");
+      toggle.setAttribute("aria-expanded", "false");
       toggle.setAttribute("aria-controls", children.id);
-      toggle.setAttribute("aria-label", "Collapse Multicultural Mass options");
+      toggle.setAttribute("aria-label", "Expand Multicultural Mass options");
 
       const toggleIcon = document.createElement("span");
       toggleIcon.className = "filter-toggle-icon";
@@ -295,6 +300,7 @@ function buildEventTypeFilters() {
       toggle.append(toggleIcon);
       heading.append(toggle);
       wrapper.replaceChildren(heading);
+      children.hidden = true;
 
       toggle.addEventListener("click", () => {
         const expanded = toggle.getAttribute("aria-expanded") === "true";
@@ -393,7 +399,7 @@ function matchesFilters(event) {
   return matchesEvent(
     event,
     state.selected,
-    state.search,
+    "",
     state.useDefaultEventTypes ? DEFAULT_EVENT_TYPES : [],
   );
 }
@@ -559,15 +565,15 @@ function renderWeekly(events) {
   footerNavigation.className = "week-footer-navigation";
   footerNavigation.setAttribute("aria-label", "Week navigation");
   [
-    ["previous", "Previous week"],
-    ["next", "Next week"],
+    ["previous", "\u2039 Previous week"],
+    ["next", "Next week \u203a"],
   ].forEach(([action, label]) => {
     const button = document.createElement("button");
     button.type = "button";
     button.className = "period-button";
     button.dataset.periodAction = action;
     button.textContent = label;
-    button.addEventListener("click", () => navigatePeriod(action));
+    button.addEventListener("click", () => navigatePeriod(action, true));
     footerNavigation.append(button);
   });
 
@@ -697,6 +703,8 @@ function updatePeriodNavigation() {
     elements.nextPeriod.disabled = !weekIntersectsCoverage(next, state.feed.coverage);
     elements.previousPeriod.setAttribute("aria-label", "Show previous week");
     elements.nextPeriod.setAttribute("aria-label", "Show next week");
+    elements.previousPeriod.textContent = "\u2039 Previous";
+    elements.nextPeriod.textContent = "Next \u203a";
     const footerPrevious = elements.events.querySelector('[data-period-action="previous"]');
     const footerNext = elements.events.querySelector('[data-period-action="next"]');
     if (footerPrevious) footerPrevious.disabled = elements.previousPeriod.disabled;
@@ -708,6 +716,10 @@ function updatePeriodNavigation() {
     elements.nextPeriod.disabled = !monthIntersectsCoverage(next, state.feed.coverage);
     elements.previousPeriod.setAttribute("aria-label", "Show previous month");
     elements.nextPeriod.setAttribute("aria-label", "Show next month");
+    elements.previousPeriod.textContent =
+      `\u2039 ${monthNameFormatter.format(dateFromKey(previous))}`;
+    elements.nextPeriod.textContent =
+      `${monthNameFormatter.format(dateFromKey(next))} \u203a`;
   }
 }
 
@@ -734,10 +746,11 @@ function selectView(button) {
   });
   elements.events.setAttribute("aria-labelledby", button.id);
   renderEvents();
-  if (state.view === "daily") scrollToCurrentDay();
+  setSettingsExpanded(false);
+  goToToday();
 }
 
-function navigatePeriod(action) {
+function navigatePeriod(action, scrollToTop = false) {
   if (state.view === "weekly") {
     state.weekStart = addDays(state.weekStart, action === "previous" ? -7 : 7);
   } else {
@@ -747,6 +760,7 @@ function navigatePeriod(action) {
       : state.month;
   }
   renderEvents();
+  if (scrollToTop) scrollToActivePeriod();
 }
 
 function stickyScrollOffset() {
@@ -758,7 +772,9 @@ function stickyScrollOffset() {
 
 function scrollToCurrentDay() {
   const today = currentBrisbaneDate();
-  const target = elements.events.querySelector(`[data-event-date="${today}"]`)
+  const target = (state.view === "monthly"
+    ? elements.events.querySelector(`[data-date="${today}"]`)
+    : elements.events.querySelector(`[data-event-date="${today}"]`))
     || elements.events.firstElementChild;
   if (!target) return;
 
@@ -773,11 +789,25 @@ function scrollToCurrentDay() {
   });
 }
 
+function scrollToActivePeriod() {
+  requestAnimationFrame(() => {
+    const target = state.view === "monthly"
+      ? elements.events.querySelector(".month-grid")
+      : elements.events.firstElementChild;
+    if (!target) return;
+    target.style.scrollMarginTop = `${stickyScrollOffset()}px`;
+    target.scrollIntoView({
+      behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
+        ? "auto"
+        : "smooth",
+      block: "start",
+    });
+  });
+}
+
 function showAllEvents() {
   Object.values(state.selected).forEach((selection) => selection.clear());
   state.useDefaultEventTypes = false;
-  state.search = "";
-  elements.search.value = "";
   syncFilterControls();
   renderEvents();
 }
@@ -801,13 +831,7 @@ function goToToday() {
     if (state.view === "daily") {
       scrollToCurrentDay();
     } else {
-      elements.events.style.scrollMarginTop = `${stickyScrollOffset()}px`;
-      elements.events.scrollIntoView({
-        behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
-          ? "auto"
-          : "smooth",
-        block: "start",
-      });
+      scrollToCurrentDay();
     }
   });
 }
@@ -819,29 +843,15 @@ function updateStickyOffset() {
   document.documentElement.style.setProperty("--results-header-height", `${resultsHeaderHeight}px`);
 }
 
-function setFiltersExpanded(expanded) {
+function setSettingsExpanded(expanded) {
   elements.filtersToggle.setAttribute("aria-expanded", String(expanded));
+  elements.filtersToggle.setAttribute("aria-label", expanded ? "Close settings" : "Open settings");
   elements.filtersContent.hidden = !expanded;
   elements.filters.classList.toggle("filters-collapsed", !expanded);
-}
-
-function initializeMobileFilters() {
-  const mobile = window.matchMedia("(max-width: 800px)");
-  const pageShell = document.querySelector(".page-shell");
-  const calendarPanel = document.querySelector(".calendar-panel");
-
-  function arrangeFilters(isMobile) {
-    if (isMobile) {
-      elements.resultsHeader.after(elements.filters);
-      setFiltersExpanded(false);
-    } else {
-      pageShell.insertBefore(elements.filters, calendarPanel);
-      setFiltersExpanded(true);
-    }
-  }
-
-  arrangeFilters(mobile.matches);
-  mobile.addEventListener("change", (event) => arrangeFilters(event.matches));
+  elements.settingsBackdrop.hidden = !expanded;
+  document.body.classList.toggle("settings-open", expanded);
+  if (expanded) elements.settingsClose.focus();
+  else if (document.activeElement === elements.settingsClose) elements.filtersToggle.focus();
 }
 
 async function loadEvents() {
@@ -861,7 +871,7 @@ async function loadEvents() {
     state.selectedMonthDate = initialDate;
     buildFilters();
     renderEvents();
-    scrollToCurrentDay();
+    goToToday();
   } catch (error) {
     elements.resultsCount.textContent = "Calendar unavailable";
     elements.errorMessage.hidden = false;
@@ -870,10 +880,6 @@ async function loadEvents() {
   }
 }
 
-elements.search.addEventListener("input", (event) => {
-  state.search = event.target.value.trim().toLocaleLowerCase();
-  renderEvents();
-});
 document.querySelectorAll(".filter-toggle").forEach((toggle) => {
   toggle.addEventListener("click", () => {
     const content = document.querySelector(`#${toggle.getAttribute("aria-controls")}`);
@@ -885,13 +891,17 @@ document.querySelectorAll(".filter-toggle").forEach((toggle) => {
 elements.showAllButtons.forEach((button) => {
   button.addEventListener("click", () => {
     showAllEvents();
-    if (window.matchMedia("(max-width: 800px)").matches) {
-      setFiltersExpanded(false);
-    }
   });
 });
 elements.filtersToggle.addEventListener("click", () => {
-  setFiltersExpanded(elements.filtersToggle.getAttribute("aria-expanded") !== "true");
+  setSettingsExpanded(elements.filtersToggle.getAttribute("aria-expanded") !== "true");
+});
+elements.settingsClose.addEventListener("click", () => setSettingsExpanded(false));
+elements.settingsBackdrop.addEventListener("click", () => setSettingsExpanded(false));
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape" && elements.filtersToggle.getAttribute("aria-expanded") === "true") {
+    setSettingsExpanded(false);
+  }
 });
 elements.resultsToday.addEventListener("click", () => {
   goToToday();
@@ -916,7 +926,7 @@ elements.viewButtons.forEach((button) => {
 elements.previousPeriod.addEventListener("click", () => navigatePeriod("previous"));
 elements.nextPeriod.addEventListener("click", () => navigatePeriod("next"));
 
-initializeMobileFilters();
+setSettingsExpanded(false);
 updateStickyOffset();
 window.addEventListener("resize", updateStickyOffset);
 loadEvents();
