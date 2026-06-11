@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GC Pilgrim</title>
+  <link rel="stylesheet" href="styles.css?v=25">
+</head>
+<body data-theme="spcp">
+  <header class="page-header">
+    <div class="brand-lockup">
+      <a class="platform-brand" href="#calendar" aria-label="GC Pilgrim home">
+        <img src="assets/gc-pilgrim.svg" alt="" width="42" height="42">
+        <span>GC Pilgrim</span>
+      </a>
+      <img
+        id="parish-logo"
+        class="parish-logo"
+        src="assets/spcp-logo.png"
+        alt="Surfers Paradise Catholic Parish"
+        width="512"
+        height="160"
+      >
+      <label class="parish-selector-label" for="parish-selector">
+        <span>Parish</span>
+        <select id="parish-selector" hidden></select>
+      </label>
+    </div>
+    <div class="header-copy">
+      <div class="mobile-navigation-heading">
+        <h1 id="page-title">Calendar</h1>
+        <button
+          id="navigation-toggle"
+          class="navigation-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="site-navigation"
+          aria-label="Open navigation"
+        >
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </button>
+      </div>
+      <nav id="site-navigation" class="site-navigation" aria-label="Primary navigation">
+        <a class="navigation-link" href="#calendar" data-page="calendar" aria-current="page">Calendar</a>
+        <a class="navigation-link" href="#about" data-page="about">About the Parish</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="calendar-page" class="page-shell" data-page-panel="calendar">
+    <div id="settings-backdrop" class="settings-backdrop" hidden></div>
+    <aside
+      id="filters"
+      class="filters filters-collapsed"
+      aria-labelledby="settings-title"
+    >
+      <div class="filters-heading">
+        <h2 id="settings-title">Settings</h2>
+        <div class="filters-heading-actions">
+          <button class="text-button" type="button" data-show-all>Clear filters</button>
+          <button id="settings-close" class="settings-close" type="button" aria-label="Close settings">&times;</button>
+        </div>
+      </div>
+
+      <div id="filters-content">
+        <button class="mobile-show-all" type="button" data-show-all>Clear filters</button>
+
+        <div class="settings-view">
+          <p class="settings-label">Calendar view</p>
+          <div class="view-switcher" role="tablist" aria-label="Calendar view">
+            <button
+              id="view-daily"
+              class="view-button"
+              type="button"
+              role="tab"
+              aria-selected="false"
+              aria-controls="events"
+              tabindex="-1"
+              data-view="daily"
+            >Daily</button>
+            <button
+              id="view-weekly"
+              class="view-button"
+              type="button"
+              role="tab"
+              aria-selected="true"
+              aria-controls="events"
+              tabindex="0"
+              data-view="weekly"
+            >Weekly</button>
+            <button
+              id="view-monthly"
+              class="view-button"
+              type="button"
+              role="tab"
+              aria-selected="false"
+              aria-controls="events"
+              tabindex="-1"
+              data-view="monthly"
+            >Monthly</button>
+          </div>
+        </div>
+
+        <fieldset class="filter-section">
+          <legend>
+            <button class="filter-toggle" type="button" aria-expanded="true" aria-controls="event-type-filters">
+              <span>Event type</span>
+              <span class="filter-toggle-icon" aria-hidden="true"></span>
+            </button>
+          </legend>
+          <div id="event-type-filters" class="checkbox-list"></div>
+        </fieldset>
+
+        <fieldset class="filter-section">
+          <legend>
+            <button class="filter-toggle" type="button" aria-expanded="true" aria-controls="church-filters">
+              <span>Church</span>
+              <span class="filter-toggle-icon" aria-hidden="true"></span>
+            </button>
+          </legend>
+          <div id="church-filters" class="checkbox-list"></div>
+        </fieldset>
+
+        <fieldset class="filter-section">
+          <legend>
+            <button class="filter-toggle" type="button" aria-expanded="true" aria-controls="presider-filters">
+              <span>Presider</span>
+              <span class="filter-toggle-icon" aria-hidden="true"></span>
+            </button>
+          </legend>
+          <div id="presider-filters" class="checkbox-list"></div>
+        </fieldset>
+      </div>
+    </aside>
+
+    <section class="calendar-panel" aria-live="polite">
+      <div class="results-header">
+        <button
+          id="filters-toggle"
+          class="results-filter-button"
+          type="button"
+          aria-expanded="false"
+          aria-controls="filters"
+          aria-label="Open settings"
+        >
+          <span class="settings-icon" aria-hidden="true">&#9881;</span>
+        </button>
+        <h2 class="results-summary">
+          <span id="results-context">Weekly</span>
+          <span aria-hidden="true">·</span>
+          <span id="results-count">Loading events...</span>
+        </h2>
+        <button id="results-today" class="secondary-button" type="button">Today</button>
+      </div>
+
+      <div class="calendar-toolbar">
+        <div class="period-navigation desktop-period-navigation" hidden>
+          <button class="period-button" type="button" data-period-control="previous">Previous</button>
+          <button class="period-button" type="button" data-period-control="next">Next</button>
+        </div>
+        <div class="period-navigation mobile-period-navigation" hidden>
+          <button class="period-button" type="button" data-period-control="previous">Previous</button>
+          <button class="period-button" type="button" data-period-control="next">Next</button>
+        </div>
+      </div>
+
+      <div id="error-message" class="message error-message" hidden></div>
+      <div id="empty-message" class="message" hidden>
+        <h3>No matching events</h3>
+        <p>Try clearing one or more filters.</p>
+      </div>
+      <div
+        id="events"
+        class="calendar-view"
+        role="tabpanel"
+        aria-labelledby="view-weekly"
+      ></div>
+      <footer class="calendar-footer">
+        <a href="diagnostics.html">Feed diagnostics</a>
+      </footer>
+    </section>
+  </main>
+
+  <main id="about-page" class="about-page" data-page-panel="about" hidden>
+    <header class="about-introduction">
+      <p class="eyebrow">Our parish</p>
+      <h2 id="parish-name">About the Parish</h2>
+      <p id="parish-tagline"></p>
+    </header>
+
+    <div id="about-error" class="message error-message" hidden></div>
+    <div id="about-content" class="about-grid" hidden>
+      <section class="about-card about-contact">
+        <p class="about-card-label">Parish office</p>
+        <h3>Contact</h3>
+        <address>
+          <p id="parish-office-address"></p>
+          <p><a id="parish-phone"></a></p>
+          <p><a id="parish-email"></a></p>
+          <p><a id="parish-website" target="_blank" rel="noreferrer">Visit parish website</a></p>
+        </address>
+      </section>
+
+      <section class="about-card">
+        <p class="about-card-label">Opening times</p>
+        <h3>Office Hours</h3>
+        <dl id="parish-hours" class="hours-list"></dl>
+      </section>
+
+      <section class="about-card">
+        <p class="about-card-label">Pastoral team</p>
+        <h3>Clergy</h3>
+        <div id="parish-clergy" class="clergy-list"></div>
+      </section>
+
+      <section class="about-card about-churches">
+        <p class="about-card-label">Our community</p>
+        <h3>Churches</h3>
+        <div id="parish-churches" class="church-list"></div>
+      </section>
+    </div>
+  </main>
+
+  <template id="event-template">
+    <article class="event-card">
+      <div class="event-details">
+        <div class="event-heading">
+          <h3 class="event-church"></h3>
+          <span class="event-service"></span>
+        </div>
+        <div class="event-meta">
+          <p class="event-time"></p>
+          <p class="event-presider"></p>
+        </div>
+        <p class="event-subtitle"></p>
+        <div class="event-tags"></div>
+      </div>
+    </article>
+  </template>
+
+  <script type="module" src="app.js?v=33"></script>
+</body>
+</html>

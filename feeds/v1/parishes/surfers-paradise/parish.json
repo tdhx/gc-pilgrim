@@ -1,0 +1,58 @@
+{
+  "branding": {
+    "logo": "assets/spcp-logo.png",
+    "tagline": "Serving the Catholic community across Clear Island Waters, Broadbeach and Surfers Paradise.",
+    "theme": "spcp"
+  },
+  "churches": [
+    {
+      "address": "50 Fairway Drive, Clear Island Waters QLD 4226",
+      "calendar_name": "Sacred Heart",
+      "id": "sacred-heart",
+      "is_primary_site": true,
+      "name": "Sacred Heart Church"
+    },
+    {
+      "address": "254 Hedges Avenue, Broadbeach QLD 4218",
+      "calendar_name": "Stella Maris",
+      "id": "stella-maris",
+      "is_primary_site": false,
+      "name": "Stella Maris Church"
+    },
+    {
+      "address": "40 Hamilton Avenue, Surfers Paradise QLD 4217",
+      "calendar_name": "St. Vincent's",
+      "id": "st-vincents",
+      "is_primary_site": false,
+      "name": "St Vincent's Church"
+    }
+  ],
+  "clergy": [
+    {
+      "name": "Fr Paul",
+      "role": "Parish Priest"
+    },
+    {
+      "name": "Fr Bradley Davies",
+      "role": "Associate Pastor"
+    }
+  ],
+  "contact": {
+    "email": "surfers@bne.catholic.net.au",
+    "phone": "(07) 5671 7388",
+    "website": "https://surfersparadiseparish.com.au"
+  },
+  "id": "surfers-paradise",
+  "name": "Surfers Paradise Catholic Parish",
+  "office": {
+    "address": "50 Fairway Drive, Clear Island Waters QLD 4226",
+    "hours": {
+      "friday": "09:00-12:00",
+      "monday": "09:00-14:00",
+      "thursday": "09:00-14:00",
+      "tuesday": "09:00-14:00",
+      "wednesday": "09:00-14:00"
+    }
+  },
+  "schema_version": 1
+}

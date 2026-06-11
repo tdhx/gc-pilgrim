@@ -1,0 +1,18 @@
+{
+  "coverage": {
+    "end": "2026-06-11",
+    "start": "2026-06-01"
+  },
+  "events": [],
+  "generated_at": "2026-06-11T22:29:40+10:00",
+  "schema_version": 1,
+  "sources": [
+    {
+      "name": "SPCP Google Calendar",
+      "status": "cached",
+      "url": "https://calendar.google.com/calendar/ical/5ecffb0b502eb6919b066ca976b06c370a81aaae0109caf8e05119f9c4fc5ee6%40group.calendar.google.com/public/basic.ics"
+    }
+  ],
+  "timezone": "Australia/Brisbane",
+  "warnings": []
+}
