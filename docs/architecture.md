@@ -55,17 +55,18 @@ normalise(...)
 The Google Calendar adapter currently performs ICS parsing, recurrence
 expansion, override handling, classification, church matching, and presider
 extraction. The Universalis adapter parses annual Brisbane liturgical calendars.
-Manual and newsletter adapters currently define boundaries only; newsletter
-extraction is not implemented.
+Southport currently uses normalized recurring definitions. Its newsletter
+source is recorded in diagnostics, but PDF discovery, extraction, and override
+precedence are not implemented.
 
 ### Generation
 
 `generators/build_all.py` orchestrates the current production build:
 
-1. Load the Surfers Paradise parish definition and config.
-2. Read checked-in normalized records or refresh public sources.
+1. Load each registered parish definition and config.
+2. Read checked-in normalized records or refresh supported public sources.
 3. Generate annual and aggregate liturgical feeds.
-4. Split normalized calendar records into services and community events.
+4. Build services and community feeds from each parish's normalized records.
 5. Validate every feed before atomically writing it.
 
 Services and community records share envelope metadata but use different
@@ -103,6 +104,10 @@ feeds/v1/
       parish.json
       services.json
       community.json
+    southport/
+      parish.json
+      services.json
+      community.json
 ```
 
 The built site copies `app/` and `feeds/` into `_site/`.
@@ -116,11 +121,10 @@ published or loaded by the application.
 
 ## Known Architectural Debt
 
-- `generators/build_all.py` hard-codes `surfers-paradise` and 2026-2028.
-- `generators/common.py` contains SPCP-specific church-name mappings.
+- `generators/build_all.py` hard-codes the production parish list and 2026-2028.
 - `config.json` records source strategies but does not yet dispatch adapters.
 - Generated records are currently always `active`; correction merging is not implemented.
-- The community feed is structurally supported but currently empty.
+- Southport newsletter extraction and schedule overrides are not implemented.
 - There is no scheduled source-refresh workflow; CI performs reproducible offline builds.
 
 These are onboarding and automation limitations, not feed-contract changes.

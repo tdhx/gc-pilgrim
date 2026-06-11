@@ -42,6 +42,7 @@ const state = {
   month: null,
   selectedMonthDate: null,
   dailyDaysVisible: 7,
+  parishName: null,
 };
 
 const elements = {
@@ -71,19 +72,24 @@ const elements = {
   navigationLinks: [...document.querySelectorAll(".navigation-link")],
   pagePanels: [...document.querySelectorAll("[data-page-panel]")],
   pageTitle: document.querySelector("#page-title"),
+  parishSelectorToggle: document.querySelector("#parish-selector-toggle"),
   parishName: document.querySelector("#parish-name"),
   parishOfficeAddress: document.querySelector("#parish-office-address"),
   parishPhone: document.querySelector("#parish-phone"),
   parishEmail: document.querySelector("#parish-email"),
   parishWebsite: document.querySelector("#parish-website"),
   parishHours: document.querySelector("#parish-hours"),
+  parishHoursCard: document.querySelector("#parish-hours-card"),
   parishClergy: document.querySelector("#parish-clergy"),
+  parishClergyCard: document.querySelector("#parish-clergy-card"),
   parishChurches: document.querySelector("#parish-churches"),
+  parishLocationsTitle: document.querySelector("#parish-locations-title"),
   aboutContent: document.querySelector("#about-content"),
   aboutError: document.querySelector("#about-error"),
   brandLogo: document.querySelector("#parish-logo"),
   parishTagline: document.querySelector("#parish-tagline"),
   parishSelector: document.querySelector("#parish-selector"),
+  diagnosticsLink: document.querySelector("#diagnostics-link"),
 };
 const mobileLayout = window.matchMedia("(max-width: 800px)");
 
@@ -129,6 +135,11 @@ function titleCase(value) {
   return value.replace(/\b\w/g, (letter) => letter.toUpperCase());
 }
 
+function closeParishSelector() {
+  elements.parishSelectorToggle.setAttribute("aria-expanded", "false");
+  elements.parishSelector.hidden = true;
+}
+
 function closeNavigation() {
   elements.navigationToggle.setAttribute("aria-expanded", "false");
   elements.navigationToggle.setAttribute("aria-label", "Open navigation");
@@ -145,9 +156,10 @@ function showPage(page) {
     else link.removeAttribute("aria-current");
   });
   elements.pageTitle.textContent = selectedPage === "about" ? "About the Parish" : "Calendar";
-  document.title = selectedPage === "about"
-    ? "About the Parish · GC Pilgrim"
-    : "GC Pilgrim";
+  const sectionTitle = selectedPage === "about" ? "About the Parish" : "Calendar";
+  document.title = state.parishName
+    ? `${sectionTitle} · ${state.parishName} · GC Pilgrim`
+    : selectedPage === "about" ? "About the Parish · GC Pilgrim" : "GC Pilgrim";
   closeNavigation();
   window.scrollTo({ top: 0, behavior: "auto" });
   updateStickyOffset();
@@ -167,6 +179,7 @@ function displayHours(value) {
 }
 
 function renderParish(parish) {
+  state.parishName = parish.name;
   elements.parishName.textContent = parish.name;
   elements.parishTagline.textContent = parish.branding?.tagline || "";
   elements.parishTagline.hidden = !elements.parishTagline.textContent;
@@ -192,6 +205,7 @@ function renderParish(parish) {
 
   const weekdays = ["monday", "tuesday", "wednesday", "thursday", "friday"];
   const availableDays = weekdays.filter((day) => office.hours?.[day]);
+  elements.parishHoursCard.hidden = availableDays.length === 0;
   elements.parishHours.replaceChildren(...availableDays.map((day) => {
     const hours = office.hours[day];
     const row = document.createElement("div");
@@ -203,6 +217,7 @@ function renderParish(parish) {
     return row;
   }));
 
+  elements.parishClergyCard.hidden = !parish.clergy?.length;
   elements.parishClergy.replaceChildren(...(parish.clergy || []).map((member) => {
     const item = document.createElement("article");
     const name = document.createElement("h4");
@@ -213,6 +228,8 @@ function renderParish(parish) {
     return item;
   }));
 
+  const hasChaplaincy = parish.churches.some((church) => church.location_type === "chaplaincy");
+  elements.parishLocationsTitle.textContent = hasChaplaincy ? "Churches and Chaplaincy" : "Churches";
   elements.parishChurches.replaceChildren(...parish.churches.map((church) => {
     const item = document.createElement("article");
     const heading = document.createElement("div");
@@ -225,13 +242,19 @@ function renderParish(parish) {
     if (church.is_primary_site) {
       const badge = document.createElement("span");
       badge.className = "primary-site-badge";
-      badge.textContent = "Parish office";
+      badge.textContent = "Primary church";
+      heading.append(badge);
+    } else if (church.location_type === "chaplaincy") {
+      const badge = document.createElement("span");
+      badge.className = "primary-site-badge";
+      badge.textContent = "Chaplaincy";
       heading.append(badge);
     }
     item.append(heading, address);
     return item;
   }));
   elements.aboutContent.hidden = false;
+  showPage(currentPageFromHash());
 }
 
 function eventTypeLabel(value) {
@@ -503,14 +526,20 @@ function buildEventTypeFilters() {
 }
 
 function buildFilters() {
+  const eventTypes = uniqueValues((event) => [event.event_type]);
+  const churches = uniqueValues((event) => [displayChurch(event.church)]);
+  const presiders = uniqueValues((event) => event.presiders);
+
   buildEventTypeFilters();
+  elements.eventTypeFilters.closest(".filter-section").hidden = eventTypes.length === 0;
   buildCheckboxes(
     elements.churchFilters,
     "church",
-    uniqueValues((event) => [displayChurch(event.church)]),
+    churches,
   );
+  elements.churchFilters.closest(".filter-section").hidden = churches.length === 0;
   elements.presiderFilters.replaceChildren();
-  presiderGroups(uniqueValues((event) => event.presiders)).forEach((group, index) => {
+  presiderGroups(presiders).forEach((group, index) => {
     if (index) {
       const separator = document.createElement("div");
       separator.className = "filter-group-separator";
@@ -522,6 +551,7 @@ function buildFilters() {
     buildCheckboxes(groupContainer, "presider", group, displayPresider);
     elements.presiderFilters.append(groupContainer);
   });
+  elements.presiderFilters.closest(".filter-section").hidden = presiders.length === 0;
 }
 
 function matchesFilters(event) {
@@ -565,7 +595,11 @@ function makeTag(text) {
 }
 
 function eventAccentColour(event) {
-  return event.event_type === "confession" ? "violet" : liturgicalColour(event);
+  return {
+    confession: "violet",
+    rosary: "red",
+    novena: "gold",
+  }[event.event_type] || liturgicalColour(event);
 }
 
 function eventHasEnded(event, now = Date.now()) {
@@ -585,7 +619,14 @@ function updatePastStates(now = Date.now()) {
 
 function renderCard(event) {
   const card = elements.template.content.firstElementChild.cloneNode(true);
-  card.classList.add(churchClass(event.church));
+  const imageClass = churchClass(event.church);
+  card.classList.add(imageClass);
+  if (
+    imageClass === "church-unassigned"
+    && ["mass", MULTICULTURAL_TYPE].includes(event.event_type)
+  ) {
+    card.classList.add("event-mass-fallback");
+  }
   card.dataset.eventDate = eventDateKey(event);
   card.dataset.eventEnd = String(new Date(event.end).getTime());
   card.dataset.liturgicalColour = eventAccentColour(event);
@@ -594,9 +635,9 @@ function renderCard(event) {
   card.querySelector(".event-church").textContent = displayChurch(event.church);
   card.querySelector(".event-service").textContent = event.service_name;
   card.querySelector(".event-time").textContent = formatEventTime(event);
-  card.querySelector(".event-presider").textContent = event.presiders.length
-    ? event.presiders.map(displayPresider).join(", ")
-    : "Presider TBA";
+  const presider = card.querySelector(".event-presider");
+  presider.textContent = event.presiders.map(displayPresider).join(", ");
+  presider.hidden = !presider.textContent;
   const subtitle = card.querySelector(".event-subtitle");
   const observance = event.liturgical?.observance;
   subtitle.textContent = observance && observance !== event.service_name ? observance : "";
@@ -640,10 +681,7 @@ function makeEmptyDayMessage() {
 
 function renderDaily(events) {
   const start = dailyRangeStart();
-  const requestedEnd = addDays(start, state.dailyDaysVisible - 1);
-  const end = requestedEnd < state.feed.coverage.end
-    ? requestedEnd
-    : state.feed.coverage.end;
+  const end = dailyRangeEnd(events, start);
   const displayedDays = Math.round(
     (dateFromKey(end) - dateFromKey(start)) / 86_400_000,
   ) + 1;
@@ -662,7 +700,7 @@ function renderDaily(events) {
   loadMore.className = "load-more-button";
   loadMore.textContent = "Load more";
   loadMore.addEventListener("click", () => {
-    state.dailyDaysVisible += 14;
+    state.dailyDaysVisible = displayedDays + 14;
     renderEvents();
   });
 
@@ -673,6 +711,20 @@ function renderDaily(events) {
   elements.resultsCount.textContent =
     `${visible.length} event${visible.length === 1 ? "" : "s"} · ${displayedDays} days`;
   elements.emptyMessage.hidden = visible.length !== 0;
+}
+
+function dailyRangeEnd(events, start, minimumEvents = 10) {
+  const requestedEnd = addDays(start, state.dailyDaysVisible - 1);
+  let end = requestedEnd < state.feed.coverage.end
+    ? requestedEnd
+    : state.feed.coverage.end;
+  while (
+    end < state.feed.coverage.end
+    && eventsInRange(events, start, end).length < minimumEvents
+  ) {
+    end = addDays(end, 1);
+  }
+  return end;
 }
 
 function dailyRangeStart() {
@@ -1123,27 +1175,40 @@ async function fetchJSON(url, label) {
   return response.json();
 }
 
-function configureParishSelector(registry, selected) {
-  elements.parishSelector.hidden = registry.parishes.length < 2;
-  elements.parishSelector.replaceChildren(...registry.parishes.map((parishId) => {
-    const option = document.createElement("option");
-    option.value = parishId;
-    option.textContent = parishId.split("-").map(titleCase).join(" ");
-    option.selected = parishId === selected;
-    return option;
+async function configureParishSelector(registry, selected) {
+  const parishes = await Promise.all(registry.parishes.map((parishId) => (
+    fetchJSON(`${FEED_ROOT}/parishes/${parishId}/parish.json`, `${parishId} parish`)
+  )));
+  elements.parishSelectorToggle.hidden = parishes.length < 2;
+  elements.parishSelector.replaceChildren(...parishes.map((parish) => {
+    const button = document.createElement("button");
+    const logo = document.createElement("img");
+    const label = document.createElement("span");
+    button.type = "button";
+    button.className = "parish-selector-option";
+    button.role = "menuitemradio";
+    button.setAttribute("aria-checked", String(parish.id === selected));
+    logo.src = parish.branding?.logo || "assets/gc-pilgrim.svg";
+    logo.alt = "";
+    label.textContent = parish.name;
+    button.append(logo, label);
+    button.addEventListener("click", () => {
+      const url = new URL(window.location.href);
+      url.searchParams.set("parish", parish.id);
+      window.localStorage.setItem("gc-pilgrim-parish", parish.id);
+      window.location.assign(url);
+    });
+    return button;
   }));
-  elements.parishSelector.addEventListener("change", () => {
-    const url = new URL(window.location.href);
-    url.searchParams.set("parish", elements.parishSelector.value);
-    window.location.assign(url);
-  }, { once: true });
 }
 
 async function loadApplication() {
   try {
     const registry = validateRegistry(await fetchJSON(`${FEED_ROOT}/registry.json`, "Registry"));
     const parishId = selectedParishId(registry, window.location.search);
-    configureParishSelector(registry, parishId);
+    window.localStorage.setItem("gc-pilgrim-parish", parishId);
+    await configureParishSelector(registry, parishId);
+    elements.diagnosticsLink.href = `diagnostics.html?parish=${encodeURIComponent(parishId)}`;
     const parishRoot = `${FEED_ROOT}/parishes/${parishId}`;
     const [parish, services, community, liturgical] = await Promise.all([
       fetchJSON(`${parishRoot}/parish.json`, "Parish feed"),
@@ -1194,6 +1259,11 @@ elements.filtersToggle.addEventListener("click", () => {
 elements.settingsClose.addEventListener("click", () => setSettingsExpanded(false));
 elements.settingsBackdrop.addEventListener("click", () => setSettingsExpanded(false));
 document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape" && elements.parishSelectorToggle.getAttribute("aria-expanded") === "true") {
+    closeParishSelector();
+    elements.parishSelectorToggle.focus();
+    return;
+  }
   if (event.key === "Escape" && elements.navigationToggle.getAttribute("aria-expanded") === "true") {
     closeNavigation();
     elements.navigationToggle.focus();
@@ -1201,6 +1271,19 @@ document.addEventListener("keydown", (event) => {
   }
   if (event.key === "Escape" && elements.filtersToggle.getAttribute("aria-expanded") === "true") {
     setSettingsExpanded(false);
+  }
+});
+elements.parishSelectorToggle.addEventListener("click", () => {
+  const expanded = elements.parishSelectorToggle.getAttribute("aria-expanded") === "true";
+  elements.parishSelectorToggle.setAttribute("aria-expanded", String(!expanded));
+  elements.parishSelector.hidden = expanded;
+  if (!expanded) {
+    elements.parishSelector.querySelector('[aria-checked="true"]')?.focus();
+  }
+});
+document.addEventListener("click", (event) => {
+  if (!elements.parishSelectorToggle.closest(".brand-lockup").contains(event.target)) {
+    closeParishSelector();
   }
 });
 elements.navigationToggle.addEventListener("click", () => {

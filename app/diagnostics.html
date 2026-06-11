@@ -4,16 +4,17 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Feed Diagnostics · GC Pilgrim</title>
-  <link rel="stylesheet" href="styles.css?v=25">
+  <link rel="stylesheet" href="styles.css?v=27">
 </head>
 <body data-theme="spcp">
   <header class="page-header">
     <div class="brand-lockup">
       <img
         class="parish-logo"
-        src="assets/gc-pilgrim.svg"
-        alt="GC Pilgrim"
-        width="160"
+        id="parish-logo"
+        src="assets/spcp-logo.png"
+        alt="Surfers Paradise Catholic Parish"
+        width="512"
         height="160"
       >
     </div>
@@ -24,7 +25,7 @@
   </header>
 
   <main class="diagnostics-page">
-    <a class="back-link" href="index.html">&larr; Back to calendar</a>
+    <a id="calendar-link" class="back-link" href="index.html">&larr; Back to calendar</a>
     <section class="diagnostics-card">
       <p class="eyebrow">Published feed</p>
       <h2 id="diagnostics-title">Loading diagnostics...</h2>
@@ -33,6 +34,6 @@
     </section>
   </main>
 
-  <script type="module" src="diagnostics.js?v=2"></script>
+  <script type="module" src="diagnostics.js?v=3"></script>
 </body>
 </html>

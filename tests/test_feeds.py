@@ -1,7 +1,7 @@
 import json
 import sys
 import unittest
-from datetime import datetime
+from datetime import datetime, timedelta
 from pathlib import Path
 from unittest.mock import patch
 from zoneinfo import ZoneInfo
@@ -13,6 +13,7 @@ sys.path.insert(0, str(ROOT))
 from generators.compat_split import split
 from generators.io import read_json
 from sources.google_calendar import adapter as google_calendar
+from sources.manual import southport
 from sources.website import liturgical as universalis
 from validators.feeds import (
     validate_community,
@@ -73,28 +74,115 @@ END:VCALENDAR
         parser.feed(html)
         self.assertEqual(parser.rows[0]["date"].isoformat(), "2028-01-01")
 
+    def test_southport_normalized_schedule_supports_future_sources(self):
+        definition = southport.weekly(
+            "newsletter-test",
+            "Guardian Angels",
+            0,
+            "10:15",
+            "mass",
+            duration=45,
+        )
+        records = southport.normalise(
+            datetime(2026, 6, 1, tzinfo=BRISBANE),
+            datetime(2026, 6, 9, tzinfo=BRISBANE),
+            [definition],
+        )
+        self.assertEqual(len(records), 2)
+        self.assertEqual(records[0]["start"], "2026-06-01T10:15:00+10:00")
+        self.assertEqual(records[0]["end"], "2026-06-01T11:00:00+10:00")
+        self.assertTrue(records[0]["source_id"].startswith("southport-schedule:"))
+
+    def test_southport_monthly_recurrence(self):
+        definition = southport.monthly(
+            "first-sunday",
+            "Guardian Angels",
+            6,
+            1,
+            "12:00",
+            "multicultural",
+            subtype="filipino",
+        )
+        records = southport.normalise(
+            datetime(2026, 6, 1, tzinfo=BRISBANE),
+            datetime(2026, 8, 1, tzinfo=BRISBANE),
+            [definition],
+        )
+        self.assertEqual(
+            [record["start"][:10] for record in records],
+            ["2026-06-07", "2026-07-05"],
+        )
+
 
 class FeedContractTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.registry = read_json(ROOT / "feeds/v1/registry.json")
-        cls.parish = read_json(
-            ROOT / "feeds/v1/parishes/surfers-paradise/parish.json"
-        )
-        cls.services = read_json(
-            ROOT / "feeds/v1/parishes/surfers-paradise/services.json"
-        )
-        cls.community = read_json(
-            ROOT / "feeds/v1/parishes/surfers-paradise/community.json"
-        )
+        cls.parishes = {}
+        for parish_id in cls.registry["parishes"]:
+            root = ROOT / "feeds/v1/parishes" / parish_id
+            cls.parishes[parish_id] = {
+                "parish": read_json(root / "parish.json"),
+                "services": read_json(root / "services.json"),
+                "community": read_json(root / "community.json"),
+            }
+        cls.parish = cls.parishes["surfers-paradise"]["parish"]
+        cls.services = cls.parishes["surfers-paradise"]["services"]
         cls.liturgical = read_json(ROOT / "feeds/v1/liturgical.json")
 
     def test_published_feeds_validate(self):
         validate_registry(self.registry)
-        validate_parish(self.parish)
-        validate_services(self.services, self.parish)
-        validate_community(self.community)
+        self.assertEqual(
+            self.registry["parishes"],
+            ["surfers-paradise", "southport"],
+        )
+        for feeds in self.parishes.values():
+            validate_parish(feeds["parish"])
+            validate_services(feeds["services"], feeds["parish"])
+            validate_community(feeds["community"])
         validate_liturgical(self.liturgical)
+
+    def test_southport_feed_contains_published_service_shapes(self):
+        feeds = self.parishes["southport"]
+        parish = feeds["parish"]
+        services = feeds["services"]
+        self.assertEqual(len(parish["churches"]), 4)
+        self.assertEqual(
+            {church["id"] for church in parish["churches"]},
+            {
+                "guardian-angels",
+                "st-joseph-the-worker",
+                "mary-immaculate",
+                "gold-coast-university-hospital",
+            },
+        )
+        self.assertEqual(feeds["community"]["events"], [])
+        self.assertEqual(
+            {service["event_type"] for service in services["services"]},
+            {"adoration", "confession", "mass", "multicultural", "novena", "rosary"},
+        )
+        self.assertEqual(
+            {service.get("event_subtype") for service in services["services"]},
+            {None, "filipino", "korean"},
+        )
+        self.assertTrue(all(not service["presiders"] for service in services["services"]))
+        self.assertTrue(
+            any(
+                service["church_id"] == "guardian-angels"
+                and service["event_type"] == "adoration"
+                and datetime.fromisoformat(service["end"])
+                - datetime.fromisoformat(service["start"])
+                == timedelta(hours=24)
+                for service in services["services"]
+            )
+        )
+        self.assertEqual(
+            [(source["url"], source["status"]) for source in services["sources"]],
+            [
+                (southport.PARISH_URL, "baseline"),
+                (southport.NEWSLETTERS_URL, "future-automation"),
+            ],
+        )
 
     def test_sparse_parish_omits_all_optional_metadata(self):
         sparse = read_json(ROOT / "tests/fixtures/sparse-parish/parish.json")

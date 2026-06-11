@@ -1,0 +1,9 @@
+{
+  "parish_id": "southport",
+  "timezone": "Australia/Brisbane",
+  "sources": {
+    "services": "manual-southport",
+    "community": "manual-empty",
+    "liturgical": "universalis-brisbane"
+  }
+}

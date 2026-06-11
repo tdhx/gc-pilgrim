@@ -8,9 +8,9 @@ parish information into four independent feeds:
 - `community.json` - how people can participate
 - `liturgical.json` - what the Church is celebrating
 
-The first published parish is Surfers Paradise Catholic Parish. The web runtime
-supports richer and sparser parish definitions without changing its feed
-contract.
+The published registry includes Surfers Paradise Catholic Parish and Southport
+Catholic Parish. The web runtime supports richer and sparser parish definitions
+without changing its feed contract.
 
 ## Live Project
 
@@ -59,7 +59,5 @@ Refreshing public sources requires network access:
 
 ## Current Scope
 
-The runtime and feed contracts are modular. The build orchestrator remains
-configured specifically for Surfers Paradise and liturgical years 2026-2028.
-See [Adding a parish](docs/adding-a-parish.md) for the work still required
-before onboarding another production parish.
+The runtime and feed contracts are modular. The build orchestrator generates
+Surfers Paradise and Southport feeds for liturgical years 2026-2028.

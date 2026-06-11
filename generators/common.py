@@ -2,20 +2,16 @@ from datetime import datetime
 
 
 WORSHIP_TYPES = {
+    "adoration",
     "mass",
     "confession",
     "baptism",
     "multicultural",
     "funeral",
     "liturgy",
+    "novena",
+    "rosary",
     "wedding",
-}
-
-CHURCH_IDS = {
-    "Sacred Heart": "sacred-heart",
-    "St. Vincent's": "st-vincents",
-    "St Vincent's": "st-vincents",
-    "Stella Maris": "stella-maris",
 }
 
 

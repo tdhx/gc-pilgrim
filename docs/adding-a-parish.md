@@ -60,14 +60,13 @@ Do not make the app understand source-specific fields.
 
 ## Generator Work Required
 
-Before a second parish can be built automatically:
+To add another parish to the current production builder:
 
-1. Replace the `PARISH_ID` constant in `generators/build_all.py` with iteration
-   over parish directories or registry configuration.
-2. Dispatch source adapters from each parish's `config.json`.
-3. Move SPCP church-name matching out of `generators/common.py` into parish
-   configuration or adapter output.
-4. Generate registry entries from successfully built parish definitions.
+1. Add the parish ID to `PARISH_IDS` in `generators/build_all.py`.
+2. Add a normalized source adapter and configure its records and diagnostics
+   in the parish input mapping.
+3. Add parish and config definitions under `parishes/<parish-id>/`.
+4. Add source, recurrence, feed-contract, and runtime selection tests.
 5. Decide whether liturgical years remain global constants or are derived from
    required service coverage.
 

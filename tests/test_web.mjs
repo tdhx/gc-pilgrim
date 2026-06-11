@@ -25,10 +25,14 @@ const registry = await json("../feeds/v1/registry.json");
 const parish = await json("../feeds/v1/parishes/surfers-paradise/parish.json");
 const services = await json("../feeds/v1/parishes/surfers-paradise/services.json");
 const community = await json("../feeds/v1/parishes/surfers-paradise/community.json");
+const southportParish = await json("../feeds/v1/parishes/southport/parish.json");
+const southportServices = await json("../feeds/v1/parishes/southport/services.json");
+const southportCommunity = await json("../feeds/v1/parishes/southport/community.json");
 const liturgical = await json("../feeds/v1/liturgical.json");
 const appSource = await readFile(new URL("../app/app.js", import.meta.url), "utf8");
 const indexSource = await readFile(new URL("../app/index.html", import.meta.url), "utf8");
 const diagnosticsSource = await readFile(new URL("../app/diagnostics.js", import.meta.url), "utf8");
+const stylesSource = await readFile(new URL("../app/styles.css", import.meta.url), "utf8");
 
 test("published modular feeds validate", () => {
   assert.equal(validateRegistry(registry), registry);
@@ -36,11 +40,30 @@ test("published modular feeds validate", () => {
   assert.equal(validateServices(services), services);
   assert.equal(validateCommunity(community), community);
   assert.equal(validateLiturgical(liturgical), liturgical);
+  assert.equal(validateParish(southportParish), southportParish);
+  assert.equal(validateServices(southportServices), southportServices);
+  assert.equal(validateCommunity(southportCommunity), southportCommunity);
 });
 
 test("registry selects query parish and falls back to default", () => {
   assert.equal(selectedParishId(registry, "?parish=surfers-paradise"), "surfers-paradise");
+  assert.equal(selectedParishId(registry, "?parish=southport"), "southport");
   assert.equal(selectedParishId(registry, "?parish=missing"), registry.default_parish_id);
+});
+
+test("Southport services assemble with locations and liturgical enrichment", () => {
+  const calendar = assembleCalendar(
+    southportParish,
+    southportServices,
+    southportCommunity,
+    liturgical,
+  );
+  assert.ok(calendar.events.length > 0);
+  assert.ok(calendar.events.some((event) => event.church === "Guardian Angels"));
+  assert.ok(
+    calendar.events.some((event) => event.event_type === "mass" && event.liturgical?.observance),
+  );
+  assert.ok(calendar.events.every((event) => event.presiders.length === 0));
 });
 
 test("runtime enrichment joins church and liturgical metadata immutably", () => {
@@ -109,6 +132,8 @@ test("liturgical colours use the modular colour field", () => {
 test("GC Pilgrim app uses registry discovery and four-feed loading", () => {
   assert.match(indexSource, /<title>GC Pilgrim<\/title>/);
   assert.match(indexSource, /id="parish-selector"/);
+  assert.match(indexSource, /id="parish-selector-toggle"/);
+  assert.doesNotMatch(indexSource, /platform-brand|gc-pilgrim\.svg/);
   assert.match(appSource, /feeds\/v1/);
   assert.match(appSource, /Promise\.all\(\[/);
   assert.match(appSource, /services\.json/);
@@ -116,6 +141,15 @@ test("GC Pilgrim app uses registry discovery and four-feed loading", () => {
   assert.match(appSource, /liturgical\.json/);
   assert.doesNotMatch(appSource, /calendar\.json/);
   assert.match(diagnosticsSource, /validateRegistry/);
+  assert.match(appSource, /gc-pilgrim-parish/);
+  assert.match(appSource, /event-mass-fallback/);
+  assert.match(appSource, /presider\.hidden = !presider\.textContent/);
+  assert.match(appSource, /minimumEvents = 10/);
+  assert.match(appSource, /closest\("\.filter-section"\)\.hidden/);
+  assert.match(stylesSource, /body\[data-theme="southport"\]/);
+  assert.match(stylesSource, /--theme-bar-gradient/);
+  assert.match(stylesSource, /\.event-mass-fallback::before/);
+  assert.match(stylesSource, /data-liturgical-colour="gold"/);
 });
 
 test("calendar helpers preserve existing ordering and date behaviour", () => {

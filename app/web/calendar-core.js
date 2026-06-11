@@ -133,7 +133,12 @@ export function validateRegistry(registry) {
 
 export function selectedParishId(registry, search = "") {
   const requested = new URLSearchParams(search).get("parish");
-  return registry.parishes.includes(requested) ? requested : registry.default_parish_id;
+  const remembered = typeof window !== "undefined"
+    ? window.localStorage.getItem("gc-pilgrim-parish")
+    : null;
+  if (registry.parishes.includes(requested)) return requested;
+  if (registry.parishes.includes(remembered)) return remembered;
+  return registry.default_parish_id;
 }
 
 export function validateParish(parish) {

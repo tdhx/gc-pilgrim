@@ -1,10 +1,10 @@
 {
   "coverage": {
-    "end": "2026-06-11",
+    "end": "2026-06-12",
     "start": "2026-06-01"
   },
   "events": [],
-  "generated_at": "2026-06-11T22:29:40+10:00",
+  "generated_at": "2026-06-12T07:49:28+10:00",
   "schema_version": 1,
   "sources": [
     {

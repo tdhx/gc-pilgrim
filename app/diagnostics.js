@@ -11,6 +11,8 @@ const FEED_ROOT = "feeds/v1";
 const title = document.querySelector("#diagnostics-title");
 const body = document.querySelector("#diagnostics-body");
 const errorMessage = document.querySelector("#diagnostics-error");
+const parishLogo = document.querySelector("#parish-logo");
+const calendarLink = document.querySelector("#calendar-link");
 
 async function fetchJSON(url) {
   const response = await fetch(url, { cache: "no-store" });
@@ -41,6 +43,10 @@ async function loadDiagnostics() {
       fetchJSON(`${parishRoot}/community.json`).then(validateCommunity),
       fetchJSON(`${FEED_ROOT}/liturgical.json`).then(validateLiturgical),
     ]);
+    document.body.dataset.theme = parish.branding?.theme || "spcp";
+    parishLogo.src = parish.branding?.logo || "assets/gc-pilgrim.svg";
+    parishLogo.alt = parish.name;
+    calendarLink.href = `index.html?parish=${encodeURIComponent(parishId)}`;
     const generated = new Date(services.generated_at);
     const ageHours = Math.max(0, (Date.now() - generated.getTime()) / 3_600_000);
     title.textContent = `${parish.name} · schema v${services.schema_version} · ${ageHours.toFixed(1)}h old`;

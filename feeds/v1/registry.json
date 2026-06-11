@@ -1,7 +1,8 @@
 {
   "default_parish_id": "surfers-paradise",
   "parishes": [
-    "surfers-paradise"
+    "surfers-paradise",
+    "southport"
   ],
   "schema_version": 1
 }
