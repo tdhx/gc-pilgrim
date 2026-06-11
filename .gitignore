@@ -5,3 +5,4 @@ ios/SPCPCalendarCore/.build/
 ios/DerivedData/
 **/xcuserdata/
 **/*.xcuserstate
+_site/

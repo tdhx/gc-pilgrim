@@ -1,55 +1,43 @@
-# SPCP Calendar
+# GC Pilgrim
 
-The Python data pipeline powers the GitHub Pages site. The published client
-contracts are:
+GC Pilgrim is a lightweight Catholic parish companion that aggregates public
+parish information into four independent feeds:
 
-- `feeds/v1/calendar.json`
-- `feeds/v1/parish.json`
+- `parish.json` - who the parish is
+- `services.json` - when people can pray
+- `community.json` - how people can participate
+- `liturgical.json` - what the Church is celebrating
 
-The legacy `ios/` project is deprecated and currently outside the supported
-build, test, and publishing scope.
+The first published parish is Surfers Paradise Catholic Parish. The platform
+supports richer and sparser parish definitions without changing the app.
 
-## Build the calendar
+## Build
 
-Run the complete network refresh and feed build:
-
-```sh
-./build-calendar
-```
-
-For deterministic local work using the checked-in intermediate JSONL files:
+Generate feeds from checked-in source records:
 
 ```sh
-./build-calendar --offline
+./build-feeds --offline
 ```
 
-The command refreshes the calendar sources and scrapes the parish homepage,
-then validates and atomically replaces both published v1 feeds.
-
-## Preview the web viewer
+Refresh public sources and regenerate all feeds:
 
 ```sh
-python3 -m http.server 8000
+./build-feeds
 ```
 
-Open `http://127.0.0.1:8000`.
-
-## Configure GitHub Pages
-
-Publish the repository root with GitHub Pages.
-
-## Publish changes
-
-After reviewing the working tree, run the complete test, commit, push, and
-GitHub Pages deployment workflow:
+Build the GitHub Pages artifact:
 
 ```sh
-./scripts/publish.sh "Describe the change"
+./build-site
+python3 -m http.server 8000 --directory _site
 ```
 
-## Tests
+## Test
 
 ```sh
 python3 -m unittest discover -s tests
 npm run test:web
 ```
+
+See [docs/architecture.md](docs/architecture.md) for feed contracts and adapter
+boundaries.

@@ -1,0 +1,9 @@
+{
+  "parish_id": "surfers-paradise",
+  "timezone": "Australia/Brisbane",
+  "sources": {
+    "services": "google-calendar",
+    "community": "google-calendar",
+    "liturgical": "universalis-brisbane"
+  }
+}

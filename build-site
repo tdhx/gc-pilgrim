@@ -1,0 +1,10 @@
+#!/bin/sh
+set -eu
+ROOT=$(CDPATH= cd -- "$(dirname "$0")" && pwd)
+SITE="$ROOT/_site"
+rm -rf "$SITE"
+mkdir -p "$SITE"
+cp -R "$ROOT/app/." "$SITE/"
+cp -R "$ROOT/feeds" "$SITE/feeds"
+touch "$SITE/.nojekyll"
+echo "Built $SITE"

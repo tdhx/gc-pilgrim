@@ -1,0 +1,4 @@
+#!/bin/sh
+set -eu
+ROOT=$(CDPATH= cd -- "$(dirname "$0")" && pwd)
+PYTHONPATH="$ROOT" exec python3 "$ROOT/generators/build_all.py" "$@"

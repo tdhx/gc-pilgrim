@@ -2,6 +2,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "test:web": "node --test tests/test_web.mjs"
+    "test:web": "node --test tests/test_web.mjs",
+    "build:site": "./build-site"
   }
 }
