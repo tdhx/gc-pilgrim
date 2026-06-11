@@ -18,6 +18,10 @@ import {
 const feed = JSON.parse(await readFile(new URL("../feeds/v1/calendar.json", import.meta.url)));
 const appSource = await readFile(new URL("../app.js", import.meta.url), "utf8");
 const indexSource = await readFile(new URL("../index.html", import.meta.url), "utf8");
+const diagnosticsSource = await readFile(
+  new URL("../diagnostics.html", import.meta.url),
+  "utf8",
+);
 
 test("published feed validates", () => {
   assert.equal(validateFeed(feed), feed);
@@ -79,7 +83,7 @@ test("card accents use known liturgical colours with a parish fallback", () => {
 });
 
 test("published module URLs use matching cache-busting revisions", () => {
-  assert.match(indexSource, /src="app\.js\?v=21"/);
+  assert.match(indexSource, /src="app\.js\?v=23"/);
   assert.match(appSource, /calendar-core\.js\?v=5/);
 });
 
@@ -96,6 +100,37 @@ test("weekly view is selected by default", () => {
     /id="view-weekly"[\s\S]*?aria-selected="true"[\s\S]*?tabindex="0"/,
   );
   assert.match(indexSource, /aria-labelledby="view-weekly"/);
+});
+
+test("feed diagnostics live on a separate page", () => {
+  assert.doesNotMatch(indexSource, /id="diagnostics"/);
+  assert.doesNotMatch(appSource, /renderDiagnostics/);
+  assert.match(indexSource, /href="diagnostics\.html"/);
+  assert.match(diagnosticsSource, /src="diagnostics\.js\?v=1"/);
+});
+
+test("mobile filter controls are integrated into the results bar", () => {
+  assert.match(indexSource, /id="filters-toggle"[\s\S]*?aria-controls="filters-content"/);
+  assert.match(indexSource, /id="results-today"[\s\S]*?>Today</);
+  assert.equal((indexSource.match(/data-show-all/g) || []).length, 2);
+  assert.equal((indexSource.match(/Clear filters/g) || []).length, 2);
+  assert.doesNotMatch(indexSource, /id="reset-filters"/);
+  assert.doesNotMatch(indexSource, /id="clear-filters"/);
+  assert.match(appSource, /resultsHeader\.after\(elements\.filters\)/);
+});
+
+test("daily view is progressively loaded and period navigation omits Today", () => {
+  assert.match(appSource, /dailyDaysVisible: 7/);
+  assert.match(appSource, /state\.dailyDaysVisible \+= 14/);
+  assert.match(appSource, /Load more/);
+  assert.doesNotMatch(indexSource, /id="today-period"/);
+});
+
+test("multicultural presiders select their associated Mass filters", () => {
+  assert.match(appSource, /\["Fr Fadi", \["maronite"\]\]/);
+  assert.match(appSource, /\["Fr Jerzy", \["polish"\]\]/);
+  assert.match(appSource, /\["Fr Luis", \["hispanic", "italian"\]\]/);
+  assert.match(appSource, /selectMulticulturalPresider\(state\.selected, value\)/);
 });
 
 test("filter options use the requested display order", () => {

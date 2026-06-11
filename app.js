@@ -17,6 +17,11 @@ import {
 const FEED_URL = "feeds/v1/calendar.json";
 const DEFAULT_EVENT_TYPES = ["mass", "confession"];
 const MULTICULTURAL_TYPE = "multicultural";
+const MULTICULTURAL_PRESIDER_SUBTYPES = new Map([
+  ["Fr Fadi", ["maronite"]],
+  ["Fr Jerzy", ["polish"]],
+  ["Fr Luis", ["hispanic", "italian"]],
+]);
 
 const state = {
   events: [],
@@ -33,6 +38,7 @@ const state = {
   weekStart: null,
   month: null,
   selectedMonthDate: null,
+  dailyDaysVisible: 7,
 };
 
 const elements = {
@@ -46,18 +52,15 @@ const elements = {
   churchFilters: document.querySelector("#church-filters"),
   presiderFilters: document.querySelector("#presider-filters"),
   search: document.querySelector("#search"),
-  resetFilters: document.querySelector("#reset-filters"),
-  clearFilters: document.querySelector("#clear-filters"),
+  showAllButtons: [...document.querySelectorAll("[data-show-all]")],
+  resultsHeader: document.querySelector(".results-header"),
+  resultsToday: document.querySelector("#results-today"),
   emptyMessage: document.querySelector("#empty-message"),
   errorMessage: document.querySelector("#error-message"),
-  diagnostics: document.querySelector("#diagnostics"),
-  diagnosticsSummary: document.querySelector("#diagnostics-summary"),
-  diagnosticsBody: document.querySelector("#diagnostics-body"),
   template: document.querySelector("#event-template"),
   viewButtons: [...document.querySelectorAll(".view-button")],
   periodNavigation: document.querySelector("#period-navigation"),
   previousPeriod: document.querySelector("#previous-period"),
-  todayPeriod: document.querySelector("#today-period"),
   nextPeriod: document.querySelector("#next-period"),
 };
 
@@ -129,17 +132,51 @@ function uniqueValues(getValues) {
   return [...new Set(state.events.flatMap(getValues))].sort((a, b) => a.localeCompare(b));
 }
 
-function countFor(group, value) {
+function cloneSelections() {
+  return Object.fromEntries(
+    Object.entries(state.selected).map(([group, values]) => [group, new Set(values)]),
+  );
+}
+
+function selectMulticulturalPresider(selection, presider) {
+  const subtypes = MULTICULTURAL_PRESIDER_SUBTYPES.get(presider);
+  if (!subtypes) return false;
+  selection.eventType.add(MULTICULTURAL_TYPE);
+  subtypes.forEach((subtype) => selection.multiculturalSubtype.add(subtype));
+  return true;
+}
+
+function selectionsForCount(group, value) {
+  const selected = cloneSelections();
+  selected[group].clear();
+  selected[group].add(value);
+
   if (group === "eventType") {
-    return state.events.filter((event) => event.event_type === value).length;
+    selected.multiculturalSubtype.clear();
+  } else if (group === "multiculturalSubtype") {
+    selected.eventType.clear();
+    selected.eventType.add(MULTICULTURAL_TYPE);
+  } else if (group === "presider") {
+    selectMulticulturalPresider(selected, value);
   }
-  if (group === "church") {
-    return state.events.filter((event) => displayChurch(event.church) === value).length;
-  }
-  if (group === "multiculturalSubtype") {
-    return state.events.filter((event) => event.event_subtype === value).length;
-  }
-  return state.events.filter((event) => event.presiders.includes(value)).length;
+  return selected;
+}
+
+function countFor(group, value) {
+  const selected = selectionsForCount(group, value);
+  const defaults = group === "eventType" || selected.eventType.size
+    ? []
+    : state.useDefaultEventTypes ? DEFAULT_EVENT_TYPES : [];
+  return state.events.filter((event) => (
+    matchesEvent(event, selected, state.search, defaults)
+  )).length;
+}
+
+function updateFilterCounts() {
+  document.querySelectorAll(".checkbox-option input").forEach((input) => {
+    const count = input.closest(".checkbox-option")?.querySelector(".filter-count");
+    if (count) count.textContent = countFor(input.dataset.group, input.value);
+  });
 }
 
 function buildCheckboxes(container, group, values, labelFormatter = (value) => value) {
@@ -157,7 +194,10 @@ function buildCheckboxes(container, group, values, labelFormatter = (value) => v
     input.addEventListener("change", () => {
       const selected = state.selected[group];
       input.checked ? selected.add(value) : selected.delete(value);
-      if (group === "eventType") state.useDefaultEventTypes = false;
+      if (group === "presider" && input.checked && selectMulticulturalPresider(state.selected, value)) {
+        state.useDefaultEventTypes = false;
+        syncFilterControls();
+      }
       renderEvents();
     });
 
@@ -193,6 +233,14 @@ function syncMulticulturalControls() {
   subtypeInputs.forEach((input) => {
     input.checked = state.selected.multiculturalSubtype.has(input.value);
   });
+}
+
+function syncFilterControls() {
+  document.querySelectorAll('.filters input[type="checkbox"]').forEach((input) => {
+    input.checked = state.selected[input.dataset.group].has(input.value);
+    input.indeterminate = false;
+  });
+  syncMulticulturalControls();
 }
 
 function buildEventTypeFilters() {
@@ -435,7 +483,16 @@ function makeEmptyDayMessage() {
 }
 
 function renderDaily(events) {
-  const grouped = eventsByDate(events);
+  const start = dailyRangeStart();
+  const requestedEnd = addDays(start, state.dailyDaysVisible - 1);
+  const end = requestedEnd < state.feed.coverage.end
+    ? requestedEnd
+    : state.feed.coverage.end;
+  const displayedDays = Math.round(
+    (dateFromKey(end) - dateFromKey(start)) / 86_400_000,
+  ) + 1;
+  const visible = eventsInRange(events, start, end);
+  const grouped = eventsByDate(visible);
   const sections = [...grouped].map(([date, dateEvents]) => {
     const section = document.createElement("section");
     section.className = "day-section";
@@ -443,12 +500,30 @@ function renderDaily(events) {
     section.append(makeDayHeading(date), ...dateEvents.map(renderCard));
     return section;
   });
+
+  const loadMore = document.createElement("button");
+  loadMore.type = "button";
+  loadMore.className = "load-more-button";
+  loadMore.textContent = "Load more";
+  loadMore.addEventListener("click", () => {
+    state.dailyDaysVisible += 14;
+    renderEvents();
+  });
+
+  const canLoadMore = end < state.feed.coverage.end;
   elements.events.className = "calendar-view daily-view";
-  elements.events.replaceChildren(...sections);
-  elements.resultsContext.textContent = "Daily view";
+  elements.events.replaceChildren(...sections, ...(canLoadMore ? [loadMore] : []));
+  elements.resultsContext.textContent = "Daily";
   elements.resultsCount.textContent =
-    `${events.length} event${events.length === 1 ? "" : "s"} across ${sections.length} day${sections.length === 1 ? "" : "s"}`;
-  elements.emptyMessage.hidden = events.length !== 0;
+    `${visible.length} event${visible.length === 1 ? "" : "s"} · ${displayedDays} days`;
+  elements.emptyMessage.hidden = visible.length !== 0;
+}
+
+function dailyRangeStart() {
+  const today = currentBrisbaneDate();
+  if (today < state.feed.coverage.start) return state.feed.coverage.start;
+  if (today > state.feed.coverage.end) return state.feed.coverage.end;
+  return today;
 }
 
 function weekEnd(start) {
@@ -498,9 +573,9 @@ function renderWeekly(events) {
 
   elements.events.className = "calendar-view weekly-view";
   elements.events.replaceChildren(...sections, footerNavigation);
-  elements.resultsContext.textContent = "Weekly view";
+  elements.resultsContext.textContent = "Weekly";
   elements.resultsCount.textContent =
-    `${weekRangeFormatter.format(dateFromKey(start))} – ${weekRangeFormatter.format(dateFromKey(end))} · `
+    `${weekRangeFormatter.format(dateFromKey(start))}–${weekRangeFormatter.format(dateFromKey(end))} · `
     + `${visible.length} event${visible.length === 1 ? "" : "s"}`;
   elements.emptyMessage.hidden = true;
 }
@@ -596,7 +671,7 @@ function renderMonthly(events) {
 
   elements.events.className = "calendar-view monthly-view";
   elements.events.replaceChildren(grid, detail);
-  elements.resultsContext.textContent = "Monthly view";
+  elements.resultsContext.textContent = "Monthly";
   elements.resultsCount.textContent =
     `${monthHeadingFormatter.format(dateFromKey(month))} · ${visible.length} event${visible.length === 1 ? "" : "s"}`;
   elements.emptyMessage.hidden = true;
@@ -615,13 +690,11 @@ function updatePeriodNavigation() {
   elements.periodNavigation.hidden = isDaily;
   if (isDaily || !state.feed) return;
 
-  const today = currentBrisbaneDate();
   if (state.view === "weekly") {
     const previous = addDays(state.weekStart, -7);
     const next = addDays(state.weekStart, 7);
     elements.previousPeriod.disabled = !weekIntersectsCoverage(previous, state.feed.coverage);
     elements.nextPeriod.disabled = !weekIntersectsCoverage(next, state.feed.coverage);
-    elements.todayPeriod.disabled = state.weekStart === startOfSundayWeek(today);
     elements.previousPeriod.setAttribute("aria-label", "Show previous week");
     elements.nextPeriod.setAttribute("aria-label", "Show next week");
     const footerPrevious = elements.events.querySelector('[data-period-action="previous"]');
@@ -633,7 +706,6 @@ function updatePeriodNavigation() {
     const next = addMonths(state.month, 1);
     elements.previousPeriod.disabled = !monthIntersectsCoverage(previous, state.feed.coverage);
     elements.nextPeriod.disabled = !monthIntersectsCoverage(next, state.feed.coverage);
-    elements.todayPeriod.disabled = state.month === monthStart(today);
     elements.previousPeriod.setAttribute("aria-label", "Show previous month");
     elements.nextPeriod.setAttribute("aria-label", "Show next month");
   }
@@ -649,10 +721,12 @@ function renderEvents() {
     renderDaily(filtered);
   }
   updatePeriodNavigation();
+  updateFilterCounts();
 }
 
 function selectView(button) {
   state.view = button.dataset.view;
+  if (state.view === "daily") state.dailyDaysVisible = 7;
   elements.viewButtons.forEach((candidate) => {
     const selected = candidate === button;
     candidate.setAttribute("aria-selected", String(selected));
@@ -675,15 +749,21 @@ function navigatePeriod(action) {
   renderEvents();
 }
 
+function stickyScrollOffset() {
+  const header = document.querySelector(".page-header");
+  return (header?.getBoundingClientRect().height || 0)
+    + (elements.resultsHeader?.getBoundingClientRect().height || 0)
+    + 16;
+}
+
 function scrollToCurrentDay() {
   const today = currentBrisbaneDate();
-  const target = elements.events.querySelector(`[data-event-date="${today}"]`);
+  const target = elements.events.querySelector(`[data-event-date="${today}"]`)
+    || elements.events.firstElementChild;
   if (!target) return;
 
   requestAnimationFrame(() => {
-    const header = document.querySelector(".page-header");
-    const headerOffset = (header?.getBoundingClientRect().height || 0) + 16;
-    target.style.scrollMarginTop = `${headerOffset}px`;
+    target.style.scrollMarginTop = `${stickyScrollOffset()}px`;
     target.scrollIntoView({
       behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
         ? "auto"
@@ -693,78 +773,73 @@ function scrollToCurrentDay() {
   });
 }
 
-function renderDiagnostics() {
-  const feed = state.feed;
-  const generated = new Date(feed.generated_at);
-  const ageHours = Math.max(0, (Date.now() - generated.getTime()) / 3_600_000);
-  elements.diagnosticsSummary.textContent =
-    `Feed diagnostics · ${ageHours.toFixed(1)}h old · schema v${feed.schema_version}`;
-
-  const sourceItems = feed.sources.map((source) => (
-    `<li><strong>${source.name}</strong>: ${source.status}</li>`
-  )).join("");
-  const warningItems = feed.warnings.length
-    ? feed.warnings.map((warning) => `<li>${warning}</li>`).join("")
-    : "<li>None</li>";
-  const sourceIds = feed.events.map((event) => (
-    `<li><code>${event.id}</code> · <code>${event.source_id}</code></li>`
-  )).join("");
-
-  elements.diagnosticsBody.innerHTML = `
-    <dl>
-      <dt>Generated</dt><dd>${generated.toLocaleString("en-AU")}</dd>
-      <dt>Coverage</dt><dd>${feed.coverage.start} to ${feed.coverage.end}</dd>
-      <dt>Timezone</dt><dd>${feed.timezone}</dd>
-      <dt>Events</dt><dd>${feed.events.length}</dd>
-    </dl>
-    <h3>Sources</h3><ul>${sourceItems}</ul>
-    <h3>Warnings</h3><ul>${warningItems}</ul>
-    <details class="source-identifiers">
-      <summary>Source identifiers (${feed.events.length})</summary>
-      <ul>${sourceIds}</ul>
-    </details>
-  `;
-  elements.diagnostics.hidden = false;
-}
-
-function setFiltersToDefaults() {
-  Object.values(state.selected).forEach((selection) => selection.clear());
-  state.useDefaultEventTypes = true;
-  state.search = "";
-  elements.search.value = "";
-  document.querySelectorAll('.filters input[type="checkbox"]').forEach((input) => {
-    input.checked = state.selected[input.dataset.group].has(input.value);
-  });
-  syncMulticulturalControls();
-  renderEvents();
-}
-
 function showAllEvents() {
   Object.values(state.selected).forEach((selection) => selection.clear());
   state.useDefaultEventTypes = false;
   state.search = "";
   elements.search.value = "";
-  document.querySelectorAll('.filters input[type="checkbox"]').forEach((input) => {
-    input.checked = false;
-    input.indeterminate = false;
-  });
+  syncFilterControls();
   renderEvents();
+}
+
+function goToToday() {
+  const today = currentBrisbaneDate();
+  const target = today < state.feed.coverage.start
+    ? state.feed.coverage.start
+    : today > state.feed.coverage.end ? state.feed.coverage.end : today;
+
+  if (state.view === "daily") {
+    state.dailyDaysVisible = 7;
+  } else if (state.view === "weekly") {
+    state.weekStart = startOfSundayWeek(target);
+  } else {
+    state.month = monthStart(target);
+    state.selectedMonthDate = target;
+  }
+  renderEvents();
+  requestAnimationFrame(() => {
+    if (state.view === "daily") {
+      scrollToCurrentDay();
+    } else {
+      elements.events.style.scrollMarginTop = `${stickyScrollOffset()}px`;
+      elements.events.scrollIntoView({
+        behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
+          ? "auto"
+          : "smooth",
+        block: "start",
+      });
+    }
+  });
+}
+
+function updateStickyOffset() {
+  const headerHeight = document.querySelector(".page-header")?.getBoundingClientRect().height || 0;
+  document.documentElement.style.setProperty("--page-header-height", `${headerHeight}px`);
 }
 
 function setFiltersExpanded(expanded) {
   elements.filtersToggle.setAttribute("aria-expanded", String(expanded));
-  elements.filtersToggle.setAttribute(
-    "aria-label",
-    `${expanded ? "Collapse" : "Expand"} calendar filters`,
-  );
   elements.filtersContent.hidden = !expanded;
   elements.filters.classList.toggle("filters-collapsed", !expanded);
 }
 
 function initializeMobileFilters() {
   const mobile = window.matchMedia("(max-width: 800px)");
-  setFiltersExpanded(!mobile.matches);
-  mobile.addEventListener("change", (event) => setFiltersExpanded(!event.matches));
+  const pageShell = document.querySelector(".page-shell");
+  const calendarPanel = document.querySelector(".calendar-panel");
+
+  function arrangeFilters(isMobile) {
+    if (isMobile) {
+      elements.resultsHeader.after(elements.filters);
+      setFiltersExpanded(false);
+    } else {
+      pageShell.insertBefore(elements.filters, calendarPanel);
+      setFiltersExpanded(true);
+    }
+  }
+
+  arrangeFilters(mobile.matches);
+  mobile.addEventListener("change", (event) => arrangeFilters(event.matches));
 }
 
 async function loadEvents() {
@@ -783,7 +858,6 @@ async function loadEvents() {
     state.month = monthStart(initialDate);
     state.selectedMonthDate = initialDate;
     buildFilters();
-    renderDiagnostics();
     renderEvents();
     scrollToCurrentDay();
   } catch (error) {
@@ -806,10 +880,19 @@ document.querySelectorAll(".filter-toggle").forEach((toggle) => {
     content.hidden = expanded;
   });
 });
-elements.resetFilters.addEventListener("click", setFiltersToDefaults);
-elements.clearFilters.addEventListener("click", showAllEvents);
+elements.showAllButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    showAllEvents();
+    if (window.matchMedia("(max-width: 800px)").matches) {
+      setFiltersExpanded(false);
+    }
+  });
+});
 elements.filtersToggle.addEventListener("click", () => {
   setFiltersExpanded(elements.filtersToggle.getAttribute("aria-expanded") !== "true");
+});
+elements.resultsToday.addEventListener("click", () => {
+  goToToday();
 });
 elements.viewButtons.forEach((button) => {
   button.addEventListener("click", () => selectView(button));
@@ -830,16 +913,8 @@ elements.viewButtons.forEach((button) => {
 });
 elements.previousPeriod.addEventListener("click", () => navigatePeriod("previous"));
 elements.nextPeriod.addEventListener("click", () => navigatePeriod("next"));
-elements.todayPeriod.addEventListener("click", () => {
-  const today = currentBrisbaneDate();
-  const target = today < state.feed.coverage.start
-    ? state.feed.coverage.start
-    : today > state.feed.coverage.end ? state.feed.coverage.end : today;
-  state.weekStart = startOfSundayWeek(target);
-  state.month = monthStart(target);
-  state.selectedMonthDate = target;
-  renderEvents();
-});
 
 initializeMobileFilters();
+updateStickyOffset();
+window.addEventListener("resize", updateStickyOffset);
 loadEvents();

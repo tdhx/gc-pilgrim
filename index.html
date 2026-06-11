@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>SPCP Parish Calendar</title>
-  <link rel="stylesheet" href="styles.css?v=17">
+  <link rel="stylesheet" href="styles.css?v=19">
 </head>
 <body data-theme="spcp">
   <header class="page-header">
@@ -28,21 +28,12 @@
       <div class="filters-heading">
         <h2>Filters</h2>
         <div class="filters-heading-actions">
-          <button id="reset-filters" class="text-button" type="button">Reset</button>
-          <button
-            id="filters-toggle"
-            class="filters-panel-toggle"
-            type="button"
-            aria-expanded="true"
-            aria-controls="filters-content"
-            aria-label="Collapse calendar filters"
-          >
-            <span class="filter-toggle-icon" aria-hidden="true"></span>
-          </button>
+          <button class="text-button" type="button" data-show-all>Clear filters</button>
         </div>
       </div>
 
       <div id="filters-content">
+        <button class="mobile-show-all" type="button" data-show-all>Clear filters</button>
         <label class="search-field">
           <span>Search events</span>
           <input id="search" type="search" placeholder="Event, church or presider">
@@ -82,11 +73,22 @@
 
     <section class="calendar-panel" aria-live="polite">
       <div class="results-header">
-        <div>
-          <p id="results-context" class="eyebrow">Weekly view</p>
-          <h2 id="results-count">Loading events...</h2>
-        </div>
-        <button id="clear-filters" class="secondary-button" type="button">Show all</button>
+        <button
+          id="filters-toggle"
+          class="results-filter-button"
+          type="button"
+          aria-expanded="false"
+          aria-controls="filters-content"
+        >
+          <span>Filters</span>
+          <span class="filter-toggle-icon" aria-hidden="true"></span>
+        </button>
+        <h2 class="results-summary">
+          <span id="results-context">Weekly</span>
+          <span aria-hidden="true">·</span>
+          <span id="results-count">Loading events...</span>
+        </h2>
+        <button id="results-today" class="secondary-button" type="button">Today</button>
       </div>
 
       <div class="calendar-toolbar">
@@ -124,15 +126,10 @@
         </div>
         <div id="period-navigation" class="period-navigation" hidden>
           <button id="previous-period" class="period-button" type="button">Previous</button>
-          <button id="today-period" class="period-button" type="button">Today</button>
           <button id="next-period" class="period-button" type="button">Next</button>
         </div>
       </div>
 
-      <details id="diagnostics" class="diagnostics" hidden>
-        <summary id="diagnostics-summary">Feed diagnostics</summary>
-        <div id="diagnostics-body" class="diagnostics-body"></div>
-      </details>
       <div id="error-message" class="message error-message" hidden></div>
       <div id="empty-message" class="message" hidden>
         <h3>No matching events</h3>
@@ -144,6 +141,9 @@
         role="tabpanel"
         aria-labelledby="view-weekly"
       ></div>
+      <footer class="calendar-footer">
+        <a href="diagnostics.html">Feed diagnostics</a>
+      </footer>
     </section>
   </main>
 
@@ -164,6 +164,6 @@
     </article>
   </template>
 
-  <script type="module" src="app.js?v=21"></script>
+  <script type="module" src="app.js?v=23"></script>
 </body>
 </html>
