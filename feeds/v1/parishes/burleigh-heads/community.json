@@ -1,0 +1,23 @@
+{
+  "coverage": {
+    "end": "2026-06-12",
+    "start": "2026-06-01"
+  },
+  "events": [],
+  "generated_at": "2026-06-12T07:49:28+10:00",
+  "schema_version": 1,
+  "sources": [
+    {
+      "name": "Burleigh Heads published recurring schedule",
+      "status": "baseline",
+      "url": "https://burleighheadscatholic.com.au/mass-liturgy-schedule/"
+    },
+    {
+      "name": "Burleigh Heads parish newsletters",
+      "status": "future-automation",
+      "url": "https://burleighheadscatholic.com.au/parish-newsletter/"
+    }
+  ],
+  "timezone": "Australia/Brisbane",
+  "warnings": []
+}

@@ -1,0 +1,9 @@
+{
+  "parish_id": "burleigh-heads",
+  "timezone": "Australia/Brisbane",
+  "sources": {
+    "services": "manual-burleigh-heads",
+    "community": "manual-empty",
+    "liturgical": "universalis-brisbane"
+  }
+}

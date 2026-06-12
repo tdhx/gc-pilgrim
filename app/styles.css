@@ -33,6 +33,15 @@ body[data-theme="southport"] {
   --theme-bar-context: #f2d98f;
 }
 
+body[data-theme="burleigh-heads"] {
+  --theme-primary: #006f75;
+  --theme-primary-deep: #004d52;
+  --theme-highlight: #d5a329;
+  --theme-highlight-soft: #f8efd6;
+  --theme-bar-gradient: linear-gradient(120deg, #004d52 0%, #006f75 72%, #168b8e 100%);
+  --theme-bar-context: #f5d98c;
+}
+
 body[data-theme="gc-pilgrim"] {
   --theme-primary: var(--blue);
   --theme-primary-deep: var(--blue-deep);

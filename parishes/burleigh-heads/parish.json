@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "id": "burleigh-heads",
+  "name": "Burleigh Heads Catholic Parish",
+  "branding": {
+    "logo": "assets/burleigh-heads-logo.png",
+    "theme": "burleigh-heads",
+    "tagline": "Serving the Catholic community across Burleigh Heads, Burleigh Waters, Miami, Mudgeeraba and Palm Beach."
+  },
+  "contact": {
+    "phone": "(07) 5558 0120",
+    "email": "burleigh@bne.catholic.net.au",
+    "website": "https://burleighheadscatholic.com.au/"
+  },
+  "office": {
+    "address": "3 Sunlight Drive, Burleigh Waters QLD 4220",
+    "hours": {
+      "monday": "08:00-16:00",
+      "tuesday": "08:00-16:00",
+      "wednesday": "08:00-16:00",
+      "thursday": "08:00-16:00",
+      "friday": "08:00-16:00"
+    }
+  },
+  "clergy": [
+    {
+      "role": "Parish Administrator",
+      "name": "Fr Joseph Vattaparambil CMI"
+    },
+    {
+      "role": "Associate Pastor",
+      "name": "Fr Sijo Edakkarottu Joseph MCBS"
+    }
+  ],
+  "churches": [
+    {
+      "id": "infant-saviour",
+      "name": "Infant Saviour Church",
+      "calendar_name": "Infant Saviour",
+      "address": "4 Park Avenue, Burleigh Heads QLD 4220",
+      "is_primary_site": false
+    },
+    {
+      "id": "mary-mother-of-mercy",
+      "name": "Mary, Mother of Mercy Church",
+      "calendar_name": "Mary Mother of Mercy",
+      "address": "3 Sunlight Drive, Burleigh Waters QLD 4220",
+      "is_primary_site": true
+    },
+    {
+      "id": "calvary",
+      "name": "Calvary Church",
+      "calendar_name": "Calvary",
+      "address": "Santa Monica Road, Miami QLD 4220",
+      "is_primary_site": false
+    },
+    {
+      "id": "st-benedicts",
+      "name": "St Benedict's Church",
+      "calendar_name": "St Benedict's",
+      "address": "2 Wallaby Drive, Mudgeeraba QLD 4213",
+      "is_primary_site": false
+    },
+    {
+      "id": "our-lady-of-the-way",
+      "name": "Our Lady of the Way Church",
+      "calendar_name": "Our Lady of the Way",
+      "address": "Eleventh Avenue, Palm Beach QLD 4221",
+      "is_primary_site": false
+    }
+  ]
+}

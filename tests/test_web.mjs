@@ -29,6 +29,9 @@ const community = await json("../feeds/v1/parishes/surfers-paradise/community.js
 const southportParish = await json("../feeds/v1/parishes/southport/parish.json");
 const southportServices = await json("../feeds/v1/parishes/southport/services.json");
 const southportCommunity = await json("../feeds/v1/parishes/southport/community.json");
+const burleighParish = await json("../feeds/v1/parishes/burleigh-heads/parish.json");
+const burleighServices = await json("../feeds/v1/parishes/burleigh-heads/services.json");
+const burleighCommunity = await json("../feeds/v1/parishes/burleigh-heads/community.json");
 const liturgical = await json("../feeds/v1/liturgical.json");
 const appSource = await readFile(new URL("../app/app.js", import.meta.url), "utf8");
 const indexSource = await readFile(new URL("../app/index.html", import.meta.url), "utf8");
@@ -44,6 +47,9 @@ test("published modular feeds validate", () => {
   assert.equal(validateParish(southportParish), southportParish);
   assert.equal(validateServices(southportServices), southportServices);
   assert.equal(validateCommunity(southportCommunity), southportCommunity);
+  assert.equal(validateParish(burleighParish), burleighParish);
+  assert.equal(validateServices(burleighServices), burleighServices);
+  assert.equal(validateCommunity(burleighCommunity), burleighCommunity);
 });
 
 test("registry selects query parish and falls back to default", () => {
@@ -51,6 +57,7 @@ test("registry selects query parish and falls back to default", () => {
   assert.equal(selectedParishId(registry, "?parish=gold-coast"), "gold-coast");
   assert.equal(selectedParishId(registry, "?parish=surfers-paradise"), "surfers-paradise");
   assert.equal(selectedParishId(registry, "?parish=southport"), "southport");
+  assert.equal(selectedParishId(registry, "?parish=burleigh-heads"), "burleigh-heads");
   assert.equal(selectedParishId(registry, "?parish=missing"), registry.default_view_id);
 });
 
@@ -79,17 +86,32 @@ test("Gold Coast aggregate combines parish calendars with attribution", () => {
   const calendar = aggregateCalendars([
     { parish, calendar: surfersCalendar },
     { parish: southportParish, calendar: southportCalendar },
+    {
+      parish: burleighParish,
+      calendar: assembleCalendar(
+        burleighParish,
+        burleighServices,
+        burleighCommunity,
+        liturgical,
+      ),
+    },
   ]);
+  const burleighCalendar = assembleCalendar(
+    burleighParish,
+    burleighServices,
+    burleighCommunity,
+    liturgical,
+  );
   assert.equal(
     calendar.events.length,
-    surfersCalendar.events.length + southportCalendar.events.length,
+    surfersCalendar.events.length + southportCalendar.events.length + burleighCalendar.events.length,
   );
   assert.deepEqual(
     new Set(calendar.events.map((event) => event.parish_id)),
-    new Set(["surfers-paradise", "southport"]),
+    new Set(["surfers-paradise", "southport", "burleigh-heads"]),
   );
   assert.ok(calendar.events.every((event) => event.id.startsWith(`${event.parish_id}:`)));
-  assert.equal(calendar.sources.length, 3);
+  assert.equal(calendar.sources.length, 5);
   assert.deepEqual(
     calendar.events,
     [...calendar.events].sort((left, right) => left.start.localeCompare(right.start)
@@ -120,6 +142,23 @@ test("Southport services assemble with locations and liturgical enrichment", () 
     calendar.events.some((event) => event.event_type === "mass" && event.liturgical?.observance),
   );
   assert.ok(calendar.events.every((event) => event.presiders.length === 0));
+});
+
+test("Burleigh services assemble with one first-Friday Healing Mass", () => {
+  const calendar = assembleCalendar(
+    burleighParish,
+    burleighServices,
+    burleighCommunity,
+    liturgical,
+  );
+  assert.ok(calendar.events.length > 0);
+  assert.ok(calendar.events.some((event) => event.church === "Mary Mother of Mercy"));
+  const healingMasses = calendar.events.filter((event) => event.service_name === "Healing Mass");
+  assert.ok(healingMasses.length > 0);
+  assert.ok(healingMasses.every((event) => event.event_type === "mass"));
+  assert.ok(healingMasses.every((event) => event.church === "Mary Mother of Mercy"));
+  assert.ok(healingMasses.every((event) => new Date(event.start).getDay() === 5));
+  assert.equal(burleighCommunity.events.length, 0);
 });
 
 test("runtime enrichment joins church and liturgical metadata immutably", () => {
@@ -210,6 +249,7 @@ test("GC Pilgrim app uses registry discovery and four-feed loading", () => {
   assert.match(appSource, /minimumEvents = 10/);
   assert.match(appSource, /closest\("\.filter-section"\)\.hidden/);
   assert.match(stylesSource, /body\[data-theme="southport"\]/);
+  assert.match(stylesSource, /body\[data-theme="burleigh-heads"\]/);
   assert.match(stylesSource, /body\[data-theme="gc-pilgrim"\]/);
   assert.match(stylesSource, /--theme-bar-gradient/);
   assert.match(stylesSource, /\.event-mass-fallback::before/);

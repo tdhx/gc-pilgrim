@@ -10,7 +10,7 @@ from generators.build_liturgical import aggregate_feed, annual_feed
 from generators.build_parish import build as build_parish
 from generators.build_services import build as build_services
 from generators.io import read_json, read_json_lines, write_json
-from sources.manual import southport
+from sources.manual import burleigh_heads, southport
 from sources.google_calendar import adapter as google_calendar
 from sources.website import liturgical as universalis
 from validators.feeds import validate_registry
@@ -18,7 +18,7 @@ from validators.feeds import validate_registry
 
 ROOT = Path(__file__).resolve().parent.parent
 DEFAULT_PARISH_ID = "surfers-paradise"
-PARISH_IDS = ("surfers-paradise", "southport")
+PARISH_IDS = ("surfers-paradise", "southport", "burleigh-heads")
 TIMEZONE = "Australia/Brisbane"
 BRISBANE = ZoneInfo(TIMEZONE)
 YEARS = (2026, 2027, 2028)
@@ -74,10 +74,12 @@ def build(offline=False, generated_at=None):
     parish_inputs = {
         "surfers-paradise": {
             "records": surfers_records,
+            "community_records": surfers_records,
             "sources": surfers_sources,
         },
         "southport": {
             "records": southport.normalise(start, end),
+            "community_records": [],
             "sources": [
                 {
                     "name": "Southport published recurring schedule",
@@ -87,6 +89,22 @@ def build(offline=False, generated_at=None):
                 {
                     "name": "Southport parish newsletters",
                     "url": southport.NEWSLETTERS_URL,
+                    "status": "future-automation",
+                },
+            ],
+        },
+        "burleigh-heads": {
+            "records": burleigh_heads.normalise(start, end),
+            "community_records": [],
+            "sources": [
+                {
+                    "name": "Burleigh Heads published recurring schedule",
+                    "url": burleigh_heads.PARISH_URL,
+                    "status": "baseline",
+                },
+                {
+                    "name": "Burleigh Heads parish newsletters",
+                    "url": burleigh_heads.NEWSLETTERS_URL,
                     "status": "future-automation",
                 },
             ],
@@ -120,7 +138,7 @@ def build(offline=False, generated_at=None):
             parish,
         )
         community = build_community(
-            [] if parish_id == "southport" else records,
+            parish_inputs[parish_id]["community_records"],
             generated_at,
             config["timezone"],
             sources,

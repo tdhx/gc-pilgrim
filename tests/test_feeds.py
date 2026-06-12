@@ -13,7 +13,7 @@ sys.path.insert(0, str(ROOT))
 from generators.compat_split import split
 from generators.io import read_json
 from sources.google_calendar import adapter as google_calendar
-from sources.manual import southport
+from sources.manual import burleigh_heads, southport
 from sources.website import liturgical as universalis
 from validators.feeds import (
     validate_community,
@@ -113,6 +113,51 @@ END:VCALENDAR
             ["2026-06-07", "2026-07-05"],
         )
 
+    def test_burleigh_first_friday_replaces_weekly_mass(self):
+        records = burleigh_heads.normalise(
+            datetime(2026, 6, 1, tzinfo=BRISBANE),
+            datetime(2026, 6, 13, tzinfo=BRISBANE),
+        )
+        friday_masses = [
+            record
+            for record in records
+            if record["church"] == "Mary Mother of Mercy"
+            and record["event_type"] == "mass"
+            and record["start"].endswith("T10:00:00+10:00")
+            and datetime.fromisoformat(record["start"]).weekday() == 4
+        ]
+        self.assertEqual(len(friday_masses), 2)
+        self.assertEqual(
+            [record["title"] for record in friday_masses],
+            [
+                "First Friday of the Month - Healing Mass",
+                "Mary Mother of Mercy - Mass",
+            ],
+        )
+        self.assertEqual(
+            sum(record["start"].startswith("2026-06-05T10:00") for record in friday_masses),
+            1,
+        )
+
+    def test_burleigh_monthly_adoration(self):
+        definition = burleigh_heads.monthly(
+            "third-friday",
+            "Mary Mother of Mercy",
+            4,
+            3,
+            "09:00",
+            "adoration",
+        )
+        records = burleigh_heads.normalise(
+            datetime(2026, 6, 1, tzinfo=BRISBANE),
+            datetime(2026, 8, 1, tzinfo=BRISBANE),
+            [definition],
+        )
+        self.assertEqual(
+            [record["start"][:10] for record in records],
+            ["2026-06-19", "2026-07-17"],
+        )
+
 
 class FeedContractTests(unittest.TestCase):
     @classmethod
@@ -134,7 +179,7 @@ class FeedContractTests(unittest.TestCase):
         validate_registry(self.registry)
         self.assertEqual(
             self.registry["parishes"],
-            ["surfers-paradise", "southport"],
+            ["surfers-paradise", "southport", "burleigh-heads"],
         )
         self.assertEqual(self.registry["default_view_id"], "gold-coast")
         self.assertEqual(
@@ -186,6 +231,59 @@ class FeedContractTests(unittest.TestCase):
             [
                 (southport.PARISH_URL, "baseline"),
                 (southport.NEWSLETTERS_URL, "future-automation"),
+            ],
+        )
+
+    def test_burleigh_feed_contains_published_service_shapes(self):
+        feeds = self.parishes["burleigh-heads"]
+        parish = feeds["parish"]
+        services = feeds["services"]
+        self.assertEqual(len(parish["churches"]), 5)
+        self.assertEqual(
+            {church["id"] for church in parish["churches"]},
+            {
+                "infant-saviour",
+                "mary-mother-of-mercy",
+                "calvary",
+                "st-benedicts",
+                "our-lady-of-the-way",
+            },
+        )
+        self.assertEqual(feeds["community"]["events"], [])
+        self.assertEqual(
+            {service["event_type"] for service in services["services"]},
+            {"adoration", "confession", "mass"},
+        )
+        self.assertTrue(all(service["church_id"] for service in services["services"]))
+        self.assertTrue(all(not service["presiders"] for service in services["services"]))
+        healing_masses = [
+            service
+            for service in services["services"]
+            if service["service_name"] == "Healing Mass"
+        ]
+        self.assertGreater(len(healing_masses), 0)
+        self.assertTrue(all(service["event_type"] == "mass" for service in healing_masses))
+        self.assertTrue(
+            all(service["church_id"] == "mary-mother-of-mercy" for service in healing_masses)
+        )
+        self.assertTrue(
+            all(
+                datetime.fromisoformat(service["start"]).weekday() == 4
+                and datetime.fromisoformat(service["start"]).day <= 7
+                and service["start"][11:16] == "10:00"
+                for service in healing_masses
+            )
+        )
+        church_starts = [
+            (service.get("church_id"), service["start"])
+            for service in services["services"]
+        ]
+        self.assertEqual(len(church_starts), len(set(church_starts)))
+        self.assertEqual(
+            [(source["url"], source["status"]) for source in services["sources"]],
+            [
+                (burleigh_heads.PARISH_URL, "baseline"),
+                (burleigh_heads.NEWSLETTERS_URL, "future-automation"),
             ],
         )
 

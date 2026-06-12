@@ -1,0 +1,72 @@
+{
+  "branding": {
+    "logo": "assets/burleigh-heads-logo.png",
+    "tagline": "Serving the Catholic community across Burleigh Heads, Burleigh Waters, Miami, Mudgeeraba and Palm Beach.",
+    "theme": "burleigh-heads"
+  },
+  "churches": [
+    {
+      "address": "4 Park Avenue, Burleigh Heads QLD 4220",
+      "calendar_name": "Infant Saviour",
+      "id": "infant-saviour",
+      "is_primary_site": false,
+      "name": "Infant Saviour Church"
+    },
+    {
+      "address": "3 Sunlight Drive, Burleigh Waters QLD 4220",
+      "calendar_name": "Mary Mother of Mercy",
+      "id": "mary-mother-of-mercy",
+      "is_primary_site": true,
+      "name": "Mary, Mother of Mercy Church"
+    },
+    {
+      "address": "Santa Monica Road, Miami QLD 4220",
+      "calendar_name": "Calvary",
+      "id": "calvary",
+      "is_primary_site": false,
+      "name": "Calvary Church"
+    },
+    {
+      "address": "2 Wallaby Drive, Mudgeeraba QLD 4213",
+      "calendar_name": "St Benedict's",
+      "id": "st-benedicts",
+      "is_primary_site": false,
+      "name": "St Benedict's Church"
+    },
+    {
+      "address": "Eleventh Avenue, Palm Beach QLD 4221",
+      "calendar_name": "Our Lady of the Way",
+      "id": "our-lady-of-the-way",
+      "is_primary_site": false,
+      "name": "Our Lady of the Way Church"
+    }
+  ],
+  "clergy": [
+    {
+      "name": "Fr Joseph Vattaparambil CMI",
+      "role": "Parish Administrator"
+    },
+    {
+      "name": "Fr Sijo Edakkarottu Joseph MCBS",
+      "role": "Associate Pastor"
+    }
+  ],
+  "contact": {
+    "email": "burleigh@bne.catholic.net.au",
+    "phone": "(07) 5558 0120",
+    "website": "https://burleighheadscatholic.com.au/"
+  },
+  "id": "burleigh-heads",
+  "name": "Burleigh Heads Catholic Parish",
+  "office": {
+    "address": "3 Sunlight Drive, Burleigh Waters QLD 4220",
+    "hours": {
+      "friday": "08:00-16:00",
+      "monday": "08:00-16:00",
+      "thursday": "08:00-16:00",
+      "tuesday": "08:00-16:00",
+      "wednesday": "08:00-16:00"
+    }
+  },
+  "schema_version": 1
+}

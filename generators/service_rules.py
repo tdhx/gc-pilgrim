@@ -99,7 +99,10 @@ def stable_id(event):
 
 def finalize_event(event, liturgical_by_date):
     result = dict(event)
-    if re.search(r"\bhealing mass\b", result["title"], re.IGNORECASE):
+    if (
+        not result.get("church")
+        and re.search(r"\bhealing mass\b", result["title"], re.IGNORECASE)
+    ):
         result["church"] = "Sacred Heart"
     result["presiders"] = normalized_presiders(result.get("presiders", []))
     result["service_name"] = service_name(result)
