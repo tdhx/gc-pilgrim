@@ -21,6 +21,17 @@ import {
   validateRegistry,
   validateServices,
 } from "../app/web/calendar-core.js";
+import {
+  LITURGICAL_DETAIL_STORAGE_KEY,
+  OBSOLETE_APPEARANCE_STORAGE_KEY,
+  THEME_STORAGE_KEY,
+  readPreferences,
+  resolvedTheme,
+  savePreferences,
+  showRichLiturgicalInformation,
+  validLiturgicalDetail,
+  validThemeChoice,
+} from "../app/web/theme-preferences.js";
 
 const json = async (path) => JSON.parse(await readFile(new URL(path, import.meta.url)));
 const registry = await json("../feeds/v1/registry.json");
@@ -44,6 +55,7 @@ const appSource = await readFile(new URL("../app/app.js", import.meta.url), "utf
 const indexSource = await readFile(new URL("../app/index.html", import.meta.url), "utf8");
 const diagnosticsSource = await readFile(new URL("../app/diagnostics.js", import.meta.url), "utf8");
 const stylesSource = await readFile(new URL("../app/styles.css", import.meta.url), "utf8");
+const manifest = await json("../app/manifest.webmanifest");
 
 test("published modular feeds validate", () => {
   assert.equal(validateRegistry(registry), registry);
@@ -379,6 +391,99 @@ test("GC Pilgrim app uses registry discovery and four-feed loading", () => {
   assert.match(stylesSource, /--theme-bar-gradient/);
   assert.match(stylesSource, /\.event-mass-fallback::before/);
   assert.match(stylesSource, /data-liturgical-colour="gold"/);
+});
+
+test("theme preferences validate, resolve, and persist", () => {
+  assert.equal(validThemeChoice("traditional"), "traditional");
+  assert.equal(validThemeChoice("unknown"), "parish");
+  assert.equal(validLiturgicalDetail("simple"), "simple");
+  assert.equal(validLiturgicalDetail("rich"), "rich");
+  assert.equal(validLiturgicalDetail("unknown"), "rich");
+  assert.equal(showRichLiturgicalInformation("rich"), true);
+  assert.equal(showRichLiturgicalInformation("simple"), false);
+  assert.equal(resolvedTheme("parish", "southport"), "southport");
+  assert.equal(resolvedTheme("pilgrim", "southport"), "gc-pilgrim");
+  assert.equal(resolvedTheme("traditional", "southport"), "traditional");
+
+  const values = new Map([[OBSOLETE_APPEARANCE_STORAGE_KEY, "dark"]]);
+  const storage = {
+    getItem: (key) => values.get(key) ?? null,
+    setItem: (key, value) => values.set(key, value),
+    removeItem: (key) => values.delete(key),
+  };
+  assert.deepEqual(readPreferences(storage), {
+    theme: "parish",
+    liturgicalDetail: "rich",
+  });
+  assert.equal(values.has(OBSOLETE_APPEARANCE_STORAGE_KEY), false);
+  savePreferences(storage, {
+    theme: "traditional",
+    liturgicalDetail: "simple",
+  });
+  assert.equal(values.get(THEME_STORAGE_KEY), "traditional");
+  assert.equal(values.get(LITURGICAL_DETAIL_STORAGE_KEY), "simple");
+  assert.deepEqual(readPreferences(storage), {
+    theme: "traditional",
+    liturgicalDetail: "simple",
+  });
+});
+
+test("settings page and filters use their distinct navigation surfaces", () => {
+  assert.match(indexSource, /href="#settings" data-page="settings">Settings/);
+  assert.match(indexSource, /data-page-panel="settings"/);
+  assert.match(indexSource, /name="theme" value="parish"/);
+  assert.match(indexSource, /name="theme" value="pilgrim"/);
+  assert.match(indexSource, /name="theme" value="traditional"/);
+  assert.match(indexSource, /name="liturgical-detail" value="simple"/);
+  assert.match(indexSource, /name="liturgical-detail" value="rich"/);
+  assert.doesNotMatch(indexSource, /name="appearance"/);
+  assert.match(indexSource, /id="filters-title">Filters/);
+  assert.match(indexSource, /aria-label="Open filters"/);
+  assert.doesNotMatch(indexSource, /aria-label="Open settings"/);
+  assert.match(appSource, /\["about", "settings"\]\.includes\(page\)/);
+  assert.match(indexSource, /gc-pilgrim-theme/);
+  assert.match(indexSource, /gc-pilgrim-appearance/);
+  assert.match(appSource, /showRichLiturgicalInformation/);
+  assert.match(appSource, /confession: "Reconciliation \(Confession\)"/);
+  assert.match(appSource, /primary\.textContent = "Reconciliation"/);
+  assert.match(appSource, /secondary\.textContent = "\(Confession\)"/);
+  assert.match(appSource, /event-service-confession/);
+  assert.match(appSource, /richLiturgicalInformation[\s\S]*event\.liturgical\?\.observance/);
+  assert.match(appSource, /richLiturgicalInformation[\s\S]*event\.liturgical\?\.rank/);
+  assert.match(appSource, /event\.associated_devotions/);
+  assert.match(stylesSource, /\.settings-navigation-link\s*\{\s*margin-left: auto;/);
+  assert.match(stylesSource, /data-theme="traditional"/);
+  assert.match(stylesSource, /--rubric-red: #b8262e/);
+  assert.match(stylesSource, /\.event-heading\s*\{[\s\S]*grid-template-columns: minmax\(0, 1fr\) auto/);
+  assert.match(stylesSource, /\.event-service\s*\{[\s\S]*justify-self: end/);
+  assert.match(stylesSource, /\.event-service-confession/);
+  assert.doesNotMatch(stylesSource, /data-appearance|prefers-color-scheme/);
+  assert.doesNotMatch(appSource, /data\\.appearance|darkAppearance|resolvedAppearance/);
+});
+
+test("web app metadata and mascot icons are publishable", async () => {
+  assert.equal(manifest.name, "GC Pilgrim");
+  assert.equal(manifest.short_name, "GC Pilgrim");
+  assert.equal(manifest.start_url, "./");
+  assert.equal(manifest.scope, "./");
+  assert.equal(manifest.display, "standalone");
+  assert.ok(manifest.icons.some((icon) => icon.sizes === "192x192"));
+  assert.ok(manifest.icons.some((icon) => icon.sizes === "512x512"));
+  assert.ok(manifest.icons.some((icon) => icon.purpose === "maskable"));
+  assert.match(indexSource, /rel="manifest" href="manifest\.webmanifest"/);
+  assert.match(indexSource, /rel="apple-touch-icon" href="assets\/apple-touch-icon\.png"/);
+  assert.match(indexSource, /apple-mobile-web-app-title" content="GC Pilgrim"/);
+  assert.doesNotMatch(indexSource, /Add to Home Screen|Install GC Pilgrim/);
+
+  const pngSize = async (path) => {
+    const image = await readFile(new URL(path, import.meta.url));
+    return [image.readUInt32BE(16), image.readUInt32BE(20)];
+  };
+  assert.deepEqual(await pngSize("../app/assets/app-icon-192.png"), [192, 192]);
+  assert.deepEqual(await pngSize("../app/assets/app-icon-512.png"), [512, 512]);
+  assert.deepEqual(await pngSize("../app/assets/app-icon-maskable-512.png"), [512, 512]);
+  assert.deepEqual(await pngSize("../app/assets/apple-touch-icon.png"), [180, 180]);
+  assert.deepEqual(await pngSize("../app/assets/favicon-32.png"), [32, 32]);
 });
 
 test("Nerang branding uses the supplied full parish asset", async () => {

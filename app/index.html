@@ -3,10 +3,27 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta id="theme-color" name="theme-color" content="#ffffff">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="GC Pilgrim">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <title>GC Pilgrim</title>
-  <link rel="stylesheet" href="styles.css?v=33">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+  <link rel="stylesheet" href="styles.css?v=37">
+  <script>
+    (() => {
+      const themes = ["parish", "pilgrim", "traditional"];
+      const savedTheme = localStorage.getItem("gc-pilgrim-theme");
+      const theme = themes.includes(savedTheme) ? savedTheme : "parish";
+      localStorage.removeItem("gc-pilgrim-appearance");
+      document.documentElement.dataset.themeChoice = theme;
+    })();
+  </script>
 </head>
-<body data-theme="spcp">
+<body data-theme="spcp" data-theme-choice="parish">
   <header class="page-header">
     <div class="header-branding">
       <img
@@ -57,30 +74,31 @@
       <nav id="site-navigation" class="site-navigation" aria-label="Primary navigation">
         <a class="navigation-link" href="#calendar" data-page="calendar" aria-current="page">Calendar</a>
         <a id="about-navigation-link" class="navigation-link" href="#about" data-page="about">About the Parish</a>
+        <a class="navigation-link settings-navigation-link" href="#settings" data-page="settings">Settings</a>
       </nav>
     </div>
   </header>
 
   <main id="calendar-page" class="page-shell" data-page-panel="calendar">
-    <div id="settings-backdrop" class="settings-backdrop" hidden></div>
+    <div id="filters-backdrop" class="filters-backdrop" hidden></div>
     <aside
       id="filters"
       class="filters filters-collapsed"
-      aria-labelledby="settings-title"
+      aria-labelledby="filters-title"
     >
       <div class="filters-heading">
-        <h2 id="settings-title">Settings</h2>
+        <h2 id="filters-title">Filters</h2>
         <div class="filters-heading-actions">
           <button class="text-button" type="button" data-show-all>Clear filters</button>
-          <button id="settings-close" class="settings-close" type="button" aria-label="Close settings">&times;</button>
+          <button id="filters-close" class="filters-close" type="button" aria-label="Close filters">&times;</button>
         </div>
       </div>
 
       <div id="filters-content">
         <button class="mobile-show-all" type="button" data-show-all>Clear filters</button>
 
-        <div class="settings-view">
-          <p class="settings-label">Calendar view</p>
+        <div class="filter-view">
+          <p class="filter-label">Calendar view</p>
           <div class="view-switcher" role="tablist" aria-label="Calendar view">
             <button
               id="view-daily"
@@ -155,9 +173,11 @@
           type="button"
           aria-expanded="false"
           aria-controls="filters"
-          aria-label="Open settings"
+          aria-label="Open filters"
         >
-          <span class="settings-icon" aria-hidden="true">&#9881;</span>
+          <svg class="filter-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M4 6h16M7 12h10M10 18h4"/>
+          </svg>
         </button>
         <h2 class="results-summary">
           <span id="results-context">Weekly</span>
@@ -240,6 +260,50 @@
     </div>
   </main>
 
+  <main id="settings-page" class="settings-page" data-page-panel="settings" hidden>
+    <header class="settings-introduction">
+      <p class="eyebrow">Your experience</p>
+      <h2>Settings</h2>
+      <p>Choose how GC Pilgrim looks on this device.</p>
+    </header>
+
+    <div class="settings-grid">
+      <fieldset class="settings-card">
+        <legend>Theme</legend>
+        <p class="settings-description">Use parish branding, the GC Pilgrim identity, or a traditional missal-inspired design.</p>
+        <div class="choice-list">
+          <label class="choice-option">
+            <input type="radio" name="theme" value="parish">
+            <span><strong>Parish</strong><small>Match the selected parish</small></span>
+          </label>
+          <label class="choice-option">
+            <input type="radio" name="theme" value="pilgrim">
+            <span><strong>Pilgrim</strong><small>Always use the GC Pilgrim theme</small></span>
+          </label>
+          <label class="choice-option">
+            <input type="radio" name="theme" value="traditional">
+            <span><strong>Traditional</strong><small>A refined missal-inspired theme</small></span>
+          </label>
+        </div>
+      </fieldset>
+
+      <fieldset class="settings-card">
+        <legend>Liturgical information</legend>
+        <p class="settings-description">Choose how much liturgical context appears with calendar events.</p>
+        <div class="choice-list">
+          <label class="choice-option">
+            <input type="radio" name="liturgical-detail" value="simple">
+            <span><strong>Simple</strong><small>Hide observances and liturgical ranks</small></span>
+          </label>
+          <label class="choice-option">
+            <input type="radio" name="liturgical-detail" value="rich">
+            <span><strong>Rich</strong><small>Show observances and liturgical ranks</small></span>
+          </label>
+        </div>
+      </fieldset>
+    </div>
+  </main>
+
   <template id="event-template">
     <article class="event-card">
       <div class="event-details">
@@ -258,6 +322,6 @@
     </article>
   </template>
 
-  <script type="module" src="app.js?v=39"></script>
+  <script type="module" src="app.js?v=42"></script>
 </body>
 </html>

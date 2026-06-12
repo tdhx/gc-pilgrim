@@ -17,6 +17,12 @@ import {
   startOfSundayWeek,
   validateRegistry,
 } from "./web/calendar-core.js?v=8";
+import {
+  readPreferences,
+  resolvedTheme,
+  savePreferences,
+  showRichLiturgicalInformation,
+} from "./web/theme-preferences.js?v=2";
 
 const FEED_ROOT = "feeds/v1";
 const DEFAULT_EVENT_TYPES = ["mass", "confession"];
@@ -39,13 +45,15 @@ const state = {
   useDefaultEventTypes: true,
   view: "weekly",
   pendingView: null,
-  settingsScrollY: null,
+  filtersScrollY: null,
   weekStart: null,
   month: null,
   selectedMonthDate: null,
   dailyDaysVisible: 7,
   parishName: null,
   isAggregate: false,
+  parishTheme: "gc-pilgrim",
+  preferences: readPreferences(window.localStorage),
 };
 
 const elements = {
@@ -56,8 +64,8 @@ const elements = {
   filters: document.querySelector("#filters"),
   filtersContent: document.querySelector("#filters-content"),
   filtersToggle: document.querySelector("#filters-toggle"),
-  settingsBackdrop: document.querySelector("#settings-backdrop"),
-  settingsClose: document.querySelector("#settings-close"),
+  filtersBackdrop: document.querySelector("#filters-backdrop"),
+  filtersClose: document.querySelector("#filters-close"),
   churchFilters: document.querySelector("#church-filters"),
   presiderFilters: document.querySelector("#presider-filters"),
   showAllButtons: [...document.querySelectorAll("[data-show-all]")],
@@ -96,6 +104,11 @@ const elements = {
   selectedRegionName: document.querySelector("#selected-region-name"),
   parishTagline: document.querySelector("#parish-tagline"),
   parishSelector: document.querySelector("#parish-selector"),
+  themeChoices: [...document.querySelectorAll('input[name="theme"]')],
+  liturgicalDetailChoices: [
+    ...document.querySelectorAll('input[name="liturgical-detail"]'),
+  ],
+  themeColor: document.querySelector("#theme-color"),
 };
 const mobileLayout = window.matchMedia("(max-width: 800px)");
 
@@ -152,8 +165,22 @@ function closeNavigation() {
   elements.siteNavigation.classList.remove("navigation-open");
 }
 
+function applyThemePreferences() {
+  const theme = resolvedTheme(state.preferences.theme, state.parishTheme);
+  document.documentElement.dataset.themeChoice = state.preferences.theme;
+  document.body.dataset.themeChoice = state.preferences.theme;
+  document.body.dataset.theme = theme;
+  elements.themeColor.content = theme === "traditional" ? "#F0EBDE" : "#ffffff";
+  elements.themeChoices.forEach((input) => {
+    input.checked = input.value === state.preferences.theme;
+  });
+  elements.liturgicalDetailChoices.forEach((input) => {
+    input.checked = input.value === state.preferences.liturgicalDetail;
+  });
+}
+
 function showPage(page) {
-  const selectedPage = page === "about" ? "about" : "calendar";
+  const selectedPage = ["about", "settings"].includes(page) ? page : "calendar";
   elements.pagePanels.forEach((panel) => {
     panel.hidden = panel.dataset.pagePanel !== selectedPage;
   });
@@ -162,18 +189,23 @@ function showPage(page) {
     else link.removeAttribute("aria-current");
   });
   const aboutTitle = state.isAggregate ? "About GC Pilgrim" : "About the Parish";
-  elements.pageTitle.textContent = selectedPage === "about" ? aboutTitle : "Calendar";
-  const sectionTitle = selectedPage === "about" ? aboutTitle : "Calendar";
+  const sectionTitle = selectedPage === "about"
+    ? aboutTitle
+    : selectedPage === "settings" ? "Settings" : "Calendar";
+  elements.pageTitle.textContent = sectionTitle;
   document.title = state.parishName
     ? `${sectionTitle} · ${state.parishName} · GC Pilgrim`
-    : selectedPage === "about" ? "About GC Pilgrim" : "GC Pilgrim";
+    : selectedPage === "about" ? "About GC Pilgrim"
+    : selectedPage === "settings" ? "Settings · GC Pilgrim"
+    : "GC Pilgrim";
   closeNavigation();
   window.scrollTo({ top: 0, behavior: "auto" });
   updateStickyOffset();
 }
 
 function currentPageFromHash() {
-  return window.location.hash === "#about" ? "about" : "calendar";
+  const page = window.location.hash.slice(1);
+  return ["about", "settings"].includes(page) ? page : "calendar";
 }
 
 function displayHours(value) {
@@ -200,7 +232,8 @@ function renderParish(parish) {
   elements.brandLogo.alt = parish.name;
   elements.aboutLogo.src = parish.branding?.logo || "assets/gc-pilgrim.svg";
   elements.aboutLogo.alt = `${parish.name} logo`;
-  document.body.dataset.theme = parish.branding?.theme || "gc-pilgrim";
+  state.parishTheme = parish.branding?.theme || "gc-pilgrim";
+  applyThemePreferences();
 
   const contact = parish.contact || {};
   const office = parish.office || {};
@@ -307,7 +340,8 @@ function renderAggregateAbout(aggregateView, parishes) {
   elements.aboutLogo.alt = "GC Pilgrim mascot";
   elements.selectedRegionName.textContent = "All Gold Coast";
   elements.selectedRegionName.hidden = false;
-  document.body.dataset.theme = "gc-pilgrim";
+  state.parishTheme = "gc-pilgrim";
+  applyThemePreferences();
 
   const appCard = document.createElement("section");
   appCard.className = "about-card";
@@ -315,9 +349,9 @@ function renderAggregateAbout(aggregateView, parishes) {
     <p class="about-card-label">About the app</p>
     <h3>A shared Catholic calendar</h3>
     <p class="about-card-copy">
-      GC Pilgrim brings together public schedules from participating Catholic
+      GC Pilgrim brings together public schedules from Gold Coast Catholic
       parishes. Choose a parish for its own calendar and contact details, or
-      use Gold Coast wide to explore every available event in one place.
+      All Gold Coast to explore every available event in one place.
     </p>
   `;
 
@@ -358,10 +392,23 @@ function renderAggregateAbout(aggregateView, parishes) {
 function eventTypeLabel(value) {
   return {
     baptism: "Baptisms",
-    confession: "Reconciliation",
+    confession: "Reconciliation (Confession)",
     multicultural: "Multicultural Masses",
     community: "Parish Life",
   }[value] || titleCase(value);
+}
+
+function renderServiceTag(element, event) {
+  if (event.event_type !== "confession") {
+    element.textContent = event.service_name;
+    return;
+  }
+  const primary = document.createElement("span");
+  const secondary = document.createElement("span");
+  primary.textContent = "Reconciliation";
+  secondary.textContent = "(Confession)";
+  element.classList.add("event-service-confession");
+  element.replaceChildren(primary, secondary);
 }
 
 function multiculturalSubtype(event) {
@@ -733,7 +780,7 @@ function renderCard(event) {
   setPastState(card, eventHasEnded(event));
 
   card.querySelector(".event-church").textContent = displayChurch(event.church);
-  card.querySelector(".event-service").textContent = event.service_name;
+  renderServiceTag(card.querySelector(".event-service"), event);
   const parish = card.querySelector(".event-parish");
   parish.textContent = event.parish_name || "";
   parish.hidden = !state.isAggregate || !parish.textContent;
@@ -742,12 +789,21 @@ function renderCard(event) {
   presider.textContent = event.presiders.map(displayPresider).join(", ");
   presider.hidden = !presider.textContent;
   const subtitle = card.querySelector(".event-subtitle");
-  const observance = event.liturgical?.observance;
+  const richLiturgicalInformation = showRichLiturgicalInformation(
+    state.preferences.liturgicalDetail,
+  );
+  const observance = richLiturgicalInformation
+    ? event.liturgical?.observance
+    : "";
   subtitle.textContent = observance && observance !== event.service_name ? observance : "";
   subtitle.hidden = !subtitle.textContent;
 
   const tags = card.querySelector(".event-tags");
-  if (event.liturgical?.rank && event.liturgical.rank !== "Sunday") {
+  if (
+    richLiturgicalInformation
+    && event.liturgical?.rank
+    && event.liturgical.rank !== "Sunday"
+  ) {
     tags.append(makeTag(event.liturgical.rank));
   }
   (event.associated_devotions || []).forEach((devotion) => {
@@ -1011,12 +1067,12 @@ function updatePeriodNavigation() {
     elements.previousPeriods.forEach((button) => {
       button.disabled = !weekIntersectsCoverage(previous, state.feed.coverage);
       button.setAttribute("aria-label", "Show previous week");
-      button.textContent = "\u2039 Previous";
+      button.textContent = "\u2039 Previous week";
     });
     elements.nextPeriods.forEach((button) => {
       button.disabled = !weekIntersectsCoverage(next, state.feed.coverage);
       button.setAttribute("aria-label", "Show next week");
-      button.textContent = "Next \u203a";
+      button.textContent = "Next week \u203a";
     });
     const footerPrevious = elements.events.querySelector('[data-period-action="previous"]');
     const footerNext = elements.events.querySelector('[data-period-action="next"]');
@@ -1210,59 +1266,59 @@ function updateStickyOffset() {
   document.documentElement.style.setProperty("--results-header-height", `${resultsHeaderHeight}px`);
 }
 
-function setSettingsExpanded(expanded) {
+function setFiltersExpanded(expanded) {
   if (!isMobileLayout()) {
     elements.filtersToggle.setAttribute("aria-expanded", "true");
     elements.filtersContent.hidden = false;
     elements.filters.classList.remove("filters-collapsed");
-    elements.settingsBackdrop.hidden = true;
-    document.body.classList.remove("settings-open");
+    elements.filtersBackdrop.hidden = true;
+    document.body.classList.remove("filters-open");
     document.body.style.top = "";
     return;
   }
 
   const openingScrollY = expanded ? window.scrollY : null;
   elements.filtersToggle.setAttribute("aria-expanded", String(expanded));
-  elements.filtersToggle.setAttribute("aria-label", expanded ? "Close settings" : "Open settings");
+  elements.filtersToggle.setAttribute("aria-label", expanded ? "Close filters" : "Open filters");
   elements.filtersContent.hidden = !expanded;
   elements.filters.classList.toggle("filters-collapsed", !expanded);
-  elements.settingsBackdrop.hidden = !expanded;
+  elements.filtersBackdrop.hidden = !expanded;
   if (expanded) {
     state.pendingView = state.view;
-    state.settingsScrollY = openingScrollY;
+    state.filtersScrollY = openingScrollY;
     syncViewButtons(state.pendingView);
     document.body.style.top = `-${openingScrollY}px`;
-    document.body.classList.add("settings-open");
-    elements.settingsClose.focus();
+    document.body.classList.add("filters-open");
+    elements.filtersClose.focus();
   } else {
     const pendingView = state.pendingView;
-    const settingsScrollY = state.settingsScrollY ?? window.scrollY;
-    document.body.classList.remove("settings-open");
+    const filtersScrollY = state.filtersScrollY ?? window.scrollY;
+    document.body.classList.remove("filters-open");
     document.body.style.top = "";
-    window.scrollTo({ top: settingsScrollY, behavior: "auto" });
+    window.scrollTo({ top: filtersScrollY, behavior: "auto" });
     const changed = pendingView && pendingView !== state.view;
-    if (changed) applyView(pendingView, settingsScrollY);
+    if (changed) applyView(pendingView, filtersScrollY);
     else {
       state.pendingView = null;
       syncViewButtons(state.view);
     }
-    state.settingsScrollY = null;
-    if (document.activeElement === elements.settingsClose) elements.filtersToggle.focus();
+    state.filtersScrollY = null;
+    if (document.activeElement === elements.filtersClose) elements.filtersToggle.focus();
   }
 }
 
-function updateResponsiveSettings() {
+function updateResponsiveFilters() {
   const mobile = isMobileLayout();
   elements.filtersToggle.hidden = !mobile;
-  elements.settingsClose.hidden = !mobile;
+  elements.filtersClose.hidden = !mobile;
   if (mobile) {
     elements.filters.setAttribute("role", "dialog");
     elements.filters.setAttribute("aria-modal", "true");
-    setSettingsExpanded(false);
+    setFiltersExpanded(false);
   } else {
     elements.filters.removeAttribute("role");
     elements.filters.removeAttribute("aria-modal");
-    setSettingsExpanded(true);
+    setFiltersExpanded(true);
     if (state.feed && state.pendingView && state.pendingView !== state.view) {
       applyView(state.pendingView);
     } else {
@@ -1382,10 +1438,10 @@ elements.showAllButtons.forEach((button) => {
   });
 });
 elements.filtersToggle.addEventListener("click", () => {
-  setSettingsExpanded(elements.filtersToggle.getAttribute("aria-expanded") !== "true");
+  setFiltersExpanded(elements.filtersToggle.getAttribute("aria-expanded") !== "true");
 });
-elements.settingsClose.addEventListener("click", () => setSettingsExpanded(false));
-elements.settingsBackdrop.addEventListener("click", () => setSettingsExpanded(false));
+elements.filtersClose.addEventListener("click", () => setFiltersExpanded(false));
+elements.filtersBackdrop.addEventListener("click", () => setFiltersExpanded(false));
 document.addEventListener("keydown", (event) => {
   if (event.key === "Escape" && elements.parishSelectorToggle.getAttribute("aria-expanded") === "true") {
     closeParishSelector();
@@ -1398,7 +1454,7 @@ document.addEventListener("keydown", (event) => {
     return;
   }
   if (event.key === "Escape" && elements.filtersToggle.getAttribute("aria-expanded") === "true") {
-    setSettingsExpanded(false);
+    setFiltersExpanded(false);
   }
 });
 elements.parishSelectorToggle.addEventListener("click", () => {
@@ -1422,6 +1478,20 @@ elements.navigationToggle.addEventListener("click", () => {
 });
 elements.navigationLinks.forEach((link) => {
   link.addEventListener("click", () => showPage(link.dataset.page));
+});
+elements.themeChoices.forEach((input) => {
+  input.addEventListener("change", () => {
+    state.preferences.theme = input.value;
+    savePreferences(window.localStorage, state.preferences);
+    applyThemePreferences();
+  });
+});
+elements.liturgicalDetailChoices.forEach((input) => {
+  input.addEventListener("change", () => {
+    state.preferences.liturgicalDetail = input.value;
+    savePreferences(window.localStorage, state.preferences);
+    if (state.feed) renderEvents();
+  });
 });
 window.addEventListener("hashchange", () => showPage(currentPageFromHash()));
 elements.resultsToday.addEventListener("click", () => {
@@ -1451,11 +1521,12 @@ elements.nextPeriods.forEach((button) => {
   button.addEventListener("click", () => navigatePeriod("next", isMobileLayout()));
 });
 
-updateResponsiveSettings();
+applyThemePreferences();
+updateResponsiveFilters();
 showPage(currentPageFromHash());
 updateStickyOffset();
 window.addEventListener("resize", updateStickyOffset);
-mobileLayout.addEventListener("change", updateResponsiveSettings);
+mobileLayout.addEventListener("change", updateResponsiveFilters);
 window.setInterval(updatePastStates, 30_000);
 document.addEventListener("visibilitychange", () => {
   if (!document.hidden) updatePastStates();

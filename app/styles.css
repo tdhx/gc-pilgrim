@@ -4,6 +4,8 @@
   --muted: #607987;
   --paper: #f3f8fa;
   --surface: #ffffff;
+  --surface-raised: rgba(255, 255, 255, 0.92);
+  --surface-soft: #eef4f6;
   --line: #d4e3e9;
   --accent: #ee8b22;
   --accent-strong: #d76f08;
@@ -13,6 +15,13 @@
   --blue-soft: #e3f2f8;
   --focus-ring: rgba(0, 117, 169, 0.18);
   --shadow: 0 14px 38px rgba(0, 73, 107, 0.1);
+  --shadow-soft: 0 6px 18px rgba(0, 73, 107, 0.06);
+  --header-surface: rgba(255, 255, 255, 0.96);
+  --hover-surface: var(--blue-soft);
+  --on-theme: #ffffff;
+  --event-overlay-start: rgba(255, 255, 255, 0.98);
+  --event-overlay-middle: rgba(255, 255, 255, 0.94);
+  --event-overlay-end: rgba(255, 255, 255, 0.48);
 }
 
 body[data-theme="spcp"] {
@@ -69,6 +78,35 @@ body[data-theme="gc-pilgrim"] {
   --theme-bar-context: #ffd29e;
 }
 
+body[data-theme="traditional"] {
+  --rubric-red: #b8262e;
+  --ink: #382b1f;
+  --muted: #61523b;
+  --paper: #f0ebde;
+  --surface: #f9f5eb;
+  --surface-raised: rgba(249, 245, 235, 0.96);
+  --surface-soft: #e8e0cf;
+  --line: rgba(84, 61, 41, 0.18);
+  --accent: #8a784c;
+  --accent-strong: var(--rubric-red);
+  --accent-soft: #f3dddd;
+  --blue-soft: #f3dddd;
+  --theme-primary: var(--rubric-red);
+  --theme-primary-deep: #382b1f;
+  --theme-highlight: #8a784c;
+  --theme-highlight-soft: #e9dfc7;
+  --theme-bar-gradient: #543d29;
+  --theme-bar-context: #f0e0ad;
+  --focus-ring: rgba(184, 38, 46, 0.24);
+  --shadow: 0 14px 34px rgba(56, 43, 31, 0.1);
+  --shadow-soft: 0 6px 16px rgba(56, 43, 31, 0.08);
+  --header-surface: rgba(249, 245, 235, 0.97);
+  --hover-surface: #f3dddd;
+  --event-overlay-start: rgba(249, 245, 235, 0.99);
+  --event-overlay-middle: rgba(249, 245, 235, 0.96);
+  --event-overlay-end: rgba(249, 245, 235, 0.74);
+}
+
 * {
   box-sizing: border-box;
 }
@@ -84,7 +122,7 @@ body {
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
-body.settings-open {
+body.filters-open {
   position: fixed;
   width: 100%;
   overflow: hidden;
@@ -109,8 +147,8 @@ button {
   width: 100%;
   padding: 4px clamp(20px, 4vw, 56px);
   border-bottom: 3px solid var(--theme-highlight);
-  background: rgba(255, 255, 255, 0.96);
-  box-shadow: 0 8px 24px rgba(0, 73, 107, 0.1);
+  background: var(--header-surface);
+  box-shadow: var(--shadow-soft);
   backdrop-filter: blur(14px);
 }
 
@@ -153,7 +191,7 @@ button {
 
 .parish-selector-toggle:hover,
 .parish-selector-toggle[aria-expanded="true"] {
-  background: var(--blue-soft);
+  background: var(--hover-surface);
 }
 
 .parish-logo {
@@ -219,7 +257,7 @@ button {
 .parish-selector-option:hover,
 .parish-selector-option:focus-visible,
 .parish-selector-option[aria-checked="true"] {
-  background: var(--blue-soft);
+  background: var(--hover-surface);
 }
 
 .header-copy {
@@ -238,6 +276,7 @@ button {
 
 .site-navigation {
   display: flex;
+  width: 100%;
   align-items: center;
   gap: 8px;
 }
@@ -252,12 +291,16 @@ button {
 }
 
 .navigation-link:hover {
-  background: var(--blue-soft);
+  background: var(--hover-surface);
 }
 
 .navigation-link[aria-current="page"] {
   background: var(--theme-primary);
-  color: #ffffff;
+  color: var(--on-theme);
+}
+
+.settings-navigation-link {
+  margin-left: auto;
 }
 
 .navigation-toggle {
@@ -312,7 +355,7 @@ h1 {
   padding: 20px;
   border: 1px solid var(--line);
   border-radius: 20px;
-  background: rgba(255, 255, 255, 0.9);
+  background: var(--surface-raised);
   box-shadow: var(--shadow);
   backdrop-filter: blur(12px);
 }
@@ -321,7 +364,7 @@ h1 {
   display: block;
 }
 
-.settings-backdrop {
+.filters-backdrop {
   display: none;
 }
 
@@ -359,12 +402,16 @@ h1 {
   font-weight: 750;
 }
 
-.settings-icon {
-  display: block;
-  line-height: 1;
+.filter-icon {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-width: 2;
 }
 
-.settings-close {
+.filters-close {
   display: none;
   width: 30px;
   height: 30px;
@@ -395,12 +442,12 @@ h1 {
   display: none;
 }
 
-.settings-view {
+.filter-view {
   margin-top: 18px;
   padding-bottom: 14px;
 }
 
-.settings-label {
+.filter-label {
   margin-bottom: 8px;
   color: var(--ink);
   font-size: 0.78rem;
@@ -576,11 +623,11 @@ legend {
   padding: 4px;
   border: 1px solid var(--line);
   border-radius: 12px;
-  background: rgba(255, 255, 255, 0.82);
-  box-shadow: 0 6px 18px rgba(0, 73, 107, 0.06);
+  background: var(--surface-raised);
+  box-shadow: var(--shadow-soft);
 }
 
-.settings-view .view-switcher {
+.filter-view .view-switcher {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   width: 100%;
@@ -598,7 +645,7 @@ legend {
   font-weight: 750;
 }
 
-.settings-view .view-button {
+.filter-view .view-button {
   min-width: 0;
   padding-right: 8px;
   padding-left: 8px;
@@ -612,7 +659,7 @@ legend {
 
 .view-button[aria-selected="true"] {
   background: var(--theme-primary);
-  color: #ffffff;
+  color: var(--on-theme);
 }
 
 .view-button:focus-visible,
@@ -702,7 +749,7 @@ legend {
   border: 1px solid var(--line);
   background: var(--surface);
   color: var(--theme-primary-deep);
-  box-shadow: 0 6px 18px rgba(0, 73, 107, 0.06);
+  box-shadow: var(--shadow-soft);
 }
 
 .desktop-period-navigation .period-button:hover:not(:disabled) {
@@ -813,7 +860,7 @@ legend {
   border: 1px solid var(--line);
   background: var(--surface);
   color: var(--theme-primary-deep);
-  box-shadow: 0 6px 18px rgba(0, 73, 107, 0.06);
+  box-shadow: var(--shadow-soft);
 }
 
 .week-day {
@@ -823,7 +870,7 @@ legend {
 .week-day.is-today .day-heading {
   padding: 5px 8px;
   border-radius: 7px 7px 0 0;
-  background: color-mix(in srgb, var(--theme-highlight-soft) 68%, white);
+  background: color-mix(in srgb, var(--theme-highlight-soft) 78%, var(--surface));
 }
 
 .empty-day {
@@ -852,7 +899,7 @@ legend {
 
 .month-weekday {
   padding: 10px 7px;
-  background: var(--theme-primary-deep);
+  background: var(--theme-bar-gradient);
   color: #ffffff;
   font-size: 0.74rem;
   font-weight: 800;
@@ -892,7 +939,7 @@ button.month-day:hover {
 }
 
 .month-day-blank {
-  background: #eef4f6;
+  background: var(--surface-soft);
 }
 
 .month-day-number {
@@ -973,13 +1020,13 @@ button.month-day:hover {
   border: 1px solid var(--line);
   border-radius: 16px;
   background: var(--surface);
-  box-shadow: 0 8px 24px rgba(0, 73, 107, 0.07);
+  box-shadow: var(--shadow-soft);
   transition: border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
 }
 
 .event-card:hover {
-  border-color: #bad4df;
-  box-shadow: 0 13px 30px rgba(0, 73, 107, 0.12);
+  border-color: var(--theme-primary);
+  box-shadow: var(--shadow);
   transform: translateY(-1px);
 }
 
@@ -1049,10 +1096,10 @@ button.month-day:hover {
   z-index: -1;
   background: linear-gradient(
     90deg,
-    rgba(255, 255, 255, 0.98) 0%,
-    rgba(255, 255, 255, 0.94) 45%,
-    rgba(255, 255, 255, 0.72) 72%,
-    rgba(255, 255, 255, 0.48) 100%
+    var(--event-overlay-start) 0%,
+    var(--event-overlay-middle) 45%,
+    color-mix(in srgb, var(--event-overlay-middle) 78%, transparent) 72%,
+    var(--event-overlay-end) 100%
   );
 }
 
@@ -1096,9 +1143,9 @@ button.month-day:hover {
 }
 
 .event-heading {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: start;
   gap: 6px 10px;
   margin-bottom: 3px;
 }
@@ -1121,6 +1168,7 @@ button.month-day:hover {
 }
 
 .event-service {
+  justify-self: end;
   padding: 3px 8px;
   border-radius: 999px;
   background: var(--blue-soft);
@@ -1128,7 +1176,22 @@ button.month-day:hover {
   font-size: 0.67rem;
   font-weight: 800;
   letter-spacing: 0.06em;
+  line-height: 1.15;
+  text-align: center;
   text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.event-service-confession {
+  display: grid;
+  gap: 1px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-radius: 10px;
+}
+
+.event-service-confession span {
+  display: block;
 }
 
 .event-parish {
@@ -1232,7 +1295,7 @@ button.month-day:hover {
   padding: clamp(20px, 3vw, 28px);
   border: 1px solid var(--line);
   border-radius: 20px;
-  background: rgba(255, 255, 255, 0.92);
+  background: var(--surface-raised);
   box-shadow: var(--shadow);
 }
 
@@ -1355,6 +1418,190 @@ button.month-day:hover {
   margin: 0;
   color: var(--ink);
   font-size: 1rem;
+}
+
+.settings-page {
+  width: min(920px, calc(100% - 56px));
+  margin: 0 auto;
+  padding: clamp(32px, 6vw, 68px) 0 76px;
+}
+
+.settings-introduction {
+  max-width: 680px;
+  margin-bottom: 28px;
+}
+
+.settings-introduction h2 {
+  margin-bottom: 10px;
+  color: var(--theme-primary-deep);
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  letter-spacing: -0.04em;
+}
+
+.settings-introduction > p:last-child,
+.settings-description {
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.settings-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.settings-card {
+  padding: clamp(20px, 3vw, 28px);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: var(--surface-raised);
+  box-shadow: var(--shadow);
+}
+
+.settings-card legend {
+  width: auto;
+  padding: 0 8px;
+  color: var(--theme-primary-deep);
+  font-size: 1.3rem;
+  font-weight: 800;
+}
+
+.settings-description {
+  min-height: 3.2em;
+  margin-bottom: 18px;
+}
+
+.choice-list {
+  display: grid;
+  gap: 9px;
+}
+
+.choice-option {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 12px;
+  align-items: center;
+  padding: 13px 14px;
+  border: 1px solid var(--line);
+  border-radius: 13px;
+  background: var(--surface);
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.choice-option:hover {
+  border-color: var(--theme-primary);
+  background: var(--hover-surface);
+}
+
+.choice-option:has(input:checked) {
+  border-color: var(--theme-primary);
+  box-shadow: inset 0 0 0 1px var(--theme-primary);
+}
+
+.choice-option input {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--theme-primary);
+}
+
+.choice-option span,
+.choice-option strong,
+.choice-option small {
+  display: block;
+}
+
+.choice-option small {
+  margin-top: 3px;
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+
+body[data-theme="traditional"] {
+  background: var(--paper);
+  font-family: Georgia, "Times New Roman", ui-serif, serif;
+}
+
+body[data-theme="traditional"] button,
+body[data-theme="traditional"] input,
+body[data-theme="traditional"] .event-time,
+body[data-theme="traditional"] .event-presider,
+body[data-theme="traditional"] .event-subtitle,
+body[data-theme="traditional"] .event-tags,
+body[data-theme="traditional"] .settings-description,
+body[data-theme="traditional"] .choice-option small {
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+body[data-theme="traditional"] .page-header {
+  border-bottom-width: 1px;
+  border-bottom-color: var(--rubric-red);
+}
+
+body[data-theme="traditional"] .results-header {
+  border: 1px solid color-mix(in srgb, var(--rubric-red) 48%, transparent);
+}
+
+body[data-theme="traditional"] .event-card,
+body[data-theme="traditional"] .about-card,
+body[data-theme="traditional"] .settings-card,
+body[data-theme="traditional"] .filters {
+  border-radius: 20px;
+}
+
+body[data-theme="traditional"] .event-card::after {
+  background: var(--event-overlay-start);
+}
+
+body[data-theme="traditional"] .eyebrow,
+body[data-theme="traditional"] .about-card-label,
+body[data-theme="traditional"] .filter-label,
+body[data-theme="traditional"] .filter-toggle {
+  color: var(--rubric-red);
+  font-family: Georgia, "Times New Roman", ui-serif, serif;
+  letter-spacing: 0.13em;
+}
+
+body[data-theme="traditional"] .settings-card legend,
+body[data-theme="traditional"] .day-heading {
+  border-color: var(--rubric-red);
+  color: var(--rubric-red);
+}
+
+body[data-theme="traditional"] .navigation-link[aria-current="page"],
+body[data-theme="traditional"] .view-button[aria-selected="true"],
+body[data-theme="traditional"] .choice-option:has(input:checked) {
+  border-color: var(--rubric-red);
+}
+
+body[data-theme="traditional"] .event-card[data-liturgical-colour="green"],
+body[data-theme="traditional"] .month-event[data-liturgical-colour="green"] {
+  --liturgical-accent: #1f7a4a;
+  border-left-color: #1f7a4a;
+}
+
+body[data-theme="traditional"] .event-card[data-liturgical-colour="violet"],
+body[data-theme="traditional"] .month-event[data-liturgical-colour="violet"] {
+  --liturgical-accent: #61388f;
+  border-left-color: #61388f;
+}
+
+body[data-theme="traditional"] .event-card[data-liturgical-colour="white"],
+body[data-theme="traditional"] .month-event[data-liturgical-colour="white"] {
+  --liturgical-accent: #f0e0ad;
+  border-left-color: #f0e0ad;
+}
+
+body[data-theme="traditional"] .event-card[data-liturgical-colour="red"],
+body[data-theme="traditional"] .month-event[data-liturgical-colour="red"] {
+  --liturgical-accent: #b8262e;
+  border-left-color: #b8262e;
+}
+
+body[data-theme="traditional"] .event-card[data-liturgical-colour="rose"],
+body[data-theme="traditional"] .month-event[data-liturgical-colour="rose"] {
+  --liturgical-accent: #d16182;
+  border-left-color: #d16182;
 }
 
 .primary-site-badge {
@@ -1503,6 +1750,10 @@ button.month-day:hover {
     display: block;
   }
 
+  .settings-navigation-link {
+    margin-left: 0;
+  }
+
   .page-shell {
     grid-template-columns: 1fr;
     gap: 16px;
@@ -1513,7 +1764,10 @@ button.month-day:hover {
     position: fixed;
     inset: 0;
     z-index: 40;
+    width: 100%;
+    height: 100dvh;
     max-height: 100dvh;
+    align-self: stretch;
     overscroll-behavior: contain;
     margin-top: 0;
     padding:
@@ -1531,7 +1785,7 @@ button.month-day:hover {
     display: none;
   }
 
-  .settings-backdrop {
+  .filters-backdrop {
     display: block;
     position: fixed;
     inset: 0;
@@ -1540,7 +1794,7 @@ button.month-day:hover {
     backdrop-filter: blur(2px);
   }
 
-  .settings-close {
+  .filters-close {
     display: grid;
   }
 
@@ -1584,10 +1838,11 @@ button.month-day:hover {
     border: 1px solid var(--line);
     background: var(--surface);
     color: var(--theme-primary-deep);
-    box-shadow: 0 6px 18px rgba(0, 73, 107, 0.06);
+    box-shadow: var(--shadow-soft);
   }
 
-  .about-page {
+  .about-page,
+  .settings-page {
     width: calc(100% - 36px);
     padding-top: 30px;
   }
@@ -1601,8 +1856,13 @@ button.month-day:hover {
   }
 
   .about-grid,
-  .church-list {
+  .church-list,
+  .settings-grid {
     grid-template-columns: 1fr;
+  }
+
+  .settings-description {
+    min-height: 0;
   }
 }
 
