@@ -52,7 +52,7 @@ Python coverage includes:
 - sparse parish metadata
 - annual liturgical coverage
 - status and church-reference failures
-- one-to-one preservation of 260 legacy SPCP records
+- field-for-field preservation of unchanged legacy SPCP records
 
 Node coverage includes:
 

@@ -115,6 +115,28 @@ export function eventsInRange(events, start, end) {
   });
 }
 
+export function dayEventStatus(events, now = Date.now()) {
+  return events.reduce((status, event) => {
+    if (new Date(event.end).getTime() <= now) {
+      status.past += 1;
+    } else {
+      status.upcoming += 1;
+    }
+    return status;
+  }, { past: 0, upcoming: 0 });
+}
+
+export function dayStatusSummary({ past, upcoming }) {
+  if (past && upcoming) return `${past} past \u00b7 ${upcoming} upcoming`;
+  if (past) return `${past} past`;
+  const label = upcoming === 1 ? "event" : "events";
+  return `${upcoming} ${label}`;
+}
+
+export function shouldCollapseWeeklyDay(date, today, status) {
+  return date < today && status.past > 0 && status.upcoming === 0;
+}
+
 export function rangeWithinCoverage(start, end, coverage) {
   return start >= coverage.start && end <= coverage.end;
 }

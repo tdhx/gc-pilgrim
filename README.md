@@ -54,6 +54,7 @@ Refreshing public sources requires network access:
 - [Architecture](docs/architecture.md)
 - [Feed contracts](docs/feeds.md)
 - [Development and testing](docs/development.md)
+- [Publishing](docs/publishing.md)
 - [Adding a parish](docs/adding-a-parish.md)
 - [Operations and deployment](docs/operations.md)
 - [Migration post-mortem](docs/post-mortem.md)

@@ -2,6 +2,8 @@ import {
   addDays,
   addMonths,
   dateFromKey,
+  dayEventStatus,
+  dayStatusSummary,
   eventDateKey,
   eventsInRange,
   liturgicalColour,
@@ -14,9 +16,10 @@ import {
   aggregateCalendars,
   assembleCalendar,
   selectedParishId,
+  shouldCollapseWeeklyDay,
   startOfSundayWeek,
   validateRegistry,
-} from "./web/calendar-core.js?v=8";
+} from "./web/calendar-core.js?v=9";
 import {
   readPreferences,
   resolvedTheme,
@@ -50,6 +53,10 @@ const state = {
   month: null,
   selectedMonthDate: null,
   dailyDaysVisible: 7,
+  collapsedDays: {
+    daily: new Map(),
+    weekly: new Map(),
+  },
   parishName: null,
   isAggregate: false,
   parishTheme: "gc-pilgrim",
@@ -762,6 +769,13 @@ function updatePastStates(now = Date.now()) {
   document.querySelectorAll("[data-event-end]").forEach((element) => {
     setPastState(element, Number(element.dataset.eventEnd) <= now);
   });
+  document.querySelectorAll("[data-day-section]").forEach((section) => {
+    const events = [...section.querySelectorAll("[data-event-end]")].map((element) => ({
+      end: Number(element.dataset.eventEnd),
+    }));
+    const summary = section.querySelector("[data-day-status]");
+    if (summary) summary.textContent = dayStatusSummary(dayEventStatus(events, now));
+  });
 }
 
 function renderCard(event) {
@@ -823,11 +837,30 @@ function eventsByDate(events) {
   }, new Map());
 }
 
-function makeDayHeading(dateKeyValue, compact = false) {
+function makeDayHeading(dateKeyValue, dateEvents, compact, contentId, collapsed) {
   const heading = document.createElement("h3");
   heading.className = compact ? "day-heading day-heading-compact" : "day-heading";
-  heading.textContent = (compact ? shortDayFormatter : dayHeadingFormatter)
+  const toggle = document.createElement("button");
+  toggle.type = "button";
+  toggle.className = "day-heading-toggle";
+  toggle.setAttribute("aria-controls", contentId);
+  toggle.setAttribute("aria-expanded", String(!collapsed));
+
+  const chevron = document.createElement("span");
+  chevron.className = "day-heading-chevron";
+  chevron.setAttribute("aria-hidden", "true");
+
+  const label = document.createElement("span");
+  label.className = "day-heading-label";
+  label.textContent = (compact ? shortDayFormatter : dayHeadingFormatter)
     .format(dateFromKey(dateKeyValue));
+
+  const status = document.createElement("span");
+  status.className = "day-heading-status";
+  status.dataset.dayStatus = "";
+  status.textContent = dayStatusSummary(dayEventStatus(dateEvents));
+  toggle.append(chevron, label, status);
+  heading.append(toggle);
   return heading;
 }
 
@@ -838,6 +871,61 @@ function makeEmptyDayMessage() {
   return message;
 }
 
+function makeDaySection(date, dateEvents, view, compact = false) {
+  const section = document.createElement("section");
+  section.className = view === "weekly" ? "week-day" : "day-section";
+  section.dataset.eventDate = date;
+  section.dataset.daySection = "";
+
+  const collapseState = state.collapsedDays[view];
+  if (!collapseState.has(date)) {
+    const collapsed = view === "weekly"
+      && shouldCollapseWeeklyDay(
+        date,
+        currentBrisbaneDate(),
+        dayEventStatus(dateEvents),
+      );
+    collapseState.set(date, collapsed);
+  }
+
+  const contentId = `${view}-day-events-${date}`;
+  const content = document.createElement("div");
+  content.id = contentId;
+  content.className = "day-events";
+  if (dateEvents.length) {
+    content.append(...dateEvents.map(renderCard));
+  } else {
+    content.append(makeEmptyDayMessage());
+  }
+
+  const heading = makeDayHeading(
+    date,
+    dateEvents,
+    compact,
+    contentId,
+    collapseState.get(date),
+  );
+  const toggle = heading.querySelector(".day-heading-toggle");
+  const applyCollapsed = (collapsed) => {
+    collapseState.set(date, collapsed);
+    section.classList.toggle("is-collapsed", collapsed);
+    toggle.setAttribute("aria-expanded", String(!collapsed));
+    content.hidden = collapsed;
+  };
+  toggle.addEventListener("click", () => {
+    applyCollapsed(toggle.getAttribute("aria-expanded") === "true");
+  });
+  toggle.addEventListener("keydown", (event) => {
+    if (!["Enter", " ", "Spacebar"].includes(event.key)) return;
+    event.preventDefault();
+    applyCollapsed(toggle.getAttribute("aria-expanded") === "true");
+  });
+
+  applyCollapsed(collapseState.get(date));
+  section.append(heading, content);
+  return section;
+}
+
 function renderDaily(events) {
   const start = dailyRangeStart();
   const end = dailyRangeEnd(events, start);
@@ -846,13 +934,9 @@ function renderDaily(events) {
   ) + 1;
   const visible = eventsInRange(events, start, end);
   const grouped = eventsByDate(visible);
-  const sections = [...grouped].map(([date, dateEvents]) => {
-    const section = document.createElement("section");
-    section.className = "day-section";
-    section.dataset.eventDate = date;
-    section.append(makeDayHeading(date), ...dateEvents.map(renderCard));
-    return section;
-  });
+  const sections = [...grouped].map(([date, dateEvents]) => (
+    makeDaySection(date, dateEvents, "daily")
+  ));
 
   const loadMore = document.createElement("button");
   loadMore.type = "button";
@@ -909,16 +993,8 @@ function renderWeekly(events) {
   const sections = Array.from({ length: 7 }, (_, index) => {
     const date = addDays(start, index);
     const dateEvents = grouped.get(date) || [];
-    const section = document.createElement("section");
-    section.className = "week-day";
-    section.dataset.eventDate = date;
+    const section = makeDaySection(date, dateEvents, "weekly", true);
     if (date === currentBrisbaneDate()) section.classList.add("is-today");
-    section.append(makeDayHeading(date, true));
-    if (dateEvents.length) {
-      section.append(...dateEvents.map(renderCard));
-    } else {
-      section.append(makeEmptyDayMessage());
-    }
     return section;
   });
 

@@ -832,7 +832,6 @@ legend {
 
 .day-heading {
   margin: 0;
-  padding: 0 2px 5px;
   border-bottom: 2px solid var(--theme-highlight);
   color: var(--theme-primary-deep);
   font-family: Georgia, "Times New Roman", serif;
@@ -840,8 +839,67 @@ legend {
   font-weight: 600;
 }
 
+.day-heading-toggle {
+  width: 100%;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 8px;
+  padding: 2px 2px 5px;
+  border: 0;
+  border-radius: 6px 6px 0 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+}
+
+.day-heading-toggle:hover {
+  background: color-mix(in srgb, var(--theme-highlight-soft) 45%, transparent);
+}
+
+.day-heading-toggle:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--theme-primary) 48%, transparent);
+  outline-offset: 2px;
+}
+
+.day-heading-chevron {
+  width: 8px;
+  height: 8px;
+  margin-left: 2px;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(45deg) translateY(-2px);
+  transition: transform 160ms ease;
+}
+
+.is-collapsed .day-heading-chevron {
+  transform: rotate(-45deg);
+}
+
+.day-heading-label {
+  min-width: 0;
+}
+
+.day-heading-status {
+  color: var(--muted);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 0.72rem;
+  font-weight: 750;
+  white-space: nowrap;
+}
+
 .day-heading-compact {
   font-size: 1.05rem;
+}
+
+.day-events {
+  display: grid;
+  gap: 9px;
+}
+
+.day-events[hidden] {
+  display: none;
 }
 
 .weekly-view {
@@ -868,9 +926,17 @@ legend {
 }
 
 .week-day.is-today .day-heading {
-  padding: 5px 8px;
   border-radius: 7px 7px 0 0;
   background: color-mix(in srgb, var(--theme-highlight-soft) 78%, var(--surface));
+}
+
+.week-day.is-today .day-heading-toggle {
+  padding: 5px 8px;
+}
+
+.week-day.is-collapsed,
+.day-section.is-collapsed {
+  gap: 0;
 }
 
 .empty-day {
@@ -1922,6 +1988,14 @@ body[data-theme="traditional"] .month-event[data-liturgical-colour="rose"] {
 
   .event-card {
     padding: 12px 14px;
+  }
+
+  .day-heading-toggle {
+    gap: 6px;
+  }
+
+  .day-heading-status {
+    font-size: 0.68rem;
   }
 
   .about-introduction {

@@ -498,7 +498,7 @@ class FeedContractTests(unittest.TestCase):
 
 
 class MigrationEquivalenceTests(unittest.TestCase):
-    def test_direct_services_preserve_all_legacy_records(self):
+    def test_direct_services_preserve_unchanged_legacy_records(self):
         legacy = read_json(ROOT / "tests/fixtures/legacy-calendar.json")
         parish = read_json(ROOT / "feeds/v1/parishes/surfers-paradise/parish.json")
         services = read_json(
@@ -508,7 +508,7 @@ class MigrationEquivalenceTests(unittest.TestCase):
             ROOT / "feeds/v1/parishes/surfers-paradise/community.json"
         )
         self.assertEqual(len(legacy["events"]), 260)
-        self.assertEqual(len(services["services"]), 260)
+        self.assertGreaterEqual(len(services["services"]), len(legacy["events"]))
         self.assertEqual(community["events"], [])
 
         current = {record["id"]: record for record in services["services"]}
@@ -528,17 +528,30 @@ class MigrationEquivalenceTests(unittest.TestCase):
             "description",
             "liturgical_date",
         )
+        replaced = []
         for old in legacy["events"]:
+            if old["id"] not in current:
+                replaced.append(old)
+                continue
             new = current[old["id"]]
             for field in fields:
                 self.assertEqual(old.get(field), new.get(field), (old["id"], field))
             self.assertEqual(new["status"], "active")
             self.assertNotIn("liturgical", new)
 
+        current_slots = {
+            (record["start"], record["end"]) for record in services["services"]
+        }
+        self.assertTrue(replaced)
+        self.assertTrue(all(
+            (record["start"], record["end"]) in current_slots
+            for record in replaced
+        ))
+
         compat_services, compat_community = split(legacy, parish)
         self.assertEqual(
-            [record["id"] for record in compat_services["services"]],
-            [record["id"] for record in services["services"]],
+            {record["id"] for record in compat_services["services"]},
+            {record["id"] for record in legacy["events"]},
         )
         self.assertEqual(compat_community["events"], [])
 

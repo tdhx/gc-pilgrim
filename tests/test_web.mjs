@@ -6,6 +6,8 @@ import {
   addMonths,
   aggregateCalendars,
   assembleCalendar,
+  dayEventStatus,
+  dayStatusSummary,
   eventsInRange,
   liturgicalColour,
   matchesEvent,
@@ -14,6 +16,7 @@ import {
   orderedEventTypes,
   presiderGroups,
   selectedParishId,
+  shouldCollapseWeeklyDay,
   startOfSundayWeek,
   validateCommunity,
   validateLiturgical,
@@ -511,6 +514,46 @@ test("calendar helpers preserve existing ordering and date behaviour", () => {
   assert.equal(monthGrid("2024-02-14").length, 35);
   const events = [{ start: "2026-06-14T07:00:00+10:00" }];
   assert.deepEqual(eventsInRange(events, "2026-06-14", "2026-06-20"), events);
+});
+
+test("day status helpers count and summarize past and upcoming events", () => {
+  const now = new Date("2026-06-13T10:00:00+10:00").getTime();
+  assert.deepEqual(dayEventStatus([
+    { end: "2026-06-13T09:00:00+10:00" },
+    { end: "2026-06-13T10:00:00+10:00" },
+    { end: "2026-06-13T11:00:00+10:00" },
+  ], now), { past: 2, upcoming: 1 });
+  assert.deepEqual(dayEventStatus([
+    { end: "2026-06-14T00:00:00+10:00", all_day: true },
+  ], now), { past: 0, upcoming: 1 });
+  assert.equal(dayStatusSummary({ past: 3, upcoming: 1 }), "3 past \u00b7 1 upcoming");
+  assert.equal(dayStatusSummary({ past: 3, upcoming: 0 }), "3 past");
+  assert.equal(dayStatusSummary({ past: 0, upcoming: 3 }), "3 events");
+  assert.equal(dayStatusSummary({ past: 0, upcoming: 1 }), "1 event");
+  assert.equal(dayStatusSummary({ past: 0, upcoming: 0 }), "0 events");
+});
+
+test("weekly days collapse by default only when an earlier non-empty day is complete", () => {
+  assert.equal(
+    shouldCollapseWeeklyDay("2026-06-12", "2026-06-13", { past: 3, upcoming: 0 }),
+    true,
+  );
+  assert.equal(
+    shouldCollapseWeeklyDay("2026-06-13", "2026-06-13", { past: 3, upcoming: 0 }),
+    false,
+  );
+  assert.equal(
+    shouldCollapseWeeklyDay("2026-06-14", "2026-06-13", { past: 3, upcoming: 0 }),
+    false,
+  );
+  assert.equal(
+    shouldCollapseWeeklyDay("2026-06-12", "2026-06-13", { past: 2, upcoming: 1 }),
+    false,
+  );
+  assert.equal(
+    shouldCollapseWeeklyDay("2026-06-12", "2026-06-13", { past: 0, upcoming: 0 }),
+    false,
+  );
 });
 
 test("church ordering puts primary first then descending postcodes stably", () => {
