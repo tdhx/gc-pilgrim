@@ -8,14 +8,14 @@
   "schema_version": 1,
   "sources": [
     {
-      "name": "Southport published recurring schedule",
+      "name": "Nerang published recurring schedule",
       "status": "baseline",
-      "url": "https://scp.org.au/"
+      "url": "https://stbrigidsparishnerang.org.au/mass-times/"
     },
     {
-      "name": "Southport parish newsletters",
+      "name": "Nerang parish newsletters",
       "status": "future-automation",
-      "url": "https://scp.org.au/newsletters-2026/"
+      "url": "https://stbrigidsparishnerang.org.au/parishnews/"
     }
   ],
   "timezone": "Australia/Brisbane",

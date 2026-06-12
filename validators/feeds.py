@@ -5,6 +5,8 @@ from datetime import date, datetime
 
 SCHEMA_VERSION = 1
 STATUSES = {"active", "cancelled", "modified"}
+CHURCH_STATUSES = {"temporarily-closed"}
+LOCATION_TYPES = {"chaplaincy", "mass-centre", "retirement-community"}
 
 
 def _require(feed, fields, label):
@@ -74,6 +76,10 @@ def validate_parish(feed):
     identifiers = []
     for church in feed["churches"]:
         _require(church, ("id", "name"), "Church")
+        if church.get("status") and church["status"] not in CHURCH_STATUSES:
+            raise ValueError(f"Church {church['id']} has invalid status")
+        if church.get("location_type") and church["location_type"] not in LOCATION_TYPES:
+            raise ValueError(f"Church {church['id']} has invalid location type")
         identifiers.append(church["id"])
     if len(identifiers) != len(set(identifiers)):
         raise ValueError("Parish contains duplicate church IDs")

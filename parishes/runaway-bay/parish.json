@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "id": "runaway-bay",
+  "name": "Holy Family Catholic Parish Runaway Bay",
+  "branding": {
+    "logo": "assets/runaway-bay-logo.png",
+    "theme": "runaway-bay",
+    "tagline": "Serving Runaway Bay, Hope Island and the northern Gold Coast community."
+  },
+  "contact": {
+    "phone": "(07) 5537 4320",
+    "email": "rbay@bne.catholic.net.au",
+    "website": "https://www.holyfamilyrunawaybay.org.au/"
+  },
+  "office": {
+    "address": "16 Simbai Street, Runaway Bay QLD 4216",
+    "hours": {
+      "monday": "08:30-15:00",
+      "tuesday": "08:30-15:00",
+      "wednesday": "08:30-13:00",
+      "thursday": "08:30-13:00"
+    }
+  },
+  "clergy": [
+    {
+      "role": "Parish Priest",
+      "name": "Monsignor Peter Meneely"
+    }
+  ],
+  "churches": [
+    {
+      "id": "holy-family",
+      "name": "Holy Family Catholic Church",
+      "calendar_name": "Holy Family",
+      "address": "16 Simbai Street, Runaway Bay QLD 4216",
+      "is_primary_site": true
+    },
+    {
+      "id": "our-lady-of-hope",
+      "name": "Our Lady of Hope Community",
+      "calendar_name": "Our Lady of Hope",
+      "address": "Banksia Park Hall, 27 Crescent Avenue, Hope Island QLD 4212",
+      "is_primary_site": false,
+      "location_type": "mass-centre"
+    }
+  ]
+}

@@ -7,7 +7,7 @@ import {
   validateParish,
   validateRegistry,
   validateServices,
-} from "./web/calendar-core.js?v=7";
+} from "./web/calendar-core.js?v=8";
 
 const FEED_ROOT = "feeds/v1";
 const title = document.querySelector("#diagnostics-title");

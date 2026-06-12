@@ -42,6 +42,24 @@ body[data-theme="burleigh-heads"] {
   --theme-bar-context: #f5d98c;
 }
 
+body[data-theme="nerang"] {
+  --theme-primary: #416c2b;
+  --theme-primary-deep: #29471a;
+  --theme-highlight: #9abc45;
+  --theme-highlight-soft: #edf4dc;
+  --theme-bar-gradient: linear-gradient(120deg, #29471a 0%, #416c2b 72%, #5b863b 100%);
+  --theme-bar-context: #dceaa5;
+}
+
+body[data-theme="runaway-bay"] {
+  --theme-primary: #31536a;
+  --theme-primary-deep: #1d3547;
+  --theme-highlight: #9fc6d7;
+  --theme-highlight-soft: #e7f1f5;
+  --theme-bar-gradient: linear-gradient(120deg, #1d3547 0%, #31536a 72%, #4b7187 100%);
+  --theme-bar-context: #d7eaf2;
+}
+
 body[data-theme="gc-pilgrim"] {
   --theme-primary: var(--blue);
   --theme-primary-deep: var(--blue-deep);
@@ -85,8 +103,7 @@ button {
   position: sticky;
   top: 0;
   z-index: 20;
-  display: grid;
-  grid-template-columns: minmax(150px, 190px) minmax(180px, 1fr);
+  display: flex;
   gap: clamp(14px, 3vw, 32px);
   align-items: center;
   width: 100%;
@@ -97,15 +114,35 @@ button {
   backdrop-filter: blur(14px);
 }
 
+.header-branding {
+  display: flex;
+  min-width: 0;
+  max-width: 390px;
+  flex: 0 1 auto;
+  align-items: center;
+  gap: clamp(8px, 1.5vw, 16px);
+}
+
+.pilgrim-icon {
+  display: block;
+  width: clamp(46px, 5vw, 62px);
+  height: clamp(46px, 5vw, 62px);
+  flex: 0 0 auto;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
 .brand-lockup {
   position: relative;
   min-width: 0;
+  flex: 0 1 auto;
 }
 
 .parish-selector-toggle {
   display: flex;
   align-items: center;
   gap: 9px;
+  min-width: 0;
   max-width: 100%;
   padding: 3px 5px 3px 0;
   border: 0;
@@ -120,16 +157,19 @@ button {
 
 .parish-logo {
   display: block;
-  width: min(100%, 170px);
+  width: auto;
+  max-width: min(100%, 260px);
   max-height: 58px;
+  flex: 0 1 auto;
   object-fit: contain;
   object-position: left center;
   height: auto;
 }
 
 .selected-region-name {
+  display: block;
   color: var(--theme-primary-deep);
-  font-size: 0.94rem;
+  font-size: clamp(0.94rem, 1.7vw, 1.15rem);
   font-weight: 800;
   line-height: 1.1;
   text-align: left;
@@ -163,10 +203,8 @@ button {
 }
 
 .parish-selector-option {
-  display: flex;
+  display: block;
   width: 100%;
-  align-items: center;
-  gap: 12px;
   padding: 10px;
   border: 0;
   border-radius: 10px;
@@ -182,15 +220,10 @@ button {
   background: var(--blue-soft);
 }
 
-.parish-selector-option img {
-  width: 82px;
-  height: 38px;
-  object-fit: contain;
-  object-position: left center;
-}
-
 .header-copy {
   display: flex;
+  min-width: 0;
+  flex: 1 1 auto;
   align-items: center;
   min-height: 100%;
   padding-left: clamp(14px, 2vw, 24px);
@@ -1142,14 +1175,6 @@ button.month-day:hover {
   color: var(--ink);
 }
 
-.calendar-footer {
-  margin-top: 24px;
-  color: var(--muted);
-  font-size: 0.78rem;
-  text-align: right;
-}
-
-.calendar-footer a,
 .back-link {
   color: var(--theme-primary);
   font-weight: 700;
@@ -1162,8 +1187,24 @@ button.month-day:hover {
 }
 
 .about-introduction {
-  max-width: 720px;
+  display: flex;
+  max-width: 920px;
+  align-items: center;
+  justify-content: space-between;
+  gap: clamp(24px, 6vw, 64px);
   margin-bottom: 28px;
+}
+
+.about-introduction-copy {
+  max-width: 720px;
+}
+
+.about-logo {
+  width: min(300px, 32vw);
+  max-height: 120px;
+  flex: 0 1 auto;
+  object-fit: contain;
+  object-position: right center;
 }
 
 .about-introduction h2 {
@@ -1359,14 +1400,26 @@ button.month-day:hover {
 
 @media (max-width: 800px) {
   .page-header {
-    grid-template-columns: minmax(135px, 165px) minmax(120px, 1fr);
-    gap: 12px;
+    gap: 10px;
     align-items: center;
-    padding: 4px 18px;
+    padding: 4px 14px;
+  }
+
+  .header-branding {
+    max-width: calc(100% - 135px);
+    gap: 8px;
+  }
+
+  .pilgrim-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
   }
 
   .parish-logo {
-    width: min(100%, 155px);
+    width: auto;
+    max-width: min(100%, 170px);
+    max-height: 52px;
   }
 
   .header-copy {
@@ -1374,6 +1427,7 @@ button.month-day:hover {
     display: flex;
     align-self: stretch;
     align-items: center;
+    min-width: 125px;
     padding: 0 0 0 12px;
     border-top: 0;
     border-left: 1px solid var(--line);
@@ -1402,8 +1456,8 @@ button.month-day:hover {
   }
 
   .selected-region-name {
-    max-width: 78px;
-    font-size: 0.78rem;
+    max-width: 110px;
+    font-size: 0.86rem;
   }
 
   .navigation-toggle {
@@ -1537,6 +1591,14 @@ button.month-day:hover {
     padding-top: 30px;
   }
 
+  .about-introduction {
+    align-items: flex-start;
+  }
+
+  .about-logo {
+    width: min(240px, 34vw);
+  }
+
   .about-grid,
   .church-list {
     grid-template-columns: 1fr;
@@ -1544,7 +1606,55 @@ button.month-day:hover {
 }
 
 @media (max-width: 520px) {
-  .page-header,
+  .page-header {
+    gap: 8px;
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+
+  .pilgrim-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 9px;
+  }
+
+  .header-branding {
+    max-width: calc(58% - 4px);
+  }
+
+  .parish-selector-toggle {
+    gap: 6px;
+  }
+
+  .parish-logo {
+    max-width: min(100%, 125px);
+    max-height: 44px;
+  }
+
+  .selected-region-name {
+    max-width: 86px;
+    font-size: 0.76rem;
+  }
+
+  .header-copy {
+    min-width: 116px;
+    padding-left: 8px;
+  }
+
+  .mobile-navigation-heading {
+    min-height: 50px;
+    gap: 7px;
+  }
+
+  .mobile-navigation-heading h1 {
+    font-size: clamp(0.9rem, 4vw, 1.05rem);
+  }
+
+  .navigation-toggle {
+    width: 36px;
+    height: 36px;
+  }
+
   .page-shell {
     padding-right: 18px;
     padding-left: 18px;
@@ -1552,6 +1662,17 @@ button.month-day:hover {
 
   .event-card {
     padding: 12px 14px;
+  }
+
+  .about-introduction {
+    display: block;
+  }
+
+  .about-logo {
+    width: min(280px, 100%);
+    max-height: 100px;
+    margin-top: 20px;
+    object-position: left center;
   }
 
   .results-header {

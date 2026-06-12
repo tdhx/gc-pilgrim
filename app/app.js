@@ -8,6 +8,7 @@ import {
   matchesEvent,
   monthGrid,
   monthStart,
+  orderedChurches,
   orderedEventTypes,
   presiderGroups,
   aggregateCalendars,
@@ -15,7 +16,7 @@ import {
   selectedParishId,
   startOfSundayWeek,
   validateRegistry,
-} from "./web/calendar-core.js?v=7";
+} from "./web/calendar-core.js?v=8";
 
 const FEED_ROOT = "feeds/v1";
 const DEFAULT_EVENT_TYPES = ["mass", "confession"];
@@ -90,11 +91,11 @@ const elements = {
   parishLocationsTitle: document.querySelector("#parish-locations-title"),
   aboutContent: document.querySelector("#about-content"),
   aboutError: document.querySelector("#about-error"),
+  aboutLogo: document.querySelector("#about-logo"),
   brandLogo: document.querySelector("#parish-logo"),
   selectedRegionName: document.querySelector("#selected-region-name"),
   parishTagline: document.querySelector("#parish-tagline"),
   parishSelector: document.querySelector("#parish-selector"),
-  diagnosticsLink: document.querySelector("#diagnostics-link"),
 };
 const mobileLayout = window.matchMedia("(max-width: 800px)");
 
@@ -194,8 +195,11 @@ function renderParish(parish) {
   elements.parishName.textContent = parish.name;
   elements.parishTagline.textContent = parish.branding?.tagline || "";
   elements.parishTagline.hidden = !elements.parishTagline.textContent;
+  elements.brandLogo.hidden = false;
   elements.brandLogo.src = parish.branding?.logo || "assets/gc-pilgrim.svg";
   elements.brandLogo.alt = parish.name;
+  elements.aboutLogo.src = parish.branding?.logo || "assets/gc-pilgrim.svg";
+  elements.aboutLogo.alt = `${parish.name} logo`;
   document.body.dataset.theme = parish.branding?.theme || "gc-pilgrim";
 
   const contact = parish.contact || {};
@@ -239,9 +243,13 @@ function renderParish(parish) {
     return item;
   }));
 
-  const hasChaplaincy = parish.churches.some((church) => church.location_type === "chaplaincy");
-  elements.parishLocationsTitle.textContent = hasChaplaincy ? "Churches and Chaplaincy" : "Churches";
-  elements.parishChurches.replaceChildren(...parish.churches.map((church) => {
+  const hasMassLocations = parish.churches.some((church) => (
+    ["chaplaincy", "mass-centre", "retirement-community"].includes(church.location_type)
+  ));
+  elements.parishLocationsTitle.textContent = hasMassLocations
+    ? "Churches and Mass locations"
+    : "Churches";
+  elements.parishChurches.replaceChildren(...orderedChurches(parish.churches).map((church) => {
     const item = document.createElement("article");
     const heading = document.createElement("div");
     const name = document.createElement("h4");
@@ -255,10 +263,25 @@ function renderParish(parish) {
       badge.className = "primary-site-badge";
       badge.textContent = "Primary church";
       heading.append(badge);
+    } else if (church.status === "temporarily-closed") {
+      const badge = document.createElement("span");
+      badge.className = "primary-site-badge";
+      badge.textContent = "Temporarily closed";
+      heading.append(badge);
     } else if (church.location_type === "chaplaincy") {
       const badge = document.createElement("span");
       badge.className = "primary-site-badge";
       badge.textContent = "Chaplaincy";
+      heading.append(badge);
+    } else if (church.location_type === "mass-centre") {
+      const badge = document.createElement("span");
+      badge.className = "primary-site-badge";
+      badge.textContent = "Mass centre";
+      heading.append(badge);
+    } else if (church.location_type === "retirement-community") {
+      const badge = document.createElement("span");
+      badge.className = "primary-site-badge";
+      badge.textContent = "Retirement community";
       heading.append(badge);
     }
     item.append(heading, address);
@@ -277,9 +300,12 @@ function renderAggregateAbout(aggregateView, parishes) {
   elements.parishTagline.textContent =
     "One calendar for Catholic worship and parish life across the Gold Coast.";
   elements.parishTagline.hidden = false;
-  elements.brandLogo.src = "assets/gold-coast-mascot.png";
-  elements.brandLogo.alt = "GC Pilgrim mascot";
-  elements.selectedRegionName.textContent = "Gold Coast Wide";
+  elements.brandLogo.hidden = true;
+  elements.brandLogo.removeAttribute("src");
+  elements.brandLogo.alt = "";
+  elements.aboutLogo.src = "assets/gold-coast-mascot.png";
+  elements.aboutLogo.alt = "GC Pilgrim mascot";
+  elements.selectedRegionName.textContent = "All Gold Coast";
   elements.selectedRegionName.hidden = false;
   document.body.dataset.theme = "gc-pilgrim";
 
@@ -310,7 +336,7 @@ function renderAggregateAbout(aggregateView, parishes) {
     heading.textContent = parish.name;
     const churches = document.createElement("div");
     churches.className = "church-list";
-    churches.replaceChildren(...parish.churches.map((church) => {
+    churches.replaceChildren(...orderedChurches(parish.churches).map((church) => {
       const item = document.createElement("article");
       const name = document.createElement("h5");
       const address = document.createElement("p");
@@ -345,6 +371,7 @@ function multiculturalSubtype(event) {
 }
 
 function subtypeLabel(value) {
+  if (value === "syro-malabar") return "Syro-Malabar Mass";
   return `${titleCase(value)} Mass`;
 }
 
@@ -1266,16 +1293,13 @@ async function configureParishSelector(registry, selected) {
   elements.parishSelectorToggle.hidden = options.length < 2;
   elements.parishSelector.replaceChildren(...options.map((parish) => {
     const button = document.createElement("button");
-    const logo = document.createElement("img");
     const label = document.createElement("span");
     button.type = "button";
     button.className = "parish-selector-option";
     button.role = "menuitemradio";
     button.setAttribute("aria-checked", String(parish.id === selected));
-    logo.src = parish.branding?.logo || "assets/gc-pilgrim.svg";
-    logo.alt = "";
     label.textContent = parish.name;
-    button.append(logo, label);
+    button.append(label);
     button.addEventListener("click", () => {
       const url = new URL(window.location.href);
       url.searchParams.set("parish", parish.id);
@@ -1308,7 +1332,6 @@ async function loadApplication() {
     const parishId = selectedParishId(registry, window.location.search);
     window.localStorage.setItem("gc-pilgrim-parish", parishId);
     const parishes = await configureParishSelector(registry, parishId);
-    elements.diagnosticsLink.href = `diagnostics.html?parish=${encodeURIComponent(parishId)}`;
     const liturgical = await fetchJSON(`${FEED_ROOT}/liturgical.json`, "Liturgical feed");
     const isAggregate = parishId === registry.aggregate_view?.id;
     let feed;

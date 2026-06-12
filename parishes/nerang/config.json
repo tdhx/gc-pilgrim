@@ -1,0 +1,9 @@
+{
+  "parish_id": "nerang",
+  "timezone": "Australia/Brisbane",
+  "sources": {
+    "services": "manual-nerang",
+    "community": "manual-empty",
+    "liturgical": "universalis-brisbane"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "parish_id": "runaway-bay",
+  "timezone": "Australia/Brisbane",
+  "sources": {
+    "services": "manual-runaway-bay",
+    "community": "manual-empty",
+    "liturgical": "universalis-brisbane"
+  }
+}

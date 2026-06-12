@@ -8,14 +8,9 @@
   "schema_version": 1,
   "sources": [
     {
-      "name": "Southport published recurring schedule",
+      "name": "Holy Family published recurring schedule",
       "status": "baseline",
-      "url": "https://scp.org.au/"
-    },
-    {
-      "name": "Southport parish newsletters",
-      "status": "future-automation",
-      "url": "https://scp.org.au/newsletters-2026/"
+      "url": "https://www.holyfamilyrunawaybay.org.au/mass-times.html"
     }
   ],
   "timezone": "Australia/Brisbane",

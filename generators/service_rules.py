@@ -17,6 +17,8 @@ def title_case(value):
 
 
 def subtype_label(value):
+    if value == "syro-malabar":
+        return "Syro-Malabar Mass"
     return f"{title_case(value)} Mass"
 
 
@@ -47,7 +49,7 @@ def is_first_saturday_mass(event):
 def is_roman_mass(event):
     return event["event_type"] == "mass" or (
         event["event_type"] == MULTICULTURAL_TYPE
-        and event.get("event_subtype") != "maronite"
+        and event.get("event_subtype") not in {"maronite", "syro-malabar"}
     )
 
 

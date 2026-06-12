@@ -10,7 +10,7 @@ from generators.build_liturgical import aggregate_feed, annual_feed
 from generators.build_parish import build as build_parish
 from generators.build_services import build as build_services
 from generators.io import read_json, read_json_lines, write_json
-from sources.manual import burleigh_heads, southport
+from sources.manual import burleigh_heads, nerang, runaway_bay, southport
 from sources.google_calendar import adapter as google_calendar
 from sources.website import liturgical as universalis
 from validators.feeds import validate_registry
@@ -18,7 +18,13 @@ from validators.feeds import validate_registry
 
 ROOT = Path(__file__).resolve().parent.parent
 DEFAULT_PARISH_ID = "surfers-paradise"
-PARISH_IDS = ("surfers-paradise", "southport", "burleigh-heads")
+PARISH_IDS = (
+    "surfers-paradise",
+    "southport",
+    "burleigh-heads",
+    "nerang",
+    "runaway-bay",
+)
 TIMEZONE = "Australia/Brisbane"
 BRISBANE = ZoneInfo(TIMEZONE)
 YEARS = (2026, 2027, 2028)
@@ -106,6 +112,33 @@ def build(offline=False, generated_at=None):
                     "name": "Burleigh Heads parish newsletters",
                     "url": burleigh_heads.NEWSLETTERS_URL,
                     "status": "future-automation",
+                },
+            ],
+        },
+        "nerang": {
+            "records": nerang.normalise(start, end),
+            "community_records": [],
+            "sources": [
+                {
+                    "name": "Nerang published recurring schedule",
+                    "url": nerang.PARISH_URL,
+                    "status": "baseline",
+                },
+                {
+                    "name": "Nerang parish newsletters",
+                    "url": nerang.NEWSLETTERS_URL,
+                    "status": "future-automation",
+                },
+            ],
+        },
+        "runaway-bay": {
+            "records": runaway_bay.normalise(start, end),
+            "community_records": [],
+            "sources": [
+                {
+                    "name": "Holy Family published recurring schedule",
+                    "url": runaway_bay.PARISH_URL,
+                    "status": "baseline",
                 },
             ],
         },

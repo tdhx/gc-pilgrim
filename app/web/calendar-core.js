@@ -16,6 +16,25 @@ export function orderedEventTypes(values) {
   });
 }
 
+export function orderedChurches(churches) {
+  const postcode = (church) => {
+    const match = church.address?.match(/\b(\d{4})\s*$/);
+    return match ? Number(match[1]) : null;
+  };
+  return churches
+    .map((church, index) => ({ church, index, postcode: postcode(church) }))
+    .sort((left, right) => {
+      const primaryOrder = Number(Boolean(right.church.is_primary_site))
+        - Number(Boolean(left.church.is_primary_site));
+      if (primaryOrder) return primaryOrder;
+      if (left.postcode === null && right.postcode !== null) return 1;
+      if (left.postcode !== null && right.postcode === null) return -1;
+      if (left.postcode !== right.postcode) return right.postcode - left.postcode;
+      return left.index - right.index;
+    })
+    .map(({ church }) => church);
+}
+
 export function presiderGroups(values) {
   const available = new Set(values);
   const take = (names) => names.filter((name) => available.delete(name));
@@ -166,6 +185,17 @@ export function validateParish(parish) {
   if (!parish.id || !parish.name || !Array.isArray(parish.churches)) {
     throw new Error("Parish feed is missing required fields.");
   }
+  parish.churches.forEach((church) => {
+    if (church.status && church.status !== "temporarily-closed") {
+      throw new Error(`Church ${church.id} has invalid status.`);
+    }
+    if (
+      church.location_type
+      && !["chaplaincy", "mass-centre", "retirement-community"].includes(church.location_type)
+    ) {
+      throw new Error(`Church ${church.id} has invalid location type.`);
+    }
+  });
   return parish;
 }
 
@@ -244,7 +274,7 @@ export function assembleCalendar(parish, servicesFeed, communityFeed, liturgical
   validateLiturgical(liturgicalFeed);
   const churches = new Map(parish.churches.map((church) => [church.id, church]));
   const services = servicesFeed.services
-    .filter((service) => service.status !== "cancelled")
+    .filter((service) => service.status !== "cancelled" && service.event_type !== "baptism")
     .map((service) => enrichedService(service, churches, liturgicalFeed.dates));
   const community = communityFeed.events
     .filter((event) => event.status !== "cancelled")

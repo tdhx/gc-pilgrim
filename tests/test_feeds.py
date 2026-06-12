@@ -13,7 +13,7 @@ sys.path.insert(0, str(ROOT))
 from generators.compat_split import split
 from generators.io import read_json
 from sources.google_calendar import adapter as google_calendar
-from sources.manual import burleigh_heads, southport
+from sources.manual import burleigh_heads, nerang, runaway_bay, southport
 from sources.website import liturgical as universalis
 from validators.feeds import (
     validate_community,
@@ -158,6 +158,66 @@ END:VCALENDAR
             ["2026-06-19", "2026-07-17"],
         )
 
+    def test_nerang_first_friday_replaces_syro_malabar_mass(self):
+        records = nerang.normalise(
+            datetime(2026, 6, 1, tzinfo=BRISBANE),
+            datetime(2026, 6, 13, tzinfo=BRISBANE),
+        )
+        friday_masses = [
+            record
+            for record in records
+            if record["event_subtype"] == "syro-malabar"
+            and record["start"].endswith("T18:00:00+10:00")
+        ]
+        self.assertEqual(len(friday_masses), 2)
+        self.assertEqual(
+            sum(record["start"].startswith("2026-06-05T18:00") for record in friday_masses),
+            1,
+        )
+        self.assertEqual(friday_masses[0]["associated_devotions"], ["Adoration"])
+        self.assertEqual(friday_masses[1]["associated_devotions"], [])
+
+    def test_nerang_monthly_earle_haven_mass(self):
+        definition = nerang.monthly(
+            "earle-haven",
+            "Earle Haven",
+            4,
+            1,
+            "09:30",
+            "mass",
+        )
+        records = nerang.normalise(
+            datetime(2026, 6, 1, tzinfo=BRISBANE),
+            datetime(2026, 8, 1, tzinfo=BRISBANE),
+            [definition],
+        )
+        self.assertEqual(
+            [record["start"][:10] for record in records],
+            ["2026-06-05", "2026-07-03"],
+        )
+
+    def test_runaway_bay_publishes_six_weekly_masses(self):
+        records = runaway_bay.normalise(
+            datetime(2026, 6, 1, tzinfo=BRISBANE),
+            datetime(2026, 6, 8, tzinfo=BRISBANE),
+        )
+        self.assertEqual(len(records), 6)
+        self.assertEqual(
+            [(record["church"], record["start"][11:16]) for record in records],
+            [
+                ("Holy Family", "09:30"),
+                ("Holy Family", "09:30"),
+                ("Holy Family", "16:00"),
+                ("Our Lady of Hope", "17:30"),
+                ("Holy Family", "07:00"),
+                ("Holy Family", "09:00"),
+            ],
+        )
+        self.assertEqual({record["event_type"] for record in records}, {"mass"})
+        self.assertTrue(
+            all(not record["associated_devotions"] for record in records)
+        )
+
 
 class FeedContractTests(unittest.TestCase):
     @classmethod
@@ -179,7 +239,13 @@ class FeedContractTests(unittest.TestCase):
         validate_registry(self.registry)
         self.assertEqual(
             self.registry["parishes"],
-            ["surfers-paradise", "southport", "burleigh-heads"],
+            [
+                "surfers-paradise",
+                "southport",
+                "burleigh-heads",
+                "nerang",
+                "runaway-bay",
+            ],
         )
         self.assertEqual(self.registry["default_view_id"], "gold-coast")
         self.assertEqual(
@@ -287,9 +353,128 @@ class FeedContractTests(unittest.TestCase):
             ],
         )
 
+    def test_nerang_feed_contains_published_service_shapes(self):
+        feeds = self.parishes["nerang"]
+        parish = feeds["parish"]
+        services = feeds["services"]
+        self.assertEqual(len(parish["churches"]), 3)
+        churches = {church["id"]: church for church in parish["churches"]}
+        self.assertEqual(churches["st-johns"]["status"], "temporarily-closed")
+        self.assertEqual(
+            churches["earle-haven"]["location_type"],
+            "retirement-community",
+        )
+        self.assertEqual(feeds["community"]["events"], [])
+        self.assertEqual(
+            {service["event_type"] for service in services["services"]},
+            {"confession", "mass", "multicultural"},
+        )
+        self.assertTrue(all(service["church_id"] for service in services["services"]))
+        self.assertFalse(
+            any(service["church_id"] == "st-johns" for service in services["services"])
+        )
+        syro_malabar = [
+            service
+            for service in services["services"]
+            if service.get("event_subtype") == "syro-malabar"
+        ]
+        self.assertGreater(len(syro_malabar), 0)
+        self.assertTrue(
+            all(service["service_name"] == "Syro-Malabar Mass" for service in syro_malabar)
+        )
+        self.assertTrue(
+            all(service["liturgical_date"] is None for service in syro_malabar)
+        )
+        first_fridays = [
+            service
+            for service in syro_malabar
+            if datetime.fromisoformat(service["start"]).weekday() == 4
+            and datetime.fromisoformat(service["start"]).day <= 7
+        ]
+        self.assertTrue(first_fridays)
+        self.assertTrue(
+            all(service["associated_devotions"] == ["Adoration"] for service in first_fridays)
+        )
+        self.assertTrue(
+            any(
+                service["church_id"] == "earle-haven"
+                and service["event_type"] == "mass"
+                for service in services["services"]
+            )
+        )
+        self.assertTrue(
+            any("Rosary" in service["associated_devotions"] for service in services["services"])
+        )
+        self.assertFalse(
+            any(
+                devotion == "Eucharistic Adoration"
+                for service in services["services"]
+                for devotion in service["associated_devotions"]
+            )
+        )
+        church_starts = [
+            (service["church_id"], service["start"])
+            for service in services["services"]
+        ]
+        self.assertEqual(len(church_starts), len(set(church_starts)))
+        self.assertEqual(
+            [(source["url"], source["status"]) for source in services["sources"]],
+            [
+                (nerang.PARISH_URL, "baseline"),
+                (nerang.NEWSLETTERS_URL, "future-automation"),
+            ],
+        )
+
+    def test_runaway_bay_feed_contains_current_website_schedule_only(self):
+        feeds = self.parishes["runaway-bay"]
+        parish = feeds["parish"]
+        services = feeds["services"]
+        self.assertEqual(len(parish["churches"]), 2)
+        churches = {church["id"]: church for church in parish["churches"]}
+        self.assertTrue(churches["holy-family"]["is_primary_site"])
+        self.assertEqual(
+            churches["our-lady-of-hope"]["location_type"],
+            "mass-centre",
+        )
+        self.assertEqual(feeds["community"]["events"], [])
+        self.assertEqual(
+            {service["event_type"] for service in services["services"]},
+            {"mass"},
+        )
+        self.assertTrue(all(service["church_id"] for service in services["services"]))
+        self.assertTrue(
+            all(not service["associated_devotions"] for service in services["services"])
+        )
+        self.assertTrue(
+            all(not service["presiders"] for service in services["services"])
+        )
+        self.assertEqual(
+            {service["church_id"] for service in services["services"]},
+            {"holy-family", "our-lady-of-hope"},
+        )
+        our_lady_of_hope = [
+            service
+            for service in services["services"]
+            if service["church_id"] == "our-lady-of-hope"
+        ]
+        self.assertTrue(our_lady_of_hope)
+        self.assertTrue(
+            all(service["service_name"] == "Vigil Mass" for service in our_lady_of_hope)
+        )
+        self.assertEqual(
+            [(source["url"], source["status"]) for source in services["sources"]],
+            [(runaway_bay.PARISH_URL, "baseline")],
+        )
+
     def test_sparse_parish_omits_all_optional_metadata(self):
         sparse = read_json(ROOT / "tests/fixtures/sparse-parish/parish.json")
         self.assertEqual(validate_parish(sparse), sparse)
+
+    def test_parish_location_metadata_values_are_enforced(self):
+        broken = read_json(ROOT / "feeds/v1/parishes/nerang/parish.json")
+        broken["churches"][0]["location_type"] = "retirement-home"
+        with self.assertRaisesRegex(ValueError, "invalid location type"):
+            validate_parish(broken)
 
     def test_liturgical_archives_cover_2026_to_2028(self):
         expected = {2026: 365, 2027: 365, 2028: 366}

@@ -3,7 +3,7 @@
     "end": "2026-09-10",
     "start": "2026-06-01"
   },
-  "generated_at": "2026-06-12T07:49:28+10:00",
+  "generated_at": "2026-06-12T20:45:23+10:00",
   "schema_version": 1,
   "services": [
     {
@@ -15,7 +15,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "53b0c346470b9328d9064dc6",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-06-01",
       "location": "50 Fairway Dr, Clear Island Waters QLD 4226, Australia",
       "presiders": [
@@ -38,7 +38,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "2c3419d33ee624a32cd6a46e",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-06-02",
       "location": null,
       "presiders": [
@@ -63,7 +63,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "954aed916b4094cdde19e011",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-06-03",
       "location": null,
       "presiders": [
@@ -86,7 +86,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "b92e86ad4b5c80a85a3e43da",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-06-04",
       "location": null,
       "presiders": [
@@ -109,7 +109,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "75cc5e63ba73f991fb140ab0",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-06-05",
       "location": null,
       "presiders": [
@@ -135,7 +135,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "b2396c7e35cb4a1fda7e12c6",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-06-06",
       "location": null,
       "presiders": [
@@ -158,7 +158,7 @@
       "event_subtype": null,
       "event_type": "confession",
       "id": "bfc9cea3a05dbbad1be18514",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": null,
       "location": null,
       "presiders": [
@@ -181,7 +181,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "75e402a42348d86f4404782b",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-06-07",
       "location": null,
       "presiders": [
@@ -204,7 +204,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "a5a437839c169e69da789ffb",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-06-07",
       "location": null,
       "presiders": [
@@ -227,7 +227,7 @@
       "event_subtype": "maronite",
       "event_type": "multicultural",
       "id": "86c0c5e2df741b5a6efed563",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": null,
       "location": "Sacred Heart Church, 50 Fairway Dr, Clear Island Waters QLD 4226, Australia",
       "presiders": [
@@ -250,7 +250,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "f3be9aad9bb726a924b7e06b",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-06-07",
       "location": null,
       "presiders": [
@@ -273,7 +273,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "8569d6d5497f1685026f064b",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-06-07",
       "location": null,
       "presiders": [
@@ -296,7 +296,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "9952574c390e69f4377f299e",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-06-07",
       "location": null,
       "presiders": [
@@ -319,7 +319,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "57c62900218fd122b8c77760",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-06-07",
       "location": null,
       "presiders": [
@@ -342,7 +342,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "9d0a4c1b490e92cff629edfc",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-06-07",
       "location": null,
       "presiders": [],
@@ -363,7 +363,7 @@
       "event_subtype": "polish",
       "event_type": "multicultural",
       "id": "6bab21bbad9454f6c79c1655",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-06-07",
       "location": null,
       "presiders": [
@@ -386,7 +386,7 @@
       "event_subtype": "italian",
       "event_type": "multicultural",
       "id": "27d43193434a784321b03981",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-06-07",
       "location": null,
       "presiders": [
@@ -409,7 +409,7 @@
       "event_subtype": "hispanic",
       "event_type": "multicultural",
       "id": "25ba7a5918b8e22472af73f7",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-06-07",
       "location": null,
       "presiders": [
@@ -432,7 +432,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "182ad88172532730e2ede29d",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-06-07",
       "location": null,
       "presiders": [
@@ -455,7 +455,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "4b81ab9486801f4d6edb40bc",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-06-08",
       "location": "50 Fairway Dr, Clear Island Waters QLD 4226, Australia",
       "presiders": [
@@ -478,7 +478,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "dc9994bd4710aa443ab73483",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-06-09",
       "location": null,
       "presiders": [
@@ -501,7 +501,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "123904e7ec52b9738743b20d",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-06-10",
       "location": null,
       "presiders": [
@@ -524,7 +524,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "61c9a986836437b1a6ae03d9",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-06-11",
       "location": null,
       "presiders": [
@@ -547,7 +547,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "83ea5ec0a0bf886923176477",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-06-12",
       "location": null,
       "presiders": [
@@ -570,7 +570,7 @@
       "event_subtype": null,
       "event_type": "confession",
       "id": "b630003b58ab1c8553fe064a",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": null,
       "location": "Sacred Heart Church, 50 Fairway Dr, Clear Island Waters QLD 4226, Australia",
       "presiders": [
@@ -593,7 +593,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "9d39c7ea17111426d7bcac75",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-06-14",
       "location": "Sacred Heart Church, 50 Fairway Dr, Clear Island Waters QLD 4226, Australia",
       "presiders": [
@@ -616,7 +616,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "d1668ab195cbfe1423f62d02",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-06-14",
       "location": "Stella Maris Catholic Church, 254 Hedges Ave, Mermaid Beach QLD 4218, Australia",
       "presiders": [
@@ -639,7 +639,7 @@
       "event_subtype": "maronite",
       "event_type": "multicultural",
       "id": "d0cfcda813e873567a455dd0",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": null,
       "location": "Sacred Heart Church, 50 Fairway Dr, Clear Island Waters QLD 4226, Australia",
       "presiders": [
@@ -662,7 +662,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "258f0d008f53e8ea43b68060",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-06-14",
       "location": null,
       "presiders": [
@@ -685,7 +685,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "405c930089fbd46d6ec9f9ba",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-06-14",
       "location": null,
       "presiders": [
@@ -708,7 +708,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "57d98aba90685519a66ecd26",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-06-14",
       "location": null,
       "presiders": [
@@ -731,7 +731,7 @@
       "event_subtype": null,
       "event_type": "baptism",
       "id": "00eca37787e37f1c68eeb3e8",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": null,
       "location": null,
       "presiders": [
@@ -754,7 +754,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "6db880d9fb45d6673e6e61a0",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-06-14",
       "location": null,
       "presiders": [
@@ -777,7 +777,7 @@
       "event_subtype": "polish",
       "event_type": "multicultural",
       "id": "7d784015f36a3dbc9dce0654",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-06-14",
       "location": null,
       "presiders": [
@@ -800,7 +800,7 @@
       "event_subtype": "italian",
       "event_type": "multicultural",
       "id": "876081002cf49aea2478bcc3",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-06-14",
       "location": null,
       "presiders": [
@@ -823,7 +823,7 @@
       "event_subtype": "hispanic",
       "event_type": "multicultural",
       "id": "e5e9ef50e8c6ad19a62094d5",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-06-14",
       "location": null,
       "presiders": [
@@ -846,7 +846,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "93e7ab37dd4bf525069b131b",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-06-14",
       "location": null,
       "presiders": [
@@ -869,7 +869,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "9c47f5bdd8413db14860682c",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-06-15",
       "location": "50 Fairway Dr, Clear Island Waters QLD 4226, Australia",
       "presiders": [
@@ -892,7 +892,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "4a025580115f8be0c86f26c7",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-06-16",
       "location": null,
       "presiders": [],
@@ -913,7 +913,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "8500fd394a3c98571ae47ce6",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-06-17",
       "location": null,
       "presiders": [
@@ -936,7 +936,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "69d7264d5dfd604d8a599bb6",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-06-18",
       "location": null,
       "presiders": [],
@@ -957,7 +957,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "8f030c3bcfbdc656be79b244",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-06-19",
       "location": null,
       "presiders": [
@@ -980,7 +980,7 @@
       "event_subtype": null,
       "event_type": "confession",
       "id": "ad937df246b7a0e762b6f7b7",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": null,
       "location": null,
       "presiders": [
@@ -1003,7 +1003,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "3de02e2bd3eb696347b3ce0e",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-06-21",
       "location": null,
       "presiders": [
@@ -1026,7 +1026,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "9d840e5a59da209b4a99b389",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-06-21",
       "location": null,
       "presiders": [
@@ -1049,7 +1049,7 @@
       "event_subtype": "maronite",
       "event_type": "multicultural",
       "id": "e94934024d65653ed9061261",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": null,
       "location": "Sacred Heart Church, 50 Fairway Dr, Clear Island Waters QLD 4226, Australia",
       "presiders": [
@@ -1072,7 +1072,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "7936cddb306007867025842f",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-06-21",
       "location": null,
       "presiders": [
@@ -1095,7 +1095,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "246b8b5a45057a1f0478067e",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-06-21",
       "location": null,
       "presiders": [
@@ -1118,7 +1118,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "94e8a94cc21e909a0314f9fa",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-06-21",
       "location": null,
       "presiders": [
@@ -1141,7 +1141,7 @@
       "event_subtype": null,
       "event_type": "baptism",
       "id": "04cd10324bbae1bb556484da",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": null,
       "location": null,
       "presiders": [
@@ -1164,7 +1164,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "db0ea9a819bd8c6431934649",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-06-21",
       "location": null,
       "presiders": [
@@ -1187,7 +1187,7 @@
       "event_subtype": "polish",
       "event_type": "multicultural",
       "id": "8dd6e35540e53c0ef0c31f69",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-06-21",
       "location": null,
       "presiders": [
@@ -1210,7 +1210,7 @@
       "event_subtype": "italian",
       "event_type": "multicultural",
       "id": "8f46f1f996adad4bb57a97b5",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-06-21",
       "location": null,
       "presiders": [
@@ -1233,7 +1233,7 @@
       "event_subtype": "hispanic",
       "event_type": "multicultural",
       "id": "4df345a353bf8035d71467d5",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-06-21",
       "location": null,
       "presiders": [
@@ -1256,7 +1256,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "3eb5a327b94a5b9c8d45e6f5",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-06-21",
       "location": null,
       "presiders": [
@@ -1279,7 +1279,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "d1c55e179c67a7ff46ff0a08",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-06-22",
       "location": "50 Fairway Dr, Clear Island Waters QLD 4226, Australia",
       "presiders": [
@@ -1302,7 +1302,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "8c461c1ca1f1a68721a6dc43",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-06-23",
       "location": null,
       "presiders": [],
@@ -1323,7 +1323,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "c10daeb529ae01be16865bd3",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-06-24",
       "location": null,
       "presiders": [
@@ -1346,7 +1346,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "e6a4e91c621eb92e00058c1f",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-06-25",
       "location": null,
       "presiders": [],
@@ -1367,7 +1367,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "4b73c7066f17266cff04483b",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-06-26",
       "location": null,
       "presiders": [
@@ -1390,7 +1390,7 @@
       "event_subtype": null,
       "event_type": "confession",
       "id": "301ab3d684a5f9e8f3383c81",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": null,
       "location": null,
       "presiders": [
@@ -1413,7 +1413,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "393b9669cb229d0caa93259d",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-06-28",
       "location": null,
       "presiders": [
@@ -1436,7 +1436,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "574175b8f3ca21519a34e801",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-06-28",
       "location": null,
       "presiders": [
@@ -1459,7 +1459,7 @@
       "event_subtype": "maronite",
       "event_type": "multicultural",
       "id": "1e73de73a9ad84d455afc433",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": null,
       "location": "Sacred Heart Church, 50 Fairway Dr, Clear Island Waters QLD 4226, Australia",
       "presiders": [
@@ -1482,7 +1482,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "8396860f2565e30ff698e6c0",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-06-28",
       "location": null,
       "presiders": [
@@ -1505,7 +1505,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "45983aa8a41c60426783467f",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-06-28",
       "location": null,
       "presiders": [
@@ -1528,7 +1528,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "d907af131bce2b47d463e01a",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-06-28",
       "location": null,
       "presiders": [
@@ -1551,7 +1551,7 @@
       "event_subtype": null,
       "event_type": "baptism",
       "id": "3bb9602221b9ce19817cbd1e",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": null,
       "location": null,
       "presiders": [
@@ -1574,7 +1574,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "2b56584a7300267237a40052",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-06-28",
       "location": null,
       "presiders": [
@@ -1597,7 +1597,7 @@
       "event_subtype": "polish",
       "event_type": "multicultural",
       "id": "27251b30c5f9bb2167a87287",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-06-28",
       "location": null,
       "presiders": [
@@ -1620,7 +1620,7 @@
       "event_subtype": "italian",
       "event_type": "multicultural",
       "id": "ef6a28a267fcde42a4a6731b",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-06-28",
       "location": null,
       "presiders": [
@@ -1643,7 +1643,7 @@
       "event_subtype": "hispanic",
       "event_type": "multicultural",
       "id": "06c329d3bbaf97f5e789a653",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-06-28",
       "location": null,
       "presiders": [
@@ -1666,7 +1666,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "26ee21f1717c6e2eb43057ba",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-06-28",
       "location": null,
       "presiders": [
@@ -1689,7 +1689,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "51ec00a1d4f04320ec0b13f3",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-06-29",
       "location": "50 Fairway Dr, Clear Island Waters QLD 4226, Australia",
       "presiders": [
@@ -1712,7 +1712,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "56dda4f22ada30675b284bab",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-06-30",
       "location": null,
       "presiders": [],
@@ -1733,7 +1733,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "f440da4c14331fe2564891ac",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-07-01",
       "location": null,
       "presiders": [
@@ -1756,7 +1756,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "6877e04473508493dd8756ff",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-07-02",
       "location": null,
       "presiders": [],
@@ -1777,7 +1777,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "efcf68968a9415f8693e6109",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-07-03",
       "location": null,
       "presiders": [
@@ -1803,7 +1803,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "4d0e45311e6fc2d35d8f9cd9",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-07-04",
       "location": null,
       "presiders": [],
@@ -1824,7 +1824,7 @@
       "event_subtype": null,
       "event_type": "confession",
       "id": "01797e5b348e193446daadab",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": null,
       "location": "Sacred Heart Church, 50 Fairway Dr, Clear Island Waters QLD 4226, Australia",
       "presiders": [
@@ -1847,7 +1847,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "2ace2aa3acce3d55e097ebf4",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-07-05",
       "location": "Stella Maris Catholic Church, 254 Hedges Ave, Mermaid Beach QLD 4218, Australia",
       "presiders": [
@@ -1870,7 +1870,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "6a1028ad0775e6ab3b92a38e",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-07-05",
       "location": "Sacred Heart Church, 50 Fairway Dr, Clear Island Waters QLD 4226, Australia",
       "presiders": [
@@ -1893,7 +1893,7 @@
       "event_subtype": "maronite",
       "event_type": "multicultural",
       "id": "4dab15b27bc6f99f047ec197",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": null,
       "location": "Sacred Heart Church, 50 Fairway Dr, Clear Island Waters QLD 4226, Australia",
       "presiders": [
@@ -1916,7 +1916,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "7b0c44cbf43cb0bf43d0d787",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-07-05",
       "location": null,
       "presiders": [
@@ -1939,7 +1939,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "ab1e95718e4aa9db29c26097",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-07-05",
       "location": null,
       "presiders": [
@@ -1962,7 +1962,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "fe46defe6a3da7ae910d87cb",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-07-05",
       "location": null,
       "presiders": [
@@ -1985,7 +1985,7 @@
       "event_subtype": null,
       "event_type": "baptism",
       "id": "e62778bdfa567b7f1223ae78",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": null,
       "location": null,
       "presiders": [
@@ -2008,7 +2008,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "d93072d2d2ba9c3f61d7e542",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-07-05",
       "location": null,
       "presiders": [
@@ -2031,7 +2031,7 @@
       "event_subtype": "polish",
       "event_type": "multicultural",
       "id": "41ac2c23b1939316cb8b2bf5",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-07-05",
       "location": null,
       "presiders": [
@@ -2054,7 +2054,7 @@
       "event_subtype": "italian",
       "event_type": "multicultural",
       "id": "d99f0d51b233f24fbdd94e2c",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-07-05",
       "location": null,
       "presiders": [
@@ -2077,7 +2077,7 @@
       "event_subtype": "hispanic",
       "event_type": "multicultural",
       "id": "1d4b2194093d8e314f928319",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-07-05",
       "location": null,
       "presiders": [
@@ -2100,7 +2100,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "5f054251abd1010df9450265",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-07-05",
       "location": null,
       "presiders": [
@@ -2123,7 +2123,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "2ce93474e89cdf7220bdd8f8",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-07-06",
       "location": "50 Fairway Dr, Clear Island Waters QLD 4226, Australia",
       "presiders": [
@@ -2146,7 +2146,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "da36af3789e722d97e8a642c",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-07-07",
       "location": null,
       "presiders": [
@@ -2172,7 +2172,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "01550e190a36aaf3f5fee946",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-07-08",
       "location": null,
       "presiders": [
@@ -2195,7 +2195,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "753039e0b698577cf9522249",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-07-09",
       "location": null,
       "presiders": [],
@@ -2216,7 +2216,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "cb67e48c0dc4a76aa1d10ff3",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-07-10",
       "location": null,
       "presiders": [
@@ -2239,7 +2239,7 @@
       "event_subtype": null,
       "event_type": "confession",
       "id": "08ab171c99f9aa3dc57d3d7d",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": null,
       "location": null,
       "presiders": [
@@ -2262,7 +2262,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "83400670ab2c45a941c64ec8",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-07-12",
       "location": null,
       "presiders": [
@@ -2285,7 +2285,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "92a4ff980e068b83770f5b83",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-07-12",
       "location": null,
       "presiders": [
@@ -2308,7 +2308,7 @@
       "event_subtype": "maronite",
       "event_type": "multicultural",
       "id": "2a4f1857a2d3acdc4f949a63",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": null,
       "location": "Sacred Heart Church, 50 Fairway Dr, Clear Island Waters QLD 4226, Australia",
       "presiders": [
@@ -2331,7 +2331,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "37ed2ced759c7dce8b116914",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-07-12",
       "location": null,
       "presiders": [
@@ -2354,7 +2354,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "04b68b3a69b5ea491e1292d6",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-07-12",
       "location": null,
       "presiders": [
@@ -2377,7 +2377,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "f317b24cec5e251446cd01b8",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-07-12",
       "location": null,
       "presiders": [
@@ -2400,7 +2400,7 @@
       "event_subtype": null,
       "event_type": "baptism",
       "id": "247515304b726308876cd179",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": null,
       "location": null,
       "presiders": [
@@ -2423,7 +2423,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "a9c9e25f954a7f7d48a9bb6c",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-07-12",
       "location": null,
       "presiders": [
@@ -2446,7 +2446,7 @@
       "event_subtype": "polish",
       "event_type": "multicultural",
       "id": "c50e88a046933c804ccdcf62",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-07-12",
       "location": null,
       "presiders": [
@@ -2469,7 +2469,7 @@
       "event_subtype": "italian",
       "event_type": "multicultural",
       "id": "50747765e3dc831d1ad9ce36",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-07-12",
       "location": null,
       "presiders": [
@@ -2492,7 +2492,7 @@
       "event_subtype": "hispanic",
       "event_type": "multicultural",
       "id": "89c8b00291335c91a788cf0d",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-07-12",
       "location": null,
       "presiders": [
@@ -2515,7 +2515,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "bae093a3d9d2f5774bfa9ad9",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-07-12",
       "location": null,
       "presiders": [
@@ -2538,7 +2538,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "b1f3b34a09c91bdc5f324e9e",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-07-13",
       "location": "50 Fairway Dr, Clear Island Waters QLD 4226, Australia",
       "presiders": [
@@ -2561,7 +2561,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "e3cb0ef4058e9f704115a74a",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-07-14",
       "location": null,
       "presiders": [],
@@ -2582,7 +2582,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "c23a23078dbca9db3a6e3488",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-07-15",
       "location": null,
       "presiders": [
@@ -2605,7 +2605,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "97f50b9bec0d961c4f7dc826",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-07-16",
       "location": null,
       "presiders": [],
@@ -2626,7 +2626,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "7f47ee28f01f3d6fa3a52ddf",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-07-17",
       "location": null,
       "presiders": [
@@ -2649,7 +2649,7 @@
       "event_subtype": null,
       "event_type": "confession",
       "id": "777fdee2b88ebfbe175aba93",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": null,
       "location": null,
       "presiders": [
@@ -2672,7 +2672,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "0842cea4f64f48bae1dbb2c2",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-07-19",
       "location": null,
       "presiders": [
@@ -2695,7 +2695,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "92b514f2bf66b318f4dfd8db",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-07-19",
       "location": null,
       "presiders": [
@@ -2718,7 +2718,7 @@
       "event_subtype": "maronite",
       "event_type": "multicultural",
       "id": "590fcf87489f5f7cd8bc1072",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": null,
       "location": "Sacred Heart Church, 50 Fairway Dr, Clear Island Waters QLD 4226, Australia",
       "presiders": [
@@ -2741,7 +2741,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "2fd5e0084f959d3763dba7bd",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-07-19",
       "location": null,
       "presiders": [
@@ -2764,7 +2764,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "17321de6c0e685b898b3b193",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-07-19",
       "location": null,
       "presiders": [
@@ -2787,7 +2787,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "8f20a336b9c7a3b8c9cff2a4",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-07-19",
       "location": null,
       "presiders": [
@@ -2810,7 +2810,7 @@
       "event_subtype": null,
       "event_type": "baptism",
       "id": "6cf90038805f00da1787180c",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": null,
       "location": null,
       "presiders": [
@@ -2833,7 +2833,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "49c8d0d99e81c4bb1dcf353e",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-07-19",
       "location": null,
       "presiders": [
@@ -2856,7 +2856,7 @@
       "event_subtype": "polish",
       "event_type": "multicultural",
       "id": "13d3d72e4d4b04983f492977",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-07-19",
       "location": null,
       "presiders": [
@@ -2879,7 +2879,7 @@
       "event_subtype": "italian",
       "event_type": "multicultural",
       "id": "4e5b05d7086751f6fff73be5",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-07-19",
       "location": null,
       "presiders": [
@@ -2902,7 +2902,7 @@
       "event_subtype": "hispanic",
       "event_type": "multicultural",
       "id": "2e7094bb95b9c1e53d537618",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-07-19",
       "location": null,
       "presiders": [
@@ -2925,7 +2925,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "ade2070fdc40d7b2be44bf2b",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-07-19",
       "location": null,
       "presiders": [
@@ -2948,7 +2948,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "d29806f4f59044335bbc85a1",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-07-20",
       "location": "50 Fairway Dr, Clear Island Waters QLD 4226, Australia",
       "presiders": [
@@ -2971,7 +2971,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "cf408347e3a636df389df1db",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-07-21",
       "location": null,
       "presiders": [],
@@ -2992,7 +2992,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "74c74ce601d7133ee4550beb",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-07-22",
       "location": null,
       "presiders": [
@@ -3015,7 +3015,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "049f85b323abf8d26d091a05",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-07-23",
       "location": null,
       "presiders": [],
@@ -3036,7 +3036,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "b482a6062ae0306cd5f0ff1c",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-07-24",
       "location": null,
       "presiders": [
@@ -3059,7 +3059,7 @@
       "event_subtype": null,
       "event_type": "confession",
       "id": "a133767858c8d9c34c11de4a",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": null,
       "location": "Sacred Heart Church, 50 Fairway Dr, Clear Island Waters QLD 4226, Australia",
       "presiders": [
@@ -3082,7 +3082,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "2947e1e80167aa964adc33c1",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-07-26",
       "location": "Sacred Heart Church, 50 Fairway Dr, Clear Island Waters QLD 4226, Australia",
       "presiders": [
@@ -3105,7 +3105,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "992681cf3ba97c880bc390e5",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-07-26",
       "location": "Stella Maris Catholic Church, 254 Hedges Ave, Mermaid Beach QLD 4218, Australia",
       "presiders": [
@@ -3128,7 +3128,7 @@
       "event_subtype": "maronite",
       "event_type": "multicultural",
       "id": "627ba29154e4259b1987f329",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": null,
       "location": "Sacred Heart Church, 50 Fairway Dr, Clear Island Waters QLD 4226, Australia",
       "presiders": [
@@ -3151,7 +3151,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "e872ad50a4f4e5d163052f5a",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-07-26",
       "location": null,
       "presiders": [
@@ -3174,7 +3174,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "0e79b9b399293ca138c920c0",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-07-26",
       "location": null,
       "presiders": [
@@ -3197,7 +3197,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "b848bbaed10648a2bb55f9f5",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-07-26",
       "location": null,
       "presiders": [
@@ -3220,7 +3220,7 @@
       "event_subtype": null,
       "event_type": "baptism",
       "id": "c937730c15fea7fceb7e1141",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": null,
       "location": null,
       "presiders": [
@@ -3243,7 +3243,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "2b0b211661b31f1854656dd9",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-07-26",
       "location": null,
       "presiders": [
@@ -3266,7 +3266,7 @@
       "event_subtype": "polish",
       "event_type": "multicultural",
       "id": "947d9060617edb8b8ee15b9c",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-07-26",
       "location": null,
       "presiders": [
@@ -3289,7 +3289,7 @@
       "event_subtype": "italian",
       "event_type": "multicultural",
       "id": "84a2abc85c244fa8dcb62815",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-07-26",
       "location": null,
       "presiders": [
@@ -3312,7 +3312,7 @@
       "event_subtype": "hispanic",
       "event_type": "multicultural",
       "id": "c10b671bf47b0a00fe065ac9",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-07-26",
       "location": null,
       "presiders": [
@@ -3335,7 +3335,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "5a5da9e698f59e906b3fc0f9",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-07-26",
       "location": null,
       "presiders": [
@@ -3358,7 +3358,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "889b886f2fcd489f92429fc5",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-07-27",
       "location": "50 Fairway Dr, Clear Island Waters QLD 4226, Australia",
       "presiders": [
@@ -3381,7 +3381,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "60668f1b06c2361b86524ac4",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-07-28",
       "location": null,
       "presiders": [],
@@ -3402,7 +3402,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "a34a7e7eff728ad4d18e533a",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-07-29",
       "location": null,
       "presiders": [
@@ -3425,7 +3425,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "d8307b0c4b1ef5b1b472176a",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-07-30",
       "location": null,
       "presiders": [],
@@ -3446,7 +3446,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "f302060cff6ca3a6e4564265",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-07-31",
       "location": null,
       "presiders": [
@@ -3472,7 +3472,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "0b746199a07bc0d0b7c95a7b",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-08-01",
       "location": null,
       "presiders": [],
@@ -3493,7 +3493,7 @@
       "event_subtype": null,
       "event_type": "confession",
       "id": "79e9a14a2509ccd6debf84ad",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": null,
       "location": null,
       "presiders": [
@@ -3516,7 +3516,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "66cfc373306147cd8f93b241",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-08-02",
       "location": null,
       "presiders": [
@@ -3539,7 +3539,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "99033b7a14c1cc95477ecd76",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-08-02",
       "location": null,
       "presiders": [
@@ -3562,7 +3562,7 @@
       "event_subtype": "maronite",
       "event_type": "multicultural",
       "id": "bea621fe2279d7303bda4c7b",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": null,
       "location": "Sacred Heart Church, 50 Fairway Dr, Clear Island Waters QLD 4226, Australia",
       "presiders": [
@@ -3585,7 +3585,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "d359713f2350737a248dba73",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-08-02",
       "location": null,
       "presiders": [
@@ -3608,7 +3608,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "9b2e7fad3a52571ed9034bbb",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-08-02",
       "location": null,
       "presiders": [
@@ -3631,7 +3631,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "d867c8631bbb389ca25b8336",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-08-02",
       "location": null,
       "presiders": [
@@ -3654,7 +3654,7 @@
       "event_subtype": null,
       "event_type": "baptism",
       "id": "f28dbd0043a40584027b61f0",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": null,
       "location": null,
       "presiders": [
@@ -3677,7 +3677,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "212b2dcd4e5d8d210a65d146",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-08-02",
       "location": null,
       "presiders": [
@@ -3700,7 +3700,7 @@
       "event_subtype": "polish",
       "event_type": "multicultural",
       "id": "eda9d8e7b2d4896b562b57ed",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-08-02",
       "location": null,
       "presiders": [
@@ -3723,7 +3723,7 @@
       "event_subtype": "italian",
       "event_type": "multicultural",
       "id": "87e9fde8c6cec477ca519013",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-08-02",
       "location": null,
       "presiders": [
@@ -3746,7 +3746,7 @@
       "event_subtype": "hispanic",
       "event_type": "multicultural",
       "id": "3d503d303122cc2f4824fe2f",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-08-02",
       "location": null,
       "presiders": [
@@ -3769,7 +3769,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "2f9471fd5a05247e523716f2",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-08-02",
       "location": null,
       "presiders": [
@@ -3792,7 +3792,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "a52ee0813336a6b647ed7892",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-08-03",
       "location": "50 Fairway Dr, Clear Island Waters QLD 4226, Australia",
       "presiders": [
@@ -3815,7 +3815,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "a3a2677e58e1d971a07a6d5a",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-08-04",
       "location": null,
       "presiders": [
@@ -3841,7 +3841,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "acdd0a5bf83dd7f06c11de1b",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-08-05",
       "location": null,
       "presiders": [
@@ -3864,7 +3864,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "86ae90f65deb87296e50f9df",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-08-06",
       "location": null,
       "presiders": [],
@@ -3885,7 +3885,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "28ceb550fa065d88d5f39beb",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-08-07",
       "location": null,
       "presiders": [
@@ -3908,7 +3908,7 @@
       "event_subtype": null,
       "event_type": "confession",
       "id": "6d15cf328064e0b402c9afb3",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": null,
       "location": null,
       "presiders": [
@@ -3931,7 +3931,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "083773759faa37c716ecee0a",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-08-09",
       "location": null,
       "presiders": [
@@ -3954,7 +3954,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "482802d3c71da9ea92889c0f",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-08-09",
       "location": null,
       "presiders": [
@@ -3977,7 +3977,7 @@
       "event_subtype": "maronite",
       "event_type": "multicultural",
       "id": "550d9a805c6d6a9548a189e0",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": null,
       "location": "Sacred Heart Church, 50 Fairway Dr, Clear Island Waters QLD 4226, Australia",
       "presiders": [
@@ -4000,7 +4000,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "fff2a4f6ae8450073c8cd106",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-08-09",
       "location": null,
       "presiders": [
@@ -4023,7 +4023,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "93585cc83779e9f7b1175fe9",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-08-09",
       "location": null,
       "presiders": [
@@ -4046,7 +4046,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "b3a0cd7cce9d428caf6b450f",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-08-09",
       "location": null,
       "presiders": [
@@ -4069,7 +4069,7 @@
       "event_subtype": null,
       "event_type": "baptism",
       "id": "8c5bf71a092c9d5f8299f926",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": null,
       "location": null,
       "presiders": [
@@ -4092,7 +4092,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "18b987954e9bdc042dd05328",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-08-09",
       "location": null,
       "presiders": [
@@ -4115,7 +4115,7 @@
       "event_subtype": "polish",
       "event_type": "multicultural",
       "id": "687b7ccf1777d5027fc65745",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-08-09",
       "location": null,
       "presiders": [
@@ -4138,7 +4138,7 @@
       "event_subtype": "italian",
       "event_type": "multicultural",
       "id": "0c48324aa9ccbd133545cc64",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-08-09",
       "location": null,
       "presiders": [
@@ -4161,7 +4161,7 @@
       "event_subtype": "hispanic",
       "event_type": "multicultural",
       "id": "fe2565b2c1b528128965ec9e",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-08-09",
       "location": null,
       "presiders": [
@@ -4184,7 +4184,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "1e835d8976310279ef2df937",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-08-09",
       "location": null,
       "presiders": [],
@@ -4205,7 +4205,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "e9a16d3f73e7129821dd9aea",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-08-10",
       "location": "50 Fairway Dr, Clear Island Waters QLD 4226, Australia",
       "presiders": [
@@ -4228,7 +4228,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "3562fefdff68cf9675b69c1e",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-08-11",
       "location": null,
       "presiders": [],
@@ -4249,7 +4249,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "33f5e678be2ba2cc1eaa88ca",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-08-12",
       "location": null,
       "presiders": [
@@ -4272,7 +4272,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "a322ce2fea450b8e731d364e",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-08-13",
       "location": null,
       "presiders": [],
@@ -4293,7 +4293,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "8caf3851b1a5e95d8b91230a",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-08-14",
       "location": null,
       "presiders": [
@@ -4316,7 +4316,7 @@
       "event_subtype": null,
       "event_type": "confession",
       "id": "f52bd9bb42f84cc7e051ef60",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": null,
       "location": "Sacred Heart Church, 50 Fairway Dr, Clear Island Waters QLD 4226, Australia",
       "presiders": [
@@ -4339,7 +4339,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "3cacfaf57a09eb575c758b59",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-08-16",
       "location": "Stella Maris Catholic Church, 254 Hedges Ave, Mermaid Beach QLD 4218, Australia",
       "presiders": [
@@ -4362,7 +4362,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "5aa139a6dc824640ce3cb6ef",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-08-16",
       "location": "Sacred Heart Church, 50 Fairway Dr, Clear Island Waters QLD 4226, Australia",
       "presiders": [
@@ -4385,7 +4385,7 @@
       "event_subtype": "maronite",
       "event_type": "multicultural",
       "id": "3f1257582a2c930744c46ee3",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": null,
       "location": "Sacred Heart Church, 50 Fairway Dr, Clear Island Waters QLD 4226, Australia",
       "presiders": [
@@ -4408,7 +4408,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "f189ecaa252bf28d4aa4bb0d",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-08-16",
       "location": null,
       "presiders": [
@@ -4431,7 +4431,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "bc0216fb53818de6d99e6325",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-08-16",
       "location": null,
       "presiders": [
@@ -4454,7 +4454,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "e2608897b3396aeb1b269c28",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-08-16",
       "location": null,
       "presiders": [
@@ -4477,7 +4477,7 @@
       "event_subtype": null,
       "event_type": "baptism",
       "id": "b52649e6bbb84b1b423aa33e",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": null,
       "location": null,
       "presiders": [
@@ -4500,7 +4500,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "f5467d5f7c980f4b41ee0d7e",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-08-16",
       "location": null,
       "presiders": [
@@ -4523,7 +4523,7 @@
       "event_subtype": "polish",
       "event_type": "multicultural",
       "id": "5d863b2865fbb71352835644",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-08-16",
       "location": null,
       "presiders": [
@@ -4546,7 +4546,7 @@
       "event_subtype": "italian",
       "event_type": "multicultural",
       "id": "1a35df6a89ac554d90be090b",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-08-16",
       "location": null,
       "presiders": [
@@ -4569,7 +4569,7 @@
       "event_subtype": "hispanic",
       "event_type": "multicultural",
       "id": "b021862a850dce559177c2ee",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-08-16",
       "location": null,
       "presiders": [
@@ -4592,7 +4592,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "b6e9f9ef6bc02c7849fb12cf",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-08-16",
       "location": null,
       "presiders": [
@@ -4615,7 +4615,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "7e4daa9d7075a183452a38ac",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-08-17",
       "location": "50 Fairway Dr, Clear Island Waters QLD 4226, Australia",
       "presiders": [
@@ -4638,7 +4638,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "c6f6a95e934861d68e99160e",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-08-18",
       "location": null,
       "presiders": [],
@@ -4659,7 +4659,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "d1c69582c8164576fc45ebd6",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-08-19",
       "location": null,
       "presiders": [
@@ -4682,7 +4682,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "335179b427590016aefdb679",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-08-20",
       "location": null,
       "presiders": [],
@@ -4703,7 +4703,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "f88bcedeeccfd2d5bd6d3792",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-08-21",
       "location": null,
       "presiders": [
@@ -4726,7 +4726,7 @@
       "event_subtype": null,
       "event_type": "confession",
       "id": "68000c2d60dfd419211cf332",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": null,
       "location": null,
       "presiders": [
@@ -4749,7 +4749,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "522e5af96a13d57d4edd06c2",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-08-23",
       "location": null,
       "presiders": [
@@ -4772,7 +4772,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "9ec85cb7e2b561da93fe0bc7",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-08-23",
       "location": null,
       "presiders": [
@@ -4795,7 +4795,7 @@
       "event_subtype": "maronite",
       "event_type": "multicultural",
       "id": "16a4fa5f73bd2892c9dc46ed",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": null,
       "location": "Sacred Heart Church, 50 Fairway Dr, Clear Island Waters QLD 4226, Australia",
       "presiders": [
@@ -4818,7 +4818,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "28ffbccc652649deb802ddb0",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-08-23",
       "location": null,
       "presiders": [
@@ -4841,7 +4841,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "3107ad402af39d79b0fead22",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-08-23",
       "location": null,
       "presiders": [
@@ -4864,7 +4864,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "6896241a778f4f4b1110e1e5",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-08-23",
       "location": null,
       "presiders": [
@@ -4887,7 +4887,7 @@
       "event_subtype": null,
       "event_type": "baptism",
       "id": "6711bae7c62f1030d2746a5e",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": null,
       "location": null,
       "presiders": [
@@ -4910,7 +4910,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "632dc40e56fa6eb4526ee191",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-08-23",
       "location": null,
       "presiders": [
@@ -4933,7 +4933,7 @@
       "event_subtype": "polish",
       "event_type": "multicultural",
       "id": "ae1e1aef53c2ef0b8791a2b3",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-08-23",
       "location": null,
       "presiders": [
@@ -4956,7 +4956,7 @@
       "event_subtype": "italian",
       "event_type": "multicultural",
       "id": "ae122f90516a1dad38bbca92",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-08-23",
       "location": null,
       "presiders": [
@@ -4979,7 +4979,7 @@
       "event_subtype": "hispanic",
       "event_type": "multicultural",
       "id": "bb2d3b0e1b412c058458dfd9",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-08-23",
       "location": null,
       "presiders": [
@@ -5002,7 +5002,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "4334b6bb7a4d05255078c3b7",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-08-23",
       "location": null,
       "presiders": [
@@ -5025,7 +5025,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "8c417b1b7263717f733dc00a",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-08-24",
       "location": "50 Fairway Dr, Clear Island Waters QLD 4226, Australia",
       "presiders": [
@@ -5048,7 +5048,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "60b0877de835efe0d7f8bc64",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-08-25",
       "location": null,
       "presiders": [],
@@ -5069,7 +5069,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "c1b947e590d60e927ff6e518",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-08-26",
       "location": null,
       "presiders": [
@@ -5092,7 +5092,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "6b657d0e65e8898b0088c63f",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-08-27",
       "location": null,
       "presiders": [],
@@ -5113,7 +5113,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "2ddbbcf30550dbc047a0062e",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-08-28",
       "location": null,
       "presiders": [
@@ -5136,7 +5136,7 @@
       "event_subtype": null,
       "event_type": "confession",
       "id": "16164792bb3bb930e9db0f86",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": null,
       "location": null,
       "presiders": [
@@ -5159,7 +5159,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "c599d6405a5c01cf6bf697c4",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-08-30",
       "location": null,
       "presiders": [
@@ -5182,7 +5182,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "f7124e2726e4fc08c98295d4",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-08-30",
       "location": null,
       "presiders": [
@@ -5205,7 +5205,7 @@
       "event_subtype": "maronite",
       "event_type": "multicultural",
       "id": "4f68755e48154af02242b2de",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": null,
       "location": "Sacred Heart Church, 50 Fairway Dr, Clear Island Waters QLD 4226, Australia",
       "presiders": [
@@ -5228,7 +5228,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "b3afb0fe4672fb50f9bc27e5",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-08-30",
       "location": null,
       "presiders": [
@@ -5251,7 +5251,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "17e414448a75e7a3d8124f2e",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-08-30",
       "location": null,
       "presiders": [
@@ -5274,7 +5274,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "adf07f6e6aa941e9c4b5d7e1",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-08-30",
       "location": null,
       "presiders": [
@@ -5297,7 +5297,7 @@
       "event_subtype": null,
       "event_type": "baptism",
       "id": "4e99d816412d303f11c3cdd1",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": null,
       "location": null,
       "presiders": [
@@ -5320,7 +5320,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "8c679ff37ee377b489902e90",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-08-30",
       "location": null,
       "presiders": [
@@ -5343,7 +5343,7 @@
       "event_subtype": "polish",
       "event_type": "multicultural",
       "id": "9f60e68cad95d32729ed1bd3",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-08-30",
       "location": null,
       "presiders": [
@@ -5366,7 +5366,7 @@
       "event_subtype": "italian",
       "event_type": "multicultural",
       "id": "2dc23968b1419ba6d47322cd",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-08-30",
       "location": null,
       "presiders": [
@@ -5389,7 +5389,7 @@
       "event_subtype": "hispanic",
       "event_type": "multicultural",
       "id": "2e57796ab8603d9678d1d73e",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-08-30",
       "location": null,
       "presiders": [
@@ -5412,7 +5412,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "a8208a7203b68af510b9c7cf",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-08-30",
       "location": null,
       "presiders": [
@@ -5435,7 +5435,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "ef376a06068dc4dd0657e94e",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-08-31",
       "location": "50 Fairway Dr, Clear Island Waters QLD 4226, Australia",
       "presiders": [
@@ -5458,7 +5458,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "852544642527537c2eee29b9",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-09-01",
       "location": null,
       "presiders": [
@@ -5484,7 +5484,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "b52fc8e7862996fd085fbf9b",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-09-02",
       "location": null,
       "presiders": [
@@ -5507,7 +5507,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "94936f03af44d59e9487992d",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-09-03",
       "location": null,
       "presiders": [],
@@ -5528,7 +5528,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "61e40606147cf19a349bbfe6",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-09-04",
       "location": null,
       "presiders": [
@@ -5554,7 +5554,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "8386944d17498e74df5ca3c8",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-09-05",
       "location": null,
       "presiders": [],
@@ -5575,7 +5575,7 @@
       "event_subtype": null,
       "event_type": "confession",
       "id": "9d261cbc695397e06b8eb701",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": null,
       "location": "Sacred Heart Church, 50 Fairway Dr, Clear Island Waters QLD 4226, Australia",
       "presiders": [
@@ -5598,7 +5598,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "9c1eef177b05ae983ccb6a53",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-09-06",
       "location": "Stella Maris Catholic Church, 254 Hedges Ave, Mermaid Beach QLD 4218, Australia",
       "presiders": [
@@ -5621,7 +5621,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "b9ccad523b6fa252bd9110dd",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-09-06",
       "location": "Sacred Heart Church, 50 Fairway Dr, Clear Island Waters QLD 4226, Australia",
       "presiders": [
@@ -5644,7 +5644,7 @@
       "event_subtype": "maronite",
       "event_type": "multicultural",
       "id": "aa1cc219d1e0527122481287",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": null,
       "location": "Sacred Heart Church, 50 Fairway Dr, Clear Island Waters QLD 4226, Australia",
       "presiders": [
@@ -5667,7 +5667,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "b5bcffbd9865536410a3d23b",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-09-06",
       "location": null,
       "presiders": [
@@ -5690,7 +5690,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "6687362b1695e6173b0a82ec",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-09-06",
       "location": null,
       "presiders": [
@@ -5713,7 +5713,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "ca4f371e9b1c0a6630dfd250",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-09-06",
       "location": null,
       "presiders": [
@@ -5736,7 +5736,7 @@
       "event_subtype": null,
       "event_type": "baptism",
       "id": "1bc20f781c8d243e31862fa6",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": null,
       "location": null,
       "presiders": [
@@ -5759,7 +5759,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "d7b170c55be61b2cc9cc2bea",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-09-06",
       "location": null,
       "presiders": [
@@ -5782,7 +5782,7 @@
       "event_subtype": "polish",
       "event_type": "multicultural",
       "id": "36e7829e6f48063104808103",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-09-06",
       "location": null,
       "presiders": [
@@ -5805,7 +5805,7 @@
       "event_subtype": "italian",
       "event_type": "multicultural",
       "id": "ba6cb7032ab70f20397437d8",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-09-06",
       "location": null,
       "presiders": [
@@ -5828,7 +5828,7 @@
       "event_subtype": "hispanic",
       "event_type": "multicultural",
       "id": "c8e95b1141c5f1690ff503af",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-09-06",
       "location": null,
       "presiders": [
@@ -5851,7 +5851,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "60eac8a9a078ddeff833321f",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-09-06",
       "location": null,
       "presiders": [
@@ -5874,7 +5874,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "06b953c5cc2578c940354969",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-09-07",
       "location": "50 Fairway Dr, Clear Island Waters QLD 4226, Australia",
       "presiders": [
@@ -5897,7 +5897,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "68fbfa8cfea9fdc8f7794ac5",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-09-08",
       "location": null,
       "presiders": [],
@@ -5918,7 +5918,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "90bb52f454a2487992eb5a8c",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-09-09",
       "location": null,
       "presiders": [
@@ -5941,7 +5941,7 @@
       "event_subtype": null,
       "event_type": "mass",
       "id": "eeb82bac8de2a37d759ff3cb",
-      "last_updated": "2026-06-12T07:49:28+10:00",
+      "last_updated": "2026-06-12T20:45:23+10:00",
       "liturgical_date": "2026-09-10",
       "location": null,
       "presiders": [],

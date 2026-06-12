@@ -4,32 +4,39 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>GC Pilgrim</title>
-  <link rel="stylesheet" href="styles.css?v=29">
+  <link rel="stylesheet" href="styles.css?v=31">
 </head>
 <body data-theme="spcp">
   <header class="page-header">
-    <div class="brand-lockup">
-      <button
-        id="parish-selector-toggle"
-        class="parish-selector-toggle"
-        type="button"
-        aria-expanded="false"
-        aria-controls="parish-selector"
-        aria-haspopup="menu"
-        aria-label="Choose parish"
+    <div class="header-branding">
+      <img
+        class="pilgrim-icon"
+        src="assets/gold-coast-mascot.png"
+        alt="GC Pilgrim"
       >
-        <img
-          id="parish-logo"
-          class="parish-logo"
-          src="assets/spcp-logo.png"
-          alt="Surfers Paradise Catholic Parish"
-          width="512"
-          height="160"
+      <div class="brand-lockup">
+        <button
+          id="parish-selector-toggle"
+          class="parish-selector-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="parish-selector"
+          aria-haspopup="menu"
+          aria-label="Choose parish"
         >
-        <span id="selected-region-name" class="selected-region-name" hidden></span>
-        <span class="parish-selector-chevron" aria-hidden="true"></span>
-      </button>
-      <div id="parish-selector" class="parish-selector" role="menu" hidden></div>
+          <img
+            id="parish-logo"
+            class="parish-logo"
+            src="assets/spcp-logo.png"
+            alt="Surfers Paradise Catholic Parish"
+            width="512"
+            height="160"
+          >
+          <span id="selected-region-name" class="selected-region-name" hidden></span>
+          <span class="parish-selector-chevron" aria-hidden="true"></span>
+        </button>
+        <div id="parish-selector" class="parish-selector" role="menu" hidden></div>
+      </div>
     </div>
     <div class="header-copy">
       <div class="mobile-navigation-heading">
@@ -182,17 +189,22 @@
         role="tabpanel"
         aria-labelledby="view-weekly"
       ></div>
-      <footer class="calendar-footer">
-        <a id="diagnostics-link" href="diagnostics.html?parish=surfers-paradise">Feed diagnostics</a>
-      </footer>
     </section>
   </main>
 
   <main id="about-page" class="about-page" data-page-panel="about" hidden>
     <header class="about-introduction">
-      <p id="about-eyebrow" class="eyebrow">Our parish</p>
-      <h2 id="parish-name">About the Parish</h2>
-      <p id="parish-tagline"></p>
+      <div class="about-introduction-copy">
+        <p id="about-eyebrow" class="eyebrow">Our parish</p>
+        <h2 id="parish-name">About the Parish</h2>
+        <p id="parish-tagline"></p>
+      </div>
+      <img
+        id="about-logo"
+        class="about-logo"
+        src="assets/spcp-logo.png"
+        alt="Surfers Paradise Catholic Parish logo"
+      >
     </header>
 
     <div id="about-error" class="message error-message" hidden></div>
@@ -246,6 +258,6 @@
     </article>
   </template>
 
-  <script type="module" src="app.js?v=37"></script>
+  <script type="module" src="app.js?v=39"></script>
 </body>
 </html>

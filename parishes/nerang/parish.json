@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "id": "nerang",
+  "name": "St Brigid's Catholic Parish Nerang",
+  "branding": {
+    "logo": "assets/nerang-logo.png",
+    "theme": "nerang",
+    "tagline": "Serving the Catholic community of Nerang and the Gold Coast hinterland."
+  },
+  "contact": {
+    "phone": "(07) 5671 7304",
+    "email": "nerang@bne.catholic.net.au",
+    "website": "https://stbrigidsparishnerang.org.au/"
+  },
+  "office": {
+    "address": "39-49 McLaren Road, Nerang QLD 4211",
+    "hours": {
+      "monday": "09:00-12:00",
+      "tuesday": "09:00-14:30",
+      "friday": "09:00-14:30"
+    }
+  },
+  "clergy": [
+    {
+      "role": "Parish Administrator",
+      "name": "Fr Damian Mosakowski OSPPE"
+    }
+  ],
+  "churches": [
+    {
+      "id": "st-brigids",
+      "name": "St Brigid's Church",
+      "calendar_name": "St Brigid's",
+      "address": "39-49 McLaren Road, Nerang QLD 4211",
+      "is_primary_site": true
+    },
+    {
+      "id": "st-johns",
+      "name": "St John's Church",
+      "calendar_name": "St John's",
+      "address": "Windabout Road, Beechmont QLD 4211",
+      "is_primary_site": false,
+      "status": "temporarily-closed"
+    },
+    {
+      "id": "earle-haven",
+      "name": "Earle Haven Retirement Village",
+      "calendar_name": "Earle Haven",
+      "address": "62 Lawrence Drive, Nerang QLD 4211",
+      "is_primary_site": false,
+      "location_type": "retirement-community"
+    }
+  ]
+}
