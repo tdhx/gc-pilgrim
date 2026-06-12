@@ -53,6 +53,15 @@ def validate_registry(feed):
         raise ValueError("Registry contains duplicate parish IDs")
     if feed["default_parish_id"] not in parishes:
         raise ValueError("Registry default parish is not registered")
+    aggregate = feed.get("aggregate_view")
+    if aggregate:
+        _require(aggregate, ("id", "name"), "Aggregate view")
+        if aggregate["id"] in parishes:
+            raise ValueError("Registry aggregate view conflicts with a parish")
+    view_ids = ([aggregate["id"]] if aggregate else []) + parishes
+    default_view_id = feed.get("default_view_id")
+    if default_view_id and default_view_id not in view_ids:
+        raise ValueError("Registry default view is not registered")
     return feed
 
 

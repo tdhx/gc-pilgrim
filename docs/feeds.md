@@ -13,9 +13,16 @@ Required fields:
 | --- | --- | --- |
 | `schema_version` | integer | Contract version |
 | `default_parish_id` | string | Parish selected when the query parameter is absent or invalid |
+| `default_view_id` | string | Calendar view selected for a new visitor |
+| `aggregate_view` | object | Optional virtual view with stable `id` and display `name` |
 | `parishes` | string array | Discoverable parish IDs |
 
-The default ID must occur in `parishes`, and parish IDs must be unique.
+The default parish ID must occur in `parishes`. The default view may identify
+either a parish or the aggregate view. Parish IDs must be unique, and an
+aggregate view ID must not conflict with a parish ID.
+
+The aggregate view is virtual: it has no parish feed directory. At runtime the
+web app reads all registered parish feeds and combines their events.
 
 ## Parish
 

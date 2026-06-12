@@ -4,6 +4,7 @@ import test from "node:test";
 import {
   addDays,
   addMonths,
+  aggregateCalendars,
   assembleCalendar,
   eventsInRange,
   liturgicalColour,
@@ -46,9 +47,64 @@ test("published modular feeds validate", () => {
 });
 
 test("registry selects query parish and falls back to default", () => {
+  assert.equal(selectedParishId(registry), "gold-coast");
+  assert.equal(selectedParishId(registry, "?parish=gold-coast"), "gold-coast");
   assert.equal(selectedParishId(registry, "?parish=surfers-paradise"), "surfers-paradise");
   assert.equal(selectedParishId(registry, "?parish=southport"), "southport");
-  assert.equal(selectedParishId(registry, "?parish=missing"), registry.default_parish_id);
+  assert.equal(selectedParishId(registry, "?parish=missing"), registry.default_view_id);
+});
+
+test("a saved valid parish remains selected for returning visitors", () => {
+  globalThis.window = {
+    localStorage: {
+      getItem: () => "southport",
+    },
+  };
+  try {
+    assert.equal(selectedParishId(registry), "southport");
+    assert.equal(selectedParishId(registry, "?parish=gold-coast"), "gold-coast");
+  } finally {
+    delete globalThis.window;
+  }
+});
+
+test("Gold Coast aggregate combines parish calendars with attribution", () => {
+  const surfersCalendar = assembleCalendar(parish, services, community, liturgical);
+  const southportCalendar = assembleCalendar(
+    southportParish,
+    southportServices,
+    southportCommunity,
+    liturgical,
+  );
+  const calendar = aggregateCalendars([
+    { parish, calendar: surfersCalendar },
+    { parish: southportParish, calendar: southportCalendar },
+  ]);
+  assert.equal(
+    calendar.events.length,
+    surfersCalendar.events.length + southportCalendar.events.length,
+  );
+  assert.deepEqual(
+    new Set(calendar.events.map((event) => event.parish_id)),
+    new Set(["surfers-paradise", "southport"]),
+  );
+  assert.ok(calendar.events.every((event) => event.id.startsWith(`${event.parish_id}:`)));
+  assert.equal(calendar.sources.length, 3);
+  assert.deepEqual(
+    calendar.events,
+    [...calendar.events].sort((left, right) => left.start.localeCompare(right.start)
+      || left.end.localeCompare(right.end)
+      || left.id.localeCompare(right.id)),
+  );
+  const selected = {
+    eventType: new Set(),
+    multiculturalSubtype: new Set(),
+    church: new Set(),
+    presider: new Set(),
+  };
+  assert.ok(calendar.events.filter((event) => (
+    matchesEvent(event, selected, "southport")
+  )).every((event) => event.parish_id === "southport"));
 });
 
 test("Southport services assemble with locations and liturgical enrichment", () => {
@@ -133,6 +189,7 @@ test("GC Pilgrim app uses registry discovery and four-feed loading", () => {
   assert.match(indexSource, /<title>GC Pilgrim<\/title>/);
   assert.match(indexSource, /id="parish-selector"/);
   assert.match(indexSource, /id="parish-selector-toggle"/);
+  assert.match(indexSource, /id="selected-region-name"/);
   assert.doesNotMatch(indexSource, /platform-brand|gc-pilgrim\.svg/);
   assert.match(appSource, /feeds\/v1/);
   assert.match(appSource, /Promise\.all\(\[/);
@@ -142,11 +199,18 @@ test("GC Pilgrim app uses registry discovery and four-feed loading", () => {
   assert.doesNotMatch(appSource, /calendar\.json/);
   assert.match(diagnosticsSource, /validateRegistry/);
   assert.match(appSource, /gc-pilgrim-parish/);
+  assert.match(appSource, /aggregateCalendars/);
+  assert.match(appSource, /renderAggregateAbout/);
+  assert.match(appSource, /adoration: "gold"/);
+  assert.match(appSource, /assets\/gold-coast-mascot\.png/);
+  assert.match(appSource, /Gold Coast Wide/);
+  assert.match(indexSource, /class="event-parish"/);
   assert.match(appSource, /event-mass-fallback/);
   assert.match(appSource, /presider\.hidden = !presider\.textContent/);
   assert.match(appSource, /minimumEvents = 10/);
   assert.match(appSource, /closest\("\.filter-section"\)\.hidden/);
   assert.match(stylesSource, /body\[data-theme="southport"\]/);
+  assert.match(stylesSource, /body\[data-theme="gc-pilgrim"\]/);
   assert.match(stylesSource, /--theme-bar-gradient/);
   assert.match(stylesSource, /\.event-mass-fallback::before/);
   assert.match(stylesSource, /data-liturgical-colour="gold"/);

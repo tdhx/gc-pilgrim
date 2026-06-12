@@ -128,7 +128,26 @@ export function validateRegistry(registry) {
   if (!registry.parishes.includes(registry.default_parish_id)) {
     throw new Error("Registry default parish is unavailable.");
   }
+  if (registry.aggregate_view) {
+    if (!registry.aggregate_view.id || !registry.aggregate_view.name) {
+      throw new Error("Registry aggregate view is incomplete.");
+    }
+    if (registry.parishes.includes(registry.aggregate_view.id)) {
+      throw new Error("Registry aggregate view conflicts with a parish.");
+    }
+  }
+  const viewIds = registryViewIds(registry);
+  if (registry.default_view_id && !viewIds.includes(registry.default_view_id)) {
+    throw new Error("Registry default view is unavailable.");
+  }
   return registry;
+}
+
+export function registryViewIds(registry) {
+  return [
+    ...(registry.aggregate_view ? [registry.aggregate_view.id] : []),
+    ...registry.parishes,
+  ];
 }
 
 export function selectedParishId(registry, search = "") {
@@ -136,9 +155,10 @@ export function selectedParishId(registry, search = "") {
   const remembered = typeof window !== "undefined"
     ? window.localStorage.getItem("gc-pilgrim-parish")
     : null;
-  if (registry.parishes.includes(requested)) return requested;
-  if (registry.parishes.includes(remembered)) return remembered;
-  return registry.default_parish_id;
+  const viewIds = registryViewIds(registry);
+  if (viewIds.includes(requested)) return requested;
+  if (viewIds.includes(remembered)) return remembered;
+  return registry.default_view_id || registry.default_parish_id;
 }
 
 export function validateParish(parish) {
@@ -207,6 +227,16 @@ function titleCase(value) {
   return value.replace(/\b\w/g, (letter) => letter.toUpperCase());
 }
 
+function uniqueMetadata(values) {
+  const seen = new Set();
+  return values.filter((value) => {
+    const key = JSON.stringify(value);
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
+}
+
 export function assembleCalendar(parish, servicesFeed, communityFeed, liturgicalFeed) {
   validateParish(parish);
   validateServices(servicesFeed);
@@ -231,8 +261,54 @@ export function assembleCalendar(parish, servicesFeed, communityFeed, liturgical
       start: [servicesFeed.coverage.start, communityFeed.coverage.start].sort()[0],
       end: [servicesFeed.coverage.end, communityFeed.coverage.end].sort().at(-1),
     },
-    sources: [...(servicesFeed.sources || []), ...(communityFeed.sources || [])],
-    warnings: [...(servicesFeed.warnings || []), ...(communityFeed.warnings || [])],
+    sources: uniqueMetadata([
+      ...(servicesFeed.sources || []),
+      ...(communityFeed.sources || []),
+    ]),
+    warnings: uniqueMetadata([
+      ...(servicesFeed.warnings || []),
+      ...(communityFeed.warnings || []),
+    ]),
+    events: Object.freeze(events),
+  });
+}
+
+export function aggregateCalendars(parishCalendars) {
+  if (!Array.isArray(parishCalendars) || !parishCalendars.length) {
+    throw new Error("No parish calendars are available to aggregate.");
+  }
+  const events = parishCalendars.flatMap(({ parish, calendar }) => (
+    calendar.events.map((event) => Object.freeze({
+      ...event,
+      id: `${parish.id}:${event.id}`,
+      parish_id: parish.id,
+      parish_name: parish.name,
+    }))
+  )).sort((left, right) => left.start.localeCompare(right.start)
+    || left.end.localeCompare(right.end)
+    || left.id.localeCompare(right.id));
+  return Object.freeze({
+    schema_version: 1,
+    generated_at: parishCalendars
+      .map(({ calendar }) => calendar.generated_at)
+      .sort()
+      .at(-1),
+    timezone: parishCalendars[0].calendar.timezone,
+    coverage: {
+      start: parishCalendars
+        .map(({ calendar }) => calendar.coverage.start)
+        .sort()[0],
+      end: parishCalendars
+        .map(({ calendar }) => calendar.coverage.end)
+        .sort()
+        .at(-1),
+    },
+    sources: uniqueMetadata(
+      parishCalendars.flatMap(({ calendar }) => calendar.sources || []),
+    ),
+    warnings: uniqueMetadata(
+      parishCalendars.flatMap(({ calendar }) => calendar.warnings || []),
+    ),
     events: Object.freeze(events),
   });
 }
@@ -261,6 +337,7 @@ export function matchesEvent(event, selected, search, defaultEventTypes = []) {
       event.liturgical?.observance,
       event.liturgical?.rank,
       event.liturgical?.season,
+      event.parish_name,
       ...event.presiders,
     ].filter(Boolean).join(" ").toLocaleLowerCase();
     if (!haystack.includes(search)) return false;

@@ -33,6 +33,15 @@ body[data-theme="southport"] {
   --theme-bar-context: #f2d98f;
 }
 
+body[data-theme="gc-pilgrim"] {
+  --theme-primary: var(--blue);
+  --theme-primary-deep: var(--blue-deep);
+  --theme-highlight: var(--accent);
+  --theme-highlight-soft: var(--accent-soft);
+  --theme-bar-gradient: linear-gradient(120deg, #005f8c 0%, #007caf 72%, #ee8b22 100%);
+  --theme-bar-context: #ffd29e;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -107,6 +116,14 @@ button {
   object-fit: contain;
   object-position: left center;
   height: auto;
+}
+
+.selected-region-name {
+  color: var(--theme-primary-deep);
+  font-size: 0.94rem;
+  font-weight: 800;
+  line-height: 1.1;
+  text-align: left;
 }
 
 .parish-selector-chevron {
@@ -1070,6 +1087,13 @@ button.month-day:hover {
   text-transform: uppercase;
 }
 
+.event-parish {
+  margin: 0 0 4px;
+  color: var(--theme-primary);
+  font-size: 0.76rem;
+  font-weight: 800;
+}
+
 .event-subtitle {
   margin: 0 0 5px;
   color: var(--muted);
@@ -1190,6 +1214,12 @@ button.month-day:hover {
   font-weight: 700;
 }
 
+.about-card-copy {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
 .hours-list,
 .hours-list div {
   margin: 0;
@@ -1258,6 +1288,23 @@ button.month-day:hover {
   align-items: center;
 }
 
+.aggregate-parish-list {
+  display: grid;
+  gap: 24px;
+}
+
+.aggregate-parish-list > section > h4 {
+  margin: 0 0 12px;
+  color: var(--theme-primary-deep);
+  font-size: 1.1rem;
+}
+
+.aggregate-parish-list .church-list h5 {
+  margin: 0;
+  color: var(--ink);
+  font-size: 1rem;
+}
+
 .primary-site-badge {
   padding: 3px 7px;
   border-radius: 999px;
@@ -1315,7 +1362,9 @@ button.month-day:hover {
 
   .header-copy {
     position: relative;
-    display: block;
+    display: flex;
+    align-self: stretch;
+    align-items: center;
     padding: 0 0 0 12px;
     border-top: 0;
     border-left: 1px solid var(--line);
@@ -1327,17 +1376,25 @@ button.month-day:hover {
 
   .mobile-navigation-heading {
     display: flex;
+    width: 100%;
+    min-height: 58px;
     align-items: center;
     justify-content: flex-end;
     gap: 10px;
   }
 
   .mobile-navigation-heading h1 {
+    margin: 0;
     overflow: hidden;
     font-size: clamp(1rem, 4vw, 1.35rem);
     text-align: right;
     text-overflow: ellipsis;
     white-space: nowrap;
+  }
+
+  .selected-region-name {
+    max-width: 78px;
+    font-size: 0.78rem;
   }
 
   .navigation-toggle {

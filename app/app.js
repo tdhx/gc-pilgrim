@@ -10,11 +10,12 @@ import {
   monthStart,
   orderedEventTypes,
   presiderGroups,
+  aggregateCalendars,
   assembleCalendar,
   selectedParishId,
   startOfSundayWeek,
   validateRegistry,
-} from "./web/calendar-core.js?v=6";
+} from "./web/calendar-core.js?v=7";
 
 const FEED_ROOT = "feeds/v1";
 const DEFAULT_EVENT_TYPES = ["mass", "confession"];
@@ -43,6 +44,7 @@ const state = {
   selectedMonthDate: null,
   dailyDaysVisible: 7,
   parishName: null,
+  isAggregate: false,
 };
 
 const elements = {
@@ -70,10 +72,12 @@ const elements = {
   navigationToggle: document.querySelector("#navigation-toggle"),
   siteNavigation: document.querySelector("#site-navigation"),
   navigationLinks: [...document.querySelectorAll(".navigation-link")],
+  aboutNavigationLink: document.querySelector("#about-navigation-link"),
   pagePanels: [...document.querySelectorAll("[data-page-panel]")],
   pageTitle: document.querySelector("#page-title"),
   parishSelectorToggle: document.querySelector("#parish-selector-toggle"),
   parishName: document.querySelector("#parish-name"),
+  aboutEyebrow: document.querySelector("#about-eyebrow"),
   parishOfficeAddress: document.querySelector("#parish-office-address"),
   parishPhone: document.querySelector("#parish-phone"),
   parishEmail: document.querySelector("#parish-email"),
@@ -87,6 +91,7 @@ const elements = {
   aboutContent: document.querySelector("#about-content"),
   aboutError: document.querySelector("#about-error"),
   brandLogo: document.querySelector("#parish-logo"),
+  selectedRegionName: document.querySelector("#selected-region-name"),
   parishTagline: document.querySelector("#parish-tagline"),
   parishSelector: document.querySelector("#parish-selector"),
   diagnosticsLink: document.querySelector("#diagnostics-link"),
@@ -155,11 +160,12 @@ function showPage(page) {
     if (link.dataset.page === selectedPage) link.setAttribute("aria-current", "page");
     else link.removeAttribute("aria-current");
   });
-  elements.pageTitle.textContent = selectedPage === "about" ? "About the Parish" : "Calendar";
-  const sectionTitle = selectedPage === "about" ? "About the Parish" : "Calendar";
+  const aboutTitle = state.isAggregate ? "About GC Pilgrim" : "About the Parish";
+  elements.pageTitle.textContent = selectedPage === "about" ? aboutTitle : "Calendar";
+  const sectionTitle = selectedPage === "about" ? aboutTitle : "Calendar";
   document.title = state.parishName
     ? `${sectionTitle} · ${state.parishName} · GC Pilgrim`
-    : selectedPage === "about" ? "About the Parish · GC Pilgrim" : "GC Pilgrim";
+    : selectedPage === "about" ? "About GC Pilgrim" : "GC Pilgrim";
   closeNavigation();
   window.scrollTo({ top: 0, behavior: "auto" });
   updateStickyOffset();
@@ -179,7 +185,12 @@ function displayHours(value) {
 }
 
 function renderParish(parish) {
+  state.isAggregate = false;
   state.parishName = parish.name;
+  elements.selectedRegionName.hidden = true;
+  elements.selectedRegionName.textContent = "";
+  elements.aboutNavigationLink.textContent = "About the Parish";
+  elements.aboutEyebrow.textContent = "Our parish";
   elements.parishName.textContent = parish.name;
   elements.parishTagline.textContent = parish.branding?.tagline || "";
   elements.parishTagline.hidden = !elements.parishTagline.textContent;
@@ -253,6 +264,67 @@ function renderParish(parish) {
     item.append(heading, address);
     return item;
   }));
+  elements.aboutContent.hidden = false;
+  showPage(currentPageFromHash());
+}
+
+function renderAggregateAbout(aggregateView, parishes) {
+  state.isAggregate = true;
+  state.parishName = aggregateView.name;
+  elements.aboutNavigationLink.textContent = "About GC Pilgrim";
+  elements.aboutEyebrow.textContent = "Across the Gold Coast";
+  elements.parishName.textContent = "About GC Pilgrim";
+  elements.parishTagline.textContent =
+    "One calendar for Catholic worship and parish life across the Gold Coast.";
+  elements.parishTagline.hidden = false;
+  elements.brandLogo.src = "assets/gold-coast-mascot.png";
+  elements.brandLogo.alt = "GC Pilgrim mascot";
+  elements.selectedRegionName.textContent = "Gold Coast Wide";
+  elements.selectedRegionName.hidden = false;
+  document.body.dataset.theme = "gc-pilgrim";
+
+  const appCard = document.createElement("section");
+  appCard.className = "about-card";
+  appCard.innerHTML = `
+    <p class="about-card-label">About the app</p>
+    <h3>A shared Catholic calendar</h3>
+    <p class="about-card-copy">
+      GC Pilgrim brings together public schedules from participating Catholic
+      parishes. Choose a parish for its own calendar and contact details, or
+      use Gold Coast wide to explore every available event in one place.
+    </p>
+  `;
+
+  const parishesCard = document.createElement("section");
+  parishesCard.className = "about-card about-churches";
+  const label = document.createElement("p");
+  label.className = "about-card-label";
+  label.textContent = "Participating communities";
+  const title = document.createElement("h3");
+  title.textContent = "Parishes and locations";
+  const list = document.createElement("div");
+  list.className = "aggregate-parish-list";
+  parishes.forEach((parish) => {
+    const group = document.createElement("section");
+    const heading = document.createElement("h4");
+    heading.textContent = parish.name;
+    const churches = document.createElement("div");
+    churches.className = "church-list";
+    churches.replaceChildren(...parish.churches.map((church) => {
+      const item = document.createElement("article");
+      const name = document.createElement("h5");
+      const address = document.createElement("p");
+      name.textContent = church.name;
+      address.textContent = church.address || "";
+      address.hidden = !church.address;
+      item.append(name, address);
+      return item;
+    }));
+    group.append(heading, churches);
+    list.append(group);
+  });
+  parishesCard.append(label, title, list);
+  elements.aboutContent.replaceChildren(appCard, parishesCard);
   elements.aboutContent.hidden = false;
   showPage(currentPageFromHash());
 }
@@ -596,6 +668,7 @@ function makeTag(text) {
 
 function eventAccentColour(event) {
   return {
+    adoration: "gold",
     confession: "violet",
     rosary: "red",
     novena: "gold",
@@ -634,6 +707,9 @@ function renderCard(event) {
 
   card.querySelector(".event-church").textContent = displayChurch(event.church);
   card.querySelector(".event-service").textContent = event.service_name;
+  const parish = card.querySelector(".event-parish");
+  parish.textContent = event.parish_name || "";
+  parish.hidden = !state.isAggregate || !parish.textContent;
   card.querySelector(".event-time").textContent = formatEventTime(event);
   const presider = card.querySelector(".event-presider");
   presider.textContent = event.presiders.map(displayPresider).join(", ");
@@ -1179,8 +1255,16 @@ async function configureParishSelector(registry, selected) {
   const parishes = await Promise.all(registry.parishes.map((parishId) => (
     fetchJSON(`${FEED_ROOT}/parishes/${parishId}/parish.json`, `${parishId} parish`)
   )));
-  elements.parishSelectorToggle.hidden = parishes.length < 2;
-  elements.parishSelector.replaceChildren(...parishes.map((parish) => {
+  const options = [
+    ...(registry.aggregate_view ? [{
+      id: registry.aggregate_view.id,
+      name: registry.aggregate_view.name,
+      branding: { logo: "assets/gold-coast-mascot.png" },
+    }] : []),
+    ...parishes,
+  ];
+  elements.parishSelectorToggle.hidden = options.length < 2;
+  elements.parishSelector.replaceChildren(...options.map((parish) => {
     const button = document.createElement("button");
     const logo = document.createElement("img");
     const label = document.createElement("span");
@@ -1200,6 +1284,22 @@ async function configureParishSelector(registry, selected) {
     });
     return button;
   }));
+  return parishes;
+}
+
+async function loadParishCalendar(parishId, liturgical) {
+  const parishRoot = `${FEED_ROOT}/parishes/${parishId}`;
+  const [parish, services, community] = await Promise.all([
+    fetchJSON(`${parishRoot}/parish.json`, `${parishId} parish feed`),
+    fetchJSON(`${parishRoot}/services.json`, `${parishId} services feed`),
+    fetchJSON(`${parishRoot}/community.json`, `${parishId} community feed`),
+  ]);
+  return {
+    parish,
+    services,
+    community,
+    calendar: assembleCalendar(parish, services, community, liturgical),
+  };
 }
 
 async function loadApplication() {
@@ -1207,17 +1307,22 @@ async function loadApplication() {
     const registry = validateRegistry(await fetchJSON(`${FEED_ROOT}/registry.json`, "Registry"));
     const parishId = selectedParishId(registry, window.location.search);
     window.localStorage.setItem("gc-pilgrim-parish", parishId);
-    await configureParishSelector(registry, parishId);
+    const parishes = await configureParishSelector(registry, parishId);
     elements.diagnosticsLink.href = `diagnostics.html?parish=${encodeURIComponent(parishId)}`;
-    const parishRoot = `${FEED_ROOT}/parishes/${parishId}`;
-    const [parish, services, community, liturgical] = await Promise.all([
-      fetchJSON(`${parishRoot}/parish.json`, "Parish feed"),
-      fetchJSON(`${parishRoot}/services.json`, "Services feed"),
-      fetchJSON(`${parishRoot}/community.json`, "Community feed"),
-      fetchJSON(`${FEED_ROOT}/liturgical.json`, "Liturgical feed"),
-    ]);
-    const feed = assembleCalendar(parish, services, community, liturgical);
-    renderParish(parish);
+    const liturgical = await fetchJSON(`${FEED_ROOT}/liturgical.json`, "Liturgical feed");
+    const isAggregate = parishId === registry.aggregate_view?.id;
+    let feed;
+    if (isAggregate) {
+      const calendars = await Promise.all(
+        registry.parishes.map((id) => loadParishCalendar(id, liturgical)),
+      );
+      feed = aggregateCalendars(calendars);
+      renderAggregateAbout(registry.aggregate_view, parishes);
+    } else {
+      const bundle = await loadParishCalendar(parishId, liturgical);
+      feed = bundle.calendar;
+      renderParish(bundle.parish);
+    }
     state.feed = feed;
     state.events = feed.events;
     const today = currentBrisbaneDate();

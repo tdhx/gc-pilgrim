@@ -10,7 +10,8 @@ parish information into four independent feeds:
 
 The published registry includes Surfers Paradise Catholic Parish and Southport
 Catholic Parish. The web runtime supports richer and sparser parish definitions
-without changing its feed contract.
+without changing its feed contract. Its default Gold Coast wide view combines
+events from every registered parish at runtime.
 
 ## Live Project
 

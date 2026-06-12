@@ -1,11 +1,13 @@
 import {
+  aggregateCalendars,
+  assembleCalendar,
   selectedParishId,
   validateCommunity,
   validateLiturgical,
   validateParish,
   validateRegistry,
   validateServices,
-} from "./web/calendar-core.js?v=6";
+} from "./web/calendar-core.js?v=7";
 
 const FEED_ROOT = "feeds/v1";
 const title = document.querySelector("#diagnostics-title");
@@ -36,27 +38,49 @@ async function loadDiagnostics() {
   try {
     const registry = validateRegistry(await fetchJSON(`${FEED_ROOT}/registry.json`));
     const parishId = selectedParishId(registry, window.location.search);
-    const parishRoot = `${FEED_ROOT}/parishes/${parishId}`;
-    const [parish, services, community, liturgical] = await Promise.all([
-      fetchJSON(`${parishRoot}/parish.json`).then(validateParish),
-      fetchJSON(`${parishRoot}/services.json`).then(validateServices),
-      fetchJSON(`${parishRoot}/community.json`).then(validateCommunity),
-      fetchJSON(`${FEED_ROOT}/liturgical.json`).then(validateLiturgical),
-    ]);
-    document.body.dataset.theme = parish.branding?.theme || "spcp";
-    parishLogo.src = parish.branding?.logo || "assets/gc-pilgrim.svg";
-    parishLogo.alt = parish.name;
+    const liturgical = await fetchJSON(`${FEED_ROOT}/liturgical.json`).then(validateLiturgical);
+    const loadParish = async (id) => {
+      const parishRoot = `${FEED_ROOT}/parishes/${id}`;
+      const [parish, services, community] = await Promise.all([
+        fetchJSON(`${parishRoot}/parish.json`).then(validateParish),
+        fetchJSON(`${parishRoot}/services.json`).then(validateServices),
+        fetchJSON(`${parishRoot}/community.json`).then(validateCommunity),
+      ]);
+      return {
+        parish,
+        services,
+        community,
+        calendar: assembleCalendar(parish, services, community, liturgical),
+      };
+    };
+    const isAggregate = parishId === registry.aggregate_view?.id;
+    const bundles = isAggregate
+      ? await Promise.all(registry.parishes.map(loadParish))
+      : [await loadParish(parishId)];
+    const calendar = isAggregate
+      ? aggregateCalendars(bundles)
+      : bundles[0].calendar;
+    const parish = bundles[0].parish;
+    const viewName = isAggregate ? registry.aggregate_view.name : parish.name;
+    document.body.dataset.theme = isAggregate
+      ? "gc-pilgrim"
+      : parish.branding?.theme || "spcp";
+    parishLogo.src = isAggregate
+      ? "assets/gold-coast-mascot.png"
+      : parish.branding?.logo || "assets/gc-pilgrim.svg";
+    parishLogo.alt = isAggregate ? "GC Pilgrim mascot" : parish.name;
     calendarLink.href = `index.html?parish=${encodeURIComponent(parishId)}`;
-    const generated = new Date(services.generated_at);
+    const generated = new Date(calendar.generated_at);
     const ageHours = Math.max(0, (Date.now() - generated.getTime()) / 3_600_000);
-    title.textContent = `${parish.name} · schema v${services.schema_version} · ${ageHours.toFixed(1)}h old`;
+    title.textContent = `${viewName} · schema v${calendar.schema_version} · ${ageHours.toFixed(1)}h old`;
 
     const facts = document.createElement("dl");
     [
       ["Generated", generated.toLocaleString("en-AU")],
-      ["Coverage", `${services.coverage.start} to ${services.coverage.end}`],
-      ["Services", String(services.services.length)],
-      ["Community events", String(community.events.length)],
+      ["Coverage", `${calendar.coverage.start} to ${calendar.coverage.end}`],
+      ["Parishes", String(bundles.length)],
+      ["Services", String(bundles.reduce((total, bundle) => total + bundle.services.services.length, 0))],
+      ["Community events", String(bundles.reduce((total, bundle) => total + bundle.community.events.length, 0))],
       ["Liturgical dates", String(Object.keys(liturgical.dates).length)],
     ].forEach(([term, description]) => {
       const dt = document.createElement("dt");
@@ -69,9 +93,9 @@ async function loadDiagnostics() {
     appendList("Registered parishes", registry.parishes);
     appendList(
       "Sources",
-      services.sources.map((source) => `${source.name}: ${source.status}`),
+      calendar.sources.map((source) => `${source.name}: ${source.status}`),
     );
-    appendList("Warnings", [...services.warnings, ...community.warnings]);
+    appendList("Warnings", calendar.warnings);
   } catch (error) {
     title.textContent = "Diagnostics unavailable";
     errorMessage.hidden = false;

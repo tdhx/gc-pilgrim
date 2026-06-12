@@ -136,6 +136,11 @@ class FeedContractTests(unittest.TestCase):
             self.registry["parishes"],
             ["surfers-paradise", "southport"],
         )
+        self.assertEqual(self.registry["default_view_id"], "gold-coast")
+        self.assertEqual(
+            self.registry["aggregate_view"],
+            {"id": "gold-coast", "name": "Gold Coast wide"},
+        )
         for feeds in self.parishes.values():
             validate_parish(feeds["parish"])
             validate_services(feeds["services"], feeds["parish"])

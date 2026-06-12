@@ -95,6 +95,11 @@ def build(offline=False, generated_at=None):
     registry = validate_registry({
         "schema_version": 1,
         "default_parish_id": DEFAULT_PARISH_ID,
+        "default_view_id": "gold-coast",
+        "aggregate_view": {
+            "id": "gold-coast",
+            "name": "Gold Coast wide",
+        },
         "parishes": list(PARISH_IDS),
     })
 

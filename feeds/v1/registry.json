@@ -1,5 +1,10 @@
 {
+  "aggregate_view": {
+    "id": "gold-coast",
+    "name": "Gold Coast wide"
+  },
   "default_parish_id": "surfers-paradise",
+  "default_view_id": "gold-coast",
   "parishes": [
     "surfers-paradise",
     "southport"

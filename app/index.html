@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>GC Pilgrim</title>
-  <link rel="stylesheet" href="styles.css?v=27">
+  <link rel="stylesheet" href="styles.css?v=29">
 </head>
 <body data-theme="spcp">
   <header class="page-header">
@@ -26,6 +26,7 @@
           width="512"
           height="160"
         >
+        <span id="selected-region-name" class="selected-region-name" hidden></span>
         <span class="parish-selector-chevron" aria-hidden="true"></span>
       </button>
       <div id="parish-selector" class="parish-selector" role="menu" hidden></div>
@@ -48,7 +49,7 @@
       </div>
       <nav id="site-navigation" class="site-navigation" aria-label="Primary navigation">
         <a class="navigation-link" href="#calendar" data-page="calendar" aria-current="page">Calendar</a>
-        <a class="navigation-link" href="#about" data-page="about">About the Parish</a>
+        <a id="about-navigation-link" class="navigation-link" href="#about" data-page="about">About the Parish</a>
       </nav>
     </div>
   </header>
@@ -189,7 +190,7 @@
 
   <main id="about-page" class="about-page" data-page-panel="about" hidden>
     <header class="about-introduction">
-      <p class="eyebrow">Our parish</p>
+      <p id="about-eyebrow" class="eyebrow">Our parish</p>
       <h2 id="parish-name">About the Parish</h2>
       <p id="parish-tagline"></p>
     </header>
@@ -234,6 +235,7 @@
           <h3 class="event-church"></h3>
           <span class="event-service"></span>
         </div>
+        <p class="event-parish" hidden></p>
         <div class="event-meta">
           <p class="event-time"></p>
           <p class="event-presider"></p>
@@ -244,6 +246,6 @@
     </article>
   </template>
 
-  <script type="module" src="app.js?v=34"></script>
+  <script type="module" src="app.js?v=37"></script>
 </body>
 </html>

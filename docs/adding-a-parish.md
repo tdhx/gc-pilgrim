@@ -78,8 +78,11 @@ Add the parish ID to `feeds/v1/registry.json` through generation, not by
 hard-coding the web app. With more than one parish:
 
 - `?parish=<id>` selects a parish.
-- An invalid ID falls back to `default_parish_id`.
+- An invalid ID falls back to `default_view_id`, or `default_parish_id` when no
+  default view is configured.
 - The parish selector becomes visible automatically.
+- When an aggregate view is registered, the new parish is included in it
+  automatically; no separate aggregate feed is generated.
 
 ## Acceptance Tests
 
