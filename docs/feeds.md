@@ -45,7 +45,7 @@ Optional parish fields include:
 - `office.address`, `office.hours`
 - `clergy`
 - `branding.logo`, `branding.theme`, `branding.tagline`
-- church `address`, `calendar_name`, and `is_primary_site`
+- church `address`, `calendar_name`, `aliases`, `venues`, and `is_primary_site`
 
 The UI hides absent optional contact and office values.
 
@@ -97,6 +97,10 @@ Common optional fields:
 When parish metadata is supplied to the validator, a non-null `church_id` must
 reference a declared church.
 
+Parish church records may include an `aliases` array. Generators normalize
+canonical names, calendar names, aliases, punctuation, and common church
+suffixes before assigning `church_id`.
+
 ## Community
 
 Path: `feeds/v1/parishes/<parish-id>/community.json`
@@ -115,6 +119,15 @@ Every community event requires:
   "status": "active"
 }
 ```
+
+Newsletter community records may also include:
+
+- `series_id` and `series_title`
+- controlled `category`: `faith-formation`, `prayer`, `social`, `outreach`,
+  `wellbeing`, `youth`, `pilgrimage`, `fundraising`, or `other`
+- canonical `church_id` and `church_name`
+- specific `venue`
+- recurrence provenance for expanded series occurrences
 
 Optional fields include `location`, `description`, `contact`, `source`,
 `source_id`, `last_updated`, `all_day`, and `timezone`.

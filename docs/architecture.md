@@ -55,9 +55,18 @@ normalise(...)
 The Google Calendar adapter currently performs ICS parsing, recurrence
 expansion, override handling, classification, church matching, and presider
 extraction. The Universalis adapter parses annual Brisbane liturgical calendars.
-Southport currently uses normalized recurring definitions. Its newsletter
-source is recorded in diagnostics, but PDF discovery, extraction, and override
-precedence are not implemented.
+Southport currently uses normalized recurring definitions.
+
+The newsletter adapter supports Surfers Paradise and Burleigh Heads. It
+discovers the newest PDF, extracts and quality-checks its text locally, uses
+structured model output to identify dated events, recurring community series,
+and worship observations, and reconciles them into checked-in normalized state.
+Series expand across a rolling three-month window and expire 90 days after their
+last mention. Worship observations produce a divergence report. Trusted
+cancellations, time changes, unmatched additions, and explicit lay-led liturgy
+replacements are applied as overlays while ambiguous or unresolved observations
+remain audit-only. An untimed cancellation is trusted only when date, normalized
+church, and event type identify one scheduled service.
 
 ### Generation
 
@@ -82,9 +91,10 @@ parallel.
 
 - joins `church_id` to parish church metadata
 - joins `liturgical_date` to the date-indexed liturgical feed
-- hides cancelled records
+- retains cancelled records for explicit greyed and labelled display
 - retains modified records
 - maps community records into the shared calendar display model
+- filters the assembled records by Liturgical, Community, or Combined mode
 - freezes enriched records and the assembled feed
 
 Downloaded feeds are never modified.

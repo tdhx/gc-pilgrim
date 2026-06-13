@@ -1,0 +1,1022 @@
+{
+  "completeness": {
+    "likely_activity_headings": [
+      "ST VINCENT DE PAUL ANNUAL WINTER APPEAL (2026)",
+      "ADULT FAITH FORMATION BIBLE STUDY",
+      "Youth Group",
+      "FIRST FRIDAY ADORATION",
+      "(this group has begun and is closed)",
+      "ART AND CRAFT GROUP",
+      "The Group meets in the Parish Hospitality Centre on Wednesdays",
+      "THE SACRED HEART BRIDGE CLUB",
+      "WCCM - WORLD COMMUNITY FOR CHRISTIAN MEDITATION",
+      "This meditation group meets each Tuesday in the Morris",
+      "SACRED HEART ROSARY PRAYER GROUP",
+      "MARIAN VALLEY - SHRINE PILGRIMAGE",
+      "YOGA AT THE PARISH HOSPITALITY CENTRE",
+      "EXERCISE CLASS - LOW IMPACT - FOR HEART HEALTH",
+      "BIBLE STUDY/PRAYER GROUP - ST VINCENT’S CHURCH, SURFERS PARADISE.",
+      "The Bible Study Prayer Group meets every Friday from 5 pm-6 pm at St Vincent’s",
+      "PRAYER GROUP - SPANISH SPEAKER",
+      "founded a group of monks who are known as the Camaldolese hermits."
+    ],
+    "unmatched_activity_headings": [
+      "ADULT FAITH FORMATION BIBLE STUDY",
+      "Youth Group",
+      "(this group has begun and is closed)",
+      "WCCM - WORLD COMMUNITY FOR CHRISTIAN MEDITATION",
+      "This meditation group meets each Tuesday in the Morris",
+      "MARIAN VALLEY - SHRINE PILGRIMAGE",
+      "The Bible Study Prayer Group meets every Friday from 5 pm-6 pm at St Vincent’s",
+      "founded a group of monks who are known as the Camaldolese hermits."
+    ]
+  },
+  "decisions": [
+    {
+      "action": "added",
+      "id": "e49b5ae8f11d205d228e3d2f",
+      "warnings": []
+    }
+  ],
+  "document": {
+    "download_url": "https://drive.google.com/uc?export=download&id=111FjrX506PKI7PVWwa_CQEa6K41HXmvN",
+    "parish_id": "surfers-paradise",
+    "published_date": "2026-06-12",
+    "source_id": "111FjrX506PKI7PVWwa_CQEa6K41HXmvN",
+    "title": "SPCP E-news- Sunday, June 14, 2026 Eleventh Sunday in Ordinary Time. Year A",
+    "url": "https://drive.google.com/file/d/111FjrX506PKI7PVWwa_CQEa6K41HXmvN/view"
+  },
+  "extraction": {
+    "community_events": [
+      {
+        "action": "add",
+        "all_day": false,
+        "ambiguity": "Celebration is centred on the anniversary Mass; any separate shared meal time is not stated.",
+        "category": "social",
+        "confidence": 0.86,
+        "date": "2026-06-21",
+        "description": "Parish 40th anniversary and 80th anniversary celebration; attendees invited to bring a plate.",
+        "end_time": null,
+        "evidence": "Sunday, 21 June 2026 ... 9:00 am at Sacred Heart Church Clear Island Waters",
+        "existing_event_id": null,
+        "location": "Sacred Heart Church, Clear Island Waters",
+        "series_title": null,
+        "start_time": "09:00",
+        "title": "40th Anniversary Celebration"
+      },
+      {
+        "action": "add",
+        "all_day": true,
+        "ambiguity": "Exact Mass-time collection slots are not individually listed.",
+        "category": "fundraising",
+        "confidence": 0.92,
+        "date": "2026-06-20",
+        "description": "Local Saint Vincent de Paul Winter Appeal collection for the Surfers Paradise Conference.",
+        "end_time": null,
+        "evidence": "held at all parish masses on the weekend of 20 & 21 June 2026",
+        "existing_event_id": null,
+        "location": "All parish Masses",
+        "series_title": null,
+        "start_time": null,
+        "title": "St Vincent de Paul Annual Winter Appeal"
+      },
+      {
+        "action": "add",
+        "all_day": true,
+        "ambiguity": "Exact Mass-time collection slots are not individually listed.",
+        "category": "fundraising",
+        "confidence": 0.92,
+        "date": "2026-06-21",
+        "description": "Local Saint Vincent de Paul Winter Appeal collection for the Surfers Paradise Conference.",
+        "end_time": null,
+        "evidence": "held at all parish masses on the weekend of 20 & 21 June 2026",
+        "existing_event_id": null,
+        "location": "All parish Masses",
+        "series_title": null,
+        "start_time": null,
+        "title": "St Vincent de Paul Annual Winter Appeal"
+      },
+      {
+        "action": "add",
+        "all_day": false,
+        "ambiguity": null,
+        "category": "pilgrimage",
+        "confidence": 0.95,
+        "date": "2026-07-06",
+        "description": "One-day visit of the first-class relic of Saint Carlo Acutis with Mass, veneration, rosary, adoration, confession, meals and exhibition.",
+        "end_time": "16:00",
+        "evidence": "ONE DAY ONLY MONDAY 6TH JULY, 2026",
+        "existing_event_id": null,
+        "location": "Sacred Heart Catholic Church, 50 Fairway Drive, Clear Island Waters",
+        "series_title": null,
+        "start_time": "09:00",
+        "title": "Saint Carlo Acutis Relic Visit"
+      },
+      {
+        "action": "update",
+        "all_day": true,
+        "ambiguity": "Current newsletter states the relic visit is one day only; it does not give separate exhibition opening and closing times beyond the 4pm finish.",
+        "category": "faith-formation",
+        "confidence": 0.88,
+        "date": "2026-07-06",
+        "description": "All-day Eucharistic Miracles Exhibition during the one-day Saint Carlo Acutis relic visit.",
+        "end_time": null,
+        "evidence": "All day display of The Eucharistic Miracles Exhibition in Parish Hospitality Centre",
+        "existing_event_id": "be89bfd157d15dc382b9e10b",
+        "location": "Parish Hospitality Centre",
+        "series_title": null,
+        "start_time": null,
+        "title": "The Eucharistic Miracles Exhibition"
+      },
+      {
+        "action": "add",
+        "all_day": false,
+        "ambiguity": "The baptism and cafe gathering time are not stated.",
+        "category": "social",
+        "confidence": 0.74,
+        "date": "2026-07-05",
+        "description": "Open invitation to gather for food and drinks after Luke Nathaniel Blackhurst's baptism.",
+        "end_time": null,
+        "evidence": "Sunday 5th of July, 2026 at Sacred Heart",
+        "existing_event_id": null,
+        "location": "Cafe next door to Sacred Heart",
+        "series_title": null,
+        "start_time": null,
+        "title": "Luke Blackhurst Baptism Gathering"
+      },
+      {
+        "action": "add",
+        "all_day": true,
+        "ambiguity": "Multi-day event runs 24-27 September; venue and daily times are not supplied.",
+        "category": "youth",
+        "confidence": 0.76,
+        "date": "2026-09-24",
+        "description": "Ignite Conference 2026 announced for 24-27 September 2026.",
+        "end_time": null,
+        "evidence": "ASCEND - IGNITE CONFERENCE 2026.    24-27 SEPTEMBER 2026",
+        "existing_event_id": null,
+        "location": null,
+        "series_title": null,
+        "start_time": null,
+        "title": "Ascend - Ignite Conference 2026"
+      },
+      {
+        "action": "add",
+        "all_day": false,
+        "ambiguity": "Families attend one of the two offered dates.",
+        "category": "faith-formation",
+        "confidence": 0.82,
+        "date": "2026-07-20",
+        "description": "Parent and child preparation session for Confirmation.",
+        "end_time": null,
+        "evidence": "Meeting 1: 20 or 21 July, 5.30pm",
+        "existing_event_id": null,
+        "location": "Sacred Heart Church",
+        "series_title": "Confirmation Preparation 2026",
+        "start_time": "17:30",
+        "title": "Confirmation Preparation Meeting 1"
+      },
+      {
+        "action": "add",
+        "all_day": false,
+        "ambiguity": "Families attend one of the two offered dates.",
+        "category": "faith-formation",
+        "confidence": 0.82,
+        "date": "2026-07-21",
+        "description": "Parent and child preparation session for Confirmation.",
+        "end_time": null,
+        "evidence": "Meeting 1: 20 or 21 July, 5.30pm",
+        "existing_event_id": null,
+        "location": "Sacred Heart Church",
+        "series_title": "Confirmation Preparation 2026",
+        "start_time": "17:30",
+        "title": "Confirmation Preparation Meeting 1"
+      },
+      {
+        "action": "add",
+        "all_day": false,
+        "ambiguity": "Families attend one of the two offered dates.",
+        "category": "faith-formation",
+        "confidence": 0.82,
+        "date": "2026-07-28",
+        "description": "Parent and child preparation session for Confirmation.",
+        "end_time": null,
+        "evidence": "Meeting 2: 28 or 29 July, 5.30pm",
+        "existing_event_id": null,
+        "location": "Sacred Heart Church",
+        "series_title": "Confirmation Preparation 2026",
+        "start_time": "17:30",
+        "title": "Confirmation Preparation Meeting 2"
+      },
+      {
+        "action": "add",
+        "all_day": false,
+        "ambiguity": "Families attend one of the two offered dates.",
+        "category": "faith-formation",
+        "confidence": 0.82,
+        "date": "2026-07-29",
+        "description": "Parent and child preparation session for Confirmation.",
+        "end_time": null,
+        "evidence": "Meeting 2: 28 or 29 July, 5.30pm",
+        "existing_event_id": null,
+        "location": "Sacred Heart Church",
+        "series_title": "Confirmation Preparation 2026",
+        "start_time": "17:30",
+        "title": "Confirmation Preparation Meeting 2"
+      },
+      {
+        "action": "add",
+        "all_day": false,
+        "ambiguity": "Families attend one of the two offered dates.",
+        "category": "faith-formation",
+        "confidence": 0.82,
+        "date": "2026-08-11",
+        "description": "Parent and child rehearsal for Confirmation.",
+        "end_time": null,
+        "evidence": "Rehearsals: 11 or 12 August 2026, 5.30pm",
+        "existing_event_id": null,
+        "location": "Sacred Heart Church",
+        "series_title": "Confirmation Preparation 2026",
+        "start_time": "17:30",
+        "title": "Confirmation Rehearsal"
+      },
+      {
+        "action": "add",
+        "all_day": false,
+        "ambiguity": "Families attend one of the two offered dates.",
+        "category": "faith-formation",
+        "confidence": 0.82,
+        "date": "2026-08-12",
+        "description": "Parent and child rehearsal for Confirmation.",
+        "end_time": null,
+        "evidence": "Rehearsals: 11 or 12 August 2026, 5.30pm",
+        "existing_event_id": null,
+        "location": "Sacred Heart Church",
+        "series_title": "Confirmation Preparation 2026",
+        "start_time": "17:30",
+        "title": "Confirmation Rehearsal"
+      },
+      {
+        "action": "add",
+        "all_day": false,
+        "ambiguity": "Ongoing donation request; no closing date or event time is stated.",
+        "category": "outreach",
+        "confidence": 0.78,
+        "date": null,
+        "description": "Donations of 8-ply wool, acrylic yarn or small cash donations sought for rugs made by ladies at Numinbah Prison for disabled children overseas.",
+        "end_time": null,
+        "evidence": "seeking donations of 8-ply wool or acrylic yarn",
+        "existing_event_id": null,
+        "location": "Sacred Heart Church or Parish Office",
+        "series_title": null,
+        "start_time": null,
+        "title": "Wool Project Yarn Donations"
+      }
+    ],
+    "community_series": [
+      {
+        "action": "add",
+        "ambiguity": null,
+        "category": "social",
+        "confidence": 0.94,
+        "description": "Weekly art, craftwork, rosary bead making and social gathering.",
+        "end_date": null,
+        "end_time": "12:00",
+        "evidence": "meets in the Parish Hospitality Centre on Wednesdays from 9 am to 12 noon",
+        "existing_series_id": null,
+        "frequency": "weekly",
+        "interval": 1,
+        "location": "Parish Hospitality Centre",
+        "occurrence_title": null,
+        "ordinal": null,
+        "series_title": "Art and Craft Group",
+        "start_date": null,
+        "start_time": "09:00",
+        "weekdays": [
+          "wednesday"
+        ]
+      },
+      {
+        "action": "add",
+        "ambiguity": "End time is not stated.",
+        "category": "social",
+        "confidence": 0.94,
+        "description": "Social bridge club with weekly games and lessons for beginners.",
+        "end_date": null,
+        "end_time": null,
+        "evidence": "When: Monday and Wednesday from 1.00 pm",
+        "existing_series_id": null,
+        "frequency": "weekly",
+        "interval": 1,
+        "location": "Hospitality Room",
+        "occurrence_title": null,
+        "ordinal": null,
+        "series_title": "Sacred Heart Bridge Club",
+        "start_date": null,
+        "start_time": "13:00",
+        "weekdays": [
+          "monday",
+          "wednesday"
+        ]
+      },
+      {
+        "action": "add",
+        "ambiguity": null,
+        "category": "prayer",
+        "confidence": 0.95,
+        "description": "Weekly WCCM Christian meditation group.",
+        "end_date": null,
+        "end_time": "10:30",
+        "evidence": "meets each Tuesday in the Morris Prayer Room",
+        "existing_series_id": null,
+        "frequency": "weekly",
+        "interval": 1,
+        "location": "Morris Prayer Room, 50 Fairway Drive, Clear Island Waters",
+        "occurrence_title": "Christian Meditation",
+        "ordinal": null,
+        "series_title": "World Community for Christian Meditation",
+        "start_date": null,
+        "start_time": "10:00",
+        "weekdays": [
+          "tuesday"
+        ]
+      },
+      {
+        "action": "add",
+        "ambiguity": "End time inferred from being before the 9 a.m. Mass.",
+        "category": "prayer",
+        "confidence": 0.88,
+        "description": "Prayer before the weekday 9 a.m. Mass.",
+        "end_date": null,
+        "end_time": "09:00",
+        "evidence": "each day at 8:00 am at the Sacred Heart Church before 9 a.m. Mass, Monday through Friday",
+        "existing_series_id": null,
+        "frequency": "weekly",
+        "interval": 1,
+        "location": "Sacred Heart Church",
+        "occurrence_title": "Stations of the Cross, Divine Mercy and Rosary",
+        "ordinal": null,
+        "series_title": "Sacred Heart Rosary Prayer Group",
+        "start_date": null,
+        "start_time": "08:00",
+        "weekdays": [
+          "monday",
+          "tuesday",
+          "wednesday",
+          "thursday",
+          "friday"
+        ]
+      },
+      {
+        "action": "add",
+        "ambiguity": "End time inferred from being before the 9 a.m. First Saturday Mass.",
+        "category": "prayer",
+        "confidence": 0.82,
+        "description": "First Saturday prayer before Mass.",
+        "end_date": null,
+        "end_time": "09:00",
+        "evidence": "Monday through Friday, including First Saturdays",
+        "existing_series_id": null,
+        "frequency": "monthly",
+        "interval": 1,
+        "location": "Sacred Heart Church",
+        "occurrence_title": "First Saturday Stations of the Cross, Divine Mercy and Rosary",
+        "ordinal": 1,
+        "series_title": "Sacred Heart Rosary Prayer Group",
+        "start_date": null,
+        "start_time": "08:00",
+        "weekdays": [
+          "saturday"
+        ]
+      },
+      {
+        "action": "add",
+        "ambiguity": "End time inferred from the stated one-hour session.",
+        "category": "wellbeing",
+        "confidence": 0.94,
+        "description": "Social yoga class focused on flexibility, relaxation, strength, body awareness and wellbeing.",
+        "end_date": null,
+        "end_time": "11:45",
+        "evidence": "Classes run every Tuesday at 10:45 a.m.",
+        "existing_series_id": null,
+        "frequency": "weekly",
+        "interval": 1,
+        "location": "Parish Hospitality Centre",
+        "occurrence_title": null,
+        "ordinal": null,
+        "series_title": "Yoga at the Parish Hospitality Centre",
+        "start_date": null,
+        "start_time": "10:45",
+        "weekdays": [
+          "tuesday"
+        ]
+      },
+      {
+        "action": "add",
+        "ambiguity": "End time is not stated.",
+        "category": "wellbeing",
+        "confidence": 0.9,
+        "description": "Low-impact cardiovascular, strength and balance exercise class for over 65s.",
+        "end_date": null,
+        "end_time": null,
+        "evidence": "Tuesday mornings @9.30 Beginners welcome",
+        "existing_series_id": null,
+        "frequency": "weekly",
+        "interval": 1,
+        "location": "Casey Hall",
+        "occurrence_title": null,
+        "ordinal": null,
+        "series_title": "Low Impact Exercise Class",
+        "start_date": null,
+        "start_time": "09:30",
+        "weekdays": [
+          "tuesday"
+        ]
+      },
+      {
+        "action": "add",
+        "ambiguity": null,
+        "category": "faith-formation",
+        "confidence": 0.95,
+        "description": "Weekly Bible study and prayer group at St Vincent’s Church.",
+        "end_date": null,
+        "end_time": "18:00",
+        "evidence": "meets every Friday from 5 pm-6 pm at St Vincent’s Church",
+        "existing_series_id": null,
+        "frequency": "weekly",
+        "interval": 1,
+        "location": "St Vincent’s Church, 40 Hamilton Ave, Surfers Paradise",
+        "occurrence_title": null,
+        "ordinal": null,
+        "series_title": "Bible Study/Prayer Group",
+        "start_date": null,
+        "start_time": "17:00",
+        "weekdays": [
+          "friday"
+        ]
+      },
+      {
+        "action": "add",
+        "ambiguity": null,
+        "category": "prayer",
+        "confidence": 0.95,
+        "description": "Spanish-speaking prayer group with praise and spiritual growth from the Word of the Lord.",
+        "end_date": null,
+        "end_time": "14:00",
+        "evidence": "3rd Saturday of each month from 11 am to 2 pm",
+        "existing_series_id": null,
+        "frequency": "monthly",
+        "interval": 1,
+        "location": "Hospitality Room, Sacred Heart Church",
+        "occurrence_title": "Jesús de la Misericordia",
+        "ordinal": 3,
+        "series_title": "Spanish Speaker Prayer Group",
+        "start_date": null,
+        "start_time": "11:00",
+        "weekdays": [
+          "saturday"
+        ]
+      }
+    ],
+    "worship_observations": [
+      {
+        "action": "active",
+        "ambiguity": "Newsletter says 'this week' but gives no exact date, time or church.",
+        "church": null,
+        "confidence": 0.62,
+        "date": null,
+        "end_time": null,
+        "event_type": "baptism",
+        "evidence": "will be baptised in our Parish this week",
+        "replaces_event_type": null,
+        "start_time": null,
+        "title": "Baptisms of August, Ellis, Halle, Henry and Fletcher"
+      },
+      {
+        "action": "active",
+        "ambiguity": null,
+        "church": "Sacred Heart Church, Clear Island Waters",
+        "confidence": 0.95,
+        "date": "2026-06-21",
+        "end_time": null,
+        "event_type": "mass",
+        "evidence": "Sunday, 21 June 2026 ... 9:00 am at Sacred Heart Church",
+        "replaces_event_type": null,
+        "start_time": "09:00",
+        "title": "40th Anniversary Celebration Mass"
+      },
+      {
+        "action": "cancelled",
+        "ambiguity": null,
+        "church": "Stella Maris",
+        "confidence": 0.99,
+        "date": "2026-07-05",
+        "end_time": null,
+        "event_type": "mass",
+        "evidence": "the usual 7 am Mass at Stella Maris will be cancelled",
+        "replaces_event_type": null,
+        "start_time": "07:00",
+        "title": "Stella Maris 7 am Sunday Mass Cancelled"
+      },
+      {
+        "action": "active",
+        "ambiguity": null,
+        "church": "Sacred Heart Catholic Church",
+        "confidence": 0.96,
+        "date": "2026-07-06",
+        "end_time": null,
+        "event_type": "mass",
+        "evidence": "9am Mass - Monsignor Anthony the principal celebrant",
+        "replaces_event_type": null,
+        "start_time": "09:00",
+        "title": "Saint Carlo Acutis Relic Visit Mass"
+      },
+      {
+        "action": "active",
+        "ambiguity": null,
+        "church": "Sacred Heart Catholic Church",
+        "confidence": 0.9,
+        "date": "2026-07-06",
+        "end_time": null,
+        "event_type": "liturgy",
+        "evidence": "9:45am Veneration of the relic",
+        "replaces_event_type": null,
+        "start_time": "09:45",
+        "title": "Veneration of Saint Carlo Acutis Relic"
+      },
+      {
+        "action": "active",
+        "ambiguity": null,
+        "church": "Sacred Heart Catholic Church",
+        "confidence": 0.94,
+        "date": "2026-07-06",
+        "end_time": null,
+        "event_type": "rosary",
+        "evidence": "11am Rosary with meditations from Carlo Acutis",
+        "replaces_event_type": null,
+        "start_time": "11:00",
+        "title": "Rosary with Meditations from Carlo Acutis"
+      },
+      {
+        "action": "active",
+        "ambiguity": "End time is not stated.",
+        "church": "Sacred Heart Catholic Church",
+        "confidence": 0.9,
+        "date": "2026-07-06",
+        "end_time": null,
+        "event_type": "adoration",
+        "evidence": "11:30am Adoration and Confession",
+        "replaces_event_type": null,
+        "start_time": "11:30",
+        "title": "Adoration during Saint Carlo Acutis Relic Visit"
+      },
+      {
+        "action": "active",
+        "ambiguity": "End time is not stated.",
+        "church": "Sacred Heart Catholic Church",
+        "confidence": 0.9,
+        "date": "2026-07-06",
+        "end_time": null,
+        "event_type": "confession",
+        "evidence": "11:30am Adoration and Confession",
+        "replaces_event_type": null,
+        "start_time": "11:30",
+        "title": "Confession during Saint Carlo Acutis Relic Visit"
+      },
+      {
+        "action": "active",
+        "ambiguity": "Time is not stated.",
+        "church": "Sacred Heart",
+        "confidence": 0.78,
+        "date": "2026-07-05",
+        "end_time": null,
+        "event_type": "baptism",
+        "evidence": "baptism of our new baby, Luke Nathaniel, for Sunday 5th of July, 2026 at Sacred Heart",
+        "replaces_event_type": null,
+        "start_time": null,
+        "title": "Baptism of Luke Nathaniel Blackhurst"
+      },
+      {
+        "action": "active",
+        "ambiguity": null,
+        "church": "Sacred Heart Catholic Church",
+        "confidence": 0.97,
+        "date": "2026-07-03",
+        "end_time": "20:30",
+        "event_type": "adoration",
+        "evidence": "From 7 pm to 8.30 pm",
+        "replaces_event_type": null,
+        "start_time": "19:00",
+        "title": "First Friday Adoration"
+      },
+      {
+        "action": "active",
+        "ambiguity": null,
+        "church": "Sacred Heart Church",
+        "confidence": 0.96,
+        "date": "2026-07-04",
+        "end_time": null,
+        "event_type": "mass",
+        "evidence": "Saturday 4th July, 2026. 9 am Sacred Heart Church",
+        "replaces_event_type": null,
+        "start_time": "09:00",
+        "title": "First Saturday Mass"
+      },
+      {
+        "action": "active",
+        "ambiguity": null,
+        "church": "Sacred Heart Catholic Church",
+        "confidence": 0.96,
+        "date": "2026-07-07",
+        "end_time": null,
+        "event_type": "mass",
+        "evidence": "Tuesday 7th July 2026. At 10 am",
+        "replaces_event_type": null,
+        "start_time": "10:00",
+        "title": "Anointing Mass - Mass of Healing"
+      },
+      {
+        "action": "active",
+        "ambiguity": "Recurring Sunday timetable; no recurrence field is available.",
+        "church": "St Vincent’s Church, Hamilton Avenue",
+        "confidence": 0.86,
+        "date": null,
+        "end_time": null,
+        "event_type": "mass",
+        "evidence": "Masses are now at 9:00 am and 11:00 am on Sundays.",
+        "replaces_event_type": null,
+        "start_time": "09:00",
+        "title": "St Vincent’s Sunday Mass"
+      },
+      {
+        "action": "active",
+        "ambiguity": "Recurring Sunday timetable; no recurrence field is available.",
+        "church": "St Vincent’s Church, Hamilton Avenue",
+        "confidence": 0.86,
+        "date": null,
+        "end_time": null,
+        "event_type": "mass",
+        "evidence": "Masses are now at 9:00 am and 11:00 am on Sundays.",
+        "replaces_event_type": null,
+        "start_time": "11:00",
+        "title": "St Vincent’s Sunday Mass"
+      },
+      {
+        "action": "active",
+        "ambiguity": "Families attend one of the two ceremony options.",
+        "church": "Sacred Heart Church",
+        "confidence": 0.86,
+        "date": "2026-08-21",
+        "end_time": null,
+        "event_type": "liturgy",
+        "evidence": "21 August 2026, 5:00 pm or 22 August 2026, 11:00 am",
+        "replaces_event_type": null,
+        "start_time": "17:00",
+        "title": "Confirmation Ceremony"
+      },
+      {
+        "action": "active",
+        "ambiguity": "Families attend one of the two ceremony options.",
+        "church": "Sacred Heart Church",
+        "confidence": 0.86,
+        "date": "2026-08-22",
+        "end_time": null,
+        "event_type": "liturgy",
+        "evidence": "21 August 2026, 5:00 pm or 22 August 2026, 11:00 am",
+        "replaces_event_type": null,
+        "start_time": "11:00",
+        "title": "Confirmation Ceremony"
+      }
+    ]
+  },
+  "model": "gpt-5.5",
+  "parser_mode": "text",
+  "processed_at": "2026-06-13T17:19:53+10:00",
+  "quarantined": [
+    {
+      "candidate": {
+        "action": "add",
+        "all_day": false,
+        "ambiguity": "Celebration is centred on the anniversary Mass; any separate shared meal time is not stated.",
+        "category": "social",
+        "confidence": 0.86,
+        "date": "2026-06-21",
+        "description": "Parish 40th anniversary and 80th anniversary celebration; attendees invited to bring a plate.",
+        "end_time": null,
+        "evidence": "Sunday, 21 June 2026 ... 9:00 am at Sacred Heart Church Clear Island Waters",
+        "existing_event_id": null,
+        "location": "Sacred Heart Church, Clear Island Waters",
+        "series_title": null,
+        "start_time": "09:00",
+        "title": "40th Anniversary Celebration"
+      },
+      "reasons": [
+        "ambiguous"
+      ]
+    },
+    {
+      "candidate": {
+        "action": "add",
+        "all_day": true,
+        "ambiguity": "Exact Mass-time collection slots are not individually listed.",
+        "category": "fundraising",
+        "confidence": 0.92,
+        "date": "2026-06-20",
+        "description": "Local Saint Vincent de Paul Winter Appeal collection for the Surfers Paradise Conference.",
+        "end_time": null,
+        "evidence": "held at all parish masses on the weekend of 20 & 21 June 2026",
+        "existing_event_id": null,
+        "location": "All parish Masses",
+        "series_title": null,
+        "start_time": null,
+        "title": "St Vincent de Paul Annual Winter Appeal"
+      },
+      "reasons": [
+        "ambiguous"
+      ]
+    },
+    {
+      "candidate": {
+        "action": "add",
+        "all_day": true,
+        "ambiguity": "Exact Mass-time collection slots are not individually listed.",
+        "category": "fundraising",
+        "confidence": 0.92,
+        "date": "2026-06-21",
+        "description": "Local Saint Vincent de Paul Winter Appeal collection for the Surfers Paradise Conference.",
+        "end_time": null,
+        "evidence": "held at all parish masses on the weekend of 20 & 21 June 2026",
+        "existing_event_id": null,
+        "location": "All parish Masses",
+        "series_title": null,
+        "start_time": null,
+        "title": "St Vincent de Paul Annual Winter Appeal"
+      },
+      "reasons": [
+        "ambiguous"
+      ]
+    },
+    {
+      "candidate": {
+        "action": "update",
+        "all_day": true,
+        "ambiguity": "Current newsletter states the relic visit is one day only; it does not give separate exhibition opening and closing times beyond the 4pm finish.",
+        "category": "faith-formation",
+        "confidence": 0.88,
+        "date": "2026-07-06",
+        "description": "All-day Eucharistic Miracles Exhibition during the one-day Saint Carlo Acutis relic visit.",
+        "end_time": null,
+        "evidence": "All day display of The Eucharistic Miracles Exhibition in Parish Hospitality Centre",
+        "existing_event_id": "be89bfd157d15dc382b9e10b",
+        "location": "Parish Hospitality Centre",
+        "series_title": null,
+        "start_time": null,
+        "title": "The Eucharistic Miracles Exhibition"
+      },
+      "reasons": [
+        "ambiguous"
+      ]
+    },
+    {
+      "candidate": {
+        "action": "add",
+        "all_day": false,
+        "ambiguity": "The baptism and cafe gathering time are not stated.",
+        "category": "social",
+        "confidence": 0.74,
+        "date": "2026-07-05",
+        "description": "Open invitation to gather for food and drinks after Luke Nathaniel Blackhurst's baptism.",
+        "end_time": null,
+        "evidence": "Sunday 5th of July, 2026 at Sacred Heart",
+        "existing_event_id": null,
+        "location": "Cafe next door to Sacred Heart",
+        "series_title": null,
+        "start_time": null,
+        "title": "Luke Blackhurst Baptism Gathering"
+      },
+      "reasons": [
+        "low-confidence",
+        "ambiguous",
+        "missing-start-time"
+      ]
+    },
+    {
+      "candidate": {
+        "action": "add",
+        "all_day": true,
+        "ambiguity": "Multi-day event runs 24-27 September; venue and daily times are not supplied.",
+        "category": "youth",
+        "confidence": 0.76,
+        "date": "2026-09-24",
+        "description": "Ignite Conference 2026 announced for 24-27 September 2026.",
+        "end_time": null,
+        "evidence": "ASCEND - IGNITE CONFERENCE 2026.    24-27 SEPTEMBER 2026",
+        "existing_event_id": null,
+        "location": null,
+        "series_title": null,
+        "start_time": null,
+        "title": "Ascend - Ignite Conference 2026"
+      },
+      "reasons": [
+        "ambiguous"
+      ]
+    },
+    {
+      "candidate": {
+        "action": "add",
+        "all_day": false,
+        "ambiguity": "Families attend one of the two offered dates.",
+        "category": "faith-formation",
+        "confidence": 0.82,
+        "date": "2026-07-20",
+        "description": "Parent and child preparation session for Confirmation.",
+        "end_time": null,
+        "evidence": "Meeting 1: 20 or 21 July, 5.30pm",
+        "existing_event_id": null,
+        "location": "Sacred Heart Church",
+        "series_title": "Confirmation Preparation 2026",
+        "start_time": "17:30",
+        "title": "Confirmation Preparation Meeting 1"
+      },
+      "reasons": [
+        "ambiguous"
+      ]
+    },
+    {
+      "candidate": {
+        "action": "add",
+        "all_day": false,
+        "ambiguity": "Families attend one of the two offered dates.",
+        "category": "faith-formation",
+        "confidence": 0.82,
+        "date": "2026-07-21",
+        "description": "Parent and child preparation session for Confirmation.",
+        "end_time": null,
+        "evidence": "Meeting 1: 20 or 21 July, 5.30pm",
+        "existing_event_id": null,
+        "location": "Sacred Heart Church",
+        "series_title": "Confirmation Preparation 2026",
+        "start_time": "17:30",
+        "title": "Confirmation Preparation Meeting 1"
+      },
+      "reasons": [
+        "ambiguous"
+      ]
+    },
+    {
+      "candidate": {
+        "action": "add",
+        "all_day": false,
+        "ambiguity": "Families attend one of the two offered dates.",
+        "category": "faith-formation",
+        "confidence": 0.82,
+        "date": "2026-07-28",
+        "description": "Parent and child preparation session for Confirmation.",
+        "end_time": null,
+        "evidence": "Meeting 2: 28 or 29 July, 5.30pm",
+        "existing_event_id": null,
+        "location": "Sacred Heart Church",
+        "series_title": "Confirmation Preparation 2026",
+        "start_time": "17:30",
+        "title": "Confirmation Preparation Meeting 2"
+      },
+      "reasons": [
+        "ambiguous"
+      ]
+    },
+    {
+      "candidate": {
+        "action": "add",
+        "all_day": false,
+        "ambiguity": "Families attend one of the two offered dates.",
+        "category": "faith-formation",
+        "confidence": 0.82,
+        "date": "2026-07-29",
+        "description": "Parent and child preparation session for Confirmation.",
+        "end_time": null,
+        "evidence": "Meeting 2: 28 or 29 July, 5.30pm",
+        "existing_event_id": null,
+        "location": "Sacred Heart Church",
+        "series_title": "Confirmation Preparation 2026",
+        "start_time": "17:30",
+        "title": "Confirmation Preparation Meeting 2"
+      },
+      "reasons": [
+        "ambiguous"
+      ]
+    },
+    {
+      "candidate": {
+        "action": "add",
+        "all_day": false,
+        "ambiguity": "Families attend one of the two offered dates.",
+        "category": "faith-formation",
+        "confidence": 0.82,
+        "date": "2026-08-11",
+        "description": "Parent and child rehearsal for Confirmation.",
+        "end_time": null,
+        "evidence": "Rehearsals: 11 or 12 August 2026, 5.30pm",
+        "existing_event_id": null,
+        "location": "Sacred Heart Church",
+        "series_title": "Confirmation Preparation 2026",
+        "start_time": "17:30",
+        "title": "Confirmation Rehearsal"
+      },
+      "reasons": [
+        "ambiguous"
+      ]
+    },
+    {
+      "candidate": {
+        "action": "add",
+        "all_day": false,
+        "ambiguity": "Families attend one of the two offered dates.",
+        "category": "faith-formation",
+        "confidence": 0.82,
+        "date": "2026-08-12",
+        "description": "Parent and child rehearsal for Confirmation.",
+        "end_time": null,
+        "evidence": "Rehearsals: 11 or 12 August 2026, 5.30pm",
+        "existing_event_id": null,
+        "location": "Sacred Heart Church",
+        "series_title": "Confirmation Preparation 2026",
+        "start_time": "17:30",
+        "title": "Confirmation Rehearsal"
+      },
+      "reasons": [
+        "ambiguous"
+      ]
+    },
+    {
+      "candidate": {
+        "action": "add",
+        "all_day": false,
+        "ambiguity": "Ongoing donation request; no closing date or event time is stated.",
+        "category": "outreach",
+        "confidence": 0.78,
+        "date": null,
+        "description": "Donations of 8-ply wool, acrylic yarn or small cash donations sought for rugs made by ladies at Numinbah Prison for disabled children overseas.",
+        "end_time": null,
+        "evidence": "seeking donations of 8-ply wool or acrylic yarn",
+        "existing_event_id": null,
+        "location": "Sacred Heart Church or Parish Office",
+        "series_title": null,
+        "start_time": null,
+        "title": "Wool Project Yarn Donations"
+      },
+      "reasons": [
+        "ambiguous",
+        "missing-date",
+        "missing-start-time"
+      ]
+    }
+  ],
+  "schema_version": 1,
+  "series_decisions": [
+    {
+      "action": "updated-series",
+      "id": "99cae3556cf2c96507595f84"
+    },
+    {
+      "action": "added-series",
+      "id": "f2f2f9244f2b772df3cbd444"
+    },
+    {
+      "action": "updated-series",
+      "id": "79657254dcd62c11ed42da42"
+    },
+    {
+      "action": "added-series",
+      "id": "41881dc64d0af026ed0e38f5"
+    },
+    {
+      "action": "updated-series",
+      "id": "41881dc64d0af026ed0e38f5"
+    },
+    {
+      "action": "updated-series",
+      "id": "17d2cdfa2d6da5571499da74"
+    },
+    {
+      "action": "added-series",
+      "id": "28798ae483a2ec6e32e6953a"
+    },
+    {
+      "action": "updated-series",
+      "id": "414bc4a13d843edf047fea21"
+    },
+    {
+      "action": "added-series",
+      "id": "c6e9a59fd151e4186c392391"
+    }
+  ],
+  "series_quarantined": [],
+  "sha256": "268804589271a45e5cc673f4b9f065732d9326e55f402ef90aa1572d6e5d3875",
+  "text_quality": {
+    "characters": 86035,
+    "readable_ratio": 1.0,
+    "reason": null,
+    "structure_signals": 4,
+    "usable": true
+  }
+}

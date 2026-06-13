@@ -6,3 +6,6 @@ ios/DerivedData/
 **/xcuserdata/
 **/*.xcuserstate
 _site/
+raw/*/newsletter/**/*.pdf
+.env
+.env.local

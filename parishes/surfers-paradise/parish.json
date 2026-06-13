@@ -37,6 +37,29 @@
       "id": "sacred-heart",
       "name": "Sacred Heart Church",
       "calendar_name": "Sacred Heart",
+      "aliases": [
+        "Sacred Heart Catholic Church",
+        "Clear Island Waters"
+      ],
+      "venues": [
+        {
+          "name": "Parish Hospitality Centre",
+          "aliases": [
+            "Hospitality Centre",
+            "Hospitality Room"
+          ]
+        },
+        {
+          "name": "Morris Prayer Room",
+          "aliases": [
+            "Morris Prayer Room at 50 Fairway Drive"
+          ]
+        },
+        {
+          "name": "Casey Hall",
+          "aliases": []
+        }
+      ],
       "address": "50 Fairway Drive, Clear Island Waters QLD 4226",
       "is_primary_site": true
     },
@@ -44,6 +67,9 @@
       "id": "stella-maris",
       "name": "Stella Maris Church",
       "calendar_name": "Stella Maris",
+      "aliases": [
+        "Broadbeach"
+      ],
       "address": "254 Hedges Avenue, Broadbeach QLD 4218",
       "is_primary_site": false
     },
@@ -51,6 +77,18 @@
       "id": "st-vincents",
       "name": "St Vincent's Church",
       "calendar_name": "St. Vincent's",
+      "aliases": [
+        "St Vincents",
+        "Surfers Paradise"
+      ],
+      "venues": [
+        {
+          "name": "St Vincent's Church",
+          "aliases": [
+            "St Vincent’s Church"
+          ]
+        }
+      ],
       "address": "40 Hamilton Avenue, Surfers Paradise QLD 4217",
       "is_primary_site": false
     }

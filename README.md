@@ -8,10 +8,10 @@ parish information into four independent feeds:
 - `community.json` - how people can participate
 - `liturgical.json` - what the Church is celebrating
 
-The published registry includes Surfers Paradise Catholic Parish and Southport
-Catholic Parish. The web runtime supports richer and sparser parish definitions
-without changing its feed contract. Its default Gold Coast wide view combines
-events from every registered parish at runtime.
+The published registry includes Surfers Paradise, Southport, Burleigh Heads,
+Nerang, and Runaway Bay. The web runtime supports richer and sparser parish
+definitions without changing its feed contract. Its default Gold Coast wide
+view combines events from every registered parish at runtime.
 
 ## Live Project
 
@@ -20,6 +20,12 @@ events from every registered parish at runtime.
 - Diagnostics: <https://tdhx.github.io/gc-pilgrim/diagnostics.html>
 
 ## Quick Start
+
+Install source-ingestion dependencies:
+
+```sh
+python3 -m pip install -r requirements.txt
+```
 
 Generate feeds from checked-in source records:
 
@@ -62,4 +68,5 @@ Refreshing public sources requires network access:
 ## Current Scope
 
 The runtime and feed contracts are modular. The build orchestrator generates
-Surfers Paradise and Southport feeds for liturgical years 2026-2028.
+five parish feeds and liturgical years 2026-2028. Surfers Paradise and Burleigh
+Heads also include newsletter-derived community and worship overlays.

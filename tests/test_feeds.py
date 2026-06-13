@@ -315,10 +315,17 @@ class FeedContractTests(unittest.TestCase):
                 "our-lady-of-the-way",
             },
         )
-        self.assertEqual(feeds["community"]["events"], [])
+        self.assertGreaterEqual(len(feeds["community"]["events"]), 2)
+        self.assertTrue(all(
+            event["source_id"].startswith((
+                "newsletter:burleigh-heads:event:",
+                "newsletter:burleigh-heads:series:",
+            ))
+            for event in feeds["community"]["events"]
+        ))
         self.assertEqual(
             {service["event_type"] for service in services["services"]},
-            {"adoration", "confession", "mass"},
+            {"adoration", "confession", "liturgy", "mass"},
         )
         self.assertTrue(all(service["church_id"] for service in services["services"]))
         self.assertTrue(all(not service["presiders"] for service in services["services"]))
@@ -341,7 +348,7 @@ class FeedContractTests(unittest.TestCase):
             )
         )
         church_starts = [
-            (service.get("church_id"), service["start"])
+            (service.get("church_id"), service["start"], service["event_type"])
             for service in services["services"]
         ]
         self.assertEqual(len(church_starts), len(set(church_starts)))
@@ -349,7 +356,7 @@ class FeedContractTests(unittest.TestCase):
             [(source["url"], source["status"]) for source in services["sources"]],
             [
                 (burleigh_heads.PARISH_URL, "baseline"),
-                (burleigh_heads.NEWSLETTERS_URL, "future-automation"),
+                (burleigh_heads.NEWSLETTERS_URL, "cached"),
             ],
         )
 
@@ -413,7 +420,7 @@ class FeedContractTests(unittest.TestCase):
             )
         )
         church_starts = [
-            (service["church_id"], service["start"])
+            (service["church_id"], service["start"], service["event_type"])
             for service in services["services"]
         ]
         self.assertEqual(len(church_starts), len(set(church_starts)))
@@ -476,6 +483,12 @@ class FeedContractTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "invalid location type"):
             validate_parish(broken)
 
+    def test_church_aliases_must_be_non_empty_strings(self):
+        broken = read_json(ROOT / "feeds/v1/parishes/burleigh-heads/parish.json")
+        broken["churches"][0]["aliases"] = ["Infant Saviour", ""]
+        with self.assertRaisesRegex(ValueError, "aliases"):
+            validate_parish(broken)
+
     def test_liturgical_archives_cover_2026_to_2028(self):
         expected = {2026: 365, 2027: 365, 2028: 366}
         for year, count in expected.items():
@@ -509,7 +522,14 @@ class MigrationEquivalenceTests(unittest.TestCase):
         )
         self.assertEqual(len(legacy["events"]), 260)
         self.assertGreaterEqual(len(services["services"]), len(legacy["events"]))
-        self.assertEqual(community["events"], [])
+        self.assertGreaterEqual(len(community["events"]), 4)
+        self.assertTrue(all(
+            event["source_id"].startswith((
+                "newsletter:surfers-paradise:event:",
+                "newsletter:surfers-paradise:series:",
+            ))
+            for event in community["events"]
+        ))
 
         current = {record["id"]: record for record in services["services"]}
         fields = (

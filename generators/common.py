@@ -17,8 +17,10 @@ WORSHIP_TYPES = {
 
 def envelope(records, generated_at, timezone, sources, collection):
     ordered = sorted(records, key=lambda item: (item["start"], item["end"], item["id"]))
-    start = generated_at[:7] + "-01"
-    end = ordered[-1]["start"][:10] if ordered else generated_at[:10]
+    generated_month = generated_at[:7] + "-01"
+    generated_date = generated_at[:10]
+    start = min(generated_month, ordered[0]["start"][:10]) if ordered else generated_month
+    end = max(generated_date, ordered[-1]["start"][:10]) if ordered else generated_date
     return {
         "schema_version": 1,
         "generated_at": generated_at,

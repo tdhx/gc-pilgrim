@@ -204,16 +204,16 @@ The runtime is registry-driven, but `generators/build_all.py` hard-codes
 Surfers Paradise. A second parish requires generator iteration and adapter
 dispatch.
 
-### Church normalization is SPCP-specific
+### Church normalization is parish-configured
 
-Church aliases are held in Python constants. They should move into parish
-configuration or normalized adapter output.
+Church aliases now live with parish metadata and are resolved consistently by
+source reconciliation and feed generation.
 
-### Corrections are modeled but not merged
+### Trusted newsletter corrections are merged
 
-Validators and runtime understand `cancelled` and `modified`, but current
-generators emit only `active`. Newsletter correction precedence remains future
-work.
+Exact cancellations, confirmed time changes, and high-confidence lay-led
+liturgies can overlay the base schedule. Ambiguous observations remain
+audit-only.
 
 ### No scheduled data refresh exists
 

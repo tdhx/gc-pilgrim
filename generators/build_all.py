@@ -7,10 +7,12 @@ from zoneinfo import ZoneInfo
 
 from generators.build_community import build as build_community
 from generators.build_liturgical import aggregate_feed, annual_feed
+from generators.build_newsletter_review import build as build_newsletter_review
 from generators.build_parish import build as build_parish
 from generators.build_services import build as build_services
 from generators.io import read_json, read_json_lines, write_json
 from sources.manual import burleigh_heads, nerang, runaway_bay, southport
+from sources.newsletter import load_community_records
 from sources.google_calendar import adapter as google_calendar
 from sources.website import liturgical as universalis
 from validators.feeds import validate_registry
@@ -67,6 +69,13 @@ def build(offline=False, generated_at=None):
         "url": google_calendar.ICS_URL,
         "status": source_status,
     }]
+    surfers_newsletter_records = load_community_records("surfers-paradise")
+    burleigh_newsletter_records = load_community_records("burleigh-heads")
+    surfers_newsletter_source = {
+        "name": "SPCP parish newsletters",
+        "url": "https://news-parish.blogspot.com/",
+        "status": "cached",
+    }
     annual_feeds = [
         annual_feed(annual_records[year], generated_at, year)
         for year in YEARS
@@ -80,8 +89,9 @@ def build(offline=False, generated_at=None):
     parish_inputs = {
         "surfers-paradise": {
             "records": surfers_records,
-            "community_records": surfers_records,
+            "community_records": surfers_records + surfers_newsletter_records,
             "sources": surfers_sources,
+            "community_sources": surfers_sources + [surfers_newsletter_source],
         },
         "southport": {
             "records": southport.normalise(start, end),
@@ -101,7 +111,7 @@ def build(offline=False, generated_at=None):
         },
         "burleigh-heads": {
             "records": burleigh_heads.normalise(start, end),
-            "community_records": [],
+            "community_records": burleigh_newsletter_records,
             "sources": [
                 {
                     "name": "Burleigh Heads published recurring schedule",
@@ -111,7 +121,7 @@ def build(offline=False, generated_at=None):
                 {
                     "name": "Burleigh Heads parish newsletters",
                     "url": burleigh_heads.NEWSLETTERS_URL,
-                    "status": "future-automation",
+                    "status": "cached",
                 },
             ],
         },
@@ -169,12 +179,16 @@ def build(offline=False, generated_at=None):
             config["timezone"],
             sources,
             parish,
+            read_json_lines(
+                ROOT / "raw" / parish_id / "newsletter" / "service-divergences.jsonl"
+            ) if parish_id in {"surfers-paradise", "burleigh-heads"} else [],
         )
         community = build_community(
             parish_inputs[parish_id]["community_records"],
             generated_at,
             config["timezone"],
-            sources,
+            parish_inputs[parish_id].get("community_sources", sources),
+            parish,
         )
         parish_output = output / "parishes" / parish_id
         write_json(parish_output / "parish.json", parish)
@@ -188,6 +202,10 @@ def build(offline=False, generated_at=None):
     for feed in annual_feeds:
         write_json(output / "liturgical" / f"{feed['year']}.json", feed)
     write_json(output / "liturgical.json", aggregate_feed(annual_feeds, generated_at))
+    write_json(
+        output / "newsletter-review.json",
+        build_newsletter_review(ROOT, generated_at, parish_feeds),
+    )
     return {
         "registry": registry,
         "parishes": parish_feeds,

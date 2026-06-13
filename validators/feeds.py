@@ -5,6 +5,10 @@ from datetime import date, datetime
 
 SCHEMA_VERSION = 1
 STATUSES = {"active", "cancelled", "modified"}
+COMMUNITY_CATEGORIES = {
+    "faith-formation", "prayer", "social", "outreach", "wellbeing",
+    "youth", "pilgrimage", "fundraising", "other",
+}
 CHURCH_STATUSES = {"temporarily-closed"}
 LOCATION_TYPES = {"chaplaincy", "mass-centre", "retirement-community"}
 
@@ -76,6 +80,26 @@ def validate_parish(feed):
     identifiers = []
     for church in feed["churches"]:
         _require(church, ("id", "name"), "Church")
+        if church.get("aliases") is not None and (
+            not isinstance(church["aliases"], list)
+            or not all(isinstance(alias, str) and alias.strip() for alias in church["aliases"])
+        ):
+            raise ValueError(f"Church {church['id']} aliases must be non-empty strings")
+        if church.get("venues") is not None:
+            if not isinstance(church["venues"], list):
+                raise ValueError(f"Church {church['id']} venues must be a list")
+            for venue in church["venues"]:
+                _require(venue, ("name",), "Venue")
+                if venue.get("aliases") is not None and (
+                    not isinstance(venue["aliases"], list)
+                    or not all(
+                        isinstance(alias, str) and alias.strip()
+                        for alias in venue["aliases"]
+                    )
+                ):
+                    raise ValueError(
+                        f"Church {church['id']} venue aliases must be non-empty strings"
+                    )
         if church.get("status") and church["status"] not in CHURCH_STATUSES:
             raise ValueError(f"Church {church['id']} has invalid status")
         if church.get("location_type") and church["location_type"] not in LOCATION_TYPES:
@@ -101,9 +125,27 @@ def validate_services(feed, parish=None):
     return feed
 
 
-def validate_community(feed):
+def validate_community(feed, parish=None):
     records = _validate_envelope(feed, "events")
     _validate_records(records, ("id", "title", "start", "end", "status"), "Community event")
+    invalid_categories = [
+        record["id"] for record in records
+        if record.get("category") and record["category"] not in COMMUNITY_CATEGORIES
+    ]
+    if invalid_categories:
+        raise ValueError(
+            f"Community events have invalid categories: {', '.join(invalid_categories)}"
+        )
+    if parish:
+        church_ids = {church["id"] for church in parish["churches"]}
+        invalid_churches = [
+            record["id"] for record in records
+            if record.get("church_id") and record["church_id"] not in church_ids
+        ]
+        if invalid_churches:
+            raise ValueError(
+                f"Community events reference unknown churches: {', '.join(invalid_churches)}"
+            )
     return feed
 
 

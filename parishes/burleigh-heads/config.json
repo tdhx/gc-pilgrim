@@ -3,7 +3,7 @@
   "timezone": "Australia/Brisbane",
   "sources": {
     "services": "manual-burleigh-heads",
-    "community": "manual-empty",
+    "community": "newsletter",
     "liturgical": "universalis-brisbane"
   }
 }

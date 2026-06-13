@@ -42,6 +42,13 @@ deploys the reviewed result.
 There is currently no scheduled refresh. Feed freshness is an operator
 responsibility.
 
+Newsletter extraction additionally requires `OPENAI_API_KEY`. This name is
+suitable for a future GitHub Actions secret, but the current workflow does not
+invoke the extractor.
+
+Surfers Paradise uses the newest dated post on its public newsletter hub that
+contains a Google Drive PDF link.
+
 ## Diagnostics
 
 The diagnostics page reports:

@@ -1,0 +1,734 @@
+{
+  "completeness": {
+    "likely_activity_headings": [
+      "SVDP WINTER APPEAL"
+    ],
+    "unmatched_activity_headings": []
+  },
+  "decisions": [
+    {
+      "action": "deduplicated",
+      "id": "d855fd68ef325cf021605e31",
+      "warnings": [
+        "Missing end time; defaulted to one hour"
+      ]
+    },
+    {
+      "action": "deduplicated",
+      "id": "54f87db99725f2057b4a4730",
+      "warnings": []
+    }
+  ],
+  "document": {
+    "download_url": "https://burleighheadscatholic.com.au/wp-content/uploads/2026/05/Parish-Newsletter-31-May-2026-The-Most-Holy-Trinity.pdf",
+    "parish_id": "burleigh-heads",
+    "published_date": "2026-05-31",
+    "source_id": "https://burleighheadscatholic.com.au/wp-content/uploads/2026/05/Parish-Newsletter-31-May-2026-The-Most-Holy-Trinity.pdf",
+    "title": "Parish Newsletter 31 May 2026 (The Most Holy Trinity)",
+    "url": "https://burleighheadscatholic.com.au/wp-content/uploads/2026/05/Parish-Newsletter-31-May-2026-The-Most-Holy-Trinity.pdf"
+  },
+  "extraction": {
+    "community_events": [
+      {
+        "action": "add",
+        "all_day": false,
+        "ambiguity": null,
+        "category": "fundraising",
+        "confidence": 0.98,
+        "date": "2026-06-05",
+        "description": "Care & Concern hosts morning tea following the Anointing Mass to support Cancer Research and Patient Care. Gold coin donation; lucky door prizes and raffle.",
+        "end_time": null,
+        "evidence": "Australia’s Biggest Morning Tea on Friday June 5th at 10:45am",
+        "existing_event_id": null,
+        "location": "Mary Mother of Mercy Community Centre, 3 Sunlight Drive, Burleigh Waters",
+        "series_title": null,
+        "start_time": "10:45",
+        "title": "Australia’s Biggest Morning Tea"
+      },
+      {
+        "action": "add",
+        "all_day": false,
+        "ambiguity": null,
+        "category": "social",
+        "confidence": 0.97,
+        "date": "2026-06-06",
+        "description": "Music, dance and storytelling from different faiths; light refreshments provided. Free admission; bookings required for catering.",
+        "end_time": "14:00",
+        "evidence": "Saturday, 6th June 10:00am-2:00pm at the Croatian Club",
+        "existing_event_id": null,
+        "location": "Croatian Club, 181 Nerang Broadbeach Road, Carrara",
+        "series_title": null,
+        "start_time": "10:00",
+        "title": "Multifaith Music Harmony Festival"
+      },
+      {
+        "action": "add",
+        "all_day": false,
+        "ambiguity": "No specific event date, time, or appeal end date is stated.",
+        "category": "fundraising",
+        "confidence": 0.7,
+        "date": null,
+        "description": "Appeal envelopes are available at parish churches; donations may be returned via collection plates at Masses.",
+        "end_time": null,
+        "evidence": "Appeal envelopes are available at Parish Churches for our Winter Appeal.",
+        "existing_event_id": null,
+        "location": "Parish Churches",
+        "series_title": null,
+        "start_time": null,
+        "title": "SVDP Winter Appeal"
+      }
+    ],
+    "community_series": [
+      {
+        "action": "add",
+        "ambiguity": null,
+        "category": "faith-formation",
+        "confidence": 0.9,
+        "description": "Parish Library/Reading Room open during Parish Office hours.",
+        "end_date": null,
+        "end_time": "16:00",
+        "evidence": "The Library/ Reading Room is open during Parish Office hours M-F 8:00am to 4:00pm",
+        "existing_series_id": null,
+        "frequency": "weekly",
+        "interval": 1,
+        "location": "Parish Library/Reading Room",
+        "occurrence_title": null,
+        "ordinal": null,
+        "series_title": "Parish Reading Room",
+        "start_date": null,
+        "start_time": "08:00",
+        "weekdays": [
+          "monday",
+          "tuesday",
+          "wednesday",
+          "thursday",
+          "friday"
+        ]
+      },
+      {
+        "action": "add",
+        "ambiguity": "Specific notice says 11.30am for 12.00 noon start; end time not stated.",
+        "category": "social",
+        "confidence": 0.98,
+        "description": "Monthly parish lunch for fellowship, cake and birthday celebrations. All welcome.",
+        "end_date": null,
+        "end_time": null,
+        "evidence": "PARISH LUNCHEON – First Thursday of each month at 11.30am, Burleigh Heads Sports Club.",
+        "existing_series_id": null,
+        "frequency": "monthly",
+        "interval": 1,
+        "location": "Burleigh Sports Club, 111 Christine Ave, Burleigh Waters",
+        "occurrence_title": null,
+        "ordinal": 1,
+        "series_title": "Parish Luncheon",
+        "start_date": null,
+        "start_time": "11:30",
+        "weekdays": [
+          "thursday"
+        ]
+      },
+      {
+        "action": "add",
+        "ambiguity": "Held after the 10am First Friday Anointing Mass; exact start and end times are not stated.",
+        "category": "social",
+        "confidence": 0.82,
+        "description": "Morning tea provided by Care and Concern after the First Friday Anointing Mass.",
+        "end_date": null,
+        "end_time": null,
+        "evidence": "Care and Concern will be providing morning tea in the Community Centre.",
+        "existing_series_id": null,
+        "frequency": "monthly",
+        "interval": 1,
+        "location": "Community Centre, Mary Mother of Mercy Church",
+        "occurrence_title": null,
+        "ordinal": 1,
+        "series_title": "Care and Concern Morning Tea",
+        "start_date": null,
+        "start_time": null,
+        "weekdays": [
+          "friday"
+        ]
+      },
+      {
+        "action": "add",
+        "ambiguity": "Exact time is not stated.",
+        "category": "other",
+        "confidence": 0.86,
+        "description": "Volunteer opportunity to assist at the piety stall on Sunday mornings.",
+        "end_date": null,
+        "end_time": null,
+        "evidence": "assist at the piety stall on Sunday mornings at Mary Mother of Mercy",
+        "existing_series_id": null,
+        "frequency": "weekly",
+        "interval": 1,
+        "location": "Mary Mother of Mercy Church",
+        "occurrence_title": null,
+        "ordinal": null,
+        "series_title": "Piety Stall Assistant",
+        "start_date": null,
+        "start_time": null,
+        "weekdays": [
+          "sunday"
+        ]
+      },
+      {
+        "action": "add",
+        "ambiguity": "Exact volunteer start and end times are not stated.",
+        "category": "faith-formation",
+        "confidence": 0.88,
+        "description": "Volunteers sought to prepare the church for Baptisms each Sunday before and after the 10:00am Mass.",
+        "end_date": null,
+        "end_time": null,
+        "evidence": "preparing the church for Baptisms each Sunday before and after the 10:00am Mass",
+        "existing_series_id": null,
+        "frequency": "weekly",
+        "interval": 1,
+        "location": "Mary Mother of Mercy Church",
+        "occurrence_title": null,
+        "ordinal": null,
+        "series_title": "Baptism Preparation Assistance",
+        "start_date": null,
+        "start_time": null,
+        "weekdays": [
+          "sunday"
+        ]
+      }
+    ],
+    "worship_observations": [
+      {
+        "action": "active",
+        "ambiguity": null,
+        "church": "Burleigh Heads",
+        "confidence": 0.98,
+        "date": "2026-05-31",
+        "end_time": null,
+        "event_type": "mass",
+        "evidence": "7.00am Mass - Burleigh Heads",
+        "replaces_event_type": null,
+        "start_time": "07:00",
+        "title": "Mass"
+      },
+      {
+        "action": "active",
+        "ambiguity": null,
+        "church": "Palm Beach",
+        "confidence": 0.98,
+        "date": "2026-05-31",
+        "end_time": null,
+        "event_type": "liturgy",
+        "evidence": "7.00am Lay-Led Liturgy & Communion (No Mass) - Palm Beach",
+        "replaces_event_type": "mass",
+        "start_time": "07:00",
+        "title": "Lay-Led Liturgy & Communion"
+      },
+      {
+        "action": "active",
+        "ambiguity": null,
+        "church": "Miami",
+        "confidence": 0.98,
+        "date": "2026-05-31",
+        "end_time": null,
+        "event_type": "mass",
+        "evidence": "8.30am Mass - Miami",
+        "replaces_event_type": null,
+        "start_time": "08:30",
+        "title": "Mass"
+      },
+      {
+        "action": "active",
+        "ambiguity": null,
+        "church": "Mudgeeraba",
+        "confidence": 0.98,
+        "date": "2026-05-31",
+        "end_time": null,
+        "event_type": "liturgy",
+        "evidence": "8.30am Lay-Led Liturgy & Communion (No Mass) - Mudgeeraba",
+        "replaces_event_type": "mass",
+        "start_time": "08:30",
+        "title": "Lay-Led Liturgy & Communion"
+      },
+      {
+        "action": "active",
+        "ambiguity": null,
+        "church": "Burleigh Waters",
+        "confidence": 0.98,
+        "date": "2026-05-31",
+        "end_time": null,
+        "event_type": "mass",
+        "evidence": "10.00am Mass - Burleigh Waters",
+        "replaces_event_type": null,
+        "start_time": "10:00",
+        "title": "Mass"
+      },
+      {
+        "action": "active",
+        "ambiguity": null,
+        "church": "Burleigh Waters",
+        "confidence": 0.98,
+        "date": "2026-05-31",
+        "end_time": "17:15",
+        "event_type": "confession",
+        "evidence": "5.00-5.15pm Reconciliation - Burleigh Waters",
+        "replaces_event_type": null,
+        "start_time": "17:00",
+        "title": "Reconciliation"
+      },
+      {
+        "action": "active",
+        "ambiguity": null,
+        "church": "Burleigh Waters",
+        "confidence": 0.98,
+        "date": "2026-05-31",
+        "end_time": null,
+        "event_type": "mass",
+        "evidence": "5.30pm Mass - Burleigh Waters",
+        "replaces_event_type": null,
+        "start_time": "17:30",
+        "title": "Mass"
+      },
+      {
+        "action": "active",
+        "ambiguity": null,
+        "church": "Miami",
+        "confidence": 0.98,
+        "date": "2026-06-01",
+        "end_time": null,
+        "event_type": "mass",
+        "evidence": "9.00am Mass - Miami",
+        "replaces_event_type": null,
+        "start_time": "09:00",
+        "title": "Mass"
+      },
+      {
+        "action": "active",
+        "ambiguity": null,
+        "church": "Burleigh Waters",
+        "confidence": 0.98,
+        "date": "2026-06-02",
+        "end_time": null,
+        "event_type": "mass",
+        "evidence": "7.30am Mass - Burleigh Waters",
+        "replaces_event_type": null,
+        "start_time": "07:30",
+        "title": "Mass"
+      },
+      {
+        "action": "active",
+        "ambiguity": null,
+        "church": "Ozanam Villa",
+        "confidence": 0.98,
+        "date": "2026-06-03",
+        "end_time": null,
+        "event_type": "mass",
+        "evidence": "9.30am Mass – Ozanam Villa",
+        "replaces_event_type": null,
+        "start_time": "09:30",
+        "title": "Mass"
+      },
+      {
+        "action": "active",
+        "ambiguity": null,
+        "church": "Palm Beach",
+        "confidence": 0.98,
+        "date": "2026-06-03",
+        "end_time": null,
+        "event_type": "mass",
+        "evidence": "5.30pm  Mass - Palm Beach",
+        "replaces_event_type": null,
+        "start_time": "17:30",
+        "title": "Mass"
+      },
+      {
+        "action": "active",
+        "ambiguity": null,
+        "church": "Mudgeeraba",
+        "confidence": 0.98,
+        "date": "2026-06-04",
+        "end_time": "17:15",
+        "event_type": "confession",
+        "evidence": "5.00-5.15pm Reconciliation - Mudgeeraba",
+        "replaces_event_type": null,
+        "start_time": "17:00",
+        "title": "Reconciliation"
+      },
+      {
+        "action": "active",
+        "ambiguity": null,
+        "church": "Mudgeeraba",
+        "confidence": 0.98,
+        "date": "2026-06-04",
+        "end_time": null,
+        "event_type": "mass",
+        "evidence": "5.30pm  Mass - Mudgeeraba",
+        "replaces_event_type": null,
+        "start_time": "17:30",
+        "title": "Mass"
+      },
+      {
+        "action": "active",
+        "ambiguity": null,
+        "church": "Burleigh Waters",
+        "confidence": 0.99,
+        "date": "2026-06-05",
+        "end_time": null,
+        "event_type": "mass",
+        "evidence": "10.00am Anointing Mass - Burleigh Waters",
+        "replaces_event_type": null,
+        "start_time": "10:00",
+        "title": "Anointing Mass"
+      },
+      {
+        "action": "active",
+        "ambiguity": null,
+        "church": "Burleigh Heads",
+        "confidence": 0.98,
+        "date": "2026-06-06",
+        "end_time": null,
+        "event_type": "mass",
+        "evidence": "8.00am Mass – Burleigh Heads",
+        "replaces_event_type": null,
+        "start_time": "08:00",
+        "title": "Mass"
+      },
+      {
+        "action": "active",
+        "ambiguity": null,
+        "church": "Miami",
+        "confidence": 0.98,
+        "date": "2026-06-06",
+        "end_time": "16:45",
+        "event_type": "confession",
+        "evidence": "4.15-4.45pm Reconciliation - Miami",
+        "replaces_event_type": null,
+        "start_time": "16:15",
+        "title": "Reconciliation"
+      },
+      {
+        "action": "active",
+        "ambiguity": null,
+        "church": "Miami",
+        "confidence": 0.98,
+        "date": "2026-06-06",
+        "end_time": null,
+        "event_type": "mass",
+        "evidence": "5.00pm  Mass - Miami",
+        "replaces_event_type": null,
+        "start_time": "17:00",
+        "title": "Mass"
+      },
+      {
+        "action": "cancelled",
+        "ambiguity": "The usual reconciliation time is not provided in this cancellation notice.",
+        "church": "Palm Beach",
+        "confidence": 0.98,
+        "date": "2026-06-06",
+        "end_time": null,
+        "event_type": "confession",
+        "evidence": "No Reconciliation - Palm Beach",
+        "replaces_event_type": null,
+        "start_time": null,
+        "title": "No Reconciliation"
+      },
+      {
+        "action": "active",
+        "ambiguity": null,
+        "church": "Palm Beach",
+        "confidence": 0.98,
+        "date": "2026-06-06",
+        "end_time": null,
+        "event_type": "liturgy",
+        "evidence": "6.00pm Lay-Led Liturgy & Communion (No Mass) - Palm Beach",
+        "replaces_event_type": "mass",
+        "start_time": "18:00",
+        "title": "Lay-Led Liturgy & Communion"
+      },
+      {
+        "action": "active",
+        "ambiguity": null,
+        "church": "Burleigh Heads",
+        "confidence": 0.98,
+        "date": "2026-06-07",
+        "end_time": null,
+        "event_type": "mass",
+        "evidence": "7.00am Mass - Burleigh Heads",
+        "replaces_event_type": null,
+        "start_time": "07:00",
+        "title": "Mass"
+      },
+      {
+        "action": "active",
+        "ambiguity": null,
+        "church": "Palm Beach",
+        "confidence": 0.98,
+        "date": "2026-06-07",
+        "end_time": null,
+        "event_type": "mass",
+        "evidence": "7.00am Mass - Palm Beach",
+        "replaces_event_type": null,
+        "start_time": "07:00",
+        "title": "Mass"
+      },
+      {
+        "action": "active",
+        "ambiguity": null,
+        "church": "Miami",
+        "confidence": 0.98,
+        "date": "2026-06-07",
+        "end_time": null,
+        "event_type": "mass",
+        "evidence": "8.30am Mass - Miami",
+        "replaces_event_type": null,
+        "start_time": "08:30",
+        "title": "Mass"
+      },
+      {
+        "action": "active",
+        "ambiguity": null,
+        "church": "Mudgeeraba",
+        "confidence": 0.98,
+        "date": "2026-06-07",
+        "end_time": null,
+        "event_type": "liturgy",
+        "evidence": "8.30am Lay-Led Liturgy & Communion (No Mass) - Mudgeeraba",
+        "replaces_event_type": "mass",
+        "start_time": "08:30",
+        "title": "Lay-Led Liturgy & Communion"
+      },
+      {
+        "action": "active",
+        "ambiguity": null,
+        "church": "Burleigh Waters",
+        "confidence": 0.98,
+        "date": "2026-06-07",
+        "end_time": null,
+        "event_type": "mass",
+        "evidence": "10.00am Mass - Burleigh Waters",
+        "replaces_event_type": null,
+        "start_time": "10:00",
+        "title": "Mass"
+      },
+      {
+        "action": "active",
+        "ambiguity": null,
+        "church": "Burleigh Waters",
+        "confidence": 0.98,
+        "date": "2026-06-07",
+        "end_time": "17:15",
+        "event_type": "confession",
+        "evidence": "5.00-5.15pm Reconciliation - Burleigh Waters",
+        "replaces_event_type": null,
+        "start_time": "17:00",
+        "title": "Reconciliation"
+      },
+      {
+        "action": "active",
+        "ambiguity": null,
+        "church": "Burleigh Waters",
+        "confidence": 0.98,
+        "date": "2026-06-07",
+        "end_time": null,
+        "event_type": "mass",
+        "evidence": "5.30pm Mass - Burleigh Waters",
+        "replaces_event_type": null,
+        "start_time": "17:30",
+        "title": "Mass"
+      },
+      {
+        "action": "active",
+        "ambiguity": "Recurring worship schedule; no single occurrence date is stated in this notice.",
+        "church": "Mary Mother of Mercy Church",
+        "confidence": 0.85,
+        "date": null,
+        "end_time": null,
+        "event_type": "mass",
+        "evidence": "YOUTH MASS – 1st and 3rd Sunday of each month at 5:30pm",
+        "replaces_event_type": null,
+        "start_time": "17:30",
+        "title": "Youth Mass"
+      },
+      {
+        "action": "active",
+        "ambiguity": "Recurring worship schedule; no single occurrence date is stated in this notice.",
+        "church": "Mary Mother of Mercy Church",
+        "confidence": 0.9,
+        "date": null,
+        "end_time": "09:50",
+        "event_type": "adoration",
+        "evidence": "3rd Friday of each month from 9:00am till 9:50am",
+        "replaces_event_type": null,
+        "start_time": "09:00",
+        "title": "Adoration of the Blessed Sacrament"
+      },
+      {
+        "action": "active",
+        "ambiguity": "Recurring worship schedule; no single occurrence date is stated in this notice.",
+        "church": "Mary Mother of Mercy, Burleigh Waters",
+        "confidence": 0.88,
+        "date": null,
+        "end_time": null,
+        "event_type": "mass",
+        "evidence": "Fourth Sunday of each Month, 10am, Mary, Mother of Mercy",
+        "replaces_event_type": null,
+        "start_time": "10:00",
+        "title": "Children's Family Mass"
+      },
+      {
+        "action": "active",
+        "ambiguity": "Recurring worship schedule; no single occurrence date is stated in this notice.",
+        "church": "Calvary Church Miami",
+        "confidence": 0.88,
+        "date": null,
+        "end_time": null,
+        "event_type": "mass",
+        "evidence": "First Tuesday of each month, 7.00pm in Calvary Church Miami",
+        "replaces_event_type": null,
+        "start_time": "19:00",
+        "title": "Brazilian Mass (Portuguese language)"
+      },
+      {
+        "action": "active",
+        "ambiguity": "Recurring worship schedule; no single occurrence date is stated in this notice.",
+        "church": "Calvary Church Miami",
+        "confidence": 0.88,
+        "date": null,
+        "end_time": null,
+        "event_type": "mass",
+        "evidence": "Third Sunday of each month, 11.00am in Calvary Church Miami",
+        "replaces_event_type": null,
+        "start_time": "11:00",
+        "title": "Brazilian Mass (Portuguese language)"
+      }
+    ]
+  },
+  "model": "gpt-5.5",
+  "parser_mode": "text",
+  "processed_at": "2026-06-13T17:21:48+10:00",
+  "quarantined": [
+    {
+      "candidate": {
+        "action": "add",
+        "all_day": false,
+        "ambiguity": "No specific event date, time, or appeal end date is stated.",
+        "category": "fundraising",
+        "confidence": 0.7,
+        "date": null,
+        "description": "Appeal envelopes are available at parish churches; donations may be returned via collection plates at Masses.",
+        "end_time": null,
+        "evidence": "Appeal envelopes are available at Parish Churches for our Winter Appeal.",
+        "existing_event_id": null,
+        "location": "Parish Churches",
+        "series_title": null,
+        "start_time": null,
+        "title": "SVDP Winter Appeal"
+      },
+      "reasons": [
+        "low-confidence",
+        "ambiguous",
+        "missing-date",
+        "missing-start-time"
+      ]
+    }
+  ],
+  "schema_version": 1,
+  "series_decisions": [
+    {
+      "action": "updated-series",
+      "id": "ea1ea667c573dca002fa6ea0"
+    },
+    {
+      "action": "added-series",
+      "id": "6ee332a42af888bc640dbd35"
+    }
+  ],
+  "series_quarantined": [
+    {
+      "candidate": {
+        "action": "add",
+        "ambiguity": "Held after the 10am First Friday Anointing Mass; exact start and end times are not stated.",
+        "category": "social",
+        "confidence": 0.82,
+        "description": "Morning tea provided by Care and Concern after the First Friday Anointing Mass.",
+        "end_date": null,
+        "end_time": null,
+        "evidence": "Care and Concern will be providing morning tea in the Community Centre.",
+        "existing_series_id": null,
+        "frequency": "monthly",
+        "interval": 1,
+        "location": "Community Centre, Mary Mother of Mercy Church",
+        "occurrence_title": null,
+        "ordinal": 1,
+        "series_title": "Care and Concern Morning Tea",
+        "start_date": null,
+        "start_time": null,
+        "weekdays": [
+          "friday"
+        ]
+      },
+      "reasons": [
+        "missing-start-time"
+      ]
+    },
+    {
+      "candidate": {
+        "action": "add",
+        "ambiguity": "Exact time is not stated.",
+        "category": "other",
+        "confidence": 0.86,
+        "description": "Volunteer opportunity to assist at the piety stall on Sunday mornings.",
+        "end_date": null,
+        "end_time": null,
+        "evidence": "assist at the piety stall on Sunday mornings at Mary Mother of Mercy",
+        "existing_series_id": null,
+        "frequency": "weekly",
+        "interval": 1,
+        "location": "Mary Mother of Mercy Church",
+        "occurrence_title": null,
+        "ordinal": null,
+        "series_title": "Piety Stall Assistant",
+        "start_date": null,
+        "start_time": null,
+        "weekdays": [
+          "sunday"
+        ]
+      },
+      "reasons": [
+        "missing-start-time"
+      ]
+    },
+    {
+      "candidate": {
+        "action": "add",
+        "ambiguity": "Exact volunteer start and end times are not stated.",
+        "category": "faith-formation",
+        "confidence": 0.88,
+        "description": "Volunteers sought to prepare the church for Baptisms each Sunday before and after the 10:00am Mass.",
+        "end_date": null,
+        "end_time": null,
+        "evidence": "preparing the church for Baptisms each Sunday before and after the 10:00am Mass",
+        "existing_series_id": null,
+        "frequency": "weekly",
+        "interval": 1,
+        "location": "Mary Mother of Mercy Church",
+        "occurrence_title": null,
+        "ordinal": null,
+        "series_title": "Baptism Preparation Assistance",
+        "start_date": null,
+        "start_time": null,
+        "weekdays": [
+          "sunday"
+        ]
+      },
+      "reasons": [
+        "missing-start-time"
+      ]
+    }
+  ],
+  "sha256": "110c8564554d0ea692721edd58eb1775c760fffde26a260be43ffaf54334e1f0",
+  "text_quality": {
+    "characters": 15541,
+    "readable_ratio": 1.0,
+    "reason": null,
+    "structure_signals": 4,
+    "usable": true
+  }
+}

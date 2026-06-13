@@ -1,5 +1,10 @@
 export const SUPPORTED_SCHEMA_VERSION = 1;
 export const EVENT_TYPE_ORDER = ["mass", "confession", "baptism", "multicultural", "community"];
+export const FEED_MODES = new Set(["liturgical", "community", "combined"]);
+export const COMMUNITY_CATEGORIES = new Set([
+  "faith-formation", "prayer", "social", "outreach", "wellbeing",
+  "youth", "pilgrimage", "fundraising", "other",
+]);
 export const LITURGICAL_COLOURS = new Set(["green", "red", "white", "violet", "rose"]);
 const DATE_KEY_PATTERN = /^\d{4}-\d{2}-\d{2}$/;
 
@@ -115,6 +120,17 @@ export function eventsInRange(events, start, end) {
   });
 }
 
+export function validFeedMode(value) {
+  return FEED_MODES.has(value) ? value : "combined";
+}
+
+export function eventsForFeedMode(events, mode) {
+  const selected = validFeedMode(mode);
+  if (selected === "combined") return events;
+  const recordKind = selected === "liturgical" ? "service" : "community";
+  return events.filter((event) => event.record_kind === recordKind);
+}
+
 export function dayEventStatus(events, now = Date.now()) {
   return events.reduce((status, event) => {
     if (new Date(event.end).getTime() <= now) {
@@ -208,6 +224,26 @@ export function validateParish(parish) {
     throw new Error("Parish feed is missing required fields.");
   }
   parish.churches.forEach((church) => {
+    if (
+      church.aliases !== undefined
+      && (!Array.isArray(church.aliases) || church.aliases.some((alias) => (
+        typeof alias !== "string" || !alias.trim()
+      )))
+    ) {
+      throw new Error(`Church ${church.id} has invalid aliases.`);
+    }
+    if (
+      church.venues !== undefined
+      && (!Array.isArray(church.venues) || church.venues.some((venue) => (
+        !venue?.name
+        || (venue.aliases !== undefined && (
+          !Array.isArray(venue.aliases)
+          || venue.aliases.some((alias) => typeof alias !== "string" || !alias.trim())
+        ))
+      )))
+    ) {
+      throw new Error(`Church ${church.id} has invalid venues.`);
+    }
     if (church.status && church.status !== "temporarily-closed") {
       throw new Error(`Church ${church.id} has invalid status.`);
     }
@@ -232,6 +268,11 @@ export function validateCommunity(feed) {
   requireSchema(feed, "community");
   if (!feed.coverage || !feed.generated_at) throw new Error("Community feed is missing metadata.");
   validateRecords(feed.events, ["id", "title", "start", "end", "status"], "Community");
+  feed.events.forEach((event) => {
+    if (event.category && !COMMUNITY_CATEGORIES.has(event.category)) {
+      throw new Error(`Community record ${event.id} has invalid category.`);
+    }
+  });
   return feed;
 }
 
@@ -266,7 +307,8 @@ function enrichedCommunity(event) {
     record_kind: "community",
     event_type: "community",
     service_name: event.title,
-    church: event.location || null,
+    church: event.church_name || event.location || null,
+    venue: event.venue || event.location || null,
     presiders: [],
     associated_devotions: [],
     all_day: event.all_day || false,
@@ -296,10 +338,9 @@ export function assembleCalendar(parish, servicesFeed, communityFeed, liturgical
   validateLiturgical(liturgicalFeed);
   const churches = new Map(parish.churches.map((church) => [church.id, church]));
   const services = servicesFeed.services
-    .filter((service) => service.status !== "cancelled" && service.event_type !== "baptism")
+    .filter((service) => service.event_type !== "baptism")
     .map((service) => enrichedService(service, churches, liturgicalFeed.dates));
   const community = communityFeed.events
-    .filter((event) => event.status !== "cancelled")
     .map(enrichedCommunity);
   const events = [...services, ...community]
     .sort((left, right) => left.start.localeCompare(right.start)

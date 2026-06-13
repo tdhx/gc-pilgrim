@@ -35,6 +35,48 @@ This refreshes:
 Successful refreshes replace the corresponding `raw/*.jsonl` snapshots and
 regenerate all public feeds. Review changes to both `raw/` and `feeds/`.
 
+## Community Newsletter Extraction
+
+Install the optional ingestion dependencies:
+
+```sh
+python3 -m pip install -r requirements.txt
+```
+
+Copy `.env.example` to `.env` and set `OPENAI_API_KEY`. The `.env` file is
+gitignored and loaded automatically by `extract-community-events`.
+`OPENAI_MODEL` defaults to `gpt-5.5`.
+
+Surfers Paradise discovery uses the newest post on its public newsletter hub
+that contains a Google Drive PDF link.
+
+Process the newest newsletter for one parish or both:
+
+```sh
+./extract-community-events --parish burleigh-heads
+./extract-community-events --all
+./extract-community-events --all --force
+```
+
+`--force` reparses the newest document even when its ID matches `state.json`.
+
+The extractor writes reviewable state under `raw/<parish>/newsletter/`:
+
+- extracted text and per-document audit JSON
+- accumulated `community.jsonl`
+- recurring `series.jsonl`, expanded into the rolling three-month feed window
+- `service-divergences.jsonl`, used for audited trusted schedule overlays
+- `state.json`, used to avoid reprocessing the same newest document
+
+Recurring series retain stable IDs, refresh when mentioned again, and stop
+publishing 90 days after their last newsletter mention. Missing end times use a
+one-hour default. Community records use controlled categories and preserve a
+specific campus venue alongside its canonical parent `church_id`.
+
+Local PDF text extraction is the normal path. The original PDF is sent to the
+model only when the text layer fails quality checks. Downloaded PDFs are
+temporary and are not committed.
+
 ## Tests
 
 Run all automated checks:
@@ -59,7 +101,12 @@ Node coverage includes:
 - registry selection and fallback
 - immutable church and liturgical enrichment
 - cancelled and modified statuses
+- Liturgical, Community, and Combined feed modes
+- normalized church aliases and trusted newsletter schedule overlays
+- unique untimed cancellations and ambiguous untimed quarantine
+- recurring newsletter expansion, stable IDs, and 90-day expiry
 - community event assembly
+- Monthly view and persisted mascot selection
 - sparse parish acceptance
 - existing filters and calendar date helpers
 - removal of the legacy combined-feed loader

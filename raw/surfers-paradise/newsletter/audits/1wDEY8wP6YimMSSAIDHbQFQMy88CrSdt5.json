@@ -1,0 +1,826 @@
+{
+  "decisions": [
+    {
+      "action": "added",
+      "id": "4a4c74dd18a59d1d33597ca0",
+      "warnings": []
+    },
+    {
+      "action": "added",
+      "id": "f1121aa29e5c037f1c963717",
+      "warnings": []
+    },
+    {
+      "action": "added",
+      "id": "b5f9630638bbe8a453945f92",
+      "warnings": []
+    },
+    {
+      "action": "added",
+      "id": "c7122b81648de424f6530959",
+      "warnings": []
+    }
+  ],
+  "document": {
+    "download_url": "https://drive.google.com/uc?export=download&id=1wDEY8wP6YimMSSAIDHbQFQMy88CrSdt5",
+    "parish_id": "surfers-paradise",
+    "published_date": "2026-01-25",
+    "source_id": "1wDEY8wP6YimMSSAIDHbQFQMy88CrSdt5",
+    "title": "SPCP newsletter - Sunday, 25 January 2026 – Third Sunday - Year A .pdf",
+    "url": "https://drive.google.com/file/d/1wDEY8wP6YimMSSAIDHbQFQMy88CrSdt5/view"
+  },
+  "extraction": {
+    "community_events": [
+      {
+        "action": "add",
+        "all_day": false,
+        "ambiguity": "The excerpt prints 2025, but the newsletter is dated Sunday 25 January 2026.",
+        "confidence": 0.86,
+        "date": "2026-01-25",
+        "description": "Meeting after 6 pm Mass; everyone welcome.",
+        "end_time": "21:00",
+        "evidence": "RESUMES  THIS SUNDAY 25TH JANUARY, 2025, 7:00-9:00PM",
+        "existing_event_id": null,
+        "location": "Parish Hospitality Centre",
+        "start_time": "19:00",
+        "title": "Ignis Dei Youth Group resumes"
+      },
+      {
+        "action": "add",
+        "all_day": false,
+        "ambiguity": null,
+        "confidence": 0.98,
+        "date": "2026-02-01",
+        "description": "Adult faith formation Bible study gathering.",
+        "end_time": "12:00",
+        "evidence": "Next gathering 1 February 2026",
+        "existing_event_id": null,
+        "location": "Parish Hospitality Centre, 50 Fairway Drive, Clear Island Waters",
+        "start_time": "10:00",
+        "title": "The Bible Timeline – The Story of Salvation adult faith formation"
+      },
+      {
+        "action": "add",
+        "all_day": false,
+        "ambiguity": "Morning tea start and end times are not stated.",
+        "confidence": 0.83,
+        "date": "2026-02-03",
+        "description": "Morning tea following the 10 am Anointing Mass.",
+        "end_time": null,
+        "evidence": "Tuesday, the 3rd of February, 2026.10 am  - Followed by morning tea.",
+        "existing_event_id": null,
+        "location": "Sacred Heart Catholic Church",
+        "start_time": null,
+        "title": "Morning tea after Anointing Mass"
+      },
+      {
+        "action": "add",
+        "all_day": false,
+        "ambiguity": null,
+        "confidence": 0.97,
+        "date": "2026-02-03",
+        "description": "World Community for Christian Meditation group.",
+        "end_time": "11:00",
+        "evidence": "RESUMES  3 FEBRUARY 2026)  This meditation group meets each Tuesday",
+        "existing_event_id": null,
+        "location": "Morris Prayer Room, 50 Fairway Drive, Clear Island Waters",
+        "start_time": "10:00",
+        "title": "WCCM Christian Meditation resumes"
+      },
+      {
+        "action": "add",
+        "all_day": false,
+        "ambiguity": null,
+        "confidence": 0.96,
+        "date": "2026-02-03",
+        "description": "Scripture study of the following Sunday’s Mass readings.",
+        "end_time": "12:00",
+        "evidence": "followed by a Scripture Study of the following Sunday’s Mass readings from 11 am to 12 pm",
+        "existing_event_id": null,
+        "location": "Morris Prayer Room, 50 Fairway Drive, Clear Island Waters",
+        "start_time": "11:00",
+        "title": "Scripture Study after WCCM meditation"
+      },
+      {
+        "action": "add",
+        "all_day": false,
+        "ambiguity": null,
+        "confidence": 0.98,
+        "date": "2026-02-06",
+        "description": "Weekly Bible study and prayer group resumes after summer break.",
+        "end_time": "18:00",
+        "evidence": "RESUMES on  6th FEBRUARY  2026)",
+        "existing_event_id": null,
+        "location": "St Vincent’s Church, 40 Hamilton Ave, Surfers Paradise",
+        "start_time": "17:00",
+        "title": "Bible Study/Prayer Group resumes"
+      },
+      {
+        "action": "add",
+        "all_day": false,
+        "ambiguity": "Return time is not stated.",
+        "confidence": 0.98,
+        "date": "2026-02-11",
+        "description": "Pilgrimage of the sick and elderly. Bus fare $25 return.",
+        "end_time": null,
+        "evidence": "on 11th February (Wednesday)",
+        "existing_event_id": null,
+        "location": "Marian Valley Church; bus from 50 Fairway Drive, Clear Island Waters",
+        "start_time": "08:15",
+        "title": "Marian Valley Shrine pilgrimage - Our Lady of Lourdes annual pilgrimage"
+      },
+      {
+        "action": "add",
+        "all_day": false,
+        "ambiguity": "Return time is not stated.",
+        "confidence": 0.98,
+        "date": "2026-02-13",
+        "description": "Pilgrimage for Our Lady of Fatima feast. Bus fare $25 return.",
+        "end_time": null,
+        "evidence": "on 13th February (Friday) Our Lady of Fatima feast",
+        "existing_event_id": null,
+        "location": "Marian Valley Church; bus from 50 Fairway Drive, Clear Island Waters",
+        "start_time": "08:15",
+        "title": "Marian Valley Shrine pilgrimage - Our Lady of Fatima feast"
+      },
+      {
+        "action": "add",
+        "all_day": false,
+        "ambiguity": "Session is offered on 10 or 11 March; allocation is not specified.",
+        "confidence": 0.95,
+        "date": "2026-03-10",
+        "description": "Parent and child attend one of the listed Session 1 options.",
+        "end_time": null,
+        "evidence": "Session 1:  Tues 10 or Wed 11 March, 5:30 pm",
+        "existing_event_id": null,
+        "location": null,
+        "start_time": "17:30",
+        "title": "First Holy Communion 2026 preparation session 1 option"
+      },
+      {
+        "action": "add",
+        "all_day": false,
+        "ambiguity": "Session is offered on 10 or 11 March; allocation is not specified.",
+        "confidence": 0.95,
+        "date": "2026-03-11",
+        "description": "Parent and child attend one of the listed Session 1 options.",
+        "end_time": null,
+        "evidence": "Session 1:  Tues 10 or Wed 11 March, 5:30 pm",
+        "existing_event_id": null,
+        "location": null,
+        "start_time": "17:30",
+        "title": "First Holy Communion 2026 preparation session 1 option"
+      },
+      {
+        "action": "add",
+        "all_day": false,
+        "ambiguity": "Session is offered on 17 or 18 March; allocation is not specified.",
+        "confidence": 0.95,
+        "date": "2026-03-17",
+        "description": "Parent and child attend one of the listed Session 2 options.",
+        "end_time": null,
+        "evidence": "Session 2:  Tuesday 17 or Wednesday 18 March, 5:30 pm",
+        "existing_event_id": null,
+        "location": null,
+        "start_time": "17:30",
+        "title": "First Holy Communion 2026 preparation session 2 option"
+      },
+      {
+        "action": "add",
+        "all_day": false,
+        "ambiguity": "Session is offered on 17 or 18 March; allocation is not specified.",
+        "confidence": 0.95,
+        "date": "2026-03-18",
+        "description": "Parent and child attend one of the listed Session 2 options.",
+        "end_time": null,
+        "evidence": "Session 2:  Tuesday 17 or Wednesday 18 March, 5:30 pm",
+        "existing_event_id": null,
+        "location": null,
+        "start_time": "17:30",
+        "title": "First Holy Communion 2026 preparation session 2 option"
+      },
+      {
+        "action": "add",
+        "all_day": false,
+        "ambiguity": "Rehearsal is offered on 26 or 27 May; allocation is not specified.",
+        "confidence": 0.95,
+        "date": "2026-05-26",
+        "description": "Parent and child attend one of the listed rehearsal options.",
+        "end_time": null,
+        "evidence": "Rehearsals: Tuesday 26 or Wed 27 May, 5:30 pm",
+        "existing_event_id": null,
+        "location": null,
+        "start_time": "17:30",
+        "title": "First Holy Communion 2026 rehearsal option"
+      },
+      {
+        "action": "add",
+        "all_day": false,
+        "ambiguity": "Rehearsal is offered on 26 or 27 May; allocation is not specified.",
+        "confidence": 0.95,
+        "date": "2026-05-27",
+        "description": "Parent and child attend one of the listed rehearsal options.",
+        "end_time": null,
+        "evidence": "Rehearsals: Tuesday 26 or Wed 27 May, 5:30 pm",
+        "existing_event_id": null,
+        "location": null,
+        "start_time": "17:30",
+        "title": "First Holy Communion 2026 rehearsal option"
+      },
+      {
+        "action": "add",
+        "all_day": true,
+        "ambiguity": "Multi-day event; only the start date is represented in the date field.",
+        "confidence": 0.98,
+        "date": "2026-06-21",
+        "description": "Pilgrimage led by Fr Dan Ryan, visiting Dublin, Glendalough, Tipperary, Kerry, Galway, Knock and Belfast; runs 21 June to 7 July 2026.",
+        "end_time": null,
+        "evidence": "from 21st June to 7th July 2026",
+        "existing_event_id": null,
+        "location": "Ireland",
+        "start_time": null,
+        "title": "Pilgrimage to Ireland"
+      },
+      {
+        "action": "add",
+        "all_day": false,
+        "ambiguity": "Meeting is offered on 20 or 21 July; allocation is not specified.",
+        "confidence": 0.95,
+        "date": "2026-07-20",
+        "description": "Parent and child attend one of the listed Meeting 1 options.",
+        "end_time": null,
+        "evidence": "Meeting 1: 20 or 21 July, 5:30 pm",
+        "existing_event_id": null,
+        "location": null,
+        "start_time": "17:30",
+        "title": "Confirmation 2026 preparation meeting 1 option"
+      },
+      {
+        "action": "add",
+        "all_day": false,
+        "ambiguity": "Meeting is offered on 20 or 21 July; allocation is not specified.",
+        "confidence": 0.95,
+        "date": "2026-07-21",
+        "description": "Parent and child attend one of the listed Meeting 1 options.",
+        "end_time": null,
+        "evidence": "Meeting 1: 20 or 21 July, 5:30 pm",
+        "existing_event_id": null,
+        "location": null,
+        "start_time": "17:30",
+        "title": "Confirmation 2026 preparation meeting 1 option"
+      },
+      {
+        "action": "add",
+        "all_day": false,
+        "ambiguity": "Meeting is offered on 28 or 29 July; allocation is not specified.",
+        "confidence": 0.95,
+        "date": "2026-07-28",
+        "description": "Parent and child attend one of the listed Meeting 2 options.",
+        "end_time": null,
+        "evidence": "Meeting 2: 28 or 29 July, 5:30 pm",
+        "existing_event_id": null,
+        "location": null,
+        "start_time": "17:30",
+        "title": "Confirmation 2026 preparation meeting 2 option"
+      },
+      {
+        "action": "add",
+        "all_day": false,
+        "ambiguity": "Meeting is offered on 28 or 29 July; allocation is not specified.",
+        "confidence": 0.95,
+        "date": "2026-07-29",
+        "description": "Parent and child attend one of the listed Meeting 2 options.",
+        "end_time": null,
+        "evidence": "Meeting 2: 28 or 29 July, 5:30 pm",
+        "existing_event_id": null,
+        "location": null,
+        "start_time": "17:30",
+        "title": "Confirmation 2026 preparation meeting 2 option"
+      },
+      {
+        "action": "add",
+        "all_day": false,
+        "ambiguity": "Rehearsal is offered on 11 or 12 August; allocation is not specified.",
+        "confidence": 0.95,
+        "date": "2026-08-11",
+        "description": "Parent and child attend one of the listed rehearsal options.",
+        "end_time": null,
+        "evidence": "Rehearsals: 11 or 12 August, 5:30 pm",
+        "existing_event_id": null,
+        "location": null,
+        "start_time": "17:30",
+        "title": "Confirmation 2026 rehearsal option"
+      },
+      {
+        "action": "add",
+        "all_day": false,
+        "ambiguity": "Rehearsal is offered on 11 or 12 August; allocation is not specified.",
+        "confidence": 0.95,
+        "date": "2026-08-12",
+        "description": "Parent and child attend one of the listed rehearsal options.",
+        "end_time": null,
+        "evidence": "Rehearsals: 11 or 12 August, 5:30 pm",
+        "existing_event_id": null,
+        "location": null,
+        "start_time": "17:30",
+        "title": "Confirmation 2026 rehearsal option"
+      }
+    ],
+    "worship_observations": [
+      {
+        "action": "active",
+        "ambiguity": "“This weekend” could refer to either 24 or 25 January 2026; exact date and time are not stated.",
+        "church": null,
+        "confidence": 0.76,
+        "date": null,
+        "end_time": null,
+        "event_type": "baptism",
+        "evidence": "LACHLAN, ARCHIE and MAYA will be baptised in our Parish this weekend.",
+        "start_time": null,
+        "title": "Baptisms of Lachlan, Archie and Maya"
+      },
+      {
+        "action": "active",
+        "ambiguity": null,
+        "church": "Sacred Heart Church",
+        "confidence": 0.99,
+        "date": "2026-02-06",
+        "end_time": "20:30",
+        "event_type": "adoration",
+        "evidence": "6th February, 2026, at Sacred Heart Church from 7 pm to 8.30 pm",
+        "start_time": "19:00",
+        "title": "First Friday Adoration of the Blessed Sacrament"
+      },
+      {
+        "action": "active",
+        "ambiguity": null,
+        "church": "Sacred Heart Catholic Church",
+        "confidence": 0.99,
+        "date": "2026-02-03",
+        "end_time": null,
+        "event_type": "mass",
+        "evidence": "Tuesday, the 3rd of February, 2026.10 am",
+        "start_time": "10:00",
+        "title": "Anointing Mass – Mass of Healing"
+      },
+      {
+        "action": "active",
+        "ambiguity": "End time is not stated.",
+        "church": "Sacred Heart Church, Clear Island Waters",
+        "confidence": 0.98,
+        "date": "2026-02-07",
+        "end_time": null,
+        "event_type": "mass",
+        "evidence": "February 7th, 2026 at 9 am.   Followed by adoration and Benediction.",
+        "start_time": "09:00",
+        "title": "First Saturday Mass, Adoration and Benediction"
+      },
+      {
+        "action": "active",
+        "ambiguity": "No time is stated.",
+        "church": null,
+        "confidence": 0.92,
+        "date": "2026-01-26",
+        "end_time": null,
+        "event_type": "rosary",
+        "evidence": "26/01/26   Eileen & Julio Camera - Nerang",
+        "start_time": null,
+        "title": "Our Lady’s Statue Rosary - Eileen & Julio Camera"
+      },
+      {
+        "action": "active",
+        "ambiguity": "No time is stated.",
+        "church": null,
+        "confidence": 0.92,
+        "date": "2026-02-02",
+        "end_time": null,
+        "event_type": "rosary",
+        "evidence": "02/02/26  Nardine & Ayline Merrimac",
+        "start_time": null,
+        "title": "Our Lady’s Statue Rosary - Nardine & Ayline"
+      },
+      {
+        "action": "active",
+        "ambiguity": "No time is stated.",
+        "church": null,
+        "confidence": 0.92,
+        "date": "2026-02-09",
+        "end_time": null,
+        "event_type": "rosary",
+        "evidence": "09/02/26   Nardine & Ayline Merrimac",
+        "start_time": null,
+        "title": "Our Lady’s Statue Rosary - Nardine & Ayline"
+      },
+      {
+        "action": "active",
+        "ambiguity": "No time is stated.",
+        "church": null,
+        "confidence": 0.92,
+        "date": "2026-02-16",
+        "end_time": null,
+        "event_type": "rosary",
+        "evidence": "16/02/26   Helen & Thor Merrimac",
+        "start_time": null,
+        "title": "Our Lady’s Statue Rosary - Helen & Thor"
+      },
+      {
+        "action": "active",
+        "ambiguity": "No time is stated.",
+        "church": null,
+        "confidence": 0.92,
+        "date": "2026-02-23",
+        "end_time": null,
+        "event_type": "rosary",
+        "evidence": "23/02/26   Helen & Thor Merrimac",
+        "start_time": null,
+        "title": "Our Lady’s Statue Rosary - Helen & Thor"
+      },
+      {
+        "action": "active",
+        "ambiguity": "End time is not stated.",
+        "church": "Sacred Heart Church",
+        "confidence": 0.96,
+        "date": "2026-05-19",
+        "end_time": null,
+        "event_type": "confession",
+        "evidence": "Reconciliations: Tuesday 19 May, 5:30 pm",
+        "start_time": "17:30",
+        "title": "First Holy Communion preparation reconciliations"
+      },
+      {
+        "action": "active",
+        "ambiguity": "First Communion is listed with two possible dates; allocation is not specified.",
+        "church": "Sacred Heart Church",
+        "confidence": 0.95,
+        "date": "2026-05-31",
+        "end_time": null,
+        "event_type": "liturgy",
+        "evidence": "First Communions: 31 May, 11:00 am or 7 June, 11:00 am",
+        "start_time": "11:00",
+        "title": "First Communion option"
+      },
+      {
+        "action": "active",
+        "ambiguity": "First Communion is listed with two possible dates; allocation is not specified.",
+        "church": "Sacred Heart Church",
+        "confidence": 0.95,
+        "date": "2026-06-07",
+        "end_time": null,
+        "event_type": "liturgy",
+        "evidence": "First Communions: 31 May, 11:00 am or 7 June, 11:00 am",
+        "start_time": "11:00",
+        "title": "First Communion option"
+      },
+      {
+        "action": "active",
+        "ambiguity": "Time is listed as 5:00 or 7:00 pm; allocation is not specified.",
+        "church": "Sacred Heart Church",
+        "confidence": 0.94,
+        "date": "2026-08-21",
+        "end_time": null,
+        "event_type": "liturgy",
+        "evidence": "Confirmation: 21 August 2026, 5:00 or 7:00 pm",
+        "start_time": null,
+        "title": "Confirmation 2026"
+      }
+    ]
+  },
+  "model": "gpt-5.5",
+  "parser_mode": "text",
+  "processed_at": "2026-06-13T14:19:14+10:00",
+  "quarantined": [
+    {
+      "candidate": {
+        "action": "add",
+        "all_day": false,
+        "ambiguity": "The excerpt prints 2025, but the newsletter is dated Sunday 25 January 2026.",
+        "confidence": 0.86,
+        "date": "2026-01-25",
+        "description": "Meeting after 6 pm Mass; everyone welcome.",
+        "end_time": "21:00",
+        "evidence": "RESUMES  THIS SUNDAY 25TH JANUARY, 2025, 7:00-9:00PM",
+        "existing_event_id": null,
+        "location": "Parish Hospitality Centre",
+        "start_time": "19:00",
+        "title": "Ignis Dei Youth Group resumes"
+      },
+      "reasons": [
+        "ambiguous"
+      ]
+    },
+    {
+      "candidate": {
+        "action": "add",
+        "all_day": false,
+        "ambiguity": "Morning tea start and end times are not stated.",
+        "confidence": 0.83,
+        "date": "2026-02-03",
+        "description": "Morning tea following the 10 am Anointing Mass.",
+        "end_time": null,
+        "evidence": "Tuesday, the 3rd of February, 2026.10 am  - Followed by morning tea.",
+        "existing_event_id": null,
+        "location": "Sacred Heart Catholic Church",
+        "start_time": null,
+        "title": "Morning tea after Anointing Mass"
+      },
+      "reasons": [
+        "ambiguous",
+        "missing-start-time"
+      ]
+    },
+    {
+      "candidate": {
+        "action": "add",
+        "all_day": false,
+        "ambiguity": "Return time is not stated.",
+        "confidence": 0.98,
+        "date": "2026-02-11",
+        "description": "Pilgrimage of the sick and elderly. Bus fare $25 return.",
+        "end_time": null,
+        "evidence": "on 11th February (Wednesday)",
+        "existing_event_id": null,
+        "location": "Marian Valley Church; bus from 50 Fairway Drive, Clear Island Waters",
+        "start_time": "08:15",
+        "title": "Marian Valley Shrine pilgrimage - Our Lady of Lourdes annual pilgrimage"
+      },
+      "reasons": [
+        "ambiguous"
+      ]
+    },
+    {
+      "candidate": {
+        "action": "add",
+        "all_day": false,
+        "ambiguity": "Return time is not stated.",
+        "confidence": 0.98,
+        "date": "2026-02-13",
+        "description": "Pilgrimage for Our Lady of Fatima feast. Bus fare $25 return.",
+        "end_time": null,
+        "evidence": "on 13th February (Friday) Our Lady of Fatima feast",
+        "existing_event_id": null,
+        "location": "Marian Valley Church; bus from 50 Fairway Drive, Clear Island Waters",
+        "start_time": "08:15",
+        "title": "Marian Valley Shrine pilgrimage - Our Lady of Fatima feast"
+      },
+      "reasons": [
+        "ambiguous"
+      ]
+    },
+    {
+      "candidate": {
+        "action": "add",
+        "all_day": false,
+        "ambiguity": "Session is offered on 10 or 11 March; allocation is not specified.",
+        "confidence": 0.95,
+        "date": "2026-03-10",
+        "description": "Parent and child attend one of the listed Session 1 options.",
+        "end_time": null,
+        "evidence": "Session 1:  Tues 10 or Wed 11 March, 5:30 pm",
+        "existing_event_id": null,
+        "location": null,
+        "start_time": "17:30",
+        "title": "First Holy Communion 2026 preparation session 1 option"
+      },
+      "reasons": [
+        "ambiguous"
+      ]
+    },
+    {
+      "candidate": {
+        "action": "add",
+        "all_day": false,
+        "ambiguity": "Session is offered on 10 or 11 March; allocation is not specified.",
+        "confidence": 0.95,
+        "date": "2026-03-11",
+        "description": "Parent and child attend one of the listed Session 1 options.",
+        "end_time": null,
+        "evidence": "Session 1:  Tues 10 or Wed 11 March, 5:30 pm",
+        "existing_event_id": null,
+        "location": null,
+        "start_time": "17:30",
+        "title": "First Holy Communion 2026 preparation session 1 option"
+      },
+      "reasons": [
+        "ambiguous"
+      ]
+    },
+    {
+      "candidate": {
+        "action": "add",
+        "all_day": false,
+        "ambiguity": "Session is offered on 17 or 18 March; allocation is not specified.",
+        "confidence": 0.95,
+        "date": "2026-03-17",
+        "description": "Parent and child attend one of the listed Session 2 options.",
+        "end_time": null,
+        "evidence": "Session 2:  Tuesday 17 or Wednesday 18 March, 5:30 pm",
+        "existing_event_id": null,
+        "location": null,
+        "start_time": "17:30",
+        "title": "First Holy Communion 2026 preparation session 2 option"
+      },
+      "reasons": [
+        "ambiguous"
+      ]
+    },
+    {
+      "candidate": {
+        "action": "add",
+        "all_day": false,
+        "ambiguity": "Session is offered on 17 or 18 March; allocation is not specified.",
+        "confidence": 0.95,
+        "date": "2026-03-18",
+        "description": "Parent and child attend one of the listed Session 2 options.",
+        "end_time": null,
+        "evidence": "Session 2:  Tuesday 17 or Wednesday 18 March, 5:30 pm",
+        "existing_event_id": null,
+        "location": null,
+        "start_time": "17:30",
+        "title": "First Holy Communion 2026 preparation session 2 option"
+      },
+      "reasons": [
+        "ambiguous"
+      ]
+    },
+    {
+      "candidate": {
+        "action": "add",
+        "all_day": false,
+        "ambiguity": "Rehearsal is offered on 26 or 27 May; allocation is not specified.",
+        "confidence": 0.95,
+        "date": "2026-05-26",
+        "description": "Parent and child attend one of the listed rehearsal options.",
+        "end_time": null,
+        "evidence": "Rehearsals: Tuesday 26 or Wed 27 May, 5:30 pm",
+        "existing_event_id": null,
+        "location": null,
+        "start_time": "17:30",
+        "title": "First Holy Communion 2026 rehearsal option"
+      },
+      "reasons": [
+        "ambiguous"
+      ]
+    },
+    {
+      "candidate": {
+        "action": "add",
+        "all_day": false,
+        "ambiguity": "Rehearsal is offered on 26 or 27 May; allocation is not specified.",
+        "confidence": 0.95,
+        "date": "2026-05-27",
+        "description": "Parent and child attend one of the listed rehearsal options.",
+        "end_time": null,
+        "evidence": "Rehearsals: Tuesday 26 or Wed 27 May, 5:30 pm",
+        "existing_event_id": null,
+        "location": null,
+        "start_time": "17:30",
+        "title": "First Holy Communion 2026 rehearsal option"
+      },
+      "reasons": [
+        "ambiguous"
+      ]
+    },
+    {
+      "candidate": {
+        "action": "add",
+        "all_day": true,
+        "ambiguity": "Multi-day event; only the start date is represented in the date field.",
+        "confidence": 0.98,
+        "date": "2026-06-21",
+        "description": "Pilgrimage led by Fr Dan Ryan, visiting Dublin, Glendalough, Tipperary, Kerry, Galway, Knock and Belfast; runs 21 June to 7 July 2026.",
+        "end_time": null,
+        "evidence": "from 21st June to 7th July 2026",
+        "existing_event_id": null,
+        "location": "Ireland",
+        "start_time": null,
+        "title": "Pilgrimage to Ireland"
+      },
+      "reasons": [
+        "ambiguous"
+      ]
+    },
+    {
+      "candidate": {
+        "action": "add",
+        "all_day": false,
+        "ambiguity": "Meeting is offered on 20 or 21 July; allocation is not specified.",
+        "confidence": 0.95,
+        "date": "2026-07-20",
+        "description": "Parent and child attend one of the listed Meeting 1 options.",
+        "end_time": null,
+        "evidence": "Meeting 1: 20 or 21 July, 5:30 pm",
+        "existing_event_id": null,
+        "location": null,
+        "start_time": "17:30",
+        "title": "Confirmation 2026 preparation meeting 1 option"
+      },
+      "reasons": [
+        "ambiguous"
+      ]
+    },
+    {
+      "candidate": {
+        "action": "add",
+        "all_day": false,
+        "ambiguity": "Meeting is offered on 20 or 21 July; allocation is not specified.",
+        "confidence": 0.95,
+        "date": "2026-07-21",
+        "description": "Parent and child attend one of the listed Meeting 1 options.",
+        "end_time": null,
+        "evidence": "Meeting 1: 20 or 21 July, 5:30 pm",
+        "existing_event_id": null,
+        "location": null,
+        "start_time": "17:30",
+        "title": "Confirmation 2026 preparation meeting 1 option"
+      },
+      "reasons": [
+        "ambiguous"
+      ]
+    },
+    {
+      "candidate": {
+        "action": "add",
+        "all_day": false,
+        "ambiguity": "Meeting is offered on 28 or 29 July; allocation is not specified.",
+        "confidence": 0.95,
+        "date": "2026-07-28",
+        "description": "Parent and child attend one of the listed Meeting 2 options.",
+        "end_time": null,
+        "evidence": "Meeting 2: 28 or 29 July, 5:30 pm",
+        "existing_event_id": null,
+        "location": null,
+        "start_time": "17:30",
+        "title": "Confirmation 2026 preparation meeting 2 option"
+      },
+      "reasons": [
+        "ambiguous"
+      ]
+    },
+    {
+      "candidate": {
+        "action": "add",
+        "all_day": false,
+        "ambiguity": "Meeting is offered on 28 or 29 July; allocation is not specified.",
+        "confidence": 0.95,
+        "date": "2026-07-29",
+        "description": "Parent and child attend one of the listed Meeting 2 options.",
+        "end_time": null,
+        "evidence": "Meeting 2: 28 or 29 July, 5:30 pm",
+        "existing_event_id": null,
+        "location": null,
+        "start_time": "17:30",
+        "title": "Confirmation 2026 preparation meeting 2 option"
+      },
+      "reasons": [
+        "ambiguous"
+      ]
+    },
+    {
+      "candidate": {
+        "action": "add",
+        "all_day": false,
+        "ambiguity": "Rehearsal is offered on 11 or 12 August; allocation is not specified.",
+        "confidence": 0.95,
+        "date": "2026-08-11",
+        "description": "Parent and child attend one of the listed rehearsal options.",
+        "end_time": null,
+        "evidence": "Rehearsals: 11 or 12 August, 5:30 pm",
+        "existing_event_id": null,
+        "location": null,
+        "start_time": "17:30",
+        "title": "Confirmation 2026 rehearsal option"
+      },
+      "reasons": [
+        "ambiguous"
+      ]
+    },
+    {
+      "candidate": {
+        "action": "add",
+        "all_day": false,
+        "ambiguity": "Rehearsal is offered on 11 or 12 August; allocation is not specified.",
+        "confidence": 0.95,
+        "date": "2026-08-12",
+        "description": "Parent and child attend one of the listed rehearsal options.",
+        "end_time": null,
+        "evidence": "Rehearsals: 11 or 12 August, 5:30 pm",
+        "existing_event_id": null,
+        "location": null,
+        "start_time": "17:30",
+        "title": "Confirmation 2026 rehearsal option"
+      },
+      "reasons": [
+        "ambiguous"
+      ]
+    }
+  ],
+  "schema_version": 1,
+  "sha256": "1b453b7c09cfc6820ab73540ebd2b5bee33d7f4eebc41909cf239c5220b9babd",
+  "text_quality": {
+    "characters": 79359,
+    "readable_ratio": 1.0,
+    "reason": null,
+    "structure_signals": 4,
+    "usable": true
+  }
+}

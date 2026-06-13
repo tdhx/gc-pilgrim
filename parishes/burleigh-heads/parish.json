@@ -44,6 +44,18 @@
       "id": "mary-mother-of-mercy",
       "name": "Mary, Mother of Mercy Church",
       "calendar_name": "Mary Mother of Mercy",
+      "aliases": [
+        "Mary Mother of Mercy Catholic Church",
+        "Burleigh Waters"
+      ],
+      "venues": [
+        {
+          "name": "Mary Mother of Mercy Community Centre",
+          "aliases": [
+            "Mary Mother of Mercy Parish Community Centre"
+          ]
+        }
+      ],
       "address": "3 Sunlight Drive, Burleigh Waters QLD 4220",
       "is_primary_site": true
     },
@@ -51,6 +63,9 @@
       "id": "calvary",
       "name": "Calvary Church",
       "calendar_name": "Calvary",
+      "aliases": [
+        "Miami"
+      ],
       "address": "Santa Monica Road, Miami QLD 4220",
       "is_primary_site": false
     },
@@ -65,6 +80,9 @@
       "id": "our-lady-of-the-way",
       "name": "Our Lady of the Way Church",
       "calendar_name": "Our Lady of the Way",
+      "aliases": [
+        "Palm Beach"
+      ],
       "address": "Eleventh Avenue, Palm Beach QLD 4221",
       "is_primary_site": false
     }

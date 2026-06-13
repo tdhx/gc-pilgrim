@@ -6,6 +6,7 @@ import {
   dayStatusSummary,
   eventDateKey,
   eventsInRange,
+  eventsForFeedMode,
   liturgicalColour,
   matchesEvent,
   monthGrid,
@@ -19,15 +20,18 @@ import {
   shouldCollapseWeeklyDay,
   startOfSundayWeek,
   validateRegistry,
-} from "./web/calendar-core.js?v=9";
+  validFeedMode,
+} from "./web/calendar-core.js?v=10";
 import {
   readPreferences,
   resolvedTheme,
   savePreferences,
   showRichLiturgicalInformation,
-} from "./web/theme-preferences.js?v=2";
+  mascotAsset,
+} from "./web/theme-preferences.js?v=3";
 
 const FEED_ROOT = "feeds/v1";
+const FEED_MODE_STORAGE_KEY = "gc-pilgrim-feed-mode";
 const DEFAULT_EVENT_TYPES = ["mass", "confession"];
 const MULTICULTURAL_TYPE = "multicultural";
 const MULTICULTURAL_PRESIDER_SUBTYPES = new Map([
@@ -45,7 +49,8 @@ const state = {
     church: new Set(),
     presider: new Set(),
   },
-  useDefaultEventTypes: true,
+  useDefaultEventTypes: false,
+  feedMode: validFeedMode(window.localStorage.getItem(FEED_MODE_STORAGE_KEY)),
   view: "weekly",
   pendingView: null,
   filtersScrollY: null,
@@ -65,6 +70,7 @@ const state = {
 
 const elements = {
   events: document.querySelector("#events"),
+  pilgrimIcon: document.querySelector("#pilgrim-icon"),
   resultsContext: document.querySelector("#results-context"),
   resultsCount: document.querySelector("#results-count"),
   eventTypeFilters: document.querySelector("#event-type-filters"),
@@ -82,6 +88,7 @@ const elements = {
   errorMessage: document.querySelector("#error-message"),
   template: document.querySelector("#event-template"),
   viewButtons: [...document.querySelectorAll(".view-button")],
+  feedButtons: [...document.querySelectorAll(".feed-button")],
   periodNavigations: [...document.querySelectorAll(".period-navigation")],
   previousPeriods: [...document.querySelectorAll('[data-period-control="previous"]')],
   nextPeriods: [...document.querySelectorAll('[data-period-control="next"]')],
@@ -115,6 +122,7 @@ const elements = {
   liturgicalDetailChoices: [
     ...document.querySelectorAll('input[name="liturgical-detail"]'),
   ],
+  mascotChoices: [...document.querySelectorAll('input[name="mascot"]')],
   themeColor: document.querySelector("#theme-color"),
 };
 const mobileLayout = window.matchMedia("(max-width: 800px)");
@@ -184,6 +192,11 @@ function applyThemePreferences() {
   elements.liturgicalDetailChoices.forEach((input) => {
     input.checked = input.value === state.preferences.liturgicalDetail;
   });
+  elements.mascotChoices.forEach((input) => {
+    input.checked = input.value === state.preferences.mascot;
+  });
+  elements.pilgrimIcon.src = mascotAsset(state.preferences.mascot);
+  if (state.isAggregate) elements.aboutLogo.src = mascotAsset(state.preferences.mascot);
 }
 
 function showPage(page) {
@@ -343,7 +356,7 @@ function renderAggregateAbout(aggregateView, parishes) {
   elements.brandLogo.hidden = true;
   elements.brandLogo.removeAttribute("src");
   elements.brandLogo.alt = "";
-  elements.aboutLogo.src = "assets/gold-coast-mascot.png";
+  elements.aboutLogo.src = mascotAsset(state.preferences.mascot);
   elements.aboutLogo.alt = "GC Pilgrim mascot";
   elements.selectedRegionName.textContent = "All Gold Coast";
   elements.selectedRegionName.hidden = false;
@@ -405,6 +418,20 @@ function eventTypeLabel(value) {
   }[value] || titleCase(value);
 }
 
+function communityCategoryLabel(value) {
+  return {
+    "faith-formation": "Faith Formation",
+    prayer: "Prayer",
+    social: "Social",
+    outreach: "Outreach",
+    wellbeing: "Wellbeing",
+    youth: "Youth",
+    pilgrimage: "Pilgrimage",
+    fundraising: "Fundraising",
+    other: "Parish Life",
+  }[value] || "Parish Life";
+}
+
 function renderServiceTag(element, event) {
   if (event.event_type !== "confession") {
     element.textContent = event.service_name;
@@ -439,7 +466,9 @@ function displayPresider(name) {
 }
 
 function uniqueValues(getValues) {
-  return [...new Set(state.events.flatMap(getValues))].sort((a, b) => a.localeCompare(b));
+  return [...new Set(
+    eventsForFeedMode(state.events, state.feedMode).flatMap(getValues),
+  )].sort((a, b) => a.localeCompare(b));
 }
 
 function cloneSelections() {
@@ -477,7 +506,7 @@ function countFor(group, value) {
   const defaults = group === "eventType" || selected.eventType.size
     ? []
     : state.useDefaultEventTypes ? DEFAULT_EVENT_TYPES : [];
-  return state.events.filter((event) => (
+  return eventsForFeedMode(state.events, state.feedMode).filter((event) => (
     matchesEvent(event, selected, "", defaults)
   )).length;
 }
@@ -708,6 +737,7 @@ function buildFilters() {
 }
 
 function matchesFilters(event) {
+  if (!eventsForFeedMode([event], state.feedMode).length) return false;
   return matchesEvent(
     event,
     state.selected,
@@ -791,10 +821,20 @@ function renderCard(event) {
   card.dataset.eventDate = eventDateKey(event);
   card.dataset.eventEnd = String(new Date(event.end).getTime());
   card.dataset.liturgicalColour = eventAccentColour(event);
+  const cancelled = event.status === "cancelled";
+  card.classList.toggle("is-cancelled", cancelled);
+  const cancelledLabel = card.querySelector(".event-cancelled-label");
+  cancelledLabel.hidden = !cancelled;
   setPastState(card, eventHasEnded(event));
 
-  card.querySelector(".event-church").textContent = displayChurch(event.church);
-  renderServiceTag(card.querySelector(".event-service"), event);
+  const community = event.record_kind === "community";
+  card.classList.toggle("event-community", community);
+  card.querySelector(".event-church").textContent = community
+    ? event.series_title || event.title
+    : displayChurch(event.church);
+  const serviceTag = card.querySelector(".event-service");
+  if (community) serviceTag.textContent = communityCategoryLabel(event.category);
+  else renderServiceTag(serviceTag, event);
   const parish = card.querySelector(".event-parish");
   parish.textContent = event.parish_name || "";
   parish.hidden = !state.isAggregate || !parish.textContent;
@@ -806,11 +846,21 @@ function renderCard(event) {
   const richLiturgicalInformation = showRichLiturgicalInformation(
     state.preferences.liturgicalDetail,
   );
-  const observance = richLiturgicalInformation
-    ? event.liturgical?.observance
-    : "";
-  subtitle.textContent = observance && observance !== event.service_name ? observance : "";
+  const observance = richLiturgicalInformation ? event.liturgical?.observance : "";
+  subtitle.textContent = community
+    ? (event.title !== (event.series_title || event.title) ? event.title : "")
+    : (observance && observance !== event.service_name ? observance : "");
   subtitle.hidden = !subtitle.textContent;
+  const description = card.querySelector(".event-description");
+  description.textContent = community ? event.description || "" : "";
+  description.hidden = !description.textContent;
+  const location = card.querySelector(".event-location");
+  const communityLocation = [
+    event.venue,
+    event.church && event.church !== event.venue ? event.church : null,
+  ].filter(Boolean).join(" · ");
+  location.textContent = community ? communityLocation : "";
+  location.hidden = !location.textContent;
 
   const tags = card.querySelector(".event-tags");
   if (
@@ -826,6 +876,21 @@ function renderCard(event) {
   tags.hidden = !tags.children.length;
 
   return card;
+}
+
+function selectFeedMode(mode) {
+  state.feedMode = validFeedMode(mode);
+  window.localStorage.setItem(FEED_MODE_STORAGE_KEY, state.feedMode);
+  Object.values(state.selected).forEach((selection) => selection.clear());
+  state.useDefaultEventTypes = false;
+  elements.feedButtons.forEach((button) => {
+    button.setAttribute(
+      "aria-checked",
+      String(button.dataset.feedMode === state.feedMode),
+    );
+  });
+  buildFilters();
+  renderEvents();
 }
 
 function eventsByDate(events) {
@@ -1053,8 +1118,11 @@ function renderMonthCell(date, grouped) {
     summary.className = "month-event";
     summary.dataset.eventEnd = String(new Date(event.end).getTime());
     summary.dataset.liturgicalColour = eventAccentColour(event);
+    summary.classList.toggle("is-cancelled", event.status === "cancelled");
     setPastState(summary, eventHasEnded(event));
-    summary.textContent = `${compactEventTime(event)} ${compactService(event)}`;
+    summary.textContent = `${compactEventTime(event)} ${compactService(event)}${
+      event.status === "cancelled" ? " · Cancelled" : ""
+    }`;
     button.append(summary);
   });
   if (dateEvents.length > 3) {
@@ -1107,7 +1175,7 @@ function renderMonthly(events) {
   const detail = document.createElement("section");
   detail.className = "month-detail";
   const selectedEvents = grouped.get(state.selectedMonthDate) || [];
-  detail.append(makeDayHeading(state.selectedMonthDate));
+  detail.append(makeDayHeading(state.selectedMonthDate, selectedEvents));
   if (selectedEvents.length) {
     detail.append(...selectedEvents.map(renderCard));
   } else {
@@ -1569,6 +1637,13 @@ elements.liturgicalDetailChoices.forEach((input) => {
     if (state.feed) renderEvents();
   });
 });
+elements.mascotChoices.forEach((input) => {
+  input.addEventListener("change", () => {
+    state.preferences.mascot = input.value;
+    savePreferences(window.localStorage, state.preferences);
+    applyThemePreferences();
+  });
+});
 window.addEventListener("hashchange", () => showPage(currentPageFromHash()));
 elements.resultsToday.addEventListener("click", () => {
   goToToday();
@@ -1590,6 +1665,23 @@ elements.viewButtons.forEach((button) => {
     nextButton.focus();
   });
 });
+elements.feedButtons.forEach((button) => {
+  button.addEventListener("click", () => selectFeedMode(button.dataset.feedMode));
+  button.addEventListener("keydown", (event) => {
+    const currentIndex = elements.feedButtons.indexOf(button);
+    const nextIndex = {
+      ArrowLeft: (currentIndex - 1 + elements.feedButtons.length) % elements.feedButtons.length,
+      ArrowRight: (currentIndex + 1) % elements.feedButtons.length,
+      Home: 0,
+      End: elements.feedButtons.length - 1,
+    }[event.key];
+    if (nextIndex === undefined) return;
+    event.preventDefault();
+    const nextButton = elements.feedButtons[nextIndex];
+    selectFeedMode(nextButton.dataset.feedMode);
+    nextButton.focus();
+  });
+});
 elements.previousPeriods.forEach((button) => {
   button.addEventListener("click", () => navigatePeriod("previous", isMobileLayout()));
 });
@@ -1598,6 +1690,9 @@ elements.nextPeriods.forEach((button) => {
 });
 
 applyThemePreferences();
+elements.feedButtons.forEach((button) => {
+  button.setAttribute("aria-checked", String(button.dataset.feedMode === state.feedMode));
+});
 updateResponsiveFilters();
 showPage(currentPageFromHash());
 updateStickyOffset();

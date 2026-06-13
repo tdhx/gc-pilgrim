@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Newsletter Extraction Review · GC Pilgrim</title>
+  <link rel="stylesheet" href="newsletter-review.css?v=2">
+</head>
+<body>
+  <header>
+    <p class="eyebrow">GC Pilgrim data tools</p>
+    <h1>Newsletter Extraction Review</h1>
+    <p>Accepted community events, quarantined candidates, and service schedule observations.</p>
+  </header>
+  <main>
+    <nav aria-label="Parish selection">
+      <button type="button" data-parish="surfers-paradise">Surfers Paradise</button>
+      <button type="button" data-parish="burleigh-heads">Burleigh Heads</button>
+    </nav>
+    <div id="status">Loading extraction output...</div>
+    <section id="review" hidden>
+      <div id="summary" class="summary"></div>
+      <section>
+        <h2>Accepted Events</h2>
+        <div id="events" class="cards"></div>
+      </section>
+      <section>
+        <h2>Recurring Series</h2>
+        <div id="series" class="cards"></div>
+      </section>
+      <section>
+        <h2>Quarantined Candidates</h2>
+        <div id="quarantined" class="cards"></div>
+      </section>
+      <section>
+        <h2>Completeness Audit</h2>
+        <p>Likely newsletter activity headings that did not produce an accepted event or series.</p>
+        <div id="completeness" class="cards"></div>
+      </section>
+      <section>
+        <h2>Service Divergences</h2>
+        <div id="divergence-summary" class="summary compact"></div>
+        <div id="divergences" class="table-wrap"></div>
+      </section>
+      <section>
+        <h2>Reference Data</h2>
+        <p>The schedule below is limited to dates present in the divergence report.</p>
+        <div id="schedule" class="table-wrap"></div>
+        <details>
+          <summary>Parish JSON</summary>
+          <pre id="parish-json"></pre>
+        </details>
+      </section>
+    </section>
+  </main>
+  <script type="module" src="newsletter-review.js?v=3"></script>
+</body>
+</html>

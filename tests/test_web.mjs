@@ -9,6 +9,7 @@ import {
   dayEventStatus,
   dayStatusSummary,
   eventsInRange,
+  eventsForFeedMode,
   liturgicalColour,
   matchesEvent,
   monthGrid,
@@ -23,17 +24,21 @@ import {
   validateParish,
   validateRegistry,
   validateServices,
+  validFeedMode,
 } from "../app/web/calendar-core.js";
 import {
   LITURGICAL_DETAIL_STORAGE_KEY,
+  MASCOT_STORAGE_KEY,
   OBSOLETE_APPEARANCE_STORAGE_KEY,
   THEME_STORAGE_KEY,
   readPreferences,
   resolvedTheme,
   savePreferences,
   showRichLiturgicalInformation,
+  mascotAsset,
   validLiturgicalDetail,
   validThemeChoice,
+  validMascot,
 } from "../app/web/theme-preferences.js";
 
 const json = async (path) => JSON.parse(await readFile(new URL(path, import.meta.url)));
@@ -175,7 +180,7 @@ test("Gold Coast aggregate combines parish calendars with attribution", () => {
     new Set(["surfers-paradise", "southport", "burleigh-heads", "nerang", "runaway-bay"]),
   );
   assert.ok(calendar.events.every((event) => event.id.startsWith(`${event.parish_id}:`)));
-  assert.equal(calendar.sources.length, 8);
+  assert.equal(calendar.sources.length, 9);
   assert.deepEqual(
     calendar.events,
     [...calendar.events].sort((left, right) => left.start.localeCompare(right.start)
@@ -222,7 +227,8 @@ test("Burleigh services assemble with one first-Friday Healing Mass", () => {
   assert.ok(healingMasses.every((event) => event.event_type === "mass"));
   assert.ok(healingMasses.every((event) => event.church === "Mary Mother of Mercy"));
   assert.ok(healingMasses.every((event) => new Date(event.start).getDay() === 5));
-  assert.equal(burleighCommunity.events.length, 0);
+  assert.ok(burleighCommunity.events.length >= 2);
+  assert.ok(burleighCommunity.events.some((event) => event.series_id));
 });
 
 test("Nerang services preserve Eastern rite and devotion metadata", () => {
@@ -271,7 +277,7 @@ test("Runaway Bay services contain only the current six-Mass schedule", () => {
 test("runtime enrichment joins church and liturgical metadata immutably", () => {
   const original = JSON.stringify(services.services[0]);
   const calendar = assembleCalendar(parish, services, community, liturgical);
-  const event = calendar.events[0];
+  const event = calendar.events.find((item) => item.id === services.services[0].id);
   assert.equal(event.church, "Sacred Heart");
   assert.ok(event.liturgical?.observance);
   assert.equal(JSON.stringify(services.services[0]), original);
@@ -286,13 +292,37 @@ test("baptisms remain in JSON but are excluded from displayed calendars", () => 
   assert.equal(aggregate.events.some((event) => event.event_type === "baptism"), false);
 });
 
-test("cancelled records are hidden and modified records remain", () => {
+test("cancelled and modified records remain visible", () => {
   const changed = structuredClone(services);
   changed.services[0].status = "cancelled";
   changed.services[1].status = "modified";
   const calendar = assembleCalendar(parish, changed, community, liturgical);
-  assert.equal(calendar.events.some((event) => event.id === changed.services[0].id), false);
+  assert.equal(
+    calendar.events.find((event) => event.id === changed.services[0].id)?.status,
+    "cancelled",
+  );
   assert.equal(calendar.events.some((event) => event.id === changed.services[1].id), true);
+});
+
+test("feed modes select services, community events, or both", () => {
+  const changed = structuredClone(community);
+  changed.events.push({
+    id: "community-feed-mode",
+    title: "Parish Picnic",
+    start: "2026-06-14T10:00:00+10:00",
+    end: "2026-06-14T11:00:00+10:00",
+    status: "cancelled",
+  });
+  const calendar = assembleCalendar(parish, services, changed, liturgical);
+  const worship = eventsForFeedMode(calendar.events, "liturgical");
+  const parishLife = eventsForFeedMode(calendar.events, "community");
+  assert.ok(worship.length);
+  assert.ok(worship.every((event) => event.record_kind === "service"));
+  assert.ok(parishLife.length);
+  assert.ok(parishLife.every((event) => event.record_kind === "community"));
+  assert.equal(eventsForFeedMode(calendar.events, "combined"), calendar.events);
+  assert.equal(parishLife.find((event) => event.id === "community-feed-mode").status, "cancelled");
+  assert.equal(validFeedMode("invalid"), "combined");
 });
 
 test("community records share the calendar display model", () => {
@@ -370,6 +400,10 @@ test("GC Pilgrim app uses registry discovery and four-feed loading", () => {
   assert.doesNotMatch(appSource, /calendar\.json/);
   assert.match(diagnosticsSource, /validateRegistry/);
   assert.match(appSource, /gc-pilgrim-parish/);
+  assert.match(appSource, /gc-pilgrim-feed-mode/);
+  assert.match(indexSource, /data-feed-mode="liturgical"/);
+  assert.match(indexSource, /event-cancelled-label/);
+  assert.match(stylesSource, /\.event-card\.is-cancelled/);
   assert.match(appSource, /aggregateCalendars/);
   assert.match(appSource, /renderAggregateAbout/);
   assert.match(appSource, /adoration: "gold"/);
@@ -417,18 +451,24 @@ test("theme preferences validate, resolve, and persist", () => {
   assert.deepEqual(readPreferences(storage), {
     theme: "parish",
     liturgicalDetail: "rich",
+    mascot: "boy",
   });
   assert.equal(values.has(OBSOLETE_APPEARANCE_STORAGE_KEY), false);
   savePreferences(storage, {
     theme: "traditional",
     liturgicalDetail: "simple",
+    mascot: "girl",
   });
   assert.equal(values.get(THEME_STORAGE_KEY), "traditional");
   assert.equal(values.get(LITURGICAL_DETAIL_STORAGE_KEY), "simple");
+  assert.equal(values.get(MASCOT_STORAGE_KEY), "girl");
   assert.deepEqual(readPreferences(storage), {
     theme: "traditional",
     liturgicalDetail: "simple",
+    mascot: "girl",
   });
+  assert.equal(validMascot("unknown"), "boy");
+  assert.equal(mascotAsset("girl"), "assets/gold-coast-mascot-girl.png");
 });
 
 test("settings page and filters use their distinct navigation surfaces", () => {
@@ -439,6 +479,8 @@ test("settings page and filters use their distinct navigation surfaces", () => {
   assert.match(indexSource, /name="theme" value="traditional"/);
   assert.match(indexSource, /name="liturgical-detail" value="simple"/);
   assert.match(indexSource, /name="liturgical-detail" value="rich"/);
+  assert.match(indexSource, /name="mascot" value="boy"/);
+  assert.match(indexSource, /name="mascot" value="girl"/);
   assert.doesNotMatch(indexSource, /name="appearance"/);
   assert.match(indexSource, /id="filters-title">Filters/);
   assert.match(indexSource, /aria-label="Open filters"/);
@@ -447,6 +489,8 @@ test("settings page and filters use their distinct navigation surfaces", () => {
   assert.match(indexSource, /gc-pilgrim-theme/);
   assert.match(indexSource, /gc-pilgrim-appearance/);
   assert.match(appSource, /showRichLiturgicalInformation/);
+  assert.match(appSource, /mascotAsset/);
+  assert.match(appSource, /makeDayHeading\(state\.selectedMonthDate, selectedEvents\)/);
   assert.match(appSource, /confession: "Reconciliation \(Confession\)"/);
   assert.match(appSource, /primary\.textContent = "Reconciliation"/);
   assert.match(appSource, /secondary\.textContent = "\(Confession\)"/);
@@ -487,6 +531,34 @@ test("web app metadata and mascot icons are publishable", async () => {
   assert.deepEqual(await pngSize("../app/assets/app-icon-maskable-512.png"), [512, 512]);
   assert.deepEqual(await pngSize("../app/assets/apple-touch-icon.png"), [180, 180]);
   assert.deepEqual(await pngSize("../app/assets/favicon-32.png"), [32, 32]);
+  assert.deepEqual(
+    await pngSize("../app/assets/gold-coast-mascot-girl.png"),
+    [458, 458],
+  );
+});
+
+test("newsletter extraction review page is publishable", async () => {
+  const html = await readFile(
+    new URL("../app/newsletter-review.html", import.meta.url),
+    "utf8",
+  );
+  const script = await readFile(
+    new URL("../app/newsletter-review.js", import.meta.url),
+    "utf8",
+  );
+  const review = JSON.parse(await readFile(
+    new URL("../feeds/v1/newsletter-review.json", import.meta.url),
+    "utf8",
+  ));
+  assert.match(html, /Newsletter Extraction Review/);
+  assert.match(script, /newsletter-review\.json/);
+  assert.deepEqual(
+    review.parishes.map((parish) => parish.id),
+    ["surfers-paradise", "burleigh-heads"],
+  );
+  assert.ok(review.parishes.every((parish) => Array.isArray(parish.events)));
+  assert.ok(review.parishes.every((parish) => Array.isArray(parish.quarantined)));
+  assert.ok(review.parishes.every((parish) => Array.isArray(parish.divergences)));
 });
 
 test("Nerang branding uses the supplied full parish asset", async () => {
