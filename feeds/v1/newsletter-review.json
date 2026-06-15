@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-16T08:15:21+10:00",
+  "generated_at": "2026-06-16T09:05:12+10:00",
   "parishes": [
     {
       "completeness": {
@@ -1955,7 +1955,7 @@
           "source_id": "hfk1mqu5msakqvb1gome7lbkol@google.com#2026-06-21T11:00:00+10:00",
           "start": "2026-06-21T11:00:00+10:00",
           "status": "active",
-          "title": "St Vincents Surfers Mass -  Fr Paul (fr warren away this weekend)"
+          "title": "St Vincents Surfers Mass -  Fr John Maher filling in for fr Warren who is away)"
         },
         {
           "church": "Sacred Heart",
@@ -4299,6 +4299,171 @@
           "start": "2026-09-11T09:00:00+10:00",
           "status": "active",
           "title": "Sacred Heart Mass - 9am - Fr Paul (usually- biweekly)"
+        },
+        {
+          "church": "Sacred Heart",
+          "church_id": "sacred-heart",
+          "end": "2026-09-12T16:30:00+10:00",
+          "event_type": "confession",
+          "id": "63cf2d7c27c7074f0c19a2ec",
+          "source_id": "7786tcunmhp2j2b0ma9dntk025_R20250201T060000@google.com#2026-09-12T16:00:00+10:00",
+          "start": "2026-09-12T16:00:00+10:00",
+          "status": "active",
+          "title": "Sacred heart - Reconciliations -Fr  Bradley  4pm-4.30pm- - (3 week cycle)"
+        },
+        {
+          "church": "Stella Maris",
+          "church_id": "stella-maris",
+          "end": "2026-09-12T18:00:00+10:00",
+          "event_type": "mass",
+          "id": "9c93d7638e0faf6b67fe6649",
+          "source_id": "6o2kd8vbt7pk0nj41pam84ofe0@google.com#2026-09-12T17:00:00+10:00",
+          "start": "2026-09-12T17:00:00+10:00",
+          "status": "active",
+          "title": "Stella Maris Mass - Fr Paul (3 weekly repeat)"
+        },
+        {
+          "church": "Sacred Heart",
+          "church_id": "sacred-heart",
+          "end": "2026-09-12T18:00:00+10:00",
+          "event_type": "mass",
+          "id": "a79367754af69f78032b60af",
+          "source_id": "5ed5hpaondsd9k53gnptaia77p_R20250201T070000@google.com#2026-09-12T17:00:00+10:00",
+          "start": "2026-09-12T17:00:00+10:00",
+          "status": "active",
+          "title": "Sacred Heart Church - Fr  Bradley  (three week cycle)"
+        },
+        {
+          "church": "Sacred Heart",
+          "church_id": "sacred-heart",
+          "end": "2026-09-12T19:30:00+10:00",
+          "event_type": "multicultural",
+          "id": "e4f55b1c93951f2c6312d7e9",
+          "source_id": "1csccoigdkqknhg90ft0unvbe5@google.com#2026-09-12T18:30:00+10:00",
+          "start": "2026-09-12T18:30:00+10:00",
+          "status": "active",
+          "title": "6.30 pm Maronite Mass - Fr Fadi Weekly-"
+        },
+        {
+          "church": "Stella Maris",
+          "church_id": "stella-maris",
+          "end": "2026-09-13T08:00:00+10:00",
+          "event_type": "mass",
+          "id": "da2258f22be505cce15aafb9",
+          "source_id": "mvm3pvj58v319iens6pb6sh9g3_R20250222T210000@google.com#2026-09-13T07:00:00+10:00",
+          "start": "2026-09-13T07:00:00+10:00",
+          "status": "active",
+          "title": "7am mass SM - Fr Paul - Stella Maris  Broadbeach - (three weekly repeat)"
+        },
+        {
+          "church": "St. Vincent's",
+          "church_id": "st-vincents",
+          "end": "2026-09-13T10:00:00+10:00",
+          "event_type": "mass",
+          "id": "03c1456076aa9e2ebdda6208",
+          "source_id": "2o57jrh8t528eoki2d9mn4jsku@google.com#2026-09-13T09:00:00+10:00",
+          "start": "2026-09-13T09:00:00+10:00",
+          "status": "active",
+          "title": "St Vincents Surfers Mass -  Fr John Maher (six weekly)"
+        },
+        {
+          "church": "Sacred Heart",
+          "church_id": "sacred-heart",
+          "end": "2026-09-13T10:00:00+10:00",
+          "event_type": "mass",
+          "id": "f6f000100de1892950d85459",
+          "source_id": "6pvfi6v3td3q3q8si35d4jge03_R20250201T230000@google.com#2026-09-13T09:00:00+10:00",
+          "start": "2026-09-13T09:00:00+10:00",
+          "status": "active",
+          "title": "Sacred Heart Clear island waters - Fr  Bradley  (three weekly)"
+        },
+        {
+          "church": "Sacred Heart",
+          "church_id": "sacred-heart",
+          "end": "2026-09-13T11:30:00+10:00",
+          "event_type": "baptism",
+          "id": "c10608f2797b58ad781f64e6",
+          "source_id": "3rausklrdqbjabdnamah1pla2o_R20250202T003000@google.com#2026-09-13T10:30:00+10:00",
+          "start": "2026-09-13T10:30:00+10:00",
+          "status": "active",
+          "title": "SH Baptisms- Fr  Bradley  ( three weekly)"
+        },
+        {
+          "church": "St. Vincent's",
+          "church_id": "st-vincents",
+          "end": "2026-09-13T12:00:00+10:00",
+          "event_type": "mass",
+          "id": "07be96e1fb3d00c89cc2813f",
+          "source_id": "hfk1mqu5msakqvb1gome7lbkol@google.com#2026-09-13T11:00:00+10:00",
+          "start": "2026-09-13T11:00:00+10:00",
+          "status": "active",
+          "title": "St Vincents Surfers Mass -  Fr Paul (fr warren away this weekend)"
+        },
+        {
+          "church": "Sacred Heart",
+          "church_id": "sacred-heart",
+          "end": "2026-09-13T13:30:00+10:00",
+          "event_type": "multicultural",
+          "id": "1a41142ca2d12054915ca9e0",
+          "source_id": "69p82tm99l7pgbbcli57c82422@google.com#2026-09-13T12:30:00+10:00",
+          "start": "2026-09-13T12:30:00+10:00",
+          "status": "active",
+          "title": "Sacred Heart -   Polish Mass (weekly)"
+        },
+        {
+          "church": "Sacred Heart",
+          "church_id": "sacred-heart",
+          "end": "2026-09-13T17:00:00+10:00",
+          "event_type": "multicultural",
+          "id": "e5e8e4ce654f58e2bfda7c5a",
+          "source_id": "6iicdpg4hvgs591e9k0ato98d2@google.com#2026-09-13T16:00:00+10:00",
+          "start": "2026-09-13T16:00:00+10:00",
+          "status": "active",
+          "title": "Sacred Heart - Italian Mass (weekly)_"
+        },
+        {
+          "church": "St. Vincent's",
+          "church_id": "st-vincents",
+          "end": "2026-09-13T18:30:00+10:00",
+          "event_type": "multicultural",
+          "id": "7b6938d70b6c050e7880e58a",
+          "source_id": "2httv7vfv7jbhorbq9eqt8nf4l@google.com#2026-09-13T17:30:00+10:00",
+          "start": "2026-09-13T17:30:00+10:00",
+          "status": "active",
+          "title": "St Vincents -Surfers - Hispanic Mass (weekly)"
+        },
+        {
+          "church": "Sacred Heart",
+          "church_id": "sacred-heart",
+          "end": "2026-09-13T19:00:00+10:00",
+          "event_type": "mass",
+          "id": "0404d25edcc205fb1d2d1697",
+          "source_id": "4psmmtelkb5cuvv48rjf0e3lov_R20250202T080000@google.com#2026-09-13T18:00:00+10:00",
+          "start": "2026-09-13T18:00:00+10:00",
+          "status": "active",
+          "title": "Sacred Heart - Fr  Damian  (three weekly)"
+        },
+        {
+          "church": "Sacred Heart",
+          "church_id": "sacred-heart",
+          "end": "2026-09-14T10:00:00+10:00",
+          "event_type": "mass",
+          "id": "278a71d04686bce57cb5b11c",
+          "source_id": "68m0gpeu6truspkatc51augb9e@google.com#2026-09-14T09:00:00+10:00",
+          "start": "2026-09-14T09:00:00+10:00",
+          "status": "active",
+          "title": "Mass- Sacred Heart church - Clear Island waters - Fr Bradley"
+        },
+        {
+          "church": "Sacred Heart",
+          "church_id": "sacred-heart",
+          "end": "2026-09-15T10:00:00+10:00",
+          "event_type": "mass",
+          "id": "cccd5da3d1cb8da1f229865d",
+          "source_id": "_6p0jadpg6t2k4ba36h14ab9k6op3cba26krjcb9n8oq38da474q3ah9i74_R20250120T230000@google.com#2026-09-15T09:00:00+10:00",
+          "start": "2026-09-15T09:00:00+10:00",
+          "status": "active",
+          "title": "Sacred Heart Mass -  Fr _____  (except on first Tuesdays - February to November inclusive- when it will be 10am)"
         }
       ],
       "series": [

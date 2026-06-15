@@ -29,7 +29,7 @@ the `generated_at` timestamp.
 
 This refreshes:
 
-- the public SPCP Google Calendar
+- public parish Google Calendars, including SPCP and St. Mary's Coomera
 - Universalis Brisbane calendars for 2026, 2027, and 2028
 
 Successful refreshes replace the corresponding `raw/*.jsonl` snapshots and

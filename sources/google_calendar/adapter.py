@@ -6,17 +6,29 @@ import json
 import re
 import urllib.request
 from collections import defaultdict
+from copy import deepcopy
 from datetime import date, datetime, time, timedelta, timezone
 from pathlib import Path
+from urllib.parse import quote
 from zoneinfo import ZoneInfo
 
 
 ROOT = Path(__file__).resolve().parents[2]
-ICS_URL = (
-    "https://calendar.google.com/calendar/ical/"
+SURFERS_PARADISE_CALENDAR_ID = (
     "5ecffb0b502eb6919b066ca976b06c370a81aaae0109caf8e05119f9c4fc5ee6"
-    "%40group.calendar.google.com/public/basic.ics"
+    "@group.calendar.google.com"
 )
+COOMERA_CALENDAR_ID = "stmaryscoomera@gmail.com"
+
+
+def ics_url(calendar_id):
+    return (
+        "https://calendar.google.com/calendar/ical/"
+        f"{quote(calendar_id, safe='')}/public/basic.ics"
+    )
+
+
+ICS_URL = ics_url(SURFERS_PARADISE_CALENDAR_ID)
 OUTPUT_PATH = ROOT / "raw" / "surfers-paradise" / "google-calendar.jsonl"
 BRISBANE = ZoneInfo("Australia/Brisbane")
 
@@ -223,6 +235,52 @@ def expand_monthly(start, rule, window_start, window_end, all_day):
         month_index += 1
 
 
+def expand_yearly(start, rule, window_start, window_end, all_day):
+    interval = int(rule.get("INTERVAL", "1"))
+    until = parse_until(rule.get("UNTIL"), all_day)
+    bymonths = [
+        int(item)
+        for item in rule.get("BYMONTH", str(start.month)).split(",")
+        if item
+    ]
+    bymonthdays = [
+        int(item)
+        for item in rule.get("BYMONTHDAY", str(start.day)).split(",")
+        if item
+    ]
+    cursor_year = start.year
+
+    while True:
+        years = cursor_year - start.year
+        if years >= 0 and years % interval == 0:
+            for month in bymonths:
+                _, days_in_month = calendar.monthrange(cursor_year, month)
+                for monthday in bymonthdays:
+                    day = monthday if monthday > 0 else days_in_month + monthday + 1
+                    if not 1 <= day <= days_in_month:
+                        continue
+                    candidate = datetime(
+                        cursor_year,
+                        month,
+                        day,
+                        start.hour,
+                        start.minute,
+                        start.second,
+                        tzinfo=start.tzinfo,
+                    )
+                    if (
+                        candidate >= window_start
+                        and candidate < window_end
+                        and in_rule_bounds(candidate, start, until)
+                    ):
+                        yield candidate
+        if datetime(cursor_year, 12, 31, 23, 59, 59, tzinfo=start.tzinfo) >= window_end:
+            break
+        if until is not None and datetime(cursor_year, 1, 1, tzinfo=start.tzinfo) > until:
+            break
+        cursor_year += 1
+
+
 def expand_recurrence(start, event, window_start, window_end, all_day):
     _, rrule_value = first(event, "RRULE")
     if not rrule_value:
@@ -238,6 +296,8 @@ def expand_recurrence(start, event, window_start, window_end, all_day):
         yield from expand_weekly(start, rule, window_start, window_end, all_day)
     elif frequency == "MONTHLY":
         yield from expand_monthly(start, rule, window_start, window_end, all_day)
+    elif frequency == "YEARLY":
+        yield from expand_yearly(start, rule, window_start, window_end, all_day)
     else:
         raise ValueError(f"Unsupported recurrence frequency: {frequency}")
 
@@ -269,7 +329,7 @@ def exdates(event):
     return values
 
 
-CHURCH_PATTERNS = {
+SURFERS_PARADISE_CHURCH_PATTERNS = {
     "Sacred Heart": [
         r"\bsacred\s+heart\b",
         r"\bclear\s+island\s+waters\b",
@@ -295,9 +355,23 @@ CHURCH_PATTERNS = {
 }
 
 
-def normalize_church(text):
+COOMERA_CHURCH_PATTERNS = {
+    "St. Mary's": [
+        r"\b(?:st\.?|saint)\s+mary(?:'s|s)?\b",
+        r"\bupper\s+coomera\b",
+        r"\bcoomera\b",
+        r"\bbillinghurst\b",
+    ],
+}
+
+
+CHURCH_PATTERNS = SURFERS_PARADISE_CHURCH_PATTERNS
+
+
+def normalize_church(text, church_patterns=None):
+    church_patterns = church_patterns or CHURCH_PATTERNS
     matched = []
-    for church, patterns in CHURCH_PATTERNS.items():
+    for church, patterns in church_patterns.items():
         if any(re.search(pattern, text, re.IGNORECASE) for pattern in patterns):
             matched.append(church)
     return matched[0] if len(matched) == 1 else None
@@ -305,6 +379,8 @@ def normalize_church(text):
 
 def classify_event(text):
     lowered = text.lower()
+    if re.search(r"\bno\s+mass(?:es)?\b", lowered):
+        return "administration"
     if re.search(r"\b(reconciliation|reconciliations|confession|confessions|reco)\b", lowered):
         return "confession"
     if re.search(r"\b(polish|italian|hispanic|maronite)\s+mass\b", lowered):
@@ -368,7 +444,8 @@ MULTICULTURAL_PRESIDER_FALLBACKS = {
 }
 
 
-def extract_presiders(text):
+def extract_presiders(text, known_presiders=None):
+    known_presiders = known_presiders or KNOWN_PRESIDERS
     priest_contexts = [
         match.group(0)
         for match in re.finditer(
@@ -379,7 +456,7 @@ def extract_presiders(text):
     ]
     context = " ".join(priest_contexts)
     found = []
-    for pattern, normalized in KNOWN_PRESIDERS:
+    for pattern, normalized in known_presiders:
         if re.search(pattern, context, re.IGNORECASE) and normalized not in found:
             found.append(normalized)
     return found
@@ -402,7 +479,20 @@ def iso_value(value, all_day):
     return value.astimezone(BRISBANE).isoformat(timespec="seconds")
 
 
-def normalized_record(event, occurrence_start, occurrence_end, all_day, source_id):
+def normalized_record(
+    event,
+    occurrence_start,
+    occurrence_end,
+    all_day,
+    source_id,
+    *,
+    church_patterns=None,
+    known_presiders=None,
+    presider_fallbacks=None,
+    default_church=None,
+):
+    church_patterns = church_patterns or CHURCH_PATTERNS
+    presider_fallbacks = presider_fallbacks or MULTICULTURAL_PRESIDER_FALLBACKS
     title = first(event, "SUMMARY")[1] or "(Untitled event)"
     location = clean_text(first(event, "LOCATION")[1])
     description = clean_text(first(event, "DESCRIPTION")[1])
@@ -415,11 +505,11 @@ def normalized_record(event, occurrence_start, occurrence_end, all_day, source_i
         title,
         flags=re.IGNORECASE,
     )
-    presiders = extract_presiders(presider_title)
+    presiders = extract_presiders(presider_title, known_presiders)
     if not presiders:
-        presiders = extract_presiders(description or "")
-    if not presiders and event_subtype in MULTICULTURAL_PRESIDER_FALLBACKS:
-        presiders = [MULTICULTURAL_PRESIDER_FALLBACKS[event_subtype]]
+        presiders = extract_presiders(description or "", known_presiders)
+    if not presiders and event_subtype in presider_fallbacks:
+        presiders = [presider_fallbacks[event_subtype]]
     if (
         event_type == "confession"
         and occurrence_start.hour == 16
@@ -427,8 +517,14 @@ def normalized_record(event, occurrence_start, occurrence_end, all_day, source_i
         and occurrence_end > occurrence_start + timedelta(minutes=30)
     ):
         occurrence_end = occurrence_start + timedelta(minutes=30)
-    church = normalize_church(combined)
-    if re.search(r"\bhealing\s+mass\b", combined, re.IGNORECASE):
+    church = normalize_church(combined, church_patterns)
+    if not church and default_church:
+        church = default_church
+    if (
+        church_patterns
+        and "Sacred Heart" in church_patterns
+        and re.search(r"\bhealing\s+mass\b", combined, re.IGNORECASE)
+    ):
         church = "Sacred Heart"
     associated_devotions = (
         ["Adoration", "Benediction"]
@@ -470,7 +566,16 @@ def is_replaced_first_tuesday_mass(record):
     )
 
 
-def build_records(calendar_text, window_start=None, window_end=None):
+def build_records(
+    calendar_text,
+    window_start=None,
+    window_end=None,
+    *,
+    church_patterns=None,
+    known_presiders=None,
+    presider_fallbacks=None,
+    default_church=None,
+):
     if window_start is None or window_end is None:
         window_start, window_end = default_window()
     events = parse_ics_events(calendar_text)
@@ -511,6 +616,10 @@ def build_records(calendar_text, window_start=None, window_end=None):
                         occurrence_start + duration,
                         all_day,
                         source_id,
+                        church_patterns=church_patterns,
+                        known_presiders=known_presiders,
+                        presider_fallbacks=presider_fallbacks,
+                        default_church=default_church,
                     )
                 )
 
@@ -523,7 +632,19 @@ def build_records(calendar_text, window_start=None, window_end=None):
                 continue
             end = event_end(override, start, all_day)
             source_id = f"{uid}#{recurrence_id.isoformat()}"
-            output.append(normalized_record(override, start, end, all_day, source_id))
+            output.append(
+                normalized_record(
+                    override,
+                    start,
+                    end,
+                    all_day,
+                    source_id,
+                    church_patterns=church_patterns,
+                    known_presiders=known_presiders,
+                    presider_fallbacks=presider_fallbacks,
+                    default_church=default_church,
+                )
+            )
 
     deduplicated = {}
     for record in output:
@@ -542,8 +663,63 @@ def build_records(calendar_text, window_start=None, window_end=None):
     return records
 
 
-def fetch_calendar_text():
-    request = urllib.request.Request(ICS_URL, headers={"User-Agent": "GC-Pilgrim/1.0"})
+PARISH_CALENDARS = {
+    "surfers-paradise": {
+        "name": "SPCP Google Calendar",
+        "calendar_id": SURFERS_PARADISE_CALENDAR_ID,
+        "url": ICS_URL,
+        "raw_path": OUTPUT_PATH,
+        "normalization": {
+            "church_patterns": SURFERS_PARADISE_CHURCH_PATTERNS,
+            "known_presiders": KNOWN_PRESIDERS,
+            "presider_fallbacks": MULTICULTURAL_PRESIDER_FALLBACKS,
+        },
+    },
+    "coomera": {
+        "name": "St. Mary's Coomera Google Calendar",
+        "calendar_id": COOMERA_CALENDAR_ID,
+        "url": ics_url(COOMERA_CALENDAR_ID),
+        "raw_path": ROOT / "raw" / "coomera" / "google-calendar.jsonl",
+        "normalization": {
+            "church_patterns": COOMERA_CHURCH_PATTERNS,
+            "known_presiders": [(r"\bmauro(?:\s+conte)?\b", "Fr Mauro Conte")],
+            "presider_fallbacks": {},
+            "default_church": "St. Mary's",
+        },
+    },
+}
+
+
+def parish_calendar(parish_id):
+    return deepcopy(PARISH_CALENDARS[parish_id])
+
+
+def source_metadata(parish_id, status):
+    source = PARISH_CALENDARS[parish_id]
+    return {
+        "name": source["name"],
+        "url": source["url"],
+        "status": status,
+    }
+
+
+def cached_records_path(parish_id):
+    return PARISH_CALENDARS[parish_id]["raw_path"]
+
+
+def read_cached_records(parish_id):
+    path = cached_records_path(parish_id)
+    if not path.exists():
+        return []
+    return [
+        json.loads(line)
+        for line in path.read_text(encoding="utf-8").splitlines()
+        if line.strip()
+    ]
+
+
+def fetch_calendar_text(url=ICS_URL):
+    request = urllib.request.Request(url, headers={"User-Agent": "GC-Pilgrim/1.0"})
     with urllib.request.urlopen(request, timeout=30) as response:
         return response.read().decode("utf-8")
 
@@ -556,10 +732,34 @@ def write_records(records, output_path=OUTPUT_PATH):
     )
 
 
+def build_parish_records(parish_id, calendar_text, window_start=None, window_end=None):
+    source = PARISH_CALENDARS[parish_id]
+    return build_records(
+        calendar_text,
+        window_start,
+        window_end,
+        **source["normalization"],
+    )
+
+
+def fetch_parish_records(parish_id, window_start=None, window_end=None):
+    source = PARISH_CALENDARS[parish_id]
+    return build_parish_records(
+        parish_id,
+        fetch_calendar_text(source["url"]),
+        window_start,
+        window_end,
+    )
+
+
+def write_parish_records(parish_id, records):
+    write_records(records, cached_records_path(parish_id))
+
+
 def main():
     window_start, window_end = default_window()
-    records = build_records(fetch_calendar_text(), window_start, window_end)
-    write_records(records)
+    records = fetch_parish_records("surfers-paradise", window_start, window_end)
+    write_parish_records("surfers-paradise", records)
     print(
         f"Wrote {len(records)} events from "
         f"{window_start.date()} to {window_end.date()} to {OUTPUT_PATH}"

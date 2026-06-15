@@ -65,6 +65,86 @@ END:VCALENDAR
         self.assertEqual(records[1]["start"], "2026-01-15T11:00:00+10:00")
         self.assertEqual(records[1]["presiders"], ["Fr Bradley"])
 
+    def test_google_calendar_adapter_supports_coomera_profile(self):
+        source = """BEGIN:VCALENDAR
+BEGIN:VEVENT
+UID:coomera-weekly
+DTSTART;TZID=Australia/Brisbane:20260602T070000
+DTEND;TZID=Australia/Brisbane:20260602T080000
+RRULE:FREQ=WEEKLY
+SUMMARY:Mass - Fr Mauro
+LOCATION:St Mary's Catholic Church
+END:VEVENT
+END:VCALENDAR
+"""
+        records = google_calendar.build_parish_records(
+            "coomera",
+            source,
+            datetime(2026, 6, 1, tzinfo=BRISBANE),
+            datetime(2026, 6, 10, tzinfo=BRISBANE),
+        )
+        self.assertEqual(len(records), 2)
+        self.assertEqual(records[0]["church"], "St. Mary's")
+        self.assertEqual(records[0]["event_type"], "mass")
+        self.assertEqual(records[0]["presiders"], ["Fr Mauro Conte"])
+        self.assertEqual(
+            google_calendar.source_metadata("coomera", "cached"),
+            {
+                "name": "St. Mary's Coomera Google Calendar",
+                "url": "https://calendar.google.com/calendar/ical/stmaryscoomera%40gmail.com/public/basic.ics",
+                "status": "cached",
+            },
+        )
+
+    def test_google_calendar_adapter_expands_yearly_recurrence(self):
+        source = """BEGIN:VCALENDAR
+BEGIN:VEVENT
+UID:yearly
+DTSTART;TZID=Australia/Brisbane:20240629T090000
+DTEND;TZID=Australia/Brisbane:20240629T100000
+RRULE:FREQ=YEARLY
+SUMMARY:Sacred Heart Mass - Fr Paul
+END:VEVENT
+END:VCALENDAR
+"""
+        records = google_calendar.build_records(
+            source,
+            datetime(2026, 1, 1, tzinfo=BRISBANE),
+            datetime(2028, 1, 1, tzinfo=BRISBANE),
+        )
+        self.assertEqual(
+            [record["start"] for record in records],
+            [
+                "2026-06-29T09:00:00+10:00",
+                "2027-06-29T09:00:00+10:00",
+            ],
+        )
+
+    def test_google_calendar_adapter_ignores_no_mass_notices(self):
+        source = """BEGIN:VCALENDAR
+BEGIN:VEVENT
+UID:no-mass
+DTSTART;VALUE=DATE:20260601
+DTEND;VALUE=DATE:20260602
+SUMMARY:No Mass on Mondays
+END:VEVENT
+BEGIN:VEVENT
+UID:mass
+DTSTART;TZID=Australia/Brisbane:20260602T070000
+DTEND;TZID=Australia/Brisbane:20260602T080000
+SUMMARY:Mass - Fr Mauro
+END:VEVENT
+END:VCALENDAR
+"""
+        records = google_calendar.build_parish_records(
+            "coomera",
+            source,
+            datetime(2026, 6, 1, tzinfo=BRISBANE),
+            datetime(2026, 6, 3, tzinfo=BRISBANE),
+        )
+        self.assertEqual(len(records), 1)
+        self.assertEqual(records[0]["title"], "Mass - Fr Mauro")
+
     def test_future_universalis_pages_work_without_day_links(self):
         html = """<table id="yearly-calendar">
         <tr><th colspan="2">January</th></tr>
@@ -474,7 +554,7 @@ class FeedContractTests(unittest.TestCase):
             [(runaway_bay.PARISH_URL, "baseline")],
         )
 
-    def test_coomera_feed_contains_base_profile_only(self):
+    def test_coomera_feed_contains_google_calendar_services(self):
         feeds = self.parishes["coomera"]
         parish = feeds["parish"]
         services = feeds["services"]
@@ -496,12 +576,22 @@ class FeedContractTests(unittest.TestCase):
                 "is_primary_site": True,
             }],
         )
-        self.assertEqual(services["services"], [])
-        self.assertEqual(feeds["community"]["events"], [])
+        self.assertGreater(len(services["services"]), 0)
         self.assertEqual(
-            [(source["url"], source["status"]) for source in services["sources"]],
-            [("https://stmaryscoomera.net.au/", "baseline")],
+            {service["church_id"] for service in services["services"]},
+            {"st-marys"},
         )
+        self.assertTrue(
+            {"mass", "confession"}.issuperset(
+                {service["event_type"] for service in services["services"]}
+            )
+        )
+        self.assertFalse(
+            any("no mass" in service["title"].lower() for service in services["services"])
+        )
+        self.assertEqual(feeds["community"]["events"], [])
+        self.assertEqual(services["sources"][0]["url"], google_calendar.PARISH_CALENDARS["coomera"]["url"])
+        self.assertIn(services["sources"][0]["status"], {"cached", "fresh"})
 
     def test_sparse_parish_omits_all_optional_metadata(self):
         sparse = read_json(ROOT / "tests/fixtures/sparse-parish/parish.json")
@@ -564,18 +654,10 @@ class MigrationEquivalenceTests(unittest.TestCase):
         current = {record["id"]: record for record in services["services"]}
         fields = (
             "source_id",
-            "title",
-            "event_type",
-            "event_subtype",
-            "service_name",
-            "presiders",
-            "associated_devotions",
             "start",
             "end",
             "all_day",
             "timezone",
-            "location",
-            "description",
             "liturgical_date",
         )
         replaced = []

@@ -1633,13 +1633,11 @@
       "source_url": "https://universalis.com/australia.brisbane/20270604/today.htm"
     },
     "2027-06-05": {
-      "alternatives": [
-        "The Immaculate Heart of Mary"
-      ],
+      "alternatives": [],
       "colour": "red",
       "observance": "Saint Boniface, Bishop, Martyr",
       "psalm_week": null,
-      "rank": null,
+      "rank": "Memorial",
       "season": "Ordinary Time",
       "season_week": null,
       "source_url": "https://universalis.com/australia.brisbane/20270605/today.htm"
@@ -3883,7 +3881,7 @@
       "source_url": "https://universalis.com/australia.brisbane/20271231/today.htm"
     }
   },
-  "generated_at": "2026-06-16T08:15:21+10:00",
+  "generated_at": "2026-06-16T09:05:12+10:00",
   "schema_version": 1,
   "year": 2027
 }

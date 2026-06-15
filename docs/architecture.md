@@ -52,10 +52,11 @@ fetch(...)
 normalise(...)
 ```
 
-The Google Calendar adapter currently performs ICS parsing, recurrence
+The Google Calendar adapter performs parish-agnostic ICS parsing, recurrence
 expansion, override handling, classification, church matching, and presider
-extraction. The Universalis adapter parses annual Brisbane liturgical calendars.
-Southport currently uses normalized recurring definitions.
+extraction with per-parish calendar profiles. The Universalis adapter parses
+annual Brisbane liturgical calendars. Southport currently uses normalized
+recurring definitions.
 
 The newsletter adapter supports Surfers Paradise and Burleigh Heads. It
 discovers the newest PDF, extracts and quality-checks its text locally, uses

@@ -200,7 +200,7 @@ test("Gold Coast aggregate combines parish calendars with attribution", () => {
   );
   assert.deepEqual(
     new Set(calendar.events.map((event) => event.parish_id)),
-    new Set(["surfers-paradise", "southport", "burleigh-heads", "nerang", "runaway-bay"]),
+    new Set(["surfers-paradise", "southport", "burleigh-heads", "nerang", "runaway-bay", "coomera"]),
   );
   assert.ok(calendar.events.every((event) => event.id.startsWith(`${event.parish_id}:`)));
   assert.equal(calendar.sources.length, 10);
@@ -297,7 +297,7 @@ test("Runaway Bay services contain only the current six-Mass schedule", () => {
   assert.equal(runawayBayCommunity.events.length, 0);
 });
 
-test("Coomera profile publishes without calendar records", () => {
+test("Coomera profile publishes Google Calendar services", () => {
   const calendar = assembleCalendar(
     coomeraParish,
     coomeraServices,
@@ -307,9 +307,11 @@ test("Coomera profile publishes without calendar records", () => {
   assert.equal(coomeraParish.branding.logo, "assets/coomera-logo.png");
   assert.equal(coomeraParish.branding.theme, "coomera");
   assert.equal(coomeraParish.churches.length, 1);
-  assert.equal(coomeraServices.services.length, 0);
+  assert.ok(coomeraServices.services.length > 0);
   assert.equal(coomeraCommunity.events.length, 0);
-  assert.equal(calendar.events.length, 0);
+  assert.equal(calendar.events.length, coomeraServices.services.length);
+  assert.ok(calendar.events.every((event) => event.church === "St. Mary's"));
+  assert.ok(calendar.events.every((event) => !event.title.toLowerCase().includes("no mass")));
   assert.equal(calendar.sources.length, 1);
 });
 

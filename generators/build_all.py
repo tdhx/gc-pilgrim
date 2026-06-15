@@ -37,9 +37,10 @@ def build(offline=False, generated_at=None):
     generated_at = generated_at or datetime.now(BRISBANE).isoformat(timespec="seconds")
 
     if offline:
-        surfers_records = read_json_lines(
-            ROOT / "raw" / DEFAULT_PARISH_ID / "google-calendar.jsonl"
-        )
+        google_calendar_records = {
+            parish_id: google_calendar.read_cached_records(parish_id)
+            for parish_id in ("surfers-paradise", "coomera")
+        }
         annual_records = {
             year: read_json_lines(ROOT / "raw" / "liturgical" / f"{year}.jsonl")
             for year in YEARS
@@ -47,13 +48,11 @@ def build(offline=False, generated_at=None):
         source_status = "cached"
     else:
         start, end = google_calendar.default_window()
-        surfers_records = google_calendar.build_records(
-            google_calendar.fetch_calendar_text(), start, end
-        )
-        google_calendar.write_records(
-            surfers_records,
-            ROOT / "raw" / DEFAULT_PARISH_ID / "google-calendar.jsonl",
-        )
+        google_calendar_records = {}
+        for parish_id in ("surfers-paradise", "coomera"):
+            records = google_calendar.fetch_parish_records(parish_id, start, end)
+            google_calendar.write_parish_records(parish_id, records)
+            google_calendar_records[parish_id] = records
         annual_records = {}
         for year in YEARS:
             records = universalis.build_calendar_records(
@@ -65,11 +64,12 @@ def build(offline=False, generated_at=None):
             annual_records[year] = records
         source_status = "fresh"
 
-    surfers_sources = [{
-        "name": "SPCP Google Calendar",
-        "url": google_calendar.ICS_URL,
-        "status": source_status,
-    }]
+    surfers_sources = [
+        google_calendar.source_metadata("surfers-paradise", source_status)
+    ]
+    coomera_sources = [
+        google_calendar.source_metadata("coomera", source_status)
+    ]
     surfers_newsletter_records = load_community_records("surfers-paradise")
     burleigh_newsletter_records = load_community_records("burleigh-heads")
     surfers_newsletter_source = {
@@ -89,8 +89,11 @@ def build(offline=False, generated_at=None):
     start, end = google_calendar.default_window()
     parish_inputs = {
         "surfers-paradise": {
-            "records": surfers_records,
-            "community_records": surfers_records + surfers_newsletter_records,
+            "records": google_calendar_records["surfers-paradise"],
+            "community_records": (
+                google_calendar_records["surfers-paradise"]
+                + surfers_newsletter_records
+            ),
             "sources": surfers_sources,
             "community_sources": surfers_sources + [surfers_newsletter_source],
         },
@@ -154,15 +157,9 @@ def build(offline=False, generated_at=None):
             ],
         },
         "coomera": {
-            "records": [],
-            "community_records": [],
-            "sources": [
-                {
-                    "name": "St. Mary's Coomera published profile",
-                    "url": "https://stmaryscoomera.net.au/",
-                    "status": "baseline",
-                },
-            ],
+            "records": google_calendar_records["coomera"],
+            "community_records": google_calendar_records["coomera"],
+            "sources": coomera_sources,
         },
     }
     registry = validate_registry({
