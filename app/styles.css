@@ -78,6 +78,15 @@ body[data-theme="coomera"] {
   --theme-bar-context: #ffd99b;
 }
 
+body[data-theme="coolangatta-tugun"] {
+  --theme-primary: #1f6f84;
+  --theme-primary-deep: #154b59;
+  --theme-highlight: #d2a13b;
+  --theme-highlight-soft: #f7edd4;
+  --theme-bar-gradient: linear-gradient(120deg, #154b59 0%, #1f6f84 70%, #3f8fa0 100%);
+  --theme-bar-context: #f1d58f;
+}
+
 body[data-theme="gc-pilgrim"] {
   --theme-primary: var(--blue);
   --theme-primary-deep: var(--blue-deep);

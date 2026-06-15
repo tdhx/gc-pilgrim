@@ -1,0 +1,57 @@
+{
+  "branding": {
+    "logo": "assets/coolangatta-tugun-logo.png",
+    "tagline": "Serving the Catholic parish community of St Augustine and St Monica at Coolangatta and Tugun.",
+    "theme": "coolangatta-tugun"
+  },
+  "churches": [
+    {
+      "address": "McLean Street, Coolangatta QLD 4225",
+      "aliases": [
+        "St Augustine's, Coolangatta"
+      ],
+      "calendar_name": "St Augustine's",
+      "id": "st-augustines",
+      "is_primary_site": false,
+      "name": "St Augustine's Church"
+    },
+    {
+      "address": "485 Golden Four Drive, Tugun QLD 4224",
+      "aliases": [
+        "St Monica's, Tugun"
+      ],
+      "calendar_name": "St Monica's",
+      "id": "st-monicas",
+      "is_primary_site": true,
+      "name": "St Monica's Church",
+      "venues": [
+        {
+          "name": "St Monica's Centre"
+        }
+      ]
+    }
+  ],
+  "clergy": [
+    {
+      "name": "Fr Noyichan M. Antony",
+      "role": "Parish Priest"
+    }
+  ],
+  "contact": {
+    "email": "augmon@bne.catholic.net.au",
+    "phone": "07 5598 2165",
+    "website": "https://coolangatta-tugunparish.org.au/"
+  },
+  "id": "coolangatta-tugun",
+  "name": "Coolangatta-Tugun Catholic Parish",
+  "office": {
+    "address": "42 O'Connor Street, Tugun QLD 4224",
+    "hours": {
+      "friday": "08:45-14:45",
+      "monday": "08:45-14:45",
+      "thursday": "08:45-14:45",
+      "wednesday": "08:45-14:45"
+    }
+  },
+  "schema_version": 1
+}

@@ -12,7 +12,7 @@
       "description": "Adult faith formation Bible study gathering.",
       "end": "2026-02-01T12:00:00+10:00",
       "id": "4a4c74dd18a59d1d33597ca0",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Parish Hospitality Centre, 50 Fairway Drive, Clear Island Waters",
       "recurrence": null,
       "series_id": null,
@@ -33,7 +33,7 @@
       "description": "World Community for Christian Meditation group.",
       "end": "2026-02-03T11:00:00+10:00",
       "id": "f1121aa29e5c037f1c963717",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Morris Prayer Room, 50 Fairway Drive, Clear Island Waters",
       "recurrence": null,
       "series_id": null,
@@ -54,7 +54,7 @@
       "description": "Scripture study of the following Sunday’s Mass readings.",
       "end": "2026-02-03T12:00:00+10:00",
       "id": "b5f9630638bbe8a453945f92",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Morris Prayer Room, 50 Fairway Drive, Clear Island Waters",
       "recurrence": null,
       "series_id": null,
@@ -75,7 +75,7 @@
       "description": "Weekly Bible study and prayer group resumes after summer break.",
       "end": "2026-02-06T18:00:00+10:00",
       "id": "c7122b81648de424f6530959",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "St Vincent’s Church, 40 Hamilton Ave, Surfers Paradise",
       "recurrence": null,
       "series_id": null,
@@ -96,7 +96,7 @@
       "description": "Weekly Bible study and prayer group at St Vincent’s Church.",
       "end": "2026-06-12T18:00:00+10:00",
       "id": "888e7d3884ea1e37fc8168ae",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "St Vincent’s Church, 40 Hamilton Ave, Surfers Paradise",
       "recurrence": {
         "frequency": "weekly",
@@ -125,7 +125,7 @@
       "description": "Youth group gathering with food, activities, and Night Prayer.",
       "end": "2026-06-14T21:00:00+10:00",
       "id": "c61f00ca5b1a795e9c0f58d6",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Parish Hospitality Centre, 50 Fairway Drive, Clear Island Waters",
       "recurrence": null,
       "series_id": null,
@@ -146,7 +146,7 @@
       "description": "Social bridge club with weekly games and lessons for beginners.",
       "end": "2026-06-15T14:00:00+10:00",
       "id": "f72f2414fb1de24af42b472f",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Hospitality Room",
       "recurrence": {
         "frequency": "weekly",
@@ -176,7 +176,7 @@
       "description": "Low-impact cardiovascular, strength and balance exercise class for over 65s.",
       "end": "2026-06-16T10:30:00+10:00",
       "id": "477f237d3055a3f69ba3f7e4",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Casey Hall",
       "recurrence": {
         "frequency": "weekly",
@@ -205,7 +205,7 @@
       "description": "Weekly WCCM Christian meditation group.",
       "end": "2026-06-16T10:30:00+10:00",
       "id": "ca67bb57cf437365be4fc427",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Morris Prayer Room, 50 Fairway Drive, Clear Island Waters",
       "recurrence": {
         "frequency": "weekly",
@@ -234,7 +234,7 @@
       "description": "Social yoga class focused on flexibility, relaxation, strength, body awareness and wellbeing.",
       "end": "2026-06-16T11:45:00+10:00",
       "id": "8cafb2dc1b1fd0f206725374",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Parish Hospitality Centre",
       "recurrence": {
         "frequency": "weekly",
@@ -263,7 +263,7 @@
       "description": "Weekly art, craftwork, rosary bead making and social gathering.",
       "end": "2026-06-17T12:00:00+10:00",
       "id": "dcc50222b2ee131d4b83f1f0",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Parish Hospitality Centre",
       "recurrence": {
         "frequency": "weekly",
@@ -292,7 +292,7 @@
       "description": "Social bridge club with weekly games and lessons for beginners.",
       "end": "2026-06-17T14:00:00+10:00",
       "id": "8495276b1a11cfba009ffb98",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Hospitality Room",
       "recurrence": {
         "frequency": "weekly",
@@ -322,7 +322,7 @@
       "description": "Weekly Bible study and prayer group at St Vincent’s Church.",
       "end": "2026-06-19T18:00:00+10:00",
       "id": "eb90b995e1a22db134c96aee",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "St Vincent’s Church, 40 Hamilton Ave, Surfers Paradise",
       "recurrence": {
         "frequency": "weekly",
@@ -351,7 +351,7 @@
       "description": "Spanish-speaking prayer group with praise and spiritual growth from the Word of the Lord.",
       "end": "2026-06-20T14:00:00+10:00",
       "id": "ff94808865affc89f786ceab",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Hospitality Room, Sacred Heart Church",
       "recurrence": {
         "frequency": "monthly",
@@ -380,7 +380,7 @@
       "description": "Social bridge club with weekly games and lessons for beginners.",
       "end": "2026-06-22T14:00:00+10:00",
       "id": "7b5ad67002a4b877db27d004",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Hospitality Room",
       "recurrence": {
         "frequency": "weekly",
@@ -410,7 +410,7 @@
       "description": "Low-impact cardiovascular, strength and balance exercise class for over 65s.",
       "end": "2026-06-23T10:30:00+10:00",
       "id": "e002ae44aad11d51152bd7c0",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Casey Hall",
       "recurrence": {
         "frequency": "weekly",
@@ -439,7 +439,7 @@
       "description": "Weekly WCCM Christian meditation group.",
       "end": "2026-06-23T10:30:00+10:00",
       "id": "4cca47bf3665f58d397c6ce5",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Morris Prayer Room, 50 Fairway Drive, Clear Island Waters",
       "recurrence": {
         "frequency": "weekly",
@@ -468,7 +468,7 @@
       "description": "Social yoga class focused on flexibility, relaxation, strength, body awareness and wellbeing.",
       "end": "2026-06-23T11:45:00+10:00",
       "id": "59883fdeb2366e1eeb8c5247",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Parish Hospitality Centre",
       "recurrence": {
         "frequency": "weekly",
@@ -497,7 +497,7 @@
       "description": "Weekly art, craftwork, rosary bead making and social gathering.",
       "end": "2026-06-24T12:00:00+10:00",
       "id": "578c5724df223e44fb37f6a9",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Parish Hospitality Centre",
       "recurrence": {
         "frequency": "weekly",
@@ -526,7 +526,7 @@
       "description": "Social bridge club with weekly games and lessons for beginners.",
       "end": "2026-06-24T14:00:00+10:00",
       "id": "1738a6cfdaf67e1613426685",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Hospitality Room",
       "recurrence": {
         "frequency": "weekly",
@@ -556,7 +556,7 @@
       "description": "Weekly Bible study and prayer group at St Vincent’s Church.",
       "end": "2026-06-26T18:00:00+10:00",
       "id": "ddff238fd3a41750f3c043a4",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "St Vincent’s Church, 40 Hamilton Ave, Surfers Paradise",
       "recurrence": {
         "frequency": "weekly",
@@ -585,7 +585,7 @@
       "description": "Session 20 - Messianic Fulfilment - Part 111.",
       "end": "2026-06-28T12:00:00+10:00",
       "id": "5129eb5ed1c4f0377d0deddb",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Parish Hospitality Centre, 50 Fairway Drive, Clear Island Waters",
       "recurrence": null,
       "series_id": null,
@@ -606,7 +606,7 @@
       "description": "Social bridge club with weekly games and lessons for beginners.",
       "end": "2026-06-29T14:00:00+10:00",
       "id": "98c969ce629bcfb47edf53ad",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Hospitality Room",
       "recurrence": {
         "frequency": "weekly",
@@ -636,7 +636,7 @@
       "description": "Low-impact cardiovascular, strength and balance exercise class for over 65s.",
       "end": "2026-06-30T10:30:00+10:00",
       "id": "294ca22c1ded9476091d3ec8",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Casey Hall",
       "recurrence": {
         "frequency": "weekly",
@@ -665,7 +665,7 @@
       "description": "Weekly WCCM Christian meditation group.",
       "end": "2026-06-30T10:30:00+10:00",
       "id": "49f9c7d66fc56e14acf88705",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Morris Prayer Room, 50 Fairway Drive, Clear Island Waters",
       "recurrence": {
         "frequency": "weekly",
@@ -694,7 +694,7 @@
       "description": "Social yoga class focused on flexibility, relaxation, strength, body awareness and wellbeing.",
       "end": "2026-06-30T11:45:00+10:00",
       "id": "7509558cefad2ccb267c2854",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Parish Hospitality Centre",
       "recurrence": {
         "frequency": "weekly",
@@ -723,7 +723,7 @@
       "description": "Weekly art, craftwork, rosary bead making and social gathering.",
       "end": "2026-07-01T12:00:00+10:00",
       "id": "6221db32361940dd1a7ef8df",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Parish Hospitality Centre",
       "recurrence": {
         "frequency": "weekly",
@@ -752,7 +752,7 @@
       "description": "Social bridge club with weekly games and lessons for beginners.",
       "end": "2026-07-01T14:00:00+10:00",
       "id": "87a9a18af9c43f3dd144e665",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Hospitality Room",
       "recurrence": {
         "frequency": "weekly",
@@ -782,7 +782,7 @@
       "description": "Children's holiday activity. Supervision from 08:30 to 17:00.",
       "end": "2026-07-02T15:00:00+10:00",
       "id": "19563c332854a252b68f9b78",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Hospitality Centre: Surfers Paradise Catholic Parish, 50 Fairway Dr, Clear Island Waters",
       "recurrence": null,
       "series_id": null,
@@ -803,7 +803,7 @@
       "description": "Weekly Bible study and prayer group at St Vincent’s Church.",
       "end": "2026-07-03T18:00:00+10:00",
       "id": "670384bbf9ada4a0d405a796",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "St Vincent’s Church, 40 Hamilton Ave, Surfers Paradise",
       "recurrence": {
         "frequency": "weekly",
@@ -832,7 +832,7 @@
       "description": "First Saturday prayer before Mass.",
       "end": "2026-07-04T09:00:00+10:00",
       "id": "4feb2143d6626b5742ba0eec",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Sacred Heart Church",
       "recurrence": {
         "frequency": "monthly",
@@ -861,7 +861,7 @@
       "description": "All-day display during the Saint Carlo Acutis relic visit.",
       "end": "2026-07-07",
       "id": "be89bfd157d15dc382b9e10b",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Parish Hospitality Centre, Sacred Heart Church, Clear Island Waters",
       "recurrence": null,
       "series_id": null,
@@ -882,7 +882,7 @@
       "description": "One-day visit of the first-class relic of Saint Carlo Acutis with Mass, veneration, rosary, adoration, confession, meals and exhibition.",
       "end": "2026-07-06T16:00:00+10:00",
       "id": "e49b5ae8f11d205d228e3d2f",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Sacred Heart Catholic Church, 50 Fairway Drive, Clear Island Waters",
       "recurrence": null,
       "series_id": null,
@@ -903,7 +903,7 @@
       "description": "Morning tea during the Saint Carlo Acutis relic visit.",
       "end": "2026-07-06T11:30:00+10:00",
       "id": "3096b7286d0b038b1d5c8d9c",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Sacred Heart Catholic Church, 50 Fairway Drive, Clear Island Waters",
       "recurrence": null,
       "series_id": null,
@@ -924,7 +924,7 @@
       "description": "Social bridge club with weekly games and lessons for beginners.",
       "end": "2026-07-06T14:00:00+10:00",
       "id": "6bd01b5808a897cd160c1912",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Hospitality Room",
       "recurrence": {
         "frequency": "weekly",
@@ -954,7 +954,7 @@
       "description": "Family BBQ during the Saint Carlo Acutis relic visit.",
       "end": "2026-07-06T14:00:00+10:00",
       "id": "fd1655353db5bdb02295efe0",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Sacred Heart Catholic Church, 50 Fairway Drive, Clear Island Waters",
       "recurrence": null,
       "series_id": null,
@@ -975,7 +975,7 @@
       "description": "Low-impact cardiovascular, strength and balance exercise class for over 65s.",
       "end": "2026-07-07T10:30:00+10:00",
       "id": "626e1aac6618dd0f759f1317",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Casey Hall",
       "recurrence": {
         "frequency": "weekly",
@@ -1004,7 +1004,7 @@
       "description": "Weekly WCCM Christian meditation group.",
       "end": "2026-07-07T10:30:00+10:00",
       "id": "0362ae75e9a1a0a4705b2556",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Morris Prayer Room, 50 Fairway Drive, Clear Island Waters",
       "recurrence": {
         "frequency": "weekly",
@@ -1033,7 +1033,7 @@
       "description": "Social yoga class focused on flexibility, relaxation, strength, body awareness and wellbeing.",
       "end": "2026-07-07T11:45:00+10:00",
       "id": "84a8a79fc52cadcf1e8c26dd",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Parish Hospitality Centre",
       "recurrence": {
         "frequency": "weekly",
@@ -1062,7 +1062,7 @@
       "description": "Weekly art, craftwork, rosary bead making and social gathering.",
       "end": "2026-07-08T12:00:00+10:00",
       "id": "73c0707a3efa1d3fdad944f0",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Parish Hospitality Centre",
       "recurrence": {
         "frequency": "weekly",
@@ -1091,7 +1091,7 @@
       "description": "Social bridge club with weekly games and lessons for beginners.",
       "end": "2026-07-08T14:00:00+10:00",
       "id": "6c300ee70ed68e7afd0bead2",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Hospitality Room",
       "recurrence": {
         "frequency": "weekly",
@@ -1121,7 +1121,7 @@
       "description": "Weekly Bible study and prayer group at St Vincent’s Church.",
       "end": "2026-07-10T18:00:00+10:00",
       "id": "eba1632f67a665c7dbaba8a7",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "St Vincent’s Church, 40 Hamilton Ave, Surfers Paradise",
       "recurrence": {
         "frequency": "weekly",
@@ -1150,7 +1150,7 @@
       "description": "Social bridge club with weekly games and lessons for beginners.",
       "end": "2026-07-13T14:00:00+10:00",
       "id": "dce9715347a942cca38f7aaa",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Hospitality Room",
       "recurrence": {
         "frequency": "weekly",
@@ -1180,7 +1180,7 @@
       "description": "Low-impact cardiovascular, strength and balance exercise class for over 65s.",
       "end": "2026-07-14T10:30:00+10:00",
       "id": "363de96c9c9fc7b4d6aec9e1",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Casey Hall",
       "recurrence": {
         "frequency": "weekly",
@@ -1209,7 +1209,7 @@
       "description": "Weekly WCCM Christian meditation group.",
       "end": "2026-07-14T10:30:00+10:00",
       "id": "6aff783ad7778bc8083533d2",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Morris Prayer Room, 50 Fairway Drive, Clear Island Waters",
       "recurrence": {
         "frequency": "weekly",
@@ -1238,7 +1238,7 @@
       "description": "Social yoga class focused on flexibility, relaxation, strength, body awareness and wellbeing.",
       "end": "2026-07-14T11:45:00+10:00",
       "id": "cb14e0b5b54666f58ee089e0",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Parish Hospitality Centre",
       "recurrence": {
         "frequency": "weekly",
@@ -1267,7 +1267,7 @@
       "description": "Weekly art, craftwork, rosary bead making and social gathering.",
       "end": "2026-07-15T12:00:00+10:00",
       "id": "40cd2b1e44e0cde224ebc211",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Parish Hospitality Centre",
       "recurrence": {
         "frequency": "weekly",
@@ -1296,7 +1296,7 @@
       "description": "Social bridge club with weekly games and lessons for beginners.",
       "end": "2026-07-15T14:00:00+10:00",
       "id": "65f5aa2183c89d026533ad62",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Hospitality Room",
       "recurrence": {
         "frequency": "weekly",
@@ -1326,7 +1326,7 @@
       "description": "Weekly Bible study and prayer group at St Vincent’s Church.",
       "end": "2026-07-17T18:00:00+10:00",
       "id": "0e8d5caf9e66302999e4308d",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "St Vincent’s Church, 40 Hamilton Ave, Surfers Paradise",
       "recurrence": {
         "frequency": "weekly",
@@ -1355,7 +1355,7 @@
       "description": "Spanish-speaking prayer group with praise and spiritual growth from the Word of the Lord.",
       "end": "2026-07-18T14:00:00+10:00",
       "id": "83078ec948d5152670b670d9",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Hospitality Room, Sacred Heart Church",
       "recurrence": {
         "frequency": "monthly",
@@ -1384,7 +1384,7 @@
       "description": "Social bridge club with weekly games and lessons for beginners.",
       "end": "2026-07-20T14:00:00+10:00",
       "id": "9d7a1e79385d66650c7c7f92",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Hospitality Room",
       "recurrence": {
         "frequency": "weekly",
@@ -1414,7 +1414,7 @@
       "description": "Low-impact cardiovascular, strength and balance exercise class for over 65s.",
       "end": "2026-07-21T10:30:00+10:00",
       "id": "34b18b9edbfe73f95af4d23e",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Casey Hall",
       "recurrence": {
         "frequency": "weekly",
@@ -1443,7 +1443,7 @@
       "description": "Weekly WCCM Christian meditation group.",
       "end": "2026-07-21T10:30:00+10:00",
       "id": "b10201f570e6e66e621795ad",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Morris Prayer Room, 50 Fairway Drive, Clear Island Waters",
       "recurrence": {
         "frequency": "weekly",
@@ -1472,7 +1472,7 @@
       "description": "Social yoga class focused on flexibility, relaxation, strength, body awareness and wellbeing.",
       "end": "2026-07-21T11:45:00+10:00",
       "id": "80b019c8b48e23bfbf9b61eb",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Parish Hospitality Centre",
       "recurrence": {
         "frequency": "weekly",
@@ -1501,7 +1501,7 @@
       "description": "Weekly art, craftwork, rosary bead making and social gathering.",
       "end": "2026-07-22T12:00:00+10:00",
       "id": "13faf3a5ce82db5ef840f1bd",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Parish Hospitality Centre",
       "recurrence": {
         "frequency": "weekly",
@@ -1530,7 +1530,7 @@
       "description": "Social bridge club with weekly games and lessons for beginners.",
       "end": "2026-07-22T14:00:00+10:00",
       "id": "ad1284f26ad1f9e2a397c35c",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Hospitality Room",
       "recurrence": {
         "frequency": "weekly",
@@ -1560,7 +1560,7 @@
       "description": "Weekly Bible study and prayer group at St Vincent’s Church.",
       "end": "2026-07-24T18:00:00+10:00",
       "id": "87ac1b92d9373f8020caf9d4",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "St Vincent’s Church, 40 Hamilton Ave, Surfers Paradise",
       "recurrence": {
         "frequency": "weekly",
@@ -1589,7 +1589,7 @@
       "description": "Social bridge club with weekly games and lessons for beginners.",
       "end": "2026-07-27T14:00:00+10:00",
       "id": "f671b1110be0fe64d28ec9f4",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Hospitality Room",
       "recurrence": {
         "frequency": "weekly",
@@ -1619,7 +1619,7 @@
       "description": "Low-impact cardiovascular, strength and balance exercise class for over 65s.",
       "end": "2026-07-28T10:30:00+10:00",
       "id": "0909457e2b81f8fd5679c284",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Casey Hall",
       "recurrence": {
         "frequency": "weekly",
@@ -1648,7 +1648,7 @@
       "description": "Weekly WCCM Christian meditation group.",
       "end": "2026-07-28T10:30:00+10:00",
       "id": "57c370b693e8b8dd697050d1",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Morris Prayer Room, 50 Fairway Drive, Clear Island Waters",
       "recurrence": {
         "frequency": "weekly",
@@ -1677,7 +1677,7 @@
       "description": "Social yoga class focused on flexibility, relaxation, strength, body awareness and wellbeing.",
       "end": "2026-07-28T11:45:00+10:00",
       "id": "dcc59eb24beca96b2c008ab9",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Parish Hospitality Centre",
       "recurrence": {
         "frequency": "weekly",
@@ -1706,7 +1706,7 @@
       "description": "Weekly art, craftwork, rosary bead making and social gathering.",
       "end": "2026-07-29T12:00:00+10:00",
       "id": "39d5421ae52192acc37368ca",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Parish Hospitality Centre",
       "recurrence": {
         "frequency": "weekly",
@@ -1735,7 +1735,7 @@
       "description": "Social bridge club with weekly games and lessons for beginners.",
       "end": "2026-07-29T14:00:00+10:00",
       "id": "1518b20855a19a2d9183bad4",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Hospitality Room",
       "recurrence": {
         "frequency": "weekly",
@@ -1765,7 +1765,7 @@
       "description": "Weekly Bible study and prayer group at St Vincent’s Church.",
       "end": "2026-07-31T18:00:00+10:00",
       "id": "5985a28def177e89343fa8c5",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "St Vincent’s Church, 40 Hamilton Ave, Surfers Paradise",
       "recurrence": {
         "frequency": "weekly",
@@ -1794,7 +1794,7 @@
       "description": "First Saturday prayer before Mass.",
       "end": "2026-08-01T09:00:00+10:00",
       "id": "7643e3b0a7d5c6a77758db66",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Sacred Heart Church",
       "recurrence": {
         "frequency": "monthly",
@@ -1823,7 +1823,7 @@
       "description": "Social bridge club with weekly games and lessons for beginners.",
       "end": "2026-08-03T14:00:00+10:00",
       "id": "93fb3c6a360c1d573b8ca309",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Hospitality Room",
       "recurrence": {
         "frequency": "weekly",
@@ -1853,7 +1853,7 @@
       "description": "Low-impact cardiovascular, strength and balance exercise class for over 65s.",
       "end": "2026-08-04T10:30:00+10:00",
       "id": "9e457c8df17ba2a91796dd04",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Casey Hall",
       "recurrence": {
         "frequency": "weekly",
@@ -1882,7 +1882,7 @@
       "description": "Weekly WCCM Christian meditation group.",
       "end": "2026-08-04T10:30:00+10:00",
       "id": "ecd887ed14db76d5079ff8eb",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Morris Prayer Room, 50 Fairway Drive, Clear Island Waters",
       "recurrence": {
         "frequency": "weekly",
@@ -1911,7 +1911,7 @@
       "description": "Social yoga class focused on flexibility, relaxation, strength, body awareness and wellbeing.",
       "end": "2026-08-04T11:45:00+10:00",
       "id": "0288f29d4a9ce67dfb717f55",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Parish Hospitality Centre",
       "recurrence": {
         "frequency": "weekly",
@@ -1940,7 +1940,7 @@
       "description": "Weekly art, craftwork, rosary bead making and social gathering.",
       "end": "2026-08-05T12:00:00+10:00",
       "id": "31cf5168c311124a39a60243",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Parish Hospitality Centre",
       "recurrence": {
         "frequency": "weekly",
@@ -1969,7 +1969,7 @@
       "description": "Social bridge club with weekly games and lessons for beginners.",
       "end": "2026-08-05T14:00:00+10:00",
       "id": "5b901c5f05224b86a3e46507",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Hospitality Room",
       "recurrence": {
         "frequency": "weekly",
@@ -1999,7 +1999,7 @@
       "description": "Weekly Bible study and prayer group at St Vincent’s Church.",
       "end": "2026-08-07T18:00:00+10:00",
       "id": "4c04ced8d2488d71894b815d",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "St Vincent’s Church, 40 Hamilton Ave, Surfers Paradise",
       "recurrence": {
         "frequency": "weekly",
@@ -2028,7 +2028,7 @@
       "description": "Social bridge club with weekly games and lessons for beginners.",
       "end": "2026-08-10T14:00:00+10:00",
       "id": "77236c6fcd4f3c152edb6339",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Hospitality Room",
       "recurrence": {
         "frequency": "weekly",
@@ -2058,7 +2058,7 @@
       "description": "Low-impact cardiovascular, strength and balance exercise class for over 65s.",
       "end": "2026-08-11T10:30:00+10:00",
       "id": "2d3896c6ccab0ad8c20b2e92",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Casey Hall",
       "recurrence": {
         "frequency": "weekly",
@@ -2087,7 +2087,7 @@
       "description": "Weekly WCCM Christian meditation group.",
       "end": "2026-08-11T10:30:00+10:00",
       "id": "c87a9e6df8414c9e3cff76de",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Morris Prayer Room, 50 Fairway Drive, Clear Island Waters",
       "recurrence": {
         "frequency": "weekly",
@@ -2116,7 +2116,7 @@
       "description": "Social yoga class focused on flexibility, relaxation, strength, body awareness and wellbeing.",
       "end": "2026-08-11T11:45:00+10:00",
       "id": "3a69f964a2624fdcd60e4adf",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Parish Hospitality Centre",
       "recurrence": {
         "frequency": "weekly",
@@ -2145,7 +2145,7 @@
       "description": "Weekly art, craftwork, rosary bead making and social gathering.",
       "end": "2026-08-12T12:00:00+10:00",
       "id": "7b30cb134bb5b7ab318fa87a",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Parish Hospitality Centre",
       "recurrence": {
         "frequency": "weekly",
@@ -2174,7 +2174,7 @@
       "description": "Social bridge club with weekly games and lessons for beginners.",
       "end": "2026-08-12T14:00:00+10:00",
       "id": "f04740b38e498c653ef38552",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Hospitality Room",
       "recurrence": {
         "frequency": "weekly",
@@ -2204,7 +2204,7 @@
       "description": "Weekly Bible study and prayer group at St Vincent’s Church.",
       "end": "2026-08-14T18:00:00+10:00",
       "id": "32df5e09d45270430857aa33",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "St Vincent’s Church, 40 Hamilton Ave, Surfers Paradise",
       "recurrence": {
         "frequency": "weekly",
@@ -2233,7 +2233,7 @@
       "description": "Spanish-speaking prayer group with praise and spiritual growth from the Word of the Lord.",
       "end": "2026-08-15T14:00:00+10:00",
       "id": "0628170a520e453322feb9d5",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Hospitality Room, Sacred Heart Church",
       "recurrence": {
         "frequency": "monthly",
@@ -2262,7 +2262,7 @@
       "description": "Social bridge club with weekly games and lessons for beginners.",
       "end": "2026-08-17T14:00:00+10:00",
       "id": "7607646afee865539f2d28f8",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Hospitality Room",
       "recurrence": {
         "frequency": "weekly",
@@ -2292,7 +2292,7 @@
       "description": "Low-impact cardiovascular, strength and balance exercise class for over 65s.",
       "end": "2026-08-18T10:30:00+10:00",
       "id": "f7053a28376cdc4e0a8e5f9b",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Casey Hall",
       "recurrence": {
         "frequency": "weekly",
@@ -2321,7 +2321,7 @@
       "description": "Weekly WCCM Christian meditation group.",
       "end": "2026-08-18T10:30:00+10:00",
       "id": "6273a7e3030c82a3c6b13885",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Morris Prayer Room, 50 Fairway Drive, Clear Island Waters",
       "recurrence": {
         "frequency": "weekly",
@@ -2350,7 +2350,7 @@
       "description": "Social yoga class focused on flexibility, relaxation, strength, body awareness and wellbeing.",
       "end": "2026-08-18T11:45:00+10:00",
       "id": "2026d60000259d8c2e5e38f8",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Parish Hospitality Centre",
       "recurrence": {
         "frequency": "weekly",
@@ -2379,7 +2379,7 @@
       "description": "Weekly art, craftwork, rosary bead making and social gathering.",
       "end": "2026-08-19T12:00:00+10:00",
       "id": "2e45274f4150dfbe5c214b35",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Parish Hospitality Centre",
       "recurrence": {
         "frequency": "weekly",
@@ -2408,7 +2408,7 @@
       "description": "Social bridge club with weekly games and lessons for beginners.",
       "end": "2026-08-19T14:00:00+10:00",
       "id": "6ca442141ba58c8340af3a33",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Hospitality Room",
       "recurrence": {
         "frequency": "weekly",
@@ -2438,7 +2438,7 @@
       "description": "Weekly Bible study and prayer group at St Vincent’s Church.",
       "end": "2026-08-21T18:00:00+10:00",
       "id": "71dab830a84c31ffafe9e870",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "St Vincent’s Church, 40 Hamilton Ave, Surfers Paradise",
       "recurrence": {
         "frequency": "weekly",
@@ -2467,7 +2467,7 @@
       "description": "Social bridge club with weekly games and lessons for beginners.",
       "end": "2026-08-24T14:00:00+10:00",
       "id": "e4a78c91072216625955ac19",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Hospitality Room",
       "recurrence": {
         "frequency": "weekly",
@@ -2497,7 +2497,7 @@
       "description": "Low-impact cardiovascular, strength and balance exercise class for over 65s.",
       "end": "2026-08-25T10:30:00+10:00",
       "id": "c5a578cebc5a01beb3966a6c",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Casey Hall",
       "recurrence": {
         "frequency": "weekly",
@@ -2526,7 +2526,7 @@
       "description": "Weekly WCCM Christian meditation group.",
       "end": "2026-08-25T10:30:00+10:00",
       "id": "3043e51cc02cb847d587296c",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Morris Prayer Room, 50 Fairway Drive, Clear Island Waters",
       "recurrence": {
         "frequency": "weekly",
@@ -2555,7 +2555,7 @@
       "description": "Social yoga class focused on flexibility, relaxation, strength, body awareness and wellbeing.",
       "end": "2026-08-25T11:45:00+10:00",
       "id": "ac2a23e80b6d7b18523d4722",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Parish Hospitality Centre",
       "recurrence": {
         "frequency": "weekly",
@@ -2584,7 +2584,7 @@
       "description": "Weekly art, craftwork, rosary bead making and social gathering.",
       "end": "2026-08-26T12:00:00+10:00",
       "id": "510c6fe57abcf6e348c1f2b6",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Parish Hospitality Centre",
       "recurrence": {
         "frequency": "weekly",
@@ -2613,7 +2613,7 @@
       "description": "Social bridge club with weekly games and lessons for beginners.",
       "end": "2026-08-26T14:00:00+10:00",
       "id": "c37834032c8e43cd16665062",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Hospitality Room",
       "recurrence": {
         "frequency": "weekly",
@@ -2643,7 +2643,7 @@
       "description": "Weekly Bible study and prayer group at St Vincent’s Church.",
       "end": "2026-08-28T18:00:00+10:00",
       "id": "3f158fe3096740bef05fc3c4",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "St Vincent’s Church, 40 Hamilton Ave, Surfers Paradise",
       "recurrence": {
         "frequency": "weekly",
@@ -2672,7 +2672,7 @@
       "description": "Session 21 - The Church - Part 1.",
       "end": "2026-08-30T12:00:00+10:00",
       "id": "104bcb78a0bb73fc6448f0c6",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Parish Hospitality Centre, 50 Fairway Drive, Clear Island Waters",
       "recurrence": null,
       "series_id": null,
@@ -2693,7 +2693,7 @@
       "description": "Social bridge club with weekly games and lessons for beginners.",
       "end": "2026-08-31T14:00:00+10:00",
       "id": "22264c23b6f14c57625fdc72",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Hospitality Room",
       "recurrence": {
         "frequency": "weekly",
@@ -2723,7 +2723,7 @@
       "description": "Session 22 - The Church Part 11.",
       "end": "2026-09-27T12:00:00+10:00",
       "id": "83998b2ca331a2d540f62d7d",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Parish Hospitality Centre, 50 Fairway Drive, Clear Island Waters",
       "recurrence": null,
       "series_id": null,
@@ -2744,7 +2744,7 @@
       "description": "Session 23 - The Church Part 111.",
       "end": "2026-10-25T12:00:00+10:00",
       "id": "25075361ad0e1ef1f6673af1",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Parish Hospitality Centre, 50 Fairway Drive, Clear Island Waters",
       "recurrence": null,
       "series_id": null,
@@ -2758,7 +2758,7 @@
       "venue": "Parish Hospitality Centre"
     }
   ],
-  "generated_at": "2026-06-16T09:05:12+10:00",
+  "generated_at": "2026-06-16T09:54:14+10:00",
   "schema_version": 1,
   "sources": [
     {

@@ -1,0 +1,9 @@
+{
+  "parish_id": "coolangatta-tugun",
+  "timezone": "Australia/Brisbane",
+  "sources": {
+    "services": "manual-coolangatta-tugun",
+    "community": "manual",
+    "liturgical": "universalis-brisbane"
+  }
+}

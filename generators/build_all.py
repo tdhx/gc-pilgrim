@@ -11,7 +11,13 @@ from generators.build_newsletter_review import build as build_newsletter_review
 from generators.build_parish import build as build_parish
 from generators.build_services import build as build_services
 from generators.io import read_json, read_json_lines, write_json
-from sources.manual import burleigh_heads, nerang, runaway_bay, southport
+from sources.manual import (
+    burleigh_heads,
+    coolangatta_tugun,
+    nerang,
+    runaway_bay,
+    southport,
+)
 from sources.newsletter import load_community_records
 from sources.google_calendar import adapter as google_calendar
 from sources.website import liturgical as universalis
@@ -27,6 +33,7 @@ PARISH_IDS = (
     "nerang",
     "runaway-bay",
     "coomera",
+    "coolangatta-tugun",
 )
 TIMEZONE = "Australia/Brisbane"
 BRISBANE = ZoneInfo(TIMEZONE)
@@ -160,6 +167,22 @@ def build(offline=False, generated_at=None):
             "records": google_calendar_records["coomera"],
             "community_records": google_calendar_records["coomera"],
             "sources": coomera_sources,
+        },
+        "coolangatta-tugun": {
+            "records": coolangatta_tugun.normalise(start, end),
+            "community_records": [],
+            "sources": [
+                {
+                    "name": "Coolangatta-Tugun published recurring schedule",
+                    "url": coolangatta_tugun.PARISH_URL,
+                    "status": "baseline",
+                },
+                {
+                    "name": "Coolangatta-Tugun parish bulletin",
+                    "url": coolangatta_tugun.NEWSLETTER_URL,
+                    "status": "future-automation",
+                },
+            ],
         },
     }
     registry = validate_registry({

@@ -12,7 +12,7 @@
       "description": "Parish Library/Reading Room open during Parish Office hours.",
       "end": "2026-06-01T16:00:00+10:00",
       "id": "ec512f0ae36a73c06f740e86",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Parish Library/Reading Room",
       "recurrence": {
         "frequency": "weekly",
@@ -45,7 +45,7 @@
       "description": "Parish Library/Reading Room open during Parish Office hours.",
       "end": "2026-06-02T16:00:00+10:00",
       "id": "401c2afd0adda1c88ff3738a",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Parish Library/Reading Room",
       "recurrence": {
         "frequency": "weekly",
@@ -78,7 +78,7 @@
       "description": "Parish Library/Reading Room open during Parish Office hours.",
       "end": "2026-06-03T16:00:00+10:00",
       "id": "6861915cc6916c8fa226ce01",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Parish Library/Reading Room",
       "recurrence": {
         "frequency": "weekly",
@@ -111,7 +111,7 @@
       "description": "Parish Library/Reading Room open during Parish Office hours.",
       "end": "2026-06-04T16:00:00+10:00",
       "id": "1b4f3849301310b0f6adbde1",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Parish Library/Reading Room",
       "recurrence": {
         "frequency": "weekly",
@@ -144,7 +144,7 @@
       "description": "Monthly parish lunch for fellowship, cake and birthday celebrations. All welcome.",
       "end": "2026-06-04T12:30:00+10:00",
       "id": "095f69755322379b0c8b6d41",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Burleigh Sports Club, 111 Christine Ave, Burleigh Waters",
       "recurrence": {
         "frequency": "monthly",
@@ -173,7 +173,7 @@
       "description": "Parish Library/Reading Room open during Parish Office hours.",
       "end": "2026-06-05T16:00:00+10:00",
       "id": "bb1d9cff10aaa9cbdffb64e7",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Parish Library/Reading Room",
       "recurrence": {
         "frequency": "weekly",
@@ -206,7 +206,7 @@
       "description": "Care & Concern hosts morning tea following the Anointing Mass to support Cancer Research and Patient Care. Gold coin donation; lucky door prizes and raffle.",
       "end": "2026-06-05T11:45:00+10:00",
       "id": "d855fd68ef325cf021605e31",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Mary Mother of Mercy Community Centre, 3 Sunlight Drive, Burleigh Waters",
       "recurrence": null,
       "series_id": null,
@@ -227,7 +227,7 @@
       "description": "Music, dance and storytelling from different faiths; light refreshments provided. Free admission; bookings required for catering.",
       "end": "2026-06-06T14:00:00+10:00",
       "id": "54f87db99725f2057b4a4730",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Croatian Club, 181 Nerang Broadbeach Road, Carrara",
       "recurrence": null,
       "series_id": null,
@@ -248,7 +248,7 @@
       "description": "Parish Library/Reading Room open during Parish Office hours.",
       "end": "2026-06-08T16:00:00+10:00",
       "id": "095e63f6fae7c81d6f074282",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Parish Library/Reading Room",
       "recurrence": {
         "frequency": "weekly",
@@ -281,7 +281,7 @@
       "description": "Parish Library/Reading Room open during Parish Office hours.",
       "end": "2026-06-09T16:00:00+10:00",
       "id": "b739aa197f7a94f6dcaabca7",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Parish Library/Reading Room",
       "recurrence": {
         "frequency": "weekly",
@@ -314,7 +314,7 @@
       "description": "Parish Library/Reading Room open during Parish Office hours.",
       "end": "2026-06-10T16:00:00+10:00",
       "id": "6f5e04effe8c9f6f2e72f948",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Parish Library/Reading Room",
       "recurrence": {
         "frequency": "weekly",
@@ -347,7 +347,7 @@
       "description": "Parish Library/Reading Room open during Parish Office hours.",
       "end": "2026-06-11T16:00:00+10:00",
       "id": "0bdde0dc5f5786407b8767db",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Parish Library/Reading Room",
       "recurrence": {
         "frequency": "weekly",
@@ -380,7 +380,7 @@
       "description": "Parish Library/Reading Room open during Parish Office hours.",
       "end": "2026-06-12T16:00:00+10:00",
       "id": "8d86390ece95c4d598ae8701",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Parish Library/Reading Room",
       "recurrence": {
         "frequency": "weekly",
@@ -413,7 +413,7 @@
       "description": "Parish Library/Reading Room open during Parish Office hours.",
       "end": "2026-06-15T16:00:00+10:00",
       "id": "424e632d61f40f2815a6125f",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Parish Library/Reading Room",
       "recurrence": {
         "frequency": "weekly",
@@ -446,7 +446,7 @@
       "description": "Parish Library/Reading Room open during Parish Office hours.",
       "end": "2026-06-16T16:00:00+10:00",
       "id": "1d89126af53c2bf60681a79a",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Parish Library/Reading Room",
       "recurrence": {
         "frequency": "weekly",
@@ -479,7 +479,7 @@
       "description": "Parish Library/Reading Room open during Parish Office hours.",
       "end": "2026-06-17T16:00:00+10:00",
       "id": "47b687087b2a220203149eea",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Parish Library/Reading Room",
       "recurrence": {
         "frequency": "weekly",
@@ -512,7 +512,7 @@
       "description": "Parish Library/Reading Room open during Parish Office hours.",
       "end": "2026-06-18T16:00:00+10:00",
       "id": "ea8f3024e1bab92cd29e24ee",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Parish Library/Reading Room",
       "recurrence": {
         "frequency": "weekly",
@@ -545,7 +545,7 @@
       "description": "Parish Library/Reading Room open during Parish Office hours.",
       "end": "2026-06-19T16:00:00+10:00",
       "id": "dc235f3cdabd89fdd16969fe",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Parish Library/Reading Room",
       "recurrence": {
         "frequency": "weekly",
@@ -578,7 +578,7 @@
       "description": "Parish Library/Reading Room open during Parish Office hours.",
       "end": "2026-06-22T16:00:00+10:00",
       "id": "e1250afe320ab68e760655eb",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Parish Library/Reading Room",
       "recurrence": {
         "frequency": "weekly",
@@ -611,7 +611,7 @@
       "description": "Parish Library/Reading Room open during Parish Office hours.",
       "end": "2026-06-23T16:00:00+10:00",
       "id": "2994abf13723bc6e73d9f8cc",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Parish Library/Reading Room",
       "recurrence": {
         "frequency": "weekly",
@@ -644,7 +644,7 @@
       "description": "Parish Library/Reading Room open during Parish Office hours.",
       "end": "2026-06-24T16:00:00+10:00",
       "id": "0d3be3450aea4e0c2df7298d",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Parish Library/Reading Room",
       "recurrence": {
         "frequency": "weekly",
@@ -677,7 +677,7 @@
       "description": "Parish Library/Reading Room open during Parish Office hours.",
       "end": "2026-06-25T16:00:00+10:00",
       "id": "4c7044609800ea675af67085",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Parish Library/Reading Room",
       "recurrence": {
         "frequency": "weekly",
@@ -710,7 +710,7 @@
       "description": "Parish Library/Reading Room open during Parish Office hours.",
       "end": "2026-06-26T16:00:00+10:00",
       "id": "43dc96e4c9d0dc0c68158444",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Parish Library/Reading Room",
       "recurrence": {
         "frequency": "weekly",
@@ -743,7 +743,7 @@
       "description": "Parish Library/Reading Room open during Parish Office hours.",
       "end": "2026-06-29T16:00:00+10:00",
       "id": "7dccc96c6026b641af6c2482",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Parish Library/Reading Room",
       "recurrence": {
         "frequency": "weekly",
@@ -776,7 +776,7 @@
       "description": "Parish Library/Reading Room open during Parish Office hours.",
       "end": "2026-06-30T16:00:00+10:00",
       "id": "d4dfc3f5db4a34ccbc1917ff",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Parish Library/Reading Room",
       "recurrence": {
         "frequency": "weekly",
@@ -809,7 +809,7 @@
       "description": "Parish Library/Reading Room open during Parish Office hours.",
       "end": "2026-07-01T16:00:00+10:00",
       "id": "602d882d7e97b2174d17aba2",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Parish Library/Reading Room",
       "recurrence": {
         "frequency": "weekly",
@@ -842,7 +842,7 @@
       "description": "Parish Library/Reading Room open during Parish Office hours.",
       "end": "2026-07-02T16:00:00+10:00",
       "id": "3ca7fbcb250d875df7851309",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Parish Library/Reading Room",
       "recurrence": {
         "frequency": "weekly",
@@ -875,7 +875,7 @@
       "description": "Monthly parish lunch for fellowship, cake and birthday celebrations. All welcome.",
       "end": "2026-07-02T12:30:00+10:00",
       "id": "85e9a5565645bd620bee0212",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Burleigh Sports Club, 111 Christine Ave, Burleigh Waters",
       "recurrence": {
         "frequency": "monthly",
@@ -904,7 +904,7 @@
       "description": "Parish Library/Reading Room open during Parish Office hours.",
       "end": "2026-07-03T16:00:00+10:00",
       "id": "0883643a5b686f73594452ab",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Parish Library/Reading Room",
       "recurrence": {
         "frequency": "weekly",
@@ -937,7 +937,7 @@
       "description": "Parish Library/Reading Room open during Parish Office hours.",
       "end": "2026-07-06T16:00:00+10:00",
       "id": "e34c934472bd9954fec63cb1",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Parish Library/Reading Room",
       "recurrence": {
         "frequency": "weekly",
@@ -970,7 +970,7 @@
       "description": "Parish Library/Reading Room open during Parish Office hours.",
       "end": "2026-07-07T16:00:00+10:00",
       "id": "4ce396237fd5f0956240bb32",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Parish Library/Reading Room",
       "recurrence": {
         "frequency": "weekly",
@@ -1003,7 +1003,7 @@
       "description": "Parish Library/Reading Room open during Parish Office hours.",
       "end": "2026-07-08T16:00:00+10:00",
       "id": "291ba48d5d1ca2aa6d467007",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Parish Library/Reading Room",
       "recurrence": {
         "frequency": "weekly",
@@ -1036,7 +1036,7 @@
       "description": "Parish Library/Reading Room open during Parish Office hours.",
       "end": "2026-07-09T16:00:00+10:00",
       "id": "c5819ec34bcb887b0190c66d",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Parish Library/Reading Room",
       "recurrence": {
         "frequency": "weekly",
@@ -1069,7 +1069,7 @@
       "description": "Parish Library/Reading Room open during Parish Office hours.",
       "end": "2026-07-10T16:00:00+10:00",
       "id": "36b9d1d763795fda40796109",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Parish Library/Reading Room",
       "recurrence": {
         "frequency": "weekly",
@@ -1102,7 +1102,7 @@
       "description": "Parish Library/Reading Room open during Parish Office hours.",
       "end": "2026-07-13T16:00:00+10:00",
       "id": "a5ec913acd6a644f9f2e876d",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Parish Library/Reading Room",
       "recurrence": {
         "frequency": "weekly",
@@ -1135,7 +1135,7 @@
       "description": "Parish Library/Reading Room open during Parish Office hours.",
       "end": "2026-07-14T16:00:00+10:00",
       "id": "bf0dfcc5cc2aabca78cec055",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Parish Library/Reading Room",
       "recurrence": {
         "frequency": "weekly",
@@ -1168,7 +1168,7 @@
       "description": "Parish Library/Reading Room open during Parish Office hours.",
       "end": "2026-07-15T16:00:00+10:00",
       "id": "9b57b5d98699f12776dfae37",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Parish Library/Reading Room",
       "recurrence": {
         "frequency": "weekly",
@@ -1201,7 +1201,7 @@
       "description": "Parish Library/Reading Room open during Parish Office hours.",
       "end": "2026-07-16T16:00:00+10:00",
       "id": "6c40a1ee161a9223fd0d622c",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Parish Library/Reading Room",
       "recurrence": {
         "frequency": "weekly",
@@ -1234,7 +1234,7 @@
       "description": "Parish Library/Reading Room open during Parish Office hours.",
       "end": "2026-07-17T16:00:00+10:00",
       "id": "570aa2e7d636313a5f7d9d98",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Parish Library/Reading Room",
       "recurrence": {
         "frequency": "weekly",
@@ -1267,7 +1267,7 @@
       "description": "Parish Library/Reading Room open during Parish Office hours.",
       "end": "2026-07-20T16:00:00+10:00",
       "id": "153ff6a03721f3a028c7f79c",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Parish Library/Reading Room",
       "recurrence": {
         "frequency": "weekly",
@@ -1300,7 +1300,7 @@
       "description": "Parish Library/Reading Room open during Parish Office hours.",
       "end": "2026-07-21T16:00:00+10:00",
       "id": "46b2164c5fb88c2201f437ee",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Parish Library/Reading Room",
       "recurrence": {
         "frequency": "weekly",
@@ -1333,7 +1333,7 @@
       "description": "Parish Library/Reading Room open during Parish Office hours.",
       "end": "2026-07-22T16:00:00+10:00",
       "id": "858f47f7c44bd4d739b47b0a",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Parish Library/Reading Room",
       "recurrence": {
         "frequency": "weekly",
@@ -1366,7 +1366,7 @@
       "description": "Parish Library/Reading Room open during Parish Office hours.",
       "end": "2026-07-23T16:00:00+10:00",
       "id": "94ba1dc14f9883a26647941d",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Parish Library/Reading Room",
       "recurrence": {
         "frequency": "weekly",
@@ -1399,7 +1399,7 @@
       "description": "Parish Library/Reading Room open during Parish Office hours.",
       "end": "2026-07-24T16:00:00+10:00",
       "id": "0db63dc0177325478558e62a",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Parish Library/Reading Room",
       "recurrence": {
         "frequency": "weekly",
@@ -1432,7 +1432,7 @@
       "description": "Parish Library/Reading Room open during Parish Office hours.",
       "end": "2026-07-27T16:00:00+10:00",
       "id": "de7e7f5496ac8e59d5ffcb35",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Parish Library/Reading Room",
       "recurrence": {
         "frequency": "weekly",
@@ -1465,7 +1465,7 @@
       "description": "Parish Library/Reading Room open during Parish Office hours.",
       "end": "2026-07-28T16:00:00+10:00",
       "id": "94dfbbecbb778b4eecea1e6f",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Parish Library/Reading Room",
       "recurrence": {
         "frequency": "weekly",
@@ -1498,7 +1498,7 @@
       "description": "Parish Library/Reading Room open during Parish Office hours.",
       "end": "2026-07-29T16:00:00+10:00",
       "id": "51d5bf211f1b578a09d4ffa2",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Parish Library/Reading Room",
       "recurrence": {
         "frequency": "weekly",
@@ -1531,7 +1531,7 @@
       "description": "Parish Library/Reading Room open during Parish Office hours.",
       "end": "2026-07-30T16:00:00+10:00",
       "id": "30e30492ee07bfed65530dd1",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Parish Library/Reading Room",
       "recurrence": {
         "frequency": "weekly",
@@ -1564,7 +1564,7 @@
       "description": "Parish Library/Reading Room open during Parish Office hours.",
       "end": "2026-07-31T16:00:00+10:00",
       "id": "c8190f016b48d5f053c3501a",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Parish Library/Reading Room",
       "recurrence": {
         "frequency": "weekly",
@@ -1597,7 +1597,7 @@
       "description": "Parish Library/Reading Room open during Parish Office hours.",
       "end": "2026-08-03T16:00:00+10:00",
       "id": "6185f2199f4f97d21f0ae7c6",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Parish Library/Reading Room",
       "recurrence": {
         "frequency": "weekly",
@@ -1630,7 +1630,7 @@
       "description": "Parish Library/Reading Room open during Parish Office hours.",
       "end": "2026-08-04T16:00:00+10:00",
       "id": "61f0a9174d066218ce3c4dc0",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Parish Library/Reading Room",
       "recurrence": {
         "frequency": "weekly",
@@ -1663,7 +1663,7 @@
       "description": "Parish Library/Reading Room open during Parish Office hours.",
       "end": "2026-08-05T16:00:00+10:00",
       "id": "ed5ae8d86648860265ba9b29",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Parish Library/Reading Room",
       "recurrence": {
         "frequency": "weekly",
@@ -1696,7 +1696,7 @@
       "description": "Parish Library/Reading Room open during Parish Office hours.",
       "end": "2026-08-06T16:00:00+10:00",
       "id": "72ef886df1ab5eb00f930392",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Parish Library/Reading Room",
       "recurrence": {
         "frequency": "weekly",
@@ -1729,7 +1729,7 @@
       "description": "Monthly parish lunch for fellowship, cake and birthday celebrations. All welcome.",
       "end": "2026-08-06T12:30:00+10:00",
       "id": "b03439b7cf6d410c37202a96",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Burleigh Sports Club, 111 Christine Ave, Burleigh Waters",
       "recurrence": {
         "frequency": "monthly",
@@ -1758,7 +1758,7 @@
       "description": "Parish Library/Reading Room open during Parish Office hours.",
       "end": "2026-08-07T16:00:00+10:00",
       "id": "7b9db3358a6c328f11bf1002",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Parish Library/Reading Room",
       "recurrence": {
         "frequency": "weekly",
@@ -1791,7 +1791,7 @@
       "description": "Parish Library/Reading Room open during Parish Office hours.",
       "end": "2026-08-10T16:00:00+10:00",
       "id": "030da0e0353c318950614462",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Parish Library/Reading Room",
       "recurrence": {
         "frequency": "weekly",
@@ -1824,7 +1824,7 @@
       "description": "Parish Library/Reading Room open during Parish Office hours.",
       "end": "2026-08-11T16:00:00+10:00",
       "id": "f8d70e90cae3ffea7962a067",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Parish Library/Reading Room",
       "recurrence": {
         "frequency": "weekly",
@@ -1857,7 +1857,7 @@
       "description": "Parish Library/Reading Room open during Parish Office hours.",
       "end": "2026-08-12T16:00:00+10:00",
       "id": "f7991e492837a5cf618346e4",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Parish Library/Reading Room",
       "recurrence": {
         "frequency": "weekly",
@@ -1890,7 +1890,7 @@
       "description": "Parish Library/Reading Room open during Parish Office hours.",
       "end": "2026-08-13T16:00:00+10:00",
       "id": "654dffda0b9d344febda9e2e",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Parish Library/Reading Room",
       "recurrence": {
         "frequency": "weekly",
@@ -1923,7 +1923,7 @@
       "description": "Parish Library/Reading Room open during Parish Office hours.",
       "end": "2026-08-14T16:00:00+10:00",
       "id": "12cbe7deb2d154fedd10ca50",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Parish Library/Reading Room",
       "recurrence": {
         "frequency": "weekly",
@@ -1956,7 +1956,7 @@
       "description": "Parish Library/Reading Room open during Parish Office hours.",
       "end": "2026-08-17T16:00:00+10:00",
       "id": "7945ae4a4fafebe25fb7f6c2",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Parish Library/Reading Room",
       "recurrence": {
         "frequency": "weekly",
@@ -1989,7 +1989,7 @@
       "description": "Parish Library/Reading Room open during Parish Office hours.",
       "end": "2026-08-18T16:00:00+10:00",
       "id": "36b30e30c0a6da5ee1aafd02",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Parish Library/Reading Room",
       "recurrence": {
         "frequency": "weekly",
@@ -2022,7 +2022,7 @@
       "description": "Parish Library/Reading Room open during Parish Office hours.",
       "end": "2026-08-19T16:00:00+10:00",
       "id": "966207cdf110376603a778dd",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Parish Library/Reading Room",
       "recurrence": {
         "frequency": "weekly",
@@ -2055,7 +2055,7 @@
       "description": "Parish Library/Reading Room open during Parish Office hours.",
       "end": "2026-08-20T16:00:00+10:00",
       "id": "84df286f872ab2ffc0f3031a",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Parish Library/Reading Room",
       "recurrence": {
         "frequency": "weekly",
@@ -2088,7 +2088,7 @@
       "description": "Parish Library/Reading Room open during Parish Office hours.",
       "end": "2026-08-21T16:00:00+10:00",
       "id": "4e20732f2da74e837a366597",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Parish Library/Reading Room",
       "recurrence": {
         "frequency": "weekly",
@@ -2121,7 +2121,7 @@
       "description": "Parish Library/Reading Room open during Parish Office hours.",
       "end": "2026-08-24T16:00:00+10:00",
       "id": "1f5d5dd9e8507a3f4bcba7f3",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Parish Library/Reading Room",
       "recurrence": {
         "frequency": "weekly",
@@ -2154,7 +2154,7 @@
       "description": "Parish Library/Reading Room open during Parish Office hours.",
       "end": "2026-08-25T16:00:00+10:00",
       "id": "bc30861d54f2da7243cf5575",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Parish Library/Reading Room",
       "recurrence": {
         "frequency": "weekly",
@@ -2187,7 +2187,7 @@
       "description": "Parish Library/Reading Room open during Parish Office hours.",
       "end": "2026-08-26T16:00:00+10:00",
       "id": "295b9bdfa3f9e1926247a34f",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Parish Library/Reading Room",
       "recurrence": {
         "frequency": "weekly",
@@ -2220,7 +2220,7 @@
       "description": "Parish Library/Reading Room open during Parish Office hours.",
       "end": "2026-08-27T16:00:00+10:00",
       "id": "53b03c439fa4c649d67cb3d3",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Parish Library/Reading Room",
       "recurrence": {
         "frequency": "weekly",
@@ -2253,7 +2253,7 @@
       "description": "Parish Library/Reading Room open during Parish Office hours.",
       "end": "2026-08-28T16:00:00+10:00",
       "id": "99ccedf768f9a3aca18ee787",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Parish Library/Reading Room",
       "recurrence": {
         "frequency": "weekly",
@@ -2286,7 +2286,7 @@
       "description": "Parish Library/Reading Room open during Parish Office hours.",
       "end": "2026-08-31T16:00:00+10:00",
       "id": "10c03226a9e9d4158ffdbce7",
-      "last_updated": "2026-06-16T09:05:12+10:00",
+      "last_updated": "2026-06-16T09:54:14+10:00",
       "location": "Parish Library/Reading Room",
       "recurrence": {
         "frequency": "weekly",
@@ -2312,7 +2312,7 @@
       "venue": "Parish Library/Reading Room"
     }
   ],
-  "generated_at": "2026-06-16T09:05:12+10:00",
+  "generated_at": "2026-06-16T09:54:14+10:00",
   "schema_version": 1,
   "sources": [
     {

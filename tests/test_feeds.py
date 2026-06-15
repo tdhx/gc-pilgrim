@@ -13,7 +13,13 @@ sys.path.insert(0, str(ROOT))
 from generators.compat_split import split
 from generators.io import read_json
 from sources.google_calendar import adapter as google_calendar
-from sources.manual import burleigh_heads, nerang, runaway_bay, southport
+from sources.manual import (
+    burleigh_heads,
+    coolangatta_tugun,
+    nerang,
+    runaway_bay,
+    southport,
+)
 from sources.website import liturgical as universalis
 from validators.feeds import (
     validate_community,
@@ -298,6 +304,38 @@ END:VCALENDAR
             all(not record["associated_devotions"] for record in records)
         )
 
+    def test_coolangatta_tugun_publishes_weekly_services(self):
+        records = coolangatta_tugun.normalise(
+            datetime(2026, 6, 1, tzinfo=BRISBANE),
+            datetime(2026, 6, 8, tzinfo=BRISBANE),
+        )
+        self.assertEqual(len(records), 6)
+        self.assertEqual(
+            [
+                (record["church"], record["event_type"], record["start"][11:16])
+                for record in records
+            ],
+            [
+                ("St Monica's", "mass", "17:00"),
+                ("St Augustine's", "mass", "08:00"),
+                ("St Monica's", "confession", "17:15"),
+                ("St Monica's", "mass", "18:00"),
+                ("St Augustine's", "mass", "08:00"),
+                ("St Monica's", "mass", "09:30"),
+            ],
+        )
+        self.assertEqual(
+            {record["church"] for record in records},
+            {"St Augustine's", "St Monica's"},
+        )
+        self.assertEqual({record["event_type"] for record in records}, {"confession", "mass"})
+        self.assertTrue(all(not record["presiders"] for record in records))
+        self.assertTrue(all(not record["associated_devotions"] for record in records))
+        self.assertTrue(all(
+            record["source_id"].startswith("coolangatta-tugun-schedule:")
+            for record in records
+        ))
+
 
 class FeedContractTests(unittest.TestCase):
     @classmethod
@@ -326,6 +364,7 @@ class FeedContractTests(unittest.TestCase):
                 "nerang",
                 "runaway-bay",
                 "coomera",
+                "coolangatta-tugun",
             ],
         )
         self.assertEqual(self.registry["default_view_id"], "gold-coast")
@@ -510,6 +549,52 @@ class FeedContractTests(unittest.TestCase):
             [
                 (nerang.PARISH_URL, "baseline"),
                 (nerang.NEWSLETTERS_URL, "future-automation"),
+            ],
+        )
+
+    def test_coolangatta_tugun_feed_contains_current_website_schedule_only(self):
+        feeds = self.parishes["coolangatta-tugun"]
+        parish = feeds["parish"]
+        services = feeds["services"]
+        self.assertEqual(parish["branding"]["logo"], "assets/coolangatta-tugun-logo.png")
+        self.assertEqual(len(parish["churches"]), 2)
+        self.assertEqual(
+            {church["id"] for church in parish["churches"]},
+            {"st-augustines", "st-monicas"},
+        )
+        self.assertEqual(feeds["community"]["events"], [])
+        self.assertEqual(
+            {service["event_type"] for service in services["services"]},
+            {"confession", "mass"},
+        )
+        self.assertTrue(all(service["church_id"] for service in services["services"]))
+        self.assertTrue(all(not service["presiders"] for service in services["services"]))
+        self.assertTrue(all(
+            not service["associated_devotions"]
+            for service in services["services"]
+        ))
+        self.assertTrue(
+            any(
+                service["church_id"] == "st-monicas"
+                and service["event_type"] == "confession"
+                and service["start"][11:16] == "17:15"
+                and service["end"][11:16] == "18:00"
+                for service in services["services"]
+            )
+        )
+        self.assertTrue(
+            any(
+                service["church_id"] == "st-monicas"
+                and service["service_name"] == "Vigil Mass"
+                and service["start"][11:16] == "18:00"
+                for service in services["services"]
+            )
+        )
+        self.assertEqual(
+            [(source["url"], source["status"]) for source in services["sources"]],
+            [
+                (coolangatta_tugun.PARISH_URL, "baseline"),
+                (coolangatta_tugun.NEWSLETTER_URL, "future-automation"),
             ],
         )
 
