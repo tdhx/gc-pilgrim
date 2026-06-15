@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-13T17:26:05+10:00",
+  "generated_at": "2026-06-16T08:15:21+10:00",
   "parishes": [
     {
       "completeness": {
@@ -8630,6 +8630,105 @@
           "start": "2026-09-12T18:00:00+10:00",
           "status": "active",
           "title": "Our Lady of the Way - Mass"
+        },
+        {
+          "church": "Our Lady of the Way",
+          "church_id": "our-lady-of-the-way",
+          "end": "2026-09-13T08:00:00+10:00",
+          "event_type": "mass",
+          "id": "bee3fbbb8b79d01b3bf9c8f3",
+          "source_id": "burleigh-heads-schedule:our-lady-of-the-way-sunday-mass#2026-09-13T07:00:00+10:00",
+          "start": "2026-09-13T07:00:00+10:00",
+          "status": "active",
+          "title": "Our Lady of the Way - Mass"
+        },
+        {
+          "church": "Infant Saviour",
+          "church_id": "infant-saviour",
+          "end": "2026-09-13T08:00:00+10:00",
+          "event_type": "mass",
+          "id": "ddd722e4be823142fa80544e",
+          "source_id": "burleigh-heads-schedule:infant-saviour-sunday-mass#2026-09-13T07:00:00+10:00",
+          "start": "2026-09-13T07:00:00+10:00",
+          "status": "active",
+          "title": "Infant Saviour - Mass"
+        },
+        {
+          "church": "St Benedict's",
+          "church_id": "st-benedicts",
+          "end": "2026-09-13T09:30:00+10:00",
+          "event_type": "mass",
+          "id": "86465ac4d5504f573d201186",
+          "source_id": "burleigh-heads-schedule:st-benedicts-sunday-mass#2026-09-13T08:30:00+10:00",
+          "start": "2026-09-13T08:30:00+10:00",
+          "status": "active",
+          "title": "St Benedict's - Mass"
+        },
+        {
+          "church": "Calvary",
+          "church_id": "calvary",
+          "end": "2026-09-13T09:30:00+10:00",
+          "event_type": "mass",
+          "id": "96ceeefe8c19767a17767629",
+          "source_id": "burleigh-heads-schedule:calvary-sunday-mass#2026-09-13T08:30:00+10:00",
+          "start": "2026-09-13T08:30:00+10:00",
+          "status": "active",
+          "title": "Calvary - Mass"
+        },
+        {
+          "church": "Mary Mother of Mercy",
+          "church_id": "mary-mother-of-mercy",
+          "end": "2026-09-13T11:00:00+10:00",
+          "event_type": "mass",
+          "id": "d0d2f32e30ef6bbcf6229723",
+          "source_id": "burleigh-heads-schedule:mary-mother-of-mercy-sunday-mass#2026-09-13T10:00:00+10:00",
+          "start": "2026-09-13T10:00:00+10:00",
+          "status": "active",
+          "title": "Mary Mother of Mercy - Mass"
+        },
+        {
+          "church": "Mary Mother of Mercy",
+          "church_id": "mary-mother-of-mercy",
+          "end": "2026-09-13T17:30:00+10:00",
+          "event_type": "confession",
+          "id": "b442f6a77ce518e9b3b2aa25",
+          "source_id": "burleigh-heads-schedule:mary-mother-of-mercy-sunday-reconciliation#2026-09-13T17:00:00+10:00",
+          "start": "2026-09-13T17:00:00+10:00",
+          "status": "active",
+          "title": "Mary Mother of Mercy - Reconciliation"
+        },
+        {
+          "church": "Mary Mother of Mercy",
+          "church_id": "mary-mother-of-mercy",
+          "end": "2026-09-13T18:30:00+10:00",
+          "event_type": "mass",
+          "id": "82ea7d97964d911f77a70db6",
+          "source_id": "burleigh-heads-schedule:mary-mother-of-mercy-sunday-evening-mass#2026-09-13T17:30:00+10:00",
+          "start": "2026-09-13T17:30:00+10:00",
+          "status": "active",
+          "title": "Mary Mother of Mercy - Mass"
+        },
+        {
+          "church": "Calvary",
+          "church_id": "calvary",
+          "end": "2026-09-14T10:00:00+10:00",
+          "event_type": "mass",
+          "id": "9809ca026ec8d801bcbed179",
+          "source_id": "burleigh-heads-schedule:calvary-monday-mass#2026-09-14T09:00:00+10:00",
+          "start": "2026-09-14T09:00:00+10:00",
+          "status": "active",
+          "title": "Calvary - Mass"
+        },
+        {
+          "church": "Mary Mother of Mercy",
+          "church_id": "mary-mother-of-mercy",
+          "end": "2026-09-15T08:30:00+10:00",
+          "event_type": "mass",
+          "id": "80e31d6b482b690011849822",
+          "source_id": "burleigh-heads-schedule:mary-mother-of-mercy-tuesday-mass#2026-09-15T07:30:00+10:00",
+          "start": "2026-09-15T07:30:00+10:00",
+          "status": "active",
+          "title": "Mary Mother of Mercy - Mass"
         }
       ],
       "series": [

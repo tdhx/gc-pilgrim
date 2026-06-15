@@ -58,6 +58,9 @@ const nerangCommunity = await json("../feeds/v1/parishes/nerang/community.json")
 const runawayBayParish = await json("../feeds/v1/parishes/runaway-bay/parish.json");
 const runawayBayServices = await json("../feeds/v1/parishes/runaway-bay/services.json");
 const runawayBayCommunity = await json("../feeds/v1/parishes/runaway-bay/community.json");
+const coomeraParish = await json("../feeds/v1/parishes/coomera/parish.json");
+const coomeraServices = await json("../feeds/v1/parishes/coomera/services.json");
+const coomeraCommunity = await json("../feeds/v1/parishes/coomera/community.json");
 const liturgical = await json("../feeds/v1/liturgical.json");
 const appSource = await readFile(new URL("../app/app.js", import.meta.url), "utf8");
 const indexSource = await readFile(new URL("../app/index.html", import.meta.url), "utf8");
@@ -83,6 +86,9 @@ test("published modular feeds validate", () => {
   assert.equal(validateParish(runawayBayParish), runawayBayParish);
   assert.equal(validateServices(runawayBayServices), runawayBayServices);
   assert.equal(validateCommunity(runawayBayCommunity), runawayBayCommunity);
+  assert.equal(validateParish(coomeraParish), coomeraParish);
+  assert.equal(validateServices(coomeraServices), coomeraServices);
+  assert.equal(validateCommunity(coomeraCommunity), coomeraCommunity);
 });
 
 test("registry selects query parish and falls back to default", () => {
@@ -93,6 +99,7 @@ test("registry selects query parish and falls back to default", () => {
   assert.equal(selectedParishId(registry, "?parish=burleigh-heads"), "burleigh-heads");
   assert.equal(selectedParishId(registry, "?parish=nerang"), "nerang");
   assert.equal(selectedParishId(registry, "?parish=runaway-bay"), "runaway-bay");
+  assert.equal(selectedParishId(registry, "?parish=coomera"), "coomera");
   assert.equal(selectedParishId(registry, "?parish=missing"), registry.default_view_id);
 });
 
@@ -148,6 +155,15 @@ test("Gold Coast aggregate combines parish calendars with attribution", () => {
         liturgical,
       ),
     },
+    {
+      parish: coomeraParish,
+      calendar: assembleCalendar(
+        coomeraParish,
+        coomeraServices,
+        coomeraCommunity,
+        liturgical,
+      ),
+    },
   ]);
   const burleighCalendar = assembleCalendar(
     burleighParish,
@@ -167,20 +183,27 @@ test("Gold Coast aggregate combines parish calendars with attribution", () => {
     runawayBayCommunity,
     liturgical,
   );
+  const coomeraCalendar = assembleCalendar(
+    coomeraParish,
+    coomeraServices,
+    coomeraCommunity,
+    liturgical,
+  );
   assert.equal(
     calendar.events.length,
     surfersCalendar.events.length
       + southportCalendar.events.length
       + burleighCalendar.events.length
       + nerangCalendar.events.length
-      + runawayBayCalendar.events.length,
+      + runawayBayCalendar.events.length
+      + coomeraCalendar.events.length,
   );
   assert.deepEqual(
     new Set(calendar.events.map((event) => event.parish_id)),
     new Set(["surfers-paradise", "southport", "burleigh-heads", "nerang", "runaway-bay"]),
   );
   assert.ok(calendar.events.every((event) => event.id.startsWith(`${event.parish_id}:`)));
-  assert.equal(calendar.sources.length, 9);
+  assert.equal(calendar.sources.length, 10);
   assert.deepEqual(
     calendar.events,
     [...calendar.events].sort((left, right) => left.start.localeCompare(right.start)
@@ -272,6 +295,22 @@ test("Runaway Bay services contain only the current six-Mass schedule", () => {
   );
   assert.equal(runawayBayServices.sources.length, 1);
   assert.equal(runawayBayCommunity.events.length, 0);
+});
+
+test("Coomera profile publishes without calendar records", () => {
+  const calendar = assembleCalendar(
+    coomeraParish,
+    coomeraServices,
+    coomeraCommunity,
+    liturgical,
+  );
+  assert.equal(coomeraParish.branding.logo, "assets/coomera-logo.png");
+  assert.equal(coomeraParish.branding.theme, "coomera");
+  assert.equal(coomeraParish.churches.length, 1);
+  assert.equal(coomeraServices.services.length, 0);
+  assert.equal(coomeraCommunity.events.length, 0);
+  assert.equal(calendar.events.length, 0);
+  assert.equal(calendar.sources.length, 1);
 });
 
 test("runtime enrichment joins church and liturgical metadata immutably", () => {
@@ -413,6 +452,9 @@ test("GC Pilgrim app uses registry discovery and four-feed loading", () => {
   assert.doesNotMatch(stylesSource, /\.parish-selector-option img/);
   assert.match(indexSource, /class="event-parish"/);
   assert.match(appSource, /event-mass-fallback/);
+  assert.match(appSource, /confession: "event-reconciliation"/);
+  assert.match(appSource, /liturgy: "event-lay-led-communion"/);
+  assert.match(appSource, /adoration: "event-adoration"/);
   assert.match(appSource, /presider\.hidden = !presider\.textContent/);
   assert.match(appSource, /minimumEvents = 10/);
   assert.match(appSource, /closest\("\.filter-section"\)\.hidden/);
@@ -420,6 +462,7 @@ test("GC Pilgrim app uses registry discovery and four-feed loading", () => {
   assert.match(stylesSource, /body\[data-theme="burleigh-heads"\]/);
   assert.match(stylesSource, /body\[data-theme="nerang"\]/);
   assert.match(stylesSource, /body\[data-theme="runaway-bay"\]/);
+  assert.match(stylesSource, /body\[data-theme="coomera"\]/);
   assert.match(appSource, /Churches and Mass locations/);
   assert.match(appSource, /Mass centre/);
   assert.match(appSource, /Temporarily closed/);
@@ -427,6 +470,9 @@ test("GC Pilgrim app uses registry discovery and four-feed loading", () => {
   assert.match(stylesSource, /body\[data-theme="gc-pilgrim"\]/);
   assert.match(stylesSource, /--theme-bar-gradient/);
   assert.match(stylesSource, /\.event-mass-fallback::before/);
+  assert.match(stylesSource, /assets\/reconciliation\.png/);
+  assert.match(stylesSource, /assets\/lay-led-communion\.png/);
+  assert.match(stylesSource, /assets\/adoration\.png/);
   assert.match(stylesSource, /data-liturgical-colour="gold"/);
 });
 

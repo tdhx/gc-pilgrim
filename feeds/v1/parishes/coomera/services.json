@@ -3,19 +3,14 @@
     "end": "2026-06-16",
     "start": "2026-06-01"
   },
-  "events": [],
   "generated_at": "2026-06-16T08:15:21+10:00",
   "schema_version": 1,
+  "services": [],
   "sources": [
     {
-      "name": "Southport published recurring schedule",
+      "name": "St. Mary's Coomera published profile",
       "status": "baseline",
-      "url": "https://scp.org.au/"
-    },
-    {
-      "name": "Southport parish newsletters",
-      "status": "future-automation",
-      "url": "https://scp.org.au/newsletters-2026/"
+      "url": "https://stmaryscoomera.net.au/"
     }
   ],
   "timezone": "Australia/Brisbane",

@@ -1,0 +1,9 @@
+{
+  "parish_id": "coomera",
+  "timezone": "Australia/Brisbane",
+  "sources": {
+    "services": "manual-empty",
+    "community": "manual-empty",
+    "liturgical": "universalis-brisbane"
+  }
+}

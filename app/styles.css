@@ -69,6 +69,15 @@ body[data-theme="runaway-bay"] {
   --theme-bar-context: #d7eaf2;
 }
 
+body[data-theme="coomera"] {
+  --theme-primary: #1235b8;
+  --theme-primary-deep: #091f78;
+  --theme-highlight: #f49732;
+  --theme-highlight-soft: #fff0d9;
+  --theme-bar-gradient: linear-gradient(120deg, #091f78 0%, #1235b8 68%, #e52b34 100%);
+  --theme-bar-context: #ffd99b;
+}
+
 body[data-theme="gc-pilgrim"] {
   --theme-primary: var(--blue);
   --theme-primary-deep: var(--blue-deep);
@@ -1233,6 +1242,28 @@ button.month-day:hover {
 }
 
 .event-mass-fallback::before {
+  background-repeat: no-repeat;
+  background-size: 58% auto;
+}
+
+.event-reconciliation {
+  --church-image: url("assets/reconciliation.png");
+  --church-position: right center;
+}
+
+.event-lay-led-communion {
+  --church-image: url("assets/lay-led-communion.png");
+  --church-position: right center;
+}
+
+.event-adoration {
+  --church-image: url("assets/adoration.png");
+  --church-position: right center;
+}
+
+.event-reconciliation::before,
+.event-lay-led-communion::before,
+.event-adoration::before {
   background-repeat: no-repeat;
   background-size: 58% auto;
 }

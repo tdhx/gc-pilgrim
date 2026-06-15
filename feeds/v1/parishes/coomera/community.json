@@ -8,14 +8,9 @@
   "schema_version": 1,
   "sources": [
     {
-      "name": "Nerang published recurring schedule",
+      "name": "St. Mary's Coomera published profile",
       "status": "baseline",
-      "url": "https://stbrigidsparishnerang.org.au/mass-times/"
-    },
-    {
-      "name": "Nerang parish newsletters",
-      "status": "future-automation",
-      "url": "https://stbrigidsparishnerang.org.au/parishnews/"
+      "url": "https://stmaryscoomera.net.au/"
     }
   ],
   "timezone": "Australia/Brisbane",

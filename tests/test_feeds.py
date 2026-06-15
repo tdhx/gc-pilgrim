@@ -245,6 +245,7 @@ class FeedContractTests(unittest.TestCase):
                 "burleigh-heads",
                 "nerang",
                 "runaway-bay",
+                "coomera",
             ],
         )
         self.assertEqual(self.registry["default_view_id"], "gold-coast")
@@ -471,6 +472,35 @@ class FeedContractTests(unittest.TestCase):
         self.assertEqual(
             [(source["url"], source["status"]) for source in services["sources"]],
             [(runaway_bay.PARISH_URL, "baseline")],
+        )
+
+    def test_coomera_feed_contains_base_profile_only(self):
+        feeds = self.parishes["coomera"]
+        parish = feeds["parish"]
+        services = feeds["services"]
+        self.assertEqual(parish["branding"]["logo"], "assets/coomera-logo.png")
+        self.assertEqual(parish["branding"]["theme"], "coomera")
+        self.assertEqual(parish["contact"]["email"], "coomera@bne.catholic.net.au")
+        self.assertEqual(parish["office"]["hours"]["tuesday"], "09:00-12:00")
+        self.assertEqual(parish["clergy"], [{
+            "role": "Parish Priest",
+            "name": "Father Mauro Conte",
+        }])
+        self.assertEqual(
+            parish["churches"],
+            [{
+                "id": "st-marys",
+                "name": "St. Mary's Catholic Church",
+                "calendar_name": "St. Mary's",
+                "address": "185 Billinghurst Crescent, Upper Coomera QLD 4209",
+                "is_primary_site": True,
+            }],
+        )
+        self.assertEqual(services["services"], [])
+        self.assertEqual(feeds["community"]["events"], [])
+        self.assertEqual(
+            [(source["url"], source["status"]) for source in services["sources"]],
+            [("https://stmaryscoomera.net.au/", "baseline")],
         )
 
     def test_sparse_parish_omits_all_optional_metadata(self):

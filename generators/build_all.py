@@ -26,6 +26,7 @@ PARISH_IDS = (
     "burleigh-heads",
     "nerang",
     "runaway-bay",
+    "coomera",
 )
 TIMEZONE = "Australia/Brisbane"
 BRISBANE = ZoneInfo(TIMEZONE)
@@ -148,6 +149,17 @@ def build(offline=False, generated_at=None):
                 {
                     "name": "Holy Family published recurring schedule",
                     "url": runaway_bay.PARISH_URL,
+                    "status": "baseline",
+                },
+            ],
+        },
+        "coomera": {
+            "records": [],
+            "community_records": [],
+            "sources": [
+                {
+                    "name": "St. Mary's Coomera published profile",
+                    "url": "https://stmaryscoomera.net.au/",
                     "status": "baseline",
                 },
             ],

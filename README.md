@@ -9,9 +9,9 @@ parish information into four independent feeds:
 - `liturgical.json` - what the Church is celebrating
 
 The published registry includes Surfers Paradise, Southport, Burleigh Heads,
-Nerang, and Runaway Bay. The web runtime supports richer and sparser parish
-definitions without changing its feed contract. Its default Gold Coast wide
-view combines events from every registered parish at runtime.
+Nerang, Runaway Bay, and Coomera. The web runtime supports richer and sparser
+parish definitions without changing its feed contract. Its default Gold Coast
+wide view combines events from every registered parish at runtime.
 
 ## Live Project
 
@@ -68,5 +68,5 @@ Refreshing public sources requires network access:
 ## Current Scope
 
 The runtime and feed contracts are modular. The build orchestrator generates
-five parish feeds and liturgical years 2026-2028. Surfers Paradise and Burleigh
+six parish feeds and liturgical years 2026-2028. Surfers Paradise and Burleigh
 Heads also include newsletter-derived community and worship overlays.

@@ -1,0 +1,39 @@
+{
+  "branding": {
+    "logo": "assets/coomera-logo.png",
+    "tagline": "Serving Upper Coomera and the northern Gold Coast community.",
+    "theme": "coomera"
+  },
+  "churches": [
+    {
+      "address": "185 Billinghurst Crescent, Upper Coomera QLD 4209",
+      "calendar_name": "St. Mary's",
+      "id": "st-marys",
+      "is_primary_site": true,
+      "name": "St. Mary's Catholic Church"
+    }
+  ],
+  "clergy": [
+    {
+      "name": "Father Mauro Conte",
+      "role": "Parish Priest"
+    }
+  ],
+  "contact": {
+    "email": "coomera@bne.catholic.net.au",
+    "phone": "(07) 5558 0110",
+    "website": "https://stmaryscoomera.net.au/"
+  },
+  "id": "coomera",
+  "name": "St. Mary's Catholic Church Upper Coomera",
+  "office": {
+    "address": "185 Billinghurst Crescent, Upper Coomera QLD 4209",
+    "hours": {
+      "friday": "09:00-12:00",
+      "thursday": "09:00-12:00",
+      "tuesday": "09:00-12:00",
+      "wednesday": "09:00-12:00"
+    }
+  },
+  "schema_version": 1
+}

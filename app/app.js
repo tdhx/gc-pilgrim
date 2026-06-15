@@ -770,6 +770,14 @@ function churchClass(church) {
   }[church] || "church-unassigned";
 }
 
+function eventImageClass(eventType) {
+  return {
+    adoration: "event-adoration",
+    confession: "event-reconciliation",
+    liturgy: "event-lay-led-communion",
+  }[eventType] || "";
+}
+
 function makeTag(text) {
   const tag = document.createElement("span");
   tag.className = "tag";
@@ -812,6 +820,8 @@ function renderCard(event) {
   const card = elements.template.content.firstElementChild.cloneNode(true);
   const imageClass = churchClass(event.church);
   card.classList.add(imageClass);
+  const serviceImageClass = eventImageClass(event.event_type);
+  if (serviceImageClass) card.classList.add(serviceImageClass);
   if (
     imageClass === "church-unassigned"
     && ["mass", MULTICULTURAL_TYPE].includes(event.event_type)
